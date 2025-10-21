@@ -1,1 +1,0 @@
-### Domain Glossary: Lab AI Foraging
