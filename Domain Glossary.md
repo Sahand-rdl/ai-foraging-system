@@ -5,7 +5,7 @@
 ## Actors
 
 * **User:** AI Practitioner, Researcher. Primary user of the tool. A technical user who explores, designs, and develops AI/ML solutions.
-* **New User:** A first-time or novice user who is onboarding to the system. May have limited familiarity with available Knowledge Sources and Approaches, and learns through exploration or guided workflows.
+* **New User:** An individual (e.g., another researcher or team member) who accesses the Repository to find and reuse the curated knowledge, evaluation results, and artifacts previously saved by the primary User.
 
 ## Core concepts
 
