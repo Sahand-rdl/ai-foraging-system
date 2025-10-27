@@ -5,6 +5,7 @@
 ## Actors
 
 * **User:** AI Practitioner, Researcher. Primary user of the tool. A technical user who explores, designs, and develops AI/ML solutions.
+* **New User:** A first-time or novice user who is onboarding to the system. May have limited familiarity with available Knowledge Sources and Approaches, and learns through exploration or guided workflows.
 
 ## Core concepts
 
@@ -20,7 +21,9 @@
 * **Retention** (*or maybe to be renamed*): Act of storing or saving a Knowledge Source or Artifact for use.
 * **Reuse** (*or whatever else*): Ultimate goal of the process, where the User applies the retained knowledge in their own ML prototype or solution.
 * **Labeling:** Process of labeling the knowledge artifact automatically by an "AI" agent
- 
+* **Create:** The act of generating a new Knowledge Artifact or Source, such as producing code, or publishing a trained model.
+* **Contains:** A relationship indicating that a Knowledge Source includes one or more Knowledge Artifacts.
+
 ## Approaches
 *(not sure if this is even needed or just too much, but here we go)*
 
