@@ -22,7 +22,7 @@
 * **Reuse** (*or whatever else*): Ultimate goal of the process, where the User applies the retained knowledge in their own ML prototype or solution.
 * **Labeling:** Process of labeling the knowledge artifact automatically by an "AI" agent
 * **Create:** The act of generating a new Knowledge Artifact or Source, such as producing code, or publishing a trained model.
-* **Contains:** A relationship indicating that a Knowledge Source includes one or more Knowledge Artifacts.
+* **Contain:** A relationship indicating that a Knowledge Source includes one or more Knowledge Artifacts.
 
 ## Approaches
 *(not sure if this is even needed or just too much, but here we go)*
