@@ -1,6 +1,6 @@
 # Domain Glossary for what we already have on the board
 
-![alt text](./images/AI%20LAB%20Domain.jpg)
+![alt text](./images/AI%20Lab%20Domain%20Story.jpeg)
 
 ## Actors
 
