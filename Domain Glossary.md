@@ -1,4 +1,4 @@
-# Domain Glossary for what we already have on the board
+# Domain Glossary
 
 ![alt text](./images/AI_Lab_Domain_Story.jpeg)
 
