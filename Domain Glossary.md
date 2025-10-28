@@ -15,6 +15,8 @@
 * **Evaluation Result:** The outcome of the user’s assessment of a Knowledge Artifact or Source, based on a specific Approach. Captures Credibility, Reusability, Relevance, etc.
 * **Repository**: Storage or safe for everything (including Knowledge Source or Artifact, Evaluation Result, etc.) for later use.
 * **ML problem definition:** A description of the task or challenge the User is trying to solve, which guides their search and evaluation.
+* **Search Tool:** The system or interface the user interacts with to find Knowledge Sources. Could be a web search engine, a scholarly literature database, or sth custom.
+* **Evaluation Approach:** The method or framework a user applies to evaluate the Knowledge Artifact.
 
 ## Activities
 
@@ -28,8 +30,3 @@
 * **accesses:** The act of retrieving data, either by the Search Tool from a Knowledge Source or by a New User from the Repository.
 * **has:** The relationship linking a Knowledge Source to its Source Metadata.
 * **evaluates:** The relationship showing that a Knowledge Artifact or Source Metadata is assessed by an Evaluation Approach.
-
-## Approaches
-
-* **Search Tool:** The system or interface the user interacts with to find Knowledge Sources. Could be a web search engine, a scholarly literature database, or sth custom.
-* **Evaluation Approach:** The method or framework a user applies to evaluate the Knowledge Artifact.
