@@ -4,7 +4,7 @@
 
 ## Mermaid Code
 
-`---
+```---
 config:
   layout: elk
 ---
@@ -64,5 +64,4 @@ direction BT
     KnowledgeRepository "1" o-- "0..*" KnowledgeArtifact : contains
     KnowledgeRepository "1" o-- "0..*" EvaluationResult : contains
     Explorer "1" --> "0..*" KnowledgeRepository : accesses
-
-`
+```
