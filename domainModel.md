@@ -1,3 +1,4 @@
+```
 ---
 config:
   layout: elk
@@ -65,3 +66,5 @@ direction BT
     Repository "1" o-- "0..*" KnowledgeArtifact : contains
     Repository "1" o-- "0..*" EvaluationResult : contains
     NewUser "1" --> "0..*" Repository : accesses
+
+```
