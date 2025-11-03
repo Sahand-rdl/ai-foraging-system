@@ -4,7 +4,8 @@
 
 ## Mermaid Code
 
-```---
+```
+---
 config:
   layout: elk
 ---
@@ -57,6 +58,7 @@ direction BT
     KnowledgeSource "1" --> "0..*" KnowledgeArtifact : includes
     Engineer "1" --> "0..*" EvaluationApproach : creates
     EvaluationApproach "1" --> "1..*" KnowledgeArtifact : evaluates
+    EvaluationApproach "1" --> "1..*" KnowledgeSource : evaluates
     Engineer "1" --> "0..*" EvaluationResult : creates
     KnowledgeArtifact "1" --> "1..*" EvaluationResult : has
     EvaluationApproach "0..*" --> "1"  EvaluationResult: influences
