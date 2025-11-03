@@ -4,7 +4,7 @@
 ## Actors
 
 * **Engineer:** AI practitioner or researcher. A technical user who explores, designs, and develops AI/ML solutions.
-* **New User:** An individual (e.g., another researcher or team member) who accesses the Repository to find and reuse the curated knowledge, evaluation results, and artifacts previously saved by an Engineer.
+* **Explorer:** An individual (e.g., another researcher or team member) who accesses the Repository to find and reuse the curated knowledge, evaluation results, and artifacts previously saved by an Engineer.
 
 ## Core concepts
 
