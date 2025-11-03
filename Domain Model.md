@@ -16,10 +16,10 @@ direction BT
     class Explorer {
     }
     class MLProblemDefinition {
-	    
+
     }
     class KnowledgeSource {
-	    
+
     }
     class KnowledgeArtifact {
 	    +artifactType: ArtifactType
@@ -38,7 +38,7 @@ direction BT
 	    executable
     }
     class EvaluationApproach {
-	    
+
     }
     class EvaluationResult {
     }
@@ -56,7 +56,7 @@ direction BT
     SearchTool "1" --> "0..*" KnowledgeSource : accesses
     KnowledgeSource "1" --> "1" SourceMetadata : has
     KnowledgeSource "1" --> "0..*" KnowledgeArtifact : includes
-    Engineer "1" --> "0..*" EvaluationApproach : creates
+    Engineer "1" --> "0..*" EvaluationApproach : chooses
     EvaluationApproach "1" --> "1..*" KnowledgeArtifact : evaluates
     EvaluationApproach "1" --> "1..*" KnowledgeSource : evaluates
     Engineer "1" --> "0..*" EvaluationResult : creates
