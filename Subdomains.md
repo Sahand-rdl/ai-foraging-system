@@ -11,7 +11,8 @@ so that the system can understand what kind of ML problem I’m trying to solve.
 **Input:** Natural language description of the ML problem.  
 **System Tasks:**
 1. Use LLMs to extract structured attributes.  
-2. Generate a standardized **Problem Definition**.  
+2. Generate a standardized **Problem Definition**.
+  
 **Output:** `Problem_Definition` object.
 
 ---
