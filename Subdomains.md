@@ -9,10 +9,11 @@
 so that the system can understand what kind of ML problem I’m trying to solve.
 
 **Input:** Natural language description of the ML problem.  
+
 **System Tasks:**
 1. Use LLMs to extract structured attributes.  
 2. Generate a standardized **Problem Definition**.
-  
+
 **Output:** `Problem_Definition` object.
 
 ---
@@ -24,9 +25,11 @@ so that the system can understand what kind of ML problem I’m trying to solve.
 so that I can find potentially useful research papers, codebases, or datasets.
 
 **Input:** `Problem_Definition`.  
+
 **System Tasks:**
 1. Call external or internal search APIs.  
 2. Perform **keyword and semantic matching**.  
+
 **Output:** List of **Knowledge Sources** with metadata *(title, abstract, link, tags, etc.)*.
 
 ---
@@ -35,7 +38,8 @@ so that I can find potentially useful research papers, codebases, or datasets.
 **As an Engineer**, I want to **select one or more Knowledge Sources**, 
 so that I can send them for evaluation.
 
-**Input:** Selected `Source_IDs` + `Problem_ID`.  
+**Input:** Selected `Source_IDs` + `Problem_ID`. 
+
 **Output:** Collection of sources to be evaluated.
 
 ---
@@ -45,6 +49,7 @@ so that I can send them for evaluation.
 so that the system knows how to process the selected Knowledge Sources.
 
 **Input:** Collection of evaluation approaches.  
+
 **Output:** An `Evaluation_Approach`.
 
 ---
@@ -56,10 +61,12 @@ so that the system knows how to process the selected Knowledge Sources.
 so that I can determine how relevant it is to the given ML Problem.
 
 **Input:** `Problem_Definition` + Knowledge Source content.  
+
 **System Tasks:**
 1. Perform **semantic similarity matching**.  
 2. Extract and highlight the most relevant sentences.  
 3. Summarize reasoning and generate a **“Good/Bad” decision**.  
+
 **Output:** AI-generated `Evaluation_Result`.
 
 ---
@@ -69,8 +76,10 @@ so that I can determine how relevant it is to the given ML Problem.
 so that the Engineer can focus on the most useful sections.
 
 **Input:** AI-generated `Evaluation_Result`.  
+
 **System Tasks:**
 1. Highlight relevant parts of the Knowledge Source.  
+
 **Output:** AI-generated `Evaluation_Result` **with highlighted notes**.
 
 ---
@@ -80,6 +89,7 @@ so that the Engineer can focus on the most useful sections.
 so that I can refine the evaluation with a star rating and free-text comment.
 
 **Input:** AI-generated `Evaluation_Result` with highlights.  
+
 **Output:** AI-generated `Evaluation_Result` **with highlights and evaluations**.
 
 ---
@@ -91,9 +101,11 @@ so that I can refine the evaluation with a star rating and free-text comment.
 so that it can be reused and referenced in the future.
 
 **Input:** Knowledge Source + Evaluation Result + Problem Definition.  
+
 **System Tasks:**
 1. Save data in the repository.  
 2. Generate **searchable indexes**.  
+
 **Output:** Searchable `Knowledge_Artifact`.
 
 ---
@@ -103,9 +115,11 @@ so that it can be reused and referenced in the future.
 so that I can find related Knowledge Artifacts and Evaluation Results.
 
 **Input:** Keywords or problem descriptions.  
+
 **System Tasks:**
 1. Support **keyword and semantic search**.  
 2. Retrieve related problems, sources, and evaluations.  
+
 **Output:** Related `Knowledge_Artifact`.
 
 ---
@@ -115,6 +129,8 @@ so that I can find related Knowledge Artifacts and Evaluation Results.
 so that I can assess the reliability and usefulness of each artifact.
 
 **Input:** `Knowledge_Artifact`.  
+
 **System Tasks:**
 1. Retrieve **historical evaluations**.  
+
 **Output:** Historical evaluations
