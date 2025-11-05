@@ -1,4 +1,4 @@
-# 🧩 Subdomains
+#  Subdomains
 
 ---
 
