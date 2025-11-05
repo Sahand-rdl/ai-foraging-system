@@ -5,7 +5,8 @@
 ##  <span style="color:#ff6600">Subdomain 1: Problem Definition</span>
 
 **Story 1.1**  
-**As an Engineer**, I want to **create a structured ML problem definition**, so that the system can understand what kind of ML problem I’m trying to solve.
+**As an Engineer**, I want to **create a structured ML problem definition**, 
+so that the system can understand what kind of ML problem I’m trying to solve.
 
 **Input:** Natural language description of the ML problem.  
 **System Tasks:**
@@ -18,7 +19,8 @@
 ##  <span style="color:#007acc">Subdomain 2: Knowledge Discovery</span>
 
 **Story 2.1**  
-**As an Engineer**, I want to **search for Knowledge Sources** related to my ML Problem, so that I can find potentially useful research papers, codebases, or datasets.
+**As an Engineer**, I want to **search for Knowledge Sources** related to my ML Problem, 
+so that I can find potentially useful research papers, codebases, or datasets.
 
 **Input:** `Problem_Definition`.  
 **System Tasks:**
@@ -29,7 +31,8 @@
 ---
 
 **Story 2.2**  
-**As an Engineer**, I want to **select one or more Knowledge Sources**, so that I can send them for evaluation.
+**As an Engineer**, I want to **select one or more Knowledge Sources**, 
+so that I can send them for evaluation.
 
 **Input:** Selected `Source_IDs` + `Problem_ID`.  
 **Output:** Collection of sources to be evaluated.
@@ -37,7 +40,8 @@
 ---
 
 **Story 2.3**  
-**As an Engineer**, I want to **choose an Evaluation Approach**, so that the system knows how to process the selected Knowledge Sources.
+**As an Engineer**, I want to **choose an Evaluation Approach**, 
+so that the system knows how to process the selected Knowledge Sources.
 
 **Input:** Collection of evaluation approaches.  
 **Output:** An `Evaluation_Approach`.
@@ -47,7 +51,8 @@
 ##  <span style="color:#28a745">Subdomain 3: AI Evaluation</span>
 
 **Story 3.1**  
-**As an AI Agent**, I want to **analyze the Knowledge Source content and metadata**, so that I can determine how relevant it is to the given ML Problem.
+**As an AI Agent**, I want to **analyze the Knowledge Source content and metadata**, 
+so that I can determine how relevant it is to the given ML Problem.
 
 **Input:** `Problem_Definition` + Knowledge Source content.  
 **System Tasks:**
