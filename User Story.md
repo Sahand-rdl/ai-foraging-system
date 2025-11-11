@@ -13,7 +13,7 @@ Engineer can feed AI Agent multiple Knowledge Sources, and the AI Agent should g
 
 
 
-#  Subdomains
+#  Key Activities
 
 1. Problem Definition
 2. Knowledge discovery (outsourced to f.e. google scholar)
@@ -59,11 +59,12 @@ Engineer can feed AI Agent multiple Knowledge Sources, and the AI Agent should g
 
 -   As an **Engineer**, I want to **state my ML problem** so that Explorers can quickly understand the ML problem that is covered by the project
     
--   As an **Engineer**, I want to **save a confirmed knowledge artifact** with my notes and tags so that **it can be reused by my team**.
+-   As an **Engineer**, I want to group **Knowledge Artifacts** by project, so that I have an overview of all relevant Information.
 
--   (TODO) As an **Engineer**, I want to **organize outputs of information foraging by projects** so that (each project covers a specific ML research problem)
-(I want to be able to organize KAs by project)
-    
+-   As an *Engineer**, I want to Invite other Engineers to the Project, so that we can work on it collaberatively.
+
+-   As an **Engineer**, I want to **save a useful Knowledge Artifact** with my notes and tags so that **it can be reused by my team of Explorers**.
+
 -   As an **Explorer**, I want to **search the repository** using keywords so that I can **find curated artifacts for my own task**.
     
 -   As an **Explorer**, I want to **see the saved evaluation results** for an artifact so that I can **quickly understand _why_ it was considered valuable**.
