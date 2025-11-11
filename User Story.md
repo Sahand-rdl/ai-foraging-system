@@ -42,29 +42,35 @@ Engineer can feed AI Agent multiple Knowledge Sources, and the AI Agent should g
 ### 1. Evaluation
 
 
+-   As an **Engineer**, I want to be supported in quality based evaluation, so that I can **reduce the Evaluation overhead**.
 
--   As an **Engineer**, I want to **quickly review source metadata** (like author or abstract) so that I can **decide if it's worth a deeper look**. ()
-    
--   As an **Engineer**, I want to **record my evaluation result** (e.g., "highly relevant") for a source so that **I and others know its value**.
-    
+
 
 ### 2. Knowledge Extraction
 
--   As an **Engineer**, I want an **agent to scan a knowledge source** so that it can **highlight potential knowledge artifacts** related to my problem.
-    
+-   As an **Engineer**, I want to be supported in **scanning Knowledge Sources**, so that I can find relevant **Knowledge Artifacts** faster.
+
 -   As an **Engineer**, I want to **review the highlighted artifacts** so that I can **confirm their relevance and usefulness**.
     
 
 ### 3. Knowledge Repository
 
+-   As an **Engineer**, I want to save the result of my intuition based Evaluation, so that I can reuse, compare, and reflect on it later across different projects. 
+
+-   As an **Engineer**, I want to save my experiment Results assosiated to a Knowledge Artifact, so that these results can inform future decisions.
+
 -   As an **Engineer**, I want to **state my ML problem** so that Explorers can quickly understand the ML problem that is covered by the project
     
 -   As an **Engineer**, I want to group **Knowledge Artifacts** by project, so that I have an overview of all relevant Information.
 
--   As an *Engineer**, I want to Invite other Engineers to the Project, so that we can work on it collaberatively.
+-   As an **Engineer**, I want to invite other **Engineers** to the Project, so that we can work on it **collaberatively**.
 
--   As an **Engineer**, I want to **save a useful Knowledge Artifact** with my notes and tags so that **it can be reused by my team of Explorers**.
+-   As an **Engineer**, I want to **save a useful Knowledge Artifact** with my notes and additional Information so that **it can be reused by my team of Explorers**.
+
+-   As an **Engineer**, I want means to **organize my Knowledge Artifacts**, so that I can **retrieve** them more easily.
 
 -   As an **Explorer**, I want to **search the repository** using keywords so that I can **find curated artifacts for my own task**.
     
 -   As an **Explorer**, I want to **see the saved evaluation results** for an artifact so that I can **quickly understand _why_ it was considered valuable**.
+
+-   As an **Engineer**, I want to make **reuse of Knowledge Artifacts tracable**.
