@@ -1,0 +1,21 @@
+from openai import OpenAI
+
+# Initialize the client for RWTH Aachen LLM
+client = OpenAI(
+    api_key="sk-1D3VVV2S52kdBhGPav4tIQ",
+    base_url="https://llm.hpc.itc.rwth-aachen.de"
+)
+
+# Choose a model
+model = "mistralai/Mistral-Small-3.2-24B-Instruct-2506"
+
+def call_llm(system_prompt, user_prompt):
+    resp = client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        temperature=0.2,
+    )
+    return resp.choices[0].message.content
