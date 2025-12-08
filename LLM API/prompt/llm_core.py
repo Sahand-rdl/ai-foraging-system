@@ -1,5 +1,7 @@
 from openai import OpenAI
 
+
+# Do we use the OpenAI client even if we use a different model? - Dario
 # Initialize the client for RWTH Aachen LLM
 client = OpenAI(
     api_key="sk-1D3VVV2S52kdBhGPav4tIQ",

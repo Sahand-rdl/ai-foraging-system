@@ -3,6 +3,8 @@ print("prompt_test.py is running")
 from prompt.extractor import extract_entities
 from prompt.evaluator import evaluate_relevance
 from prompt.chatter import chat_about_document
+from prompt.trust_check import trust_checker
+
 
 import PyPDF2
 
@@ -19,19 +21,27 @@ def run_tests():
     pdf_path = "example.pdf" 
     document = read_pdf_text(pdf_path)
 
-    query = input("your question: ")
+    #adding the ability to choose different models big/small 
 
-    print("=== Extraction Test ===")
-    print(extract_entities(document))
-    print()
+    task = input("What do you want to do?\n 1: Check trustworthyness.\n 2:Extract information. \n 3: Evaluate something. \n 4: Chat with the document.")
+    
 
-    print("=== Evaluation Test ===")
-    print(evaluate_relevance(document, query))
-    print()
+    match task:
+        case 1:
+            print("trustchecker")
+            print(trust_checker(document))
+        case 2:
+            print("=== Extraction Test ===")
+            print(extract_entities(document))
+        case 3:
+            print("=== Evaluation Test ===")
+            query = input("Input your evaluation specifications:\n")
+            print(evaluate_relevance(document, query))
+        case 4:
+            print("=== Chat Test ===")
+            query = input("What do you need help with?\n")
+            print(chat_about_document(document, query))
 
-    print("=== Chat Test ===")
-    print(chat_about_document(document, query))
-    print()
 
 
 if __name__ == "__main__":
