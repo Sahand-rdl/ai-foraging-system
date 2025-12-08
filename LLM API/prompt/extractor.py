@@ -7,7 +7,15 @@ def extract_entities(document_text):
     """
 
     user_prompt = f"""
-    DOCUMENT:\"\"\"{document_text}\"\"\"
+    DOCUMENT:
+    \"\"\"
+    {document_text}
+    \"\"\"
+
+    Extract:
+    - dates
+    - organizations
+    - key terms
     """
 
     return call_llm(system_prompt, user_prompt)

@@ -10,15 +10,21 @@ def evaluate_relevance(document_text, user_query):
     """
 
     user_prompt = f"""
-    DOCUMENT:\"\"\"{document_text}\"\"\"
+    DOCUMENT:
+    \"\"\"
+    {document_text}
+    \"\"\"
 
-    QUERY:\"\"\"{user_query}\"\"\"
+    QUERY:
+    \"\"\"
+    {user_query}
+    \"\"\"
 
     Expected JSON format:
     {{
-    "relevance_score": 0-5,
-    "trustworthiness": 0-5,
-    "reason": "..."
+      "relevance_score": 0-5,
+      "trustworthiness": 0-5,
+      "reason": "..."
     }}
     """
 

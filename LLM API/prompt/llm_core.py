@@ -7,7 +7,8 @@ client = OpenAI(
 )
 
 # Choose a model
-model = "mistralai/Mistral-Small-3.2-24B-Instruct-2506"
+smallmodel = "mistralai/Mistral-Small-3.2-24B-Instruct-2506" # 24B parameters
+model = "openai/gpt-oss-120b"  # OpenAI 120b
 
 def call_llm(system_prompt, user_prompt):
     resp = client.chat.completions.create(
