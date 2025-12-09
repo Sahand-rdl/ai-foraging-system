@@ -1,5 +1,7 @@
-## Domain Glossary
+## Domain Story
 ![alt text](./images/AI_Lab_Domain_Story.jpeg)
+
+## Domain Glossary
 
 ## Actors
 
