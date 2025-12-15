@@ -1,37 +1,29 @@
 import os
+import json
 from docling.document_converter import DocumentConverter
 
 RAW_FOLDER = "raw_docs"
 OUTPUT_FOLDER = "docling_docs"
 
-def convert_to_markdown(src_path: str, dst_path: str):
-    """
-    Convert any supported document into Markdown using Docling.
-    Always outputs a non-empty markdown file.
-    """
+def convert_to_json(src_path: str, dst_path: str):
     converter = DocumentConverter()
     result = converter.convert(src_path)
     doc = result.document
 
-    # Try markdown
     try:
-        md = doc.export_to_markdown()
+        data = doc.export_to_dict()
     except:
-        md = ""
+        data = None
 
-    # Fallback to text
-    if not md or not md.strip():
-        try:
-            md = doc.export_to_text()
-        except:
-            md = ""
-
-    # Last fallback
-    if not md.strip():
-        md = f"# Document Parsed\n\n(No content detected for {os.path.basename(src_path)})\n"
+    if not data:
+        data = {
+            "filename": os.path.basename(src_path),
+            "error": "Docling returned no structured content.",
+            "content": []
+        }
 
     with open(dst_path, "w", encoding="utf-8") as f:
-        f.write(md)
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
 
 def batch_convert():
@@ -42,14 +34,14 @@ def batch_convert():
             continue
 
         src = os.path.join(RAW_FOLDER, fname)
-        dst = os.path.join(OUTPUT_FOLDER, fname.rsplit(".", 1)[0] + ".md")
+        dst = os.path.join(OUTPUT_FOLDER, fname.rsplit(".", 1)[0] + ".json")
 
         if os.path.exists(dst):
             print(f"Skipping (exists) {fname}")
             continue
 
         print(f"Converting {fname} …")
-        convert_to_markdown(src, dst)
+        convert_to_json(src, dst)
         print(f"Saved → {dst}")
 
 
