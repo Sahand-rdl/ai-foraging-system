@@ -1,7 +1,7 @@
-from llm_core import call_llm
-from schema import REQUIRED_KEYS
+from .llm_core import call_llm
+from .schema import REQUIRED_KEYS
 
-def check_completeness(extraction_json):
+def check_completeness(extraction_json):       
     for key in REQUIRED_KEYS:
         if key not in extraction_json:
             return False

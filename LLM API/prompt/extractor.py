@@ -1,6 +1,6 @@
 from .llm_core import call_llm
 
-def extract_entities(document_text):
+def extract_entities(document_text, prompt_version="v1"):
     system_prompt = """
     You are an expert academic information extraction assistant.
 
@@ -45,12 +45,12 @@ def extract_entities(document_text):
 
     Output format (JSON):
 
-    {
+    {{
     "terminologies": [ ... ],
     "figures": [ ... ],
     "tables": [ ... ],
     "algorithms": [ ... ]
-    }
+    }}
 
     Rules:
     - Do NOT infer missing elements

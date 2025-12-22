@@ -1,12 +1,18 @@
 from .llm_core import call_llm
 
-def evaluate_relevance(document_text, user_query):
+def evaluate_importance(document_text, topic_or_project):
     system_prompt = """
-    You evaluate how well a document answers the user query.
-    Return JSON with:
-    - relevance_score (0-5)
-    - trustworthiness (0-5)
-    - reason
+    You are an academic reviewer evaluating the importance
+    of a document for a given topic or project.
+
+    Rules:
+    - Base your evaluation STRICTLY on the provided document
+    - Do NOT use external knowledge
+    - Do NOT speculate about impact beyond what the document supports
+    - If the document provides insufficient information,
+      state this explicitly
+
+    Use clear, neutral, analytical language.
     """
 
     user_prompt = f"""
@@ -15,17 +21,35 @@ def evaluate_relevance(document_text, user_query):
     {document_text}
     \"\"\"
 
-    QUERY:
+    TOPIC / PROJECT:
     \"\"\"
-    {user_query}
+    {topic_or_project}
     \"\"\"
 
-    Expected JSON format:
+    Evaluate how important this document is for the given topic/project.
+
+    Consider only:
+    - How directly the document addresses the topic/project
+    - Whether it provides core concepts, methods, or evidence
+    - Whether the contribution is central or peripheral
+
+    Output JSON ONLY in the following format:
     {{
-      "relevance_score": 0-5,
-      "trustworthiness": 0-5,
-      "reason": "..."
+      "importance_level": 0-5,
+      "support_level": 0-5,
+      "reason": "Brief justification based only on document content"
     }}
+
+    Scale definition:
+    - importance_level:
+      0 = not relevant
+      1 = marginally related
+      3 = moderately important
+      5 = central to the topic/project
+
+    - support_level:
+      0 = no explicit support
+      5 = strong, explicit, repeated support
     """
 
     return call_llm(system_prompt, user_prompt)
