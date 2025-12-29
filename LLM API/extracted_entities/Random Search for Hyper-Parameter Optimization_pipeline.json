@@ -1,0 +1,38 @@
+[
+  {
+    "iteration": 1,
+    "prompt_version": "v1",
+    "extraction": {
+      "terminologies": [],
+      "figures": [],
+      "tables": [],
+      "algorithms": []
+    },
+    "complete": true,
+    "self_assessment": "**Weakly supported items**  \n- *None.* The extraction result contains no entries, so there are no items that could be judged as weakly supported.\n\n**Ambiguous items**  \n- *None.* With an empty list for each category, there is nothing whose relevance or meaning can be questioned.\n\n**Important missing items**  \n- **Terminologies:** No domain‑specific terms or definitions were extracted, yet a typical scholarly document would normally introduce key concepts.  \n- **Figures:** No visual elements (e.g., diagrams, plots, photographs) were identified, which are often essential for illustrating methods or results.  \n- **Tables:** No tabular data were captured; tables are commonly used to present experimental data, comparisons, or parameter settings.  \n- **Algorithms:** No procedural descriptions or pseudocode were extracted; many technical papers include at least one algorithm to convey the core method.\n\n*Explanation:* The source document is reported as “(No readable text)”, meaning the OCR or parsing step failed to obtain any legible content. Consequently, the extraction pipeline could not locate any terminologies, figures, tables, or algorithms, leading to a completely empty result. All four categories are therefore missing and would need to be supplied from a properly processed version of the document."
+  },
+  {
+    "iteration": 2,
+    "prompt_version": "v_refined_disambiguation",
+    "extraction": {
+      "terminologies": [],
+      "figures": [],
+      "tables": [],
+      "algorithms": []
+    },
+    "complete": true,
+    "self_assessment": "**Weakly supported items**  \n- *None.* The extraction did not produce any terminologies, figures, tables, or algorithms, so there are no items that can be judged as weakly supported.\n\n**Ambiguous items**  \n- *None.* With an empty extraction there is nothing whose meaning or relevance can be considered ambiguous.\n\n**Important missing items**  \n- **Terminologies** – No domain‑specific terms or definitions were captured, even though a typical scholarly document would contain several.  \n- **Figures** – No visual elements (e.g., diagrams, plots, photographs) were extracted; these are often essential for illustrating results or concepts.  \n- **Tables** – No tabular data or summary tables were identified, which are commonly used to present experimental results, comparisons, or datasets.  \n- **Algorithms** – No procedural descriptions or pseudo‑code were extracted; many technical papers include at least one algorithmic contribution.\n\n*Explanation*: The source document is reported as “(No readable text)”, which explains why the extraction yielded empty lists. Consequently, every expected category is absent, indicating that the extraction result is incomplete rather than partially correct. No weakly supported or ambiguous entries can be identified because no entries exist."
+  },
+  {
+    "iteration": 3,
+    "prompt_version": "v_refined_disambiguation",
+    "extraction": {
+      "terminologies": [],
+      "figures": [],
+      "tables": [],
+      "algorithms": []
+    },
+    "complete": true,
+    "self_assessment": "**Weakly supported items**  \n- *None.* The extraction did not produce any terminologies, figures, tables, or algorithms, so there are no items that could be judged as weakly supported.\n\n**Ambiguous items**  \n- *None.* With an empty extraction there is nothing whose meaning or relevance can be questioned.\n\n**Important missing items**  \n- **Terminologies** – No domain‑specific terms or definitions were identified, even though a typical scholarly document would contain several.  \n- **Figures** – No visual elements (e.g., diagrams, plots, photographs) were extracted; these are often essential for illustrating concepts or results.  \n- **Tables** – No tabular data or summary tables were captured, which are commonly used to present experimental results, comparisons, or datasets.  \n- **Algorithms** – No procedural descriptions or pseudo‑code were extracted, despite many technical papers including at least one algorithmic contribution.\n\n*Explanation*: The source document is reported as “(No readable text)”, which explains why the extraction yielded empty lists. Consequently, all categories that would normally be expected in an academic manuscript are absent, representing important missing items."
+  }
+]
