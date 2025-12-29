@@ -47,7 +47,7 @@ def trust_checker(document_text: str):
     
     Expected JSON format:
     {{
-      "trustworthiness_score": 1-10,
+      "trustworthiness_score": 1-3,
       "reason": "..."
     }}
     """
