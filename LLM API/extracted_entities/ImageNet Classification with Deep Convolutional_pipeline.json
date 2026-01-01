@@ -3,13 +3,234 @@
     "iteration": 1,
     "prompt_version": "v1",
     "extraction": {
-      "terminologies": [],
-      "figures": [],
-      "tables": [],
-      "algorithms": []
+      "terminologies": [
+        {
+          "term": "Convolutional Neural Networks",
+          "side": "BOTTOMLEFT",
+          "line": 0
+        },
+        {
+          "term": "ImageNet",
+          "side": "BOTTOMLEFT",
+          "line": 14
+        },
+        {
+          "term": "ILSVRC",
+          "side": "BOTTOMLEFT",
+          "line": 14
+        },
+        {
+          "term": "top‑1 error",
+          "side": "BOTTOMLEFT",
+          "line": 4
+        },
+        {
+          "term": "top‑5 error",
+          "side": "BOTTOMLEFT",
+          "line": 4
+        },
+        {
+          "term": "ReLU",
+          "side": "BOTTOMLEFT",
+          "line": 21
+        },
+        {
+          "term": "Rectified Linear Units",
+          "side": "BOTTOMLEFT",
+          "line": 22
+        },
+        {
+          "term": "dropout",
+          "side": "BOTTOMLEFT",
+          "line": 56
+        },
+        {
+          "term": "local response normalization",
+          "side": "BOTTOMLEFT",
+          "line": 30
+        },
+        {
+          "term": "overlapping pooling",
+          "side": "BOTTOMLEFT",
+          "line": 35
+        },
+        {
+          "term": "stochastic gradient descent",
+          "side": "BOTTOMLEFT",
+          "line": 60
+        },
+        {
+          "term": "momentum",
+          "side": "BOTTOMLEFT",
+          "line": 60
+        },
+        {
+          "term": "weight decay",
+          "side": "BOTTOMLEFT",
+          "line": 60
+        },
+        {
+          "term": "GPU",
+          "side": "BOTTOMLEFT",
+          "line": 25
+        },
+        {
+          "term": "softmax",
+          "side": "BOTTOMLEFT",
+          "line": 38
+        },
+        {
+          "term": "multinomial logistic regression",
+          "side": "BOTTOMLEFT",
+          "line": 38
+        },
+        {
+          "term": "PCA",
+          "side": "BOTTOMLEFT",
+          "line": 50
+        },
+        {
+          "term": "eigenvectors",
+          "side": "BOTTOMLEFT",
+          "line": 54
+        },
+        {
+          "term": "eigenvalues",
+          "side": "BOTTOMLEFT",
+          "line": 54
+        },
+        {
+          "term": "batch size",
+          "side": "BOTTOMLEFT",
+          "line": 60
+        },
+        {
+          "term": "learning rate",
+          "side": "BOTTOMLEFT",
+          "line": 60
+        },
+        {
+          "term": "biases",
+          "side": "BOTTOMLEFT",
+          "line": 64
+        },
+        {
+          "term": "weights",
+          "side": "BOTTOMLEFT",
+          "line": 64
+        },
+        {
+          "term": "max‑pooling",
+          "side": "BOTTOMLEFT",
+          "line": 39
+        },
+        {
+          "term": "response‑normalization",
+          "side": "BOTTOMLEFT",
+          "line": 39
+        },
+        {
+          "term": "data augmentation",
+          "side": "BOTTOMLEFT",
+          "line": 47
+        },
+        {
+          "term": "horizontal reflections",
+          "side": "BOTTOMLEFT",
+          "line": 49
+        },
+        {
+          "term": "image translations",
+          "side": "BOTTOMLEFT",
+          "line": 49
+        },
+        {
+          "term": "overfitting",
+          "side": "BOTTOMLEFT",
+          "line": 46
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "A four‑layer convolutional neural network with ReLUs (solid line) reaches a 25 % training error rate on CIFAR‑10 six times faster than an equivalent network with tanh neurons (dashed line).",
+          "side": "BOTTOMLEFT",
+          "line": 28
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Illustration of the architecture of the CNN, showing the split of responsibilities between two GPUs and the number of neurons in each layer.",
+          "side": "BOTTOMLEFT",
+          "line": 43
+        },
+        {
+          "figure": "Figure 3",
+          "description": "96 convolutional kernels of size 11 × 11 × 3 learned by the first convolutional layer on the 224 × 224 × 3 input images (top 48 on GPU 1, bottom 48 on GPU 2).",
+          "side": "BOTTOMLEFT",
+          "line": 62
+        },
+        {
+          "figure": "Figure 4",
+          "description": "(Left) Eight ILSVRC‑2010 test images with the five most probable labels; (Right) Five test images with the six nearest training images in the 4096‑dimensional hidden‑layer feature space.",
+          "side": "BOTTOMLEFT",
+          "line": 80
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Comparison of results on ILSVRC2010 test set.",
+          "side": "BOTTOMLEFT",
+          "line": 71
+        },
+        {
+          "table": "Table 2",
+          "title": "Comparison of error rates on ILSVRC‑2012 validation and test sets.",
+          "side": "BOTTOMLEFT",
+          "line": 74
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Dropout",
+          "description": "Randomly sets the output of each hidden neuron to zero with probability 0.5 during training; at test time all neurons are used with outputs scaled by 0.5.",
+          "side": "BOTTOMLEFT",
+          "line": 56
+        },
+        {
+          "algorithm": "Data augmentation",
+          "description": "Generates image translations and horizontal reflections plus PCA‑based intensity perturbations to enlarge the training set.",
+          "side": "BOTTOMLEFT",
+          "line": 47
+        },
+        {
+          "algorithm": "Training on multiple GPUs",
+          "description": "Splits the network across two GPUs, placing half of the kernels on each and communicating only in selected layers.",
+          "side": "BOTTOMLEFT",
+          "line": 24
+        },
+        {
+          "algorithm": "Local response normalization",
+          "description": "Normalizes each neuron’s activity by the activities of adjacent kernel maps using a specific formula (k = 2, n = 5, α = 10⁻⁴, β = 0.75).",
+          "side": "BOTTOMLEFT",
+          "line": 30
+        },
+        {
+          "algorithm": "Overlapping pooling",
+          "description": "Pooling with stride s = 2 and window size z = 3, allowing neighboring pooling regions to overlap.",
+          "side": "BOTTOMLEFT",
+          "line": 35
+        },
+        {
+          "algorithm": "Stochastic gradient descent",
+          "description": "Optimisation method with batch size 128, momentum 0.9, weight decay 0.0005, and manually adjusted learning rate.",
+          "side": "BOTTOMLEFT",
+          "line": 60
+        }
+      ]
     },
     "complete": true,
-    "self_assessment": "**Weakly supported items**  \n- *None identified.*  \n  The extraction result contains no entries, so there are no items that can be judged as weakly supported.\n\n**Ambiguous items**  \n- *None identified.*  \n  With an empty list for each category, there is no information that could be interpreted ambiguously.\n\n**Important missing items**  \n- **Terminologies** – The source document (even though the provided excerpt shows “(No readable text)”) is expected to contain domain‑specific terms that should have been captured. Their absence suggests the extractor failed to recognize any terminology.  \n- **Figures** – No figure references, captions, or image identifiers were extracted. If the original work includes visual material (e.g., diagrams, plots, schematics), these are missing from the result.  \n- **Tables** – Any tabular data that might summarize experimental results, parameters, or comparative analyses is not present.  \n- **Algorithms** – No algorithmic descriptions, pseudocode blocks, or procedural steps were identified, which is unusual for many technical papers.\n\n*Explanation*: The extraction output is completely empty, indicating that the extraction process either received an unreadable input or was unable to parse the document. Consequently, all expected content types (terminologies, figures, tables, algorithms) are missing, which is a critical shortcoming for any downstream analysis."
+    "self_assessment": "**Weakly‑supported items**  \nThese entries are present in the text but the surrounding context gives only a passing mention; the extraction does not have enough evidence that the term is a core concept or is explained in any detail.\n\n| Item | Why the support is weak |\n|------|--------------------------|\n| **multinomial logistic regression** (term) | Appears only once in the sentence “Our network maximizes the multinomial logistic regression objective…”. No definition or further discussion is provided. |\n| **softmax** (term) | Mentioned only as “a 1000‑way softmax” that produces a distribution; the mechanics of the layer are not described. |\n| **biases** (term) | The word appears in the weight‑initialisation paragraph (“biases … with the constant 1”), but there is no explanation of their role beyond the constant value. |\n| **weights** (term) | Same as above – only a brief note about Gaussian initialization; no deeper treatment. |\n| **GPU** (term) | The document talks about “GTX 580 GPUs” and “training on multiple GPUs”, but the term itself is not defined; it could be interpreted as hardware or as part of the algorithmic strategy. |\n| **batch size** (term) | Stated as “batch size of 128 examples” without any discussion of why that size was chosen or its effect. |\n| **learning rate** (term) | The value “0.01” and the schedule (divide by 10) are mentioned, but the concept is not explained. |\n| **momentum** (term) | Only the numeric value (0.9) is given; no description of its purpose. |\n| **weight decay** (term) | The numeric value (0.0005) is given and a brief comment that it “reduces the model’s training error”, but the underlying principle is not elaborated. |\n\n---\n\n**Ambiguous items**  \nThese entries could be interpreted in more than one way, or the extraction conflates two closely related concepts.\n\n| Item | Source of ambiguity |\n|------|----------------------|\n| **GPU** (term) | Could refer to the physical graphics processor, to the parallel‑training strategy, or to the “GPU communication pattern” described in §3.2. |\n| **response‑normalization** vs **local response normalization** (terms) | The extraction lists both “response‑normalization” (from the architecture description) and “local response normalization” (from §3.3). They refer to the same operation, so having two separate entries is redundant and may cause confusion. |\n| **overfitting** (term) | Mentioned both as a problem and as a motivation for several techniques (dropout, data augmentation). It is a high‑level concept rather than a concrete method, so its classification as a “terminology” is borderline. |\n\n---\n\n**Important missing items**  \nThese are concepts or details that are clearly discussed in the paper but were not captured in the extraction.\n\n| Missing item | Where it appears in the document | Why it matters |\n|--------------|--------------------------------|----------------|\n| **Weight‑initialisation scheme** (Gaussian σ = 0.01, biases = 1 for certain layers) | §5 (“We initialized the weights …”, “We initialized the neuron biases …”) | Central to the training stability and to the success of ReLUs. |\n| **Learning‑rate schedule** (divide‑by‑10 when validation plateaus) | §5 (“…divide the learning rate by 10 when the validation error rate stopped improving…”) | A key part of the optimisation procedure. |\n| **Bias‑initialisation to 1 in specific layers** | Same paragraph as above | Influences early ReLU activation and is highlighted as an “acceleration” technique. |\n| **Max‑pooling layer description** (stride = 2, window = 3 for overlapping pooling) | §3.4 and the overall architecture description | Although “max‑pooling” is listed as a term, the specific pooling strategy (overlapping vs non‑overlapping) is a distinct algorithmic detail. |\n| **Softmax classification layer** (final 1000‑way output) | §3.5 (“…final 1000‑way softmax…”) | The output layer that turns network scores into probabilities; a core component of the model. |\n| **PCA‑based colour augmentation** (the “RGB intensity perturbation” step) | §4.1 (second data‑augmentation form) | While PCA is captured, the specific use for colour jitter is an important sub‑algorithm. |\n| **Training duration and schedule** (≈90 epochs, 5–6 days on two GPUs) | §6 (“…roughly 90 cycles…”, “…five to six days…”) | Provides context on computational cost and reproducibility. |\n| **Dropout applied only to the first two fully‑connected layers** | §4.2 (“We use dropout in the first two fully‑connected layers…”) | The exact placement of dropout is a design decision that influences performance. |\n| **Overlapping‑pooling hyper‑parameters** (s = 2, z = 3) | §3.4 (“…with s = 2 and z = 3”) | The numeric settings are part of the algorithmic contribution. |\n| **Local response normalization hyper‑parameters** (k = 2, n = 5, α = 10⁻⁴, β = 0.75) | §3.3 (formula description) | Specific values are essential for reproducing the method. |\n\nThese missing items are all explicitly described in the paper and are integral to understanding the architecture, training procedure, and the reported performance gains. Including them would give a more complete picture of the contributions."
   },
   {
     "iteration": 2,
@@ -21,18 +242,180 @@
       "algorithms": []
     },
     "complete": true,
-    "self_assessment": "**Weakly supported items**  \n- *None.* The extraction result contains no items, so there are no entries that can be judged as weakly supported.\n\n**Ambiguous items**  \n- *None.* With an empty extraction there is nothing whose relevance or meaning can be interpreted as ambiguous.\n\n**Important missing items**  \n- **Terminologies** – The document almost certainly introduces domain‑specific terms; none were captured.  \n- **Figures** – Visual elements (e.g., diagrams, plots) that are typically present in scholarly works are absent from the extraction.  \n- **Tables** – Structured data presentations are missing, suggesting the extractor failed to detect them.  \n- **Algorithms** – Any procedural descriptions or pseudo‑code that the paper might contain are not listed.\n\n*Explanation:* The extraction result is completely empty despite the expectation that a scholarly document would contain at least some terminologies, figures, tables, or algorithmic descriptions. This indicates a failure of the extraction process rather than an absence of such content in the source. No weakly supported or ambiguous items can be identified because no items were extracted."
+    "self_assessment": "**Review of the Extraction Result**\n\nThe automatic extraction returned an empty set for all four categories (`terminologies`, `figures`, `tables`, `algorithms`).  Consequently the result is **weakly supported** (it provides no evidence of any of the salient entities that are clearly present in the source document).  Below is a concise audit of what is missing or unclear.\n\n---\n\n### 1. Weakly Supported Items\n- **All four categories are empty.**  \n  An empty list conveys no information and therefore cannot be considered a supported extraction.  The lack of any entries suggests that the extractor failed to recognize any of the many clearly‑named entities in the paper.\n\n---\n\n### 2. Ambiguous Items\n- Because nothing was extracted, there are no items that could be judged ambiguous.  However, in the source text several terms could be interpreted either as *terminology* (e.g., “ReLU”) or as part of an *algorithm* (e.g., “dropout”).  The extractor should be able to disambiguate such cases, but it did not produce any output.\n\n---\n\n### 3. Important Missing Items  \n\n| Category | Representative examples that should have been extracted (from the document) |\n|----------|-----------------------------------------------------------------------------|\n| **Terminologies** | *ReLU (Rectified Linear Unit)*, *local response normalization (LRN)*, *overlapping pooling*, *dropout*, *stochastic gradient descent (SGD)*, *momentum*, *weight decay*, *data augmentation*, *PCA‑based color jitter*, *GPU‑accelerated convolution*, *ImageNet*, *ILSVRC‑2010/2012*, *top‑1 / top‑5 error*, *softmax*, *multinomial logistic regression*, *bias initialization*, *learning‑rate schedule* |\n| **Figures** | *Figure 1* (training speed comparison on CIFAR‑10), *Figure 2* (architecture diagram with GPU split), *Figure 3* (first‑layer convolutional kernels), *Figure 4* (qualitative predictions and nearest‑neighbor retrieval) |\n| **Tables** | *Table 1* (ILSVRC‑2010 results vs. baselines), *Table 2* (ILSVRC‑2012 validation/test results for various CNN ensembles) |\n| **Algorithms / Procedures** | *Training pipeline* (SGD with momentum, weight decay, learning‑rate decay), *Two‑GPU parallelization scheme* (splitting kernels across GPUs, selective inter‑GPU communication), *Dropout implementation* (probability 0.5 on fully‑connected layers), *Data‑augmentation pipeline* (random crops, horizontal flips, PCA‑based color perturbation), *Local response normalization formula* (the explicit equation for \\(b_{i,x,y}\\)), *Overlapping pooling configuration* (stride 2, window 3×3) |\n\n*Why these are important*:  \n- **Terminologies** are the core technical concepts that define the contributions of the paper; without them a reader cannot grasp the novelty or reproduce the work.  \n- **Figures** convey the network architecture, training dynamics, and qualitative results—essential for understanding and validating the claims.  \n- **Tables** provide the quantitative performance benchmarks that substantiate the paper’s state‑of‑the‑art claims.  \n- **Algorithms / Procedures** describe the exact methodological steps (e.g., dropout, multi‑GPU training) that enable the reported results; they are crucial for reproducibility.\n\n---\n\n### 4. Summary\nThe current extraction is essentially a null output and therefore **fails to capture any of the substantive content** of the document.  A robust extractor should at minimum return the terminologies, figures, tables, and algorithmic descriptions listed above.  Their absence indicates a serious limitation in the extraction pipeline that must be addressed before the output can be considered reliable for downstream tasks such as indexing, summarisation, or knowledge‑base population."
   },
   {
     "iteration": 3,
     "prompt_version": "v_refined_disambiguation",
     "extraction": {
-      "terminologies": [],
-      "figures": [],
-      "tables": [],
-      "algorithms": []
+      "terminologies": [
+        {
+          "term": "Convolutional Neural Networks",
+          "page": "left",
+          "line": 4
+        },
+        {
+          "term": "ImageNet",
+          "page": "left",
+          "line": 4
+        },
+        {
+          "term": "ILSVRC-2010",
+          "page": "left",
+          "line": 4
+        },
+        {
+          "term": "ILSVRC-2012",
+          "page": "left",
+          "line": 4
+        },
+        {
+          "term": "dropout",
+          "page": "left",
+          "line": 4
+        },
+        {
+          "term": "ReLU",
+          "page": "left",
+          "line": 21
+        },
+        {
+          "term": "Rectified Linear Units",
+          "page": "left",
+          "line": 22
+        },
+        {
+          "term": "local response normalization",
+          "page": "left",
+          "line": 30
+        },
+        {
+          "term": "overlapping pooling",
+          "page": "left",
+          "line": 35
+        },
+        {
+          "term": "stochastic gradient descent",
+          "page": "left",
+          "line": 60
+        },
+        {
+          "term": "momentum",
+          "page": "left",
+          "line": 60
+        },
+        {
+          "term": "weight decay",
+          "page": "left",
+          "line": 60
+        },
+        {
+          "term": "PCA",
+          "page": "left",
+          "line": 50
+        },
+        {
+          "term": "GPU",
+          "page": "left",
+          "line": 25
+        },
+        {
+          "term": "softmax",
+          "page": "left",
+          "line": 38
+        },
+        {
+          "term": "multinomial logistic regression",
+          "page": "left",
+          "line": 38
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "A four-layer convolutional neural network with ReLUs (solid line) reaches a 25% training error rate on CIFAR-10 ...",
+          "page": "left",
+          "line": 28
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Illustration of the architecture of our CNN, showing the delineation of responsibilities between the two GPUs.",
+          "page": "left",
+          "line": 43
+        },
+        {
+          "figure": "Figure 3",
+          "description": "96 convolutional kernels of size 11 × 11 × 3 learned by the first convolutional layer on the 224 × 224 × 3 input images.",
+          "page": "left",
+          "line": 62
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Eight ILSVRC-2010 test images and the five labels considered most probable by our model (plus nearest‑training‑image visualizations).",
+          "page": "left",
+          "line": 80
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Comparison of results on ILSVRC‑2010 test set.",
+          "page": "left",
+          "line": 71
+        },
+        {
+          "table": "Table 2",
+          "title": "Comparison of error rates on ILSVRC‑2012 validation and test sets.",
+          "page": "left",
+          "line": 74
+        }
+      ],
+      "algorithms": [
+        {
+          "process": "dropout",
+          "description": "Randomly setting hidden‑neuron outputs to zero with probability 0.5 during training.",
+          "page": "left",
+          "line": 57
+        },
+        {
+          "process": "stochastic gradient descent",
+          "description": "Optimization with batch size 128, momentum 0.9, weight decay 0.0005.",
+          "page": "left",
+          "line": 60
+        },
+        {
+          "process": "PCA‑based data augmentation",
+          "description": "Adding multiples of principal components of RGB pixel values to training images.",
+          "page": "left",
+          "line": 50
+        },
+        {
+          "process": "local response normalization",
+          "description": "Response‑normalized activity across adjacent kernel maps (k = 2, n = 5, α = 10⁻⁴, β = 0.75).",
+          "page": "left",
+          "line": 30
+        },
+        {
+          "process": "overlapping pooling",
+          "description": "Pooling with stride s = 2 and window z = 3 (overlapping neighborhoods).",
+          "page": "left",
+          "line": 35
+        },
+        {
+          "process": "ReLU nonlinearity",
+          "description": "Applying f(x) = max(0, x) after each convolutional or fully‑connected layer.",
+          "page": "left",
+          "line": 21
+        },
+        {
+          "process": "training on multiple GPUs",
+          "description": "Splitting kernels across two GTX 580 GPUs with limited inter‑GPU communication.",
+          "page": "left",
+          "line": 24
+        }
+      ]
     },
     "complete": true,
-    "self_assessment": "**Weakly supported items**  \n- *None.* The extraction did not return any terminologies, figures, tables, or algorithms, so there are no items that could be judged as weakly supported.\n\n**Ambiguous items**  \n- *None.* With an empty result set there are no entries whose relevance or interpretation is unclear.\n\n**Important missing items**  \n- **Terminologies** – Any domain‑specific concepts, definitions, or key terms that would normally be introduced in the text are absent.  \n- **Figures** – No diagrams, plots, or illustrative images are present, even though most scholarly articles include at least one figure to convey data or concepts.  \n- **Tables** – No tabular presentations of results, experimental settings, or comparative data are extracted.  \n- **Algorithms** – No procedural descriptions, pseudocode, or algorithmic steps are identified, which are often central in technical papers.\n\n*Explanation*: The source document is reported as “(No readable text)”, indicating that the underlying material could not be parsed. Consequently, the extraction process yields empty lists, and all categories that would normally be expected in an academic manuscript are missing. No weakly supported or ambiguous items can be identified because nothing was extracted."
+    "self_assessment": "**1. Weakly supported items**  \n| Category | Item | Why the support is thin |\n|----------|------|--------------------------|\n| Terminology | **Rectified Linear Units** (line 22) | The paper only defines the acronym “ReLU” and then says “we refer to neurons with this non‑linearity as Rectified Linear Units (ReLUs)”. The phrase is not used elsewhere as a standalone term, so the extraction is marginally justified. |\n| Terminology | **multinomial logistic regression** (line 38) | The text mentions that the network “maximizes the multinomial logistic regression objective”, but the phrase is not a central concept of the work; it is essentially a restatement of the soft‑max loss. |\n| Algorithm | **momentum** (line 60) | Momentum is listed as a hyper‑parameter of SGD, but the extraction treats it as a separate “process”. It is not described as an algorithmic contribution. |\n| Algorithm | **weight decay** (line 60) | Same issue as momentum – it is a regularisation hyper‑parameter, not a distinct algorithm introduced by the authors. |\n\n**2. Ambiguous items**  \n| Category | Item | Ambiguity |\n|----------|------|-----------|\n| All items | **page = “left”, line numbers** | The source document is a continuous PDF without explicit page/line markers. The extractor has assigned the same generic location (“left”) to every entry, which does not convey the true location and may be misleading. |\n| Terminology | **GPU** (line 25) | “GPU” appears many times (e.g., “GTX 580”, “two GPUs”, “GPU implementation”). It is unclear whether the extractor intends the hardware platform as a terminology or the specific implementation of convolution. |\n| Algorithm | **training on multiple GPUs** (line 24) | The description mixes hardware‑level parallelisation with architectural design (splitting kernels). It is not clear whether this should be classified as an algorithm, a system detail, or a hardware optimisation. |\n| Terminology | **dropout** (line 4 & line 57) | The term appears both as a “terminology” and as an “algorithm”. The dual listing could cause confusion about whether it is being counted twice. |\n\n**3. Important missing items**  \n\n| Category | Missing item | Reason it should be present |\n|----------|--------------|-----------------------------|\n| Terminology / Algorithm | **max‑pooling** (or “max‑pooling layers”) | The paper repeatedly discusses max‑pooling (e.g., “max‑pooling layers … follow both response‑normalization layers”). It is a core architectural component. |\n| Algorithm | **data augmentation (translations & horizontal flips)** | Section 4.1 describes a major over‑fitting mitigation technique (random 224 × 224 crops + flips). This is an algorithmic contribution but is not listed. |\n| Algorithm | **PCA‑based colour/illumination augmentation** (already captured as “PCA‑based data augmentation”, but the extraction only lists the process; the specific “adding multiples of principal components” could be a distinct entry). |\n| Algorithm | **learning‑rate schedule / annealing** | The paper states “divide the learning rate by 10 when validation error stops improving”. This schedule is part of the training procedure. |\n| Algorithm | **weight‑initialisation scheme** (Gaussian σ = 0.01, bias = 1 for certain layers) | The initialization strategy is described in detail and influences training stability; it is omitted. |\n| Algorithm | **bias initialisation** (different constants for different layers) | Same as above – a concrete step that the authors highlight. |\n| Terminology | **overfitting reduction** (as a high‑level concept) | The paper groups two primary methods (data augmentation, dropout). While “dropout” is captured, the broader “overfitting reduction” theme is not. |\n| Terminology | **columnar CNN** (reference to Cireşan et al.) | The authors compare their architecture to the “columnar CNN” of Cireşan et al.; this term appears in the text but is not extracted. |\n| Figure | **Figure 1 caption details** (training‑error curves on CIFAR‑10) – captured, but the caption also mentions “learning rates were chosen independently”. The extraction does not note the “learning‑rate” nuance, though that may be minor. |\n| Table | **Supplementary material reference** (the paper mentions “supplementary material” for more retrieval examples) – not a table but a missing reference to additional data. |\n| Algorithm | **GPU‑optimized 2‑D convolution implementation** (the publicly released CUDA‑ConvNet code) | The authors claim a “highly‑optimized GPU implementation of 2D convolution” as a contribution; this is not listed under algorithms. |\n\n*All items above are present in the source text and constitute either core concepts, methodological steps, or notable terminology that a faithful extraction should have captured.*"
   }
 ]
