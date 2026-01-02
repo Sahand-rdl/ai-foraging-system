@@ -1,61 +1,129 @@
 from .llm_core import call_llm
+import json
+
 
 def extract_entities(document_text, prompt_version="v1"):
-    system_prompt = """
-    You are an expert academic information extraction assistant.
+    """
+    Extract structured entities from a scientific document.
 
-    Your task is to extract ONLY explicitly stated information
-    from the given scientific document.
-
-    You must:
-    - Rely strictly on the provided document
-    - Avoid interpretation or reasonable guessing
-    - Avoid summarization or paraphrasing beyond necessity
-    - Use concise, technical language
-
-    If an item is not clearly present in the document,
-    do NOT invent it and return an empty list for that category.
+    This function is intentionally designed to:
+    - Always return the SAME JSON schema
+    - Support iterative refinement via prompt_version
+    - Never change output structure across iterations
     """
 
+    # -------------------------
+    # Strategy control by mode
+    # -------------------------
+    if prompt_version == "v1":
+        mode_instruction = """
+        MODE: BASELINE EXTRACTION
+        - Extract only explicitly stated items
+        - Be conservative
+        - Do not attempt to resolve ambiguity
+        """
+    elif prompt_version == "v_refined_disambiguation":
+        mode_instruction = """
+        MODE: DISAMBIGUATION
+        - Remove items that are weakly supported or ambiguous
+        - Prefer exact mentions over paraphrases
+        - If uncertain, EXCLUDE the item
+        """
+    elif prompt_version == "v_refined_coverage":
+        mode_instruction = """
+        MODE: COVERAGE
+        - Add clearly stated items that may have been missed
+        - Still obey all schema and strictness rules
+        """
+    else:
+        mode_instruction = "MODE: DEFAULT"
+
+    # -------------------------
+    # System prompt (hard rules)
+    # -------------------------
+    system_prompt = f"""
+    You are an information extraction FUNCTION, not a writer.
+
+    Your job is to extract structured information from a scientific document.
+
+    CRITICAL RULES:
+    - ALWAYS output valid JSON
+    - ALWAYS follow the EXACT schema provided
+    - NEVER change keys, nesting, or value types
+    - NEVER include explanations outside JSON
+    - Refinement modes may ONLY change which items are included, NOT the structure
+
+    {mode_instruction}
+    """
+
+    # -------------------------
+    # User prompt (schema lock)
+    # -------------------------
     user_prompt = f"""
     DOCUMENT:
     \"\"\"
     {document_text}
     \"\"\"
 
-    Extract the following elements STRICTLY from the document and the specific page number (left half or right half) and the line number.
+    Extract the following elements STRICTLY from the document.
 
-    1. Terminologies
-    - Domain-specific technical terms or concepts
-    - Typically nouns or noun phrases
-    - Example: "Semantic Search", "Convolutional Neural Networks"
-
-    2. Figures
-    - Explicitly referenced figures (e.g., "Figure 1", "Fig. 3")
-    - Include figure number and a short description if available
-
-    3. Tables
-    - Explicitly referenced tables (e.g., "Table 1")
-    - Include table number and title if available
-
-    4. Algorithms / Processes
-    - Explicitly described algorithms, workflows, or processes
-    - Named methods, pipelines, or step-wise procedures
-    - Example: "SSyRS-Gen process"
-
-    Output format (JSON):
+    OUTPUT SCHEMA (MANDATORY):
 
     {{
-    "terminologies": [ ... ],
-    "figures": [ ... ],
-    "tables": [ ... ],
-    "algorithms": [ ... ]
+      "terminologies": [
+        {{
+          "term": string,
+          "meaning": string | null,
+        }}
+      ],
+      "figures": [
+        {{
+          "figure": string,
+          "description": string,
+        }}
+      ],
+      "tables": [
+        {{
+          "table": string,
+          "title": string,
+        }}
+      ],
+      "algorithms": [
+        {{
+          "algorithm": string,
+          "goal": string | null,
+          "process": string | null,
+        }}
+      ]
     }}
 
-    Rules:
-    - Do NOT infer missing elements
+    EXTRACTION RULES:
+    - Only extract what is explicitly stated
+    - Do NOT infer or guess
+    - If a category has no items, return an empty list
+    - If location or line is unknown, use null
     - Do NOT merge categories
-    - If a category has no entries, return an empty list
     """
 
-    return call_llm(system_prompt, user_prompt)
+    # -------------------------
+    # Call LLM
+    # -------------------------
+    response = call_llm(system_prompt, user_prompt)
+
+    # -------------------------
+    # Enforce dict output
+    # -------------------------
+    if isinstance(response, str):
+        try:
+            return json.loads(response)
+        except json.JSONDecodeError:
+            return {
+                "terminologies": [],
+                "figures": [],
+                "tables": [],
+                "algorithms": [],
+                "_error": "LLM returned invalid JSON",
+                "_raw": response
+            }
+
+    return response

@@ -5,244 +5,165 @@
     "extraction": {
       "terminologies": [
         {
-          "term": "Convolutional Neural Networks",
-          "side": "BOTTOMLEFT",
-          "line": 0
-        },
-        {
-          "term": "ImageNet",
-          "side": "BOTTOMLEFT",
-          "line": 14
-        },
-        {
-          "term": "ILSVRC",
-          "side": "BOTTOMLEFT",
-          "line": 14
-        },
-        {
-          "term": "top‑1 error",
-          "side": "BOTTOMLEFT",
-          "line": 4
-        },
-        {
-          "term": "top‑5 error",
-          "side": "BOTTOMLEFT",
-          "line": 4
-        },
-        {
           "term": "ReLU",
-          "side": "BOTTOMLEFT",
-          "line": 21
-        },
-        {
-          "term": "Rectified Linear Units",
-          "side": "BOTTOMLEFT",
-          "line": 22
+          "meaning": "Rectified Linear Units (ReLUs)"
         },
         {
           "term": "dropout",
-          "side": "BOTTOMLEFT",
-          "line": 56
+          "meaning": "setting to zero the output of each hidden neuron with probability 0.5"
         },
         {
           "term": "local response normalization",
-          "side": "BOTTOMLEFT",
-          "line": 30
+          "meaning": "a response‑normalization scheme that implements a form of lateral inhibition"
         },
         {
           "term": "overlapping pooling",
-          "side": "BOTTOMLEFT",
-          "line": 35
+          "meaning": "pooling with stride s = 2 and window size z = 3 (s < z), producing overlapping pooling regions"
         },
         {
           "term": "stochastic gradient descent",
-          "side": "BOTTOMLEFT",
-          "line": 60
-        },
-        {
-          "term": "momentum",
-          "side": "BOTTOMLEFT",
-          "line": 60
-        },
-        {
-          "term": "weight decay",
-          "side": "BOTTOMLEFT",
-          "line": 60
-        },
-        {
-          "term": "GPU",
-          "side": "BOTTOMLEFT",
-          "line": 25
-        },
-        {
-          "term": "softmax",
-          "side": "BOTTOMLEFT",
-          "line": 38
-        },
-        {
-          "term": "multinomial logistic regression",
-          "side": "BOTTOMLEFT",
-          "line": 38
-        },
-        {
-          "term": "PCA",
-          "side": "BOTTOMLEFT",
-          "line": 50
-        },
-        {
-          "term": "eigenvectors",
-          "side": "BOTTOMLEFT",
-          "line": 54
-        },
-        {
-          "term": "eigenvalues",
-          "side": "BOTTOMLEFT",
-          "line": 54
-        },
-        {
-          "term": "batch size",
-          "side": "BOTTOMLEFT",
-          "line": 60
-        },
-        {
-          "term": "learning rate",
-          "side": "BOTTOMLEFT",
-          "line": 60
-        },
-        {
-          "term": "biases",
-          "side": "BOTTOMLEFT",
-          "line": 64
-        },
-        {
-          "term": "weights",
-          "side": "BOTTOMLEFT",
-          "line": 64
-        },
-        {
-          "term": "max‑pooling",
-          "side": "BOTTOMLEFT",
-          "line": 39
-        },
-        {
-          "term": "response‑normalization",
-          "side": "BOTTOMLEFT",
-          "line": 39
-        },
-        {
-          "term": "data augmentation",
-          "side": "BOTTOMLEFT",
-          "line": 47
-        },
-        {
-          "term": "horizontal reflections",
-          "side": "BOTTOMLEFT",
-          "line": 49
-        },
-        {
-          "term": "image translations",
-          "side": "BOTTOMLEFT",
-          "line": 49
-        },
-        {
-          "term": "overfitting",
-          "side": "BOTTOMLEFT",
-          "line": 46
+          "meaning": null
         }
       ],
       "figures": [
         {
           "figure": "Figure 1",
-          "description": "A four‑layer convolutional neural network with ReLUs (solid line) reaches a 25 % training error rate on CIFAR‑10 six times faster than an equivalent network with tanh neurons (dashed line).",
-          "side": "BOTTOMLEFT",
-          "line": 28
+          "description": "A four-layer convolutional neural network with ReLUs (solid line) reaches a 25% training error rate on CIFAR-10 six times faster than an equivalent network with tanh neurons (dashed line). The learning rates for each network were chosen independently to make training as fast as possible. No regularization of any kind was employed. The magnitude of the effect demonstrated here varies with network architecture, but networks with ReLUs consistently learn several times faster than equivalents with saturating neurons."
         },
         {
           "figure": "Figure 2",
-          "description": "Illustration of the architecture of the CNN, showing the split of responsibilities between two GPUs and the number of neurons in each layer.",
-          "side": "BOTTOMLEFT",
-          "line": 43
+          "description": "An illustration of the architecture of our CNN, explicitly showing the delineation of responsibilities between the two GPUs. One GPU runs the layer‑parts at the top of the figure while the other runs the layer‑parts at the bottom. The GPUs communicate only at certain layers. The network's input is 150,528‑dimensional, and the number of neurons in the network's remaining layers is given by 253,440‑186,624‑64,896‑64,896‑43,264‑4096‑4096‑1000."
         },
         {
           "figure": "Figure 3",
-          "description": "96 convolutional kernels of size 11 × 11 × 3 learned by the first convolutional layer on the 224 × 224 × 3 input images (top 48 on GPU 1, bottom 48 on GPU 2).",
-          "side": "BOTTOMLEFT",
-          "line": 62
+          "description": "96 convolutional kernels of size 11 × 11 × 3 learned by the first convolutional layer on the 224 × 224 × 3 input images. The top 48 kernels were learned on GPU 1 while the bottom 48 kernels were learned on GPU 2. See Section 6.1 for details."
         },
         {
           "figure": "Figure 4",
-          "description": "(Left) Eight ILSVRC‑2010 test images with the five most probable labels; (Right) Five test images with the six nearest training images in the 4096‑dimensional hidden‑layer feature space.",
-          "side": "BOTTOMLEFT",
-          "line": 80
+          "description": "(Left) Eight ILSVRC‑2010 test images and the five labels considered most probable by our model. The correct label is written under each image, and the probability assigned to the correct label is also shown with a red bar (if it happens to be in the top 5). (Right) Five ILSVRC‑2010 test images in the first column. The remaining columns show the six training images that produce feature vectors in the last hidden layer with the smallest Euclidean distance from the feature vector for the test image."
         }
       ],
       "tables": [
         {
           "table": "Table 1",
-          "title": "Comparison of results on ILSVRC2010 test set.",
-          "side": "BOTTOMLEFT",
-          "line": 71
+          "title": "Comparison of results on ILSVRC2010 test set. In italics are best results achieved by others."
         },
         {
           "table": "Table 2",
-          "title": "Comparison of error rates on ILSVRC‑2012 validation and test sets.",
-          "side": "BOTTOMLEFT",
-          "line": 74
+          "title": "Comparison of error rates on ILSVRC‑2012 validation and test sets. In italics are best results achieved by others. Models with an asterisk* were 'pre‑trained' to classify the entire ImageNet 2011 Fall release. See Section 6 for details."
         }
       ],
       "algorithms": [
         {
-          "algorithm": "Dropout",
-          "description": "Randomly sets the output of each hidden neuron to zero with probability 0.5 during training; at test time all neurons are used with outputs scaled by 0.5.",
-          "side": "BOTTOMLEFT",
-          "line": 56
+          "algorithm": "stochastic gradient descent",
+          "goal": "train the models (optimize the objective)",
+          "process": "use a batch size of 128 examples, momentum of 0.9, weight decay of 0.0005, and update weights with v_{i+1} := 0.9·v_i -0.0005·ε₁·w_i - ε₁·⟨∂L/∂w | w_i⟩_{D_i}; w_{i+1} := w_i + v_{i+1}"
         },
         {
-          "algorithm": "Data augmentation",
-          "description": "Generates image translations and horizontal reflections plus PCA‑based intensity perturbations to enlarge the training set.",
-          "side": "BOTTOMLEFT",
-          "line": 47
+          "algorithm": "dropout",
+          "goal": "reduce overfitting",
+          "process": "during training set the output of each hidden neuron to zero with probability 0.5; at test time multiply all neuron outputs by 0.5"
         },
         {
-          "algorithm": "Training on multiple GPUs",
-          "description": "Splits the network across two GPUs, placing half of the kernels on each and communicating only in selected layers.",
-          "side": "BOTTOMLEFT",
-          "line": 24
+          "algorithm": "local response normalization",
+          "goal": "aid generalization (reduce overfitting)",
+          "process": "normalize each neuron activity b_i = a_i / (k + α·∑_{j} a_j²)^{β} with k = 2, n = 5, α = 10⁻⁴, β = 0.75"
         },
         {
-          "algorithm": "Local response normalization",
-          "description": "Normalizes each neuron’s activity by the activities of adjacent kernel maps using a specific formula (k = 2, n = 5, α = 10⁻⁴, β = 0.75).",
-          "side": "BOTTOMLEFT",
-          "line": 30
+          "algorithm": "overlapping pooling",
+          "goal": "reduce top‑1 and top‑5 error rates",
+          "process": "apply pooling windows of size 3 × 3 with stride 2 (s < z) throughout the network"
         },
         {
-          "algorithm": "Overlapping pooling",
-          "description": "Pooling with stride s = 2 and window size z = 3, allowing neighboring pooling regions to overlap.",
-          "side": "BOTTOMLEFT",
-          "line": 35
+          "algorithm": "data augmentation (image translations and horizontal reflections)",
+          "goal": "reduce overfitting",
+          "process": "extract random 224 × 224 patches and their horizontal reflections from 256 × 256 images, increasing the training set size by a factor of 2048; at test time average predictions over five patches and their reflections (ten patches total)"
         },
         {
-          "algorithm": "Stochastic gradient descent",
-          "description": "Optimisation method with batch size 128, momentum 0.9, weight decay 0.0005, and manually adjusted learning rate.",
-          "side": "BOTTOMLEFT",
-          "line": 60
+          "algorithm": "PCA‑based color augmentation",
+          "goal": "improve invariance to illumination and reduce top‑1 error rate",
+          "process": "perform PCA on RGB pixel values across the training set, then add to each image multiples of the principal components scaled by their eigenvalues and a random Gaussian variable (mean 0, std 0.1) drawn once per image"
         }
       ]
     },
     "complete": true,
-    "self_assessment": "**Weakly‑supported items**  \nThese entries are present in the text but the surrounding context gives only a passing mention; the extraction does not have enough evidence that the term is a core concept or is explained in any detail.\n\n| Item | Why the support is weak |\n|------|--------------------------|\n| **multinomial logistic regression** (term) | Appears only once in the sentence “Our network maximizes the multinomial logistic regression objective…”. No definition or further discussion is provided. |\n| **softmax** (term) | Mentioned only as “a 1000‑way softmax” that produces a distribution; the mechanics of the layer are not described. |\n| **biases** (term) | The word appears in the weight‑initialisation paragraph (“biases … with the constant 1”), but there is no explanation of their role beyond the constant value. |\n| **weights** (term) | Same as above – only a brief note about Gaussian initialization; no deeper treatment. |\n| **GPU** (term) | The document talks about “GTX 580 GPUs” and “training on multiple GPUs”, but the term itself is not defined; it could be interpreted as hardware or as part of the algorithmic strategy. |\n| **batch size** (term) | Stated as “batch size of 128 examples” without any discussion of why that size was chosen or its effect. |\n| **learning rate** (term) | The value “0.01” and the schedule (divide by 10) are mentioned, but the concept is not explained. |\n| **momentum** (term) | Only the numeric value (0.9) is given; no description of its purpose. |\n| **weight decay** (term) | The numeric value (0.0005) is given and a brief comment that it “reduces the model’s training error”, but the underlying principle is not elaborated. |\n\n---\n\n**Ambiguous items**  \nThese entries could be interpreted in more than one way, or the extraction conflates two closely related concepts.\n\n| Item | Source of ambiguity |\n|------|----------------------|\n| **GPU** (term) | Could refer to the physical graphics processor, to the parallel‑training strategy, or to the “GPU communication pattern” described in §3.2. |\n| **response‑normalization** vs **local response normalization** (terms) | The extraction lists both “response‑normalization” (from the architecture description) and “local response normalization” (from §3.3). They refer to the same operation, so having two separate entries is redundant and may cause confusion. |\n| **overfitting** (term) | Mentioned both as a problem and as a motivation for several techniques (dropout, data augmentation). It is a high‑level concept rather than a concrete method, so its classification as a “terminology” is borderline. |\n\n---\n\n**Important missing items**  \nThese are concepts or details that are clearly discussed in the paper but were not captured in the extraction.\n\n| Missing item | Where it appears in the document | Why it matters |\n|--------------|--------------------------------|----------------|\n| **Weight‑initialisation scheme** (Gaussian σ = 0.01, biases = 1 for certain layers) | §5 (“We initialized the weights …”, “We initialized the neuron biases …”) | Central to the training stability and to the success of ReLUs. |\n| **Learning‑rate schedule** (divide‑by‑10 when validation plateaus) | §5 (“…divide the learning rate by 10 when the validation error rate stopped improving…”) | A key part of the optimisation procedure. |\n| **Bias‑initialisation to 1 in specific layers** | Same paragraph as above | Influences early ReLU activation and is highlighted as an “acceleration” technique. |\n| **Max‑pooling layer description** (stride = 2, window = 3 for overlapping pooling) | §3.4 and the overall architecture description | Although “max‑pooling” is listed as a term, the specific pooling strategy (overlapping vs non‑overlapping) is a distinct algorithmic detail. |\n| **Softmax classification layer** (final 1000‑way output) | §3.5 (“…final 1000‑way softmax…”) | The output layer that turns network scores into probabilities; a core component of the model. |\n| **PCA‑based colour augmentation** (the “RGB intensity perturbation” step) | §4.1 (second data‑augmentation form) | While PCA is captured, the specific use for colour jitter is an important sub‑algorithm. |\n| **Training duration and schedule** (≈90 epochs, 5–6 days on two GPUs) | §6 (“…roughly 90 cycles…”, “…five to six days…”) | Provides context on computational cost and reproducibility. |\n| **Dropout applied only to the first two fully‑connected layers** | §4.2 (“We use dropout in the first two fully‑connected layers…”) | The exact placement of dropout is a design decision that influences performance. |\n| **Overlapping‑pooling hyper‑parameters** (s = 2, z = 3) | §3.4 (“…with s = 2 and z = 3”) | The numeric settings are part of the algorithmic contribution. |\n| **Local response normalization hyper‑parameters** (k = 2, n = 5, α = 10⁻⁴, β = 0.75) | §3.3 (formula description) | Specific values are essential for reproducing the method. |\n\nThese missing items are all explicitly described in the paper and are integral to understanding the architecture, training procedure, and the reported performance gains. Including them would give a more complete picture of the contributions."
+    "self_assessment": "**Weakly‑supported items**\n\n| Extraction | Why the support is thin |\n|------------|------------------------|\n| **Terminology – “stochastic gradient descent” (meaning = None)** | The paper mentions the term, but no explicit definition or explanation of what the algorithm *means* is given. |\n| **Algorithm – “stochastic gradient descent” (goal = “train the models (optimize the objective)”)** | The goal is inferred by the reviewer; the text never states a purpose sentence such as “the goal of SGD is to train the model”. |\n| **Algorithm – “overlapping pooling” (goal = “reduce top‑1 and top‑5 error rates”)** | The paper reports the empirical reduction (0.4 % / 0.3 %) but does not claim that error‑rate reduction is the *design* goal of the pooling scheme. |\n| **Algorithm – “local response normalization” (goal = “aid generalization (reduce overfitting)”)** | The text says the scheme “aids generalization” and reports error‑rate improvements, but it never explicitly frames “reducing overfitting” as the primary objective. |\n\n---\n\n**Ambiguous items**\n\n| Extraction | Source of ambiguity |\n|------------|---------------------|\n| **Terminology – “stochastic gradient descent” (meaning = None)** | Without a definition, readers may wonder whether the authors refer to vanilla SGD, minibatch SGD, or a variant with momentum/weight‑decay. |\n| **Algorithm – “local response normalization” (goal = “aid generalization”)** | “Aid generalization” could be interpreted as improving test accuracy, stabilising training, or simply acting as a regulariser; the exact intent is not crystal‑clear. |\n| **Algorithm – “overlapping pooling” (goal = “reduce top‑1 and top‑5 error rates”)** | The reduction is a *by‑product* of the design; the statement could be read as a claim that the method was invented solely for that purpose. |\n| **Algorithm – “data augmentation (image translations and horizontal reflections)” (process = “increase the training set size by a factor of 2048”)** | The factor 2048 comes from the combination of random crops and reflections, but the description does not make clear that the factor is *theoretical* (many crops are highly correlated). |\n| **Algorithm – “PCA‑based color augmentation” (process = “add multiples of the principal components … drawn once per image”)** | The phrase “add multiples of the found principal components” could be read as either a linear combination added to the pixel values or a scaling of the whole image; the exact mathematical operation is only hinted at. |\n\n---\n\n**Important missing items (present in the paper but not captured in the extraction)**  \n\n*Note: these are **not** added to the extraction; they are simply flagged as omissions.*\n\n1. **GPU‑accelerated 2‑D convolution implementation** – the authors stress a “highly‑optimized GPU implementation of 2D convolution” (CUDA‑ConvNet) as a core contribution.  \n2. **Multi‑GPU parallelisation scheme** – the specific strategy of splitting kernels across two GTX‑580 GPUs, the restricted inter‑GPU connectivity, and the communication pattern.  \n3. **Weight‑initialisation details** – Gaussian weight init (σ = 0.01) and bias initialisation (bias = 1 for certain layers, 0 otherwise).  \n4. **Learning‑rate schedule** – start at 0.01, manually divided by 10 when validation error plateaus, reduced three times before termination.  \n5. **Other hyper‑parameters** – batch size = 128, momentum = 0.9, weight‑decay = 0.0005.  \n6. **Training time & hardware** – 5–6 days on two NVIDIA GTX 580 3 GB GPUs, ~90 epochs over 1.2 M images.  \n7. **Quantitative results** – top‑1 = 37.5 % / top‑5 = 17.0 % on ILSVRC‑2010; top‑5 = 15.3 % (model‑averaged) on ILSVRC‑2012; other baseline numbers from Tables 1‑2.  \n8. **Effect of dropout on convergence** – “dropout roughly doubles the number of iterations required to converge.”  \n9. **Mean‑pixel subtraction preprocessing** – the only other pre‑processing step mentioned besides resizing/cropping.  \n10. **Qualitative evaluation using nearest‑neighbor retrieval in the 4096‑dim hidden layer** – the description of Euclidean distance similarity and the retrieval experiment (Figure 4, right panel).  \n\nThese omissions reduce the completeness of the extraction, especially regarding the paper’s methodological contributions and experimental details."
   },
   {
     "iteration": 2,
     "prompt_version": "v_refined_disambiguation",
     "extraction": {
-      "terminologies": [],
-      "figures": [],
-      "tables": [],
-      "algorithms": []
+      "terminologies": [
+        {
+          "term": "ReLU",
+          "meaning": "Rectified Linear Unit, a non‑saturating nonlinearity defined as f(x) = max(0, x)"
+        },
+        {
+          "term": "dropout",
+          "meaning": "A technique that sets the output of each hidden neuron to zero with probability 0.5 during training"
+        },
+        {
+          "term": "Local Response Normalization",
+          "meaning": "A response‑normalization scheme that implements lateral inhibition across adjacent kernel maps"
+        },
+        {
+          "term": "overlapping pooling",
+          "meaning": "A pooling scheme where the stride (s) is smaller than the pooling window size (z), causing neighboring pooling regions to overlap"
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "A four‑layer convolutional neural network with ReLUs (solid line) reaches a 25% training error rate on CIFAR‑10 six times faster than an equivalent network with tanh neurons (dashed line). The learning rates for each network were chosen independently to make training as fast as possible. No regularization of any kind was employed."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "An illustration of the architecture of our CNN, explicitly showing the delineation of responsibilities between the two GPUs. One GPU runs the layer‑parts at the top of the figure while the other runs the layer‑parts at the bottom. The GPUs communicate only at certain layers. The network's input is 150,528‑dimensional, and the number of neurons in the network's remaining layers is given by 253,440‑186,624‑64,896‑64,896‑43,264‑4096‑4096‑1000."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "96 convolutional kernels of size 11 × 11 × 3 learned by the first convolutional layer on the 224 × 224 × 3 input images. The top 48 kernels were learned on GPU 1 while the bottom 48 kernels were learned on GPU 2."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "(Left) Eight ILSVRC‑2010 test images and the five labels considered most probable by our model. The correct label is written under each image, and the probability assigned to the correct label is also shown with a red bar (if it happens to be in the top 5). (Right) Five ILSVRC‑2010 test images in the first column. The remaining columns show the six training images that produce feature vectors in the last hidden layer with the smallest Euclidean distance from the feature vector for the test image."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Comparison of results on ILSVRC‑2010 test set. In italics are best results achieved by others."
+        },
+        {
+          "table": "Table 2",
+          "title": "Comparison of error rates on ILSVRC‑2012 validation and test sets. In italics are best results achieved by others. Models with an asterisk* were 'pre‑trained' to classify the entire ImageNet 2011 Fall release."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "stochastic gradient descent",
+          "goal": "train the neural network models",
+          "process": "Use a batch size of 128 examples, momentum of 0.9, weight decay of 0.0005, and update weights according to v_{i+1} := 0.9·v_i - 0.0005·ε·w_i - ε·⟨∂L/∂w⟩_{D_i} and w_{i+1} := w_i + v_{i+1}"
+        },
+        {
+          "algorithm": "dropout",
+          "goal": "reduce overfitting by preventing co‑adaptation of feature detectors",
+          "process": "During training, set the output of each hidden neuron to zero with probability 0.5; at test time use all neurons but multiply their outputs by 0.5"
+        },
+        {
+          "algorithm": "data augmentation (image translations and horizontal reflections)",
+          "goal": "reduce overfitting by artificially enlarging the training set",
+          "process": "Extract random 224 × 224 patches and their horizontal reflections from the 256 × 256 images, increasing the training set size by a factor of 2048; at test time extract five 224 × 224 patches (four corners and center) and their reflections and average the softmax predictions"
+        },
+        {
+          "algorithm": "data augmentation (PCA‑based color augmentation)",
+          "goal": "reduce overfitting by varying image illumination",
+          "process": "Perform PCA on RGB pixel values of the training set, then for each training image add multiples of the principal components weighted by random Gaussian variables (mean 0, std 0.1) scaled by the corresponding eigenvalues"
+        }
+      ]
     },
     "complete": true,
-    "self_assessment": "**Review of the Extraction Result**\n\nThe automatic extraction returned an empty set for all four categories (`terminologies`, `figures`, `tables`, `algorithms`).  Consequently the result is **weakly supported** (it provides no evidence of any of the salient entities that are clearly present in the source document).  Below is a concise audit of what is missing or unclear.\n\n---\n\n### 1. Weakly Supported Items\n- **All four categories are empty.**  \n  An empty list conveys no information and therefore cannot be considered a supported extraction.  The lack of any entries suggests that the extractor failed to recognize any of the many clearly‑named entities in the paper.\n\n---\n\n### 2. Ambiguous Items\n- Because nothing was extracted, there are no items that could be judged ambiguous.  However, in the source text several terms could be interpreted either as *terminology* (e.g., “ReLU”) or as part of an *algorithm* (e.g., “dropout”).  The extractor should be able to disambiguate such cases, but it did not produce any output.\n\n---\n\n### 3. Important Missing Items  \n\n| Category | Representative examples that should have been extracted (from the document) |\n|----------|-----------------------------------------------------------------------------|\n| **Terminologies** | *ReLU (Rectified Linear Unit)*, *local response normalization (LRN)*, *overlapping pooling*, *dropout*, *stochastic gradient descent (SGD)*, *momentum*, *weight decay*, *data augmentation*, *PCA‑based color jitter*, *GPU‑accelerated convolution*, *ImageNet*, *ILSVRC‑2010/2012*, *top‑1 / top‑5 error*, *softmax*, *multinomial logistic regression*, *bias initialization*, *learning‑rate schedule* |\n| **Figures** | *Figure 1* (training speed comparison on CIFAR‑10), *Figure 2* (architecture diagram with GPU split), *Figure 3* (first‑layer convolutional kernels), *Figure 4* (qualitative predictions and nearest‑neighbor retrieval) |\n| **Tables** | *Table 1* (ILSVRC‑2010 results vs. baselines), *Table 2* (ILSVRC‑2012 validation/test results for various CNN ensembles) |\n| **Algorithms / Procedures** | *Training pipeline* (SGD with momentum, weight decay, learning‑rate decay), *Two‑GPU parallelization scheme* (splitting kernels across GPUs, selective inter‑GPU communication), *Dropout implementation* (probability 0.5 on fully‑connected layers), *Data‑augmentation pipeline* (random crops, horizontal flips, PCA‑based color perturbation), *Local response normalization formula* (the explicit equation for \\(b_{i,x,y}\\)), *Overlapping pooling configuration* (stride 2, window 3×3) |\n\n*Why these are important*:  \n- **Terminologies** are the core technical concepts that define the contributions of the paper; without them a reader cannot grasp the novelty or reproduce the work.  \n- **Figures** convey the network architecture, training dynamics, and qualitative results—essential for understanding and validating the claims.  \n- **Tables** provide the quantitative performance benchmarks that substantiate the paper’s state‑of‑the‑art claims.  \n- **Algorithms / Procedures** describe the exact methodological steps (e.g., dropout, multi‑GPU training) that enable the reported results; they are crucial for reproducibility.\n\n---\n\n### 4. Summary\nThe current extraction is essentially a null output and therefore **fails to capture any of the substantive content** of the document.  A robust extractor should at minimum return the terminologies, figures, tables, and algorithmic descriptions listed above.  Their absence indicates a serious limitation in the extraction pipeline that must be addressed before the output can be considered reliable for downstream tasks such as indexing, summarisation, or knowledge‑base population."
+    "self_assessment": "**Weakly‑supported items**  \n- *None of the extracted items are clearly unsupported by the source text.*  \n  All terminologies, figure/table captions and algorithm descriptions can be found verbatim (or paraphrased very closely) in the document.\n\n**Ambiguous items**  \n- *Dropout* appears twice – once as a “terminology” entry and again as an “algorithm” entry.  The duplication is harmless but could be confusing because the same concept is being listed in two different categories.  \n- *Local Response Normalization* – the extraction adds the phrase “implements lateral inhibition across adjacent kernel maps.”  The paper mentions “lateral inhibition” only implicitly (by describing competition among kernel maps), so the exact wording is a slight interpretation, though the meaning is still correct.\n\n**Important missing items (present in the paper but not captured)**  \n\n| Category | Missing element | Why it matters |\n|----------|----------------|----------------|\n| **Model description** | Exact network size: “60 M parameters, 650 k neurons, 5 conv + 3 fully‑connected layers” | Central to the claim of “large, deep CNN” and to understanding the scale of the contribution. |\n| **Hardware / implementation** | Multi‑GPU parallelisation scheme (two GTX 580 3 GB GPUs, direct GPU‑to‑GPU memory access) and the publicly released CUDA‑ConvNet code (http://code.google.com/p/cuda-convnet/) | One of the paper’s main contributions is the efficient GPU implementation; the extraction omits this. |\n| **Training hyper‑parameters** | Momentum = 0.9, weight‑decay = 0.0005, batch size = 128, learning‑rate schedule (divide by 10 when validation plateaus), weight‑initialisation (Gaussian σ = 0.01, biases = 1 for certain layers) | These details are essential for reproducibility and for interpreting the reported performance. |\n| **Performance‑gain breakdown** | Quantified improvements from each technique: <br>• ReLU vs. tanh (≈6× faster on CIFAR‑10) <br>• Multi‑GPU (‑1.7 % top‑1, ‑1.2 % top‑5) <br>• Local Response Normalisation (‑1.4 % top‑1, ‑1.2 % top‑5) <br>• Overlapping pooling (‑0.4 % top‑1, ‑0.3 % top‑5) <br>• Dropout (≈2× more iterations to converge) <br>• PCA‑based colour augmentation (‑1 % top‑1) | The paper repeatedly emphasizes that each architectural/regularisation choice contributed measurable error‑rate reductions; the extraction lists the techniques but not the quantitative impact. |\n| **Data preprocessing** | Mean‑pixel subtraction, fixed‑size cropping (short side → 256 px, centre 256 × 256 crop) | Important for anyone trying to replicate the exact input pipeline. |\n| **Evaluation protocol** | Test‑time augmentation: 10 crops (5 positions × horizontal flip) and averaging of soft‑max outputs; also the note that without this augmentation error rises to 39 % / 18.3 % (footnote 5) | Directly affects the reported top‑1/top‑5 numbers. |\n| **Qualitative analysis** | Nearest‑neighbour retrieval in the 4096‑dimensional hidden layer (Euclidean distance) and the observation of GPU‑specific kernel specialisation (color‑agnostic vs. color‑specific) | Provides insight into what the network has learned; mentioned in Section 6.1 and Figure 4. |\n| **Training duration** | “5–6 days on two GTX 580 GPUs, ≈90 epochs over 1.2 M images” | Gives a sense of computational cost, which is a key claim of the paper. |\n| **References to other works** | The extraction includes the reference list but does not capture the paper’s discussion of related work (e.g., multi‑column CNNs, sparse‑coding baselines) that contextualises the contribution. | Helps readers understand novelty relative to prior art. |\n\nThese omissions are not errors in the extraction per se, but they leave out several pieces of information that are central to the paper’s scientific contribution, reproducibility, and impact."
   },
   {
     "iteration": 3,
@@ -250,172 +171,100 @@
     "extraction": {
       "terminologies": [
         {
-          "term": "Convolutional Neural Networks",
-          "page": "left",
-          "line": 4
-        },
-        {
-          "term": "ImageNet",
-          "page": "left",
-          "line": 4
-        },
-        {
-          "term": "ILSVRC-2010",
-          "page": "left",
-          "line": 4
-        },
-        {
-          "term": "ILSVRC-2012",
-          "page": "left",
-          "line": 4
+          "term": "ReLU",
+          "meaning": "Rectified Linear Unit, a non‑saturating nonlinearity defined as f(x) = max(0, x)."
         },
         {
           "term": "dropout",
-          "page": "left",
-          "line": 4
-        },
-        {
-          "term": "ReLU",
-          "page": "left",
-          "line": 21
-        },
-        {
-          "term": "Rectified Linear Units",
-          "page": "left",
-          "line": 22
+          "meaning": "A regularization technique that sets the output of each hidden neuron to zero with probability 0.5 during training."
         },
         {
           "term": "local response normalization",
-          "page": "left",
-          "line": 30
+          "meaning": "A response‑normalization scheme where the activity b_i,x,y = a_i,x,y / (k + α Σ_j a_j,x,y^2)^β with hyper‑parameters k, n, α, β."
         },
         {
           "term": "overlapping pooling",
-          "page": "left",
-          "line": 35
+          "meaning": "Pooling with stride s smaller than the pooling window size z (s = 2, z = 3), causing neighboring pooling regions to overlap."
         },
         {
-          "term": "stochastic gradient descent",
-          "page": "left",
-          "line": 60
+          "term": "ImageNet",
+          "meaning": "A dataset of over 15 million labeled high‑resolution images belonging to roughly 22 000 categories."
         },
         {
-          "term": "momentum",
-          "page": "left",
-          "line": 60
+          "term": "ILSVRC",
+          "meaning": "ImageNet Large‑Scale Visual Recognition Challenge, a subset of ImageNet with roughly 1000 images in each of 1000 categories."
         },
         {
-          "term": "weight decay",
-          "page": "left",
-          "line": 60
+          "term": "top‑1 error",
+          "meaning": "Error rate where the correct label is not the most probable prediction of the model."
         },
         {
-          "term": "PCA",
-          "page": "left",
-          "line": 50
-        },
-        {
-          "term": "GPU",
-          "page": "left",
-          "line": 25
-        },
-        {
-          "term": "softmax",
-          "page": "left",
-          "line": 38
-        },
-        {
-          "term": "multinomial logistic regression",
-          "page": "left",
-          "line": 38
+          "term": "top‑5 error",
+          "meaning": "Error rate where the correct label is not among the five most probable predictions of the model."
         }
       ],
       "figures": [
         {
           "figure": "Figure 1",
-          "description": "A four-layer convolutional neural network with ReLUs (solid line) reaches a 25% training error rate on CIFAR-10 ...",
-          "page": "left",
-          "line": 28
+          "description": "A four‑layer convolutional neural network with ReLUs (solid line) reaches a 25 % training error rate on CIFAR‑10 six times faster than an equivalent network with tanh neurons (dashed line). No regularization was employed. The effect varies with architecture, but networks with ReLUs consistently learn several times faster than equivalents with saturating neurons."
         },
         {
           "figure": "Figure 2",
-          "description": "Illustration of the architecture of our CNN, showing the delineation of responsibilities between the two GPUs.",
-          "page": "left",
-          "line": 43
+          "description": "Illustration of the architecture of the CNN, showing the division of responsibilities between two GPUs. One GPU runs the top layer‑parts, the other runs the bottom layer‑parts; communication occurs only at certain layers. The network input is 150 528‑dimensional, and the remaining layers contain 253 440‑186 624‑64 896‑64 896‑43 264‑4096‑4096‑1000 neurons."
         },
         {
           "figure": "Figure 3",
-          "description": "96 convolutional kernels of size 11 × 11 × 3 learned by the first convolutional layer on the 224 × 224 × 3 input images.",
-          "page": "left",
-          "line": 62
+          "description": "96 convolutional kernels of size 11 × 11 × 3 learned by the first convolutional layer on 224 × 224 × 3 input images. The top 48 kernels were learned on GPU 1, the bottom 48 on GPU 2."
         },
         {
           "figure": "Figure 4",
-          "description": "Eight ILSVRC-2010 test images and the five labels considered most probable by our model (plus nearest‑training‑image visualizations).",
-          "page": "left",
-          "line": 80
+          "description": "(Left) Eight ILSVRC‑2010 test images with the five most probable labels predicted by the model; the correct label and its probability are shown. (Right) Five ILSVRC‑2010 test images with the six training images whose 4096‑dimensional hidden‑layer feature vectors are closest in Euclidean distance."
         }
       ],
       "tables": [
         {
           "table": "Table 1",
-          "title": "Comparison of results on ILSVRC‑2010 test set.",
-          "page": "left",
-          "line": 71
+          "title": "Comparison of results on ILSVRC‑2010 test set. In italics are best results achieved by others."
         },
         {
           "table": "Table 2",
-          "title": "Comparison of error rates on ILSVRC‑2012 validation and test sets.",
-          "page": "left",
-          "line": 74
+          "title": "Comparison of error rates on ILSVRC‑2012 validation and test sets. In italics are best results achieved by others. Models with an asterisk* were 'pre‑trained' to classify the entire ImageNet 2011 Fall release."
         }
       ],
       "algorithms": [
         {
-          "process": "dropout",
-          "description": "Randomly setting hidden‑neuron outputs to zero with probability 0.5 during training.",
-          "page": "left",
-          "line": 57
+          "algorithm": "stochastic gradient descent",
+          "goal": "train the neural network model",
+          "process": "updates weights using mini‑batches of size 128, momentum 0.9, and weight decay 0.0005."
         },
         {
-          "process": "stochastic gradient descent",
-          "description": "Optimization with batch size 128, momentum 0.9, weight decay 0.0005.",
-          "page": "left",
-          "line": 60
+          "algorithm": "dropout",
+          "goal": "reduce overfitting by preventing co‑adaptation of feature detectors",
+          "process": "during training, each hidden neuron is set to zero with probability 0.5; at test time, all neurons are used and their outputs are multiplied by 0.5."
         },
         {
-          "process": "PCA‑based data augmentation",
-          "description": "Adding multiples of principal components of RGB pixel values to training images.",
-          "page": "left",
-          "line": 50
+          "algorithm": "local response normalization",
+          "goal": "aid generalization of the network",
+          "process": "computes normalized activity b_i = a_i / (k + α Σ_j a_j^2)^β with hyper‑parameters k = 2, n = 5, α = 10⁻⁴, β = 0.75, applied after ReLU in certain layers."
         },
         {
-          "process": "local response normalization",
-          "description": "Response‑normalized activity across adjacent kernel maps (k = 2, n = 5, α = 10⁻⁴, β = 0.75).",
-          "page": "left",
-          "line": 30
+          "algorithm": "overlapping pooling",
+          "goal": "reduce top‑1 and top‑5 error rates",
+          "process": "uses pooling windows of size z = 3 with stride s = 2 (s < z), causing overlapping pooling regions."
         },
         {
-          "process": "overlapping pooling",
-          "description": "Pooling with stride s = 2 and window z = 3 (overlapping neighborhoods).",
-          "page": "left",
-          "line": 35
+          "algorithm": "training on multiple GPUs",
+          "goal": "enable training of larger CNNs that exceed the memory of a single GPU",
+          "process": "splits kernels (or neurons) roughly half‑and‑half across two GTX 580 GPUs; GPUs communicate only at selected layers, allowing larger models with limited inter‑GPU communication."
         },
         {
-          "process": "ReLU nonlinearity",
-          "description": "Applying f(x) = max(0, x) after each convolutional or fully‑connected layer.",
-          "page": "left",
-          "line": 21
-        },
-        {
-          "process": "training on multiple GPUs",
-          "description": "Splitting kernels across two GTX 580 GPUs with limited inter‑GPU communication.",
-          "page": "left",
-          "line": 24
+          "algorithm": "PCA‑based intensity augmentation",
+          "goal": "increase invariance to illumination changes and reduce top‑1 error",
+          "process": "performs PCA on RGB pixel values of the training set, then adds to each training image a linear combination of the principal components weighted by random Gaussian variables (mean 0, std 0.1)."
         }
       ]
     },
     "complete": true,
-    "self_assessment": "**1. Weakly supported items**  \n| Category | Item | Why the support is thin |\n|----------|------|--------------------------|\n| Terminology | **Rectified Linear Units** (line 22) | The paper only defines the acronym “ReLU” and then says “we refer to neurons with this non‑linearity as Rectified Linear Units (ReLUs)”. The phrase is not used elsewhere as a standalone term, so the extraction is marginally justified. |\n| Terminology | **multinomial logistic regression** (line 38) | The text mentions that the network “maximizes the multinomial logistic regression objective”, but the phrase is not a central concept of the work; it is essentially a restatement of the soft‑max loss. |\n| Algorithm | **momentum** (line 60) | Momentum is listed as a hyper‑parameter of SGD, but the extraction treats it as a separate “process”. It is not described as an algorithmic contribution. |\n| Algorithm | **weight decay** (line 60) | Same issue as momentum – it is a regularisation hyper‑parameter, not a distinct algorithm introduced by the authors. |\n\n**2. Ambiguous items**  \n| Category | Item | Ambiguity |\n|----------|------|-----------|\n| All items | **page = “left”, line numbers** | The source document is a continuous PDF without explicit page/line markers. The extractor has assigned the same generic location (“left”) to every entry, which does not convey the true location and may be misleading. |\n| Terminology | **GPU** (line 25) | “GPU” appears many times (e.g., “GTX 580”, “two GPUs”, “GPU implementation”). It is unclear whether the extractor intends the hardware platform as a terminology or the specific implementation of convolution. |\n| Algorithm | **training on multiple GPUs** (line 24) | The description mixes hardware‑level parallelisation with architectural design (splitting kernels). It is not clear whether this should be classified as an algorithm, a system detail, or a hardware optimisation. |\n| Terminology | **dropout** (line 4 & line 57) | The term appears both as a “terminology” and as an “algorithm”. The dual listing could cause confusion about whether it is being counted twice. |\n\n**3. Important missing items**  \n\n| Category | Missing item | Reason it should be present |\n|----------|--------------|-----------------------------|\n| Terminology / Algorithm | **max‑pooling** (or “max‑pooling layers”) | The paper repeatedly discusses max‑pooling (e.g., “max‑pooling layers … follow both response‑normalization layers”). It is a core architectural component. |\n| Algorithm | **data augmentation (translations & horizontal flips)** | Section 4.1 describes a major over‑fitting mitigation technique (random 224 × 224 crops + flips). This is an algorithmic contribution but is not listed. |\n| Algorithm | **PCA‑based colour/illumination augmentation** (already captured as “PCA‑based data augmentation”, but the extraction only lists the process; the specific “adding multiples of principal components” could be a distinct entry). |\n| Algorithm | **learning‑rate schedule / annealing** | The paper states “divide the learning rate by 10 when validation error stops improving”. This schedule is part of the training procedure. |\n| Algorithm | **weight‑initialisation scheme** (Gaussian σ = 0.01, bias = 1 for certain layers) | The initialization strategy is described in detail and influences training stability; it is omitted. |\n| Algorithm | **bias initialisation** (different constants for different layers) | Same as above – a concrete step that the authors highlight. |\n| Terminology | **overfitting reduction** (as a high‑level concept) | The paper groups two primary methods (data augmentation, dropout). While “dropout” is captured, the broader “overfitting reduction” theme is not. |\n| Terminology | **columnar CNN** (reference to Cireşan et al.) | The authors compare their architecture to the “columnar CNN” of Cireşan et al.; this term appears in the text but is not extracted. |\n| Figure | **Figure 1 caption details** (training‑error curves on CIFAR‑10) – captured, but the caption also mentions “learning rates were chosen independently”. The extraction does not note the “learning‑rate” nuance, though that may be minor. |\n| Table | **Supplementary material reference** (the paper mentions “supplementary material” for more retrieval examples) – not a table but a missing reference to additional data. |\n| Algorithm | **GPU‑optimized 2‑D convolution implementation** (the publicly released CUDA‑ConvNet code) | The authors claim a “highly‑optimized GPU implementation of 2D convolution” as a contribution; this is not listed under algorithms. |\n\n*All items above are present in the source text and constitute either core concepts, methodological steps, or notable terminology that a faithful extraction should have captured.*"
+    "self_assessment": "**Weakly‑supported items**  \n- **local response normalization (terminology)** – the extracted definition omits the role of the parameter *n* (the number of adjacent maps summed over) that appears in the original formula, so the description is only partially supported.  \n- **overlapping pooling (terminology)** – the extraction states the stride/size values (s = 2, z = 3) but does not mention that the authors also compare it to the non‑overlapping case (s = z = 2) and quantify the error‑rate gain; the core idea is present, but the supporting quantitative detail is missing.  \n\n**Ambiguous items**  \n- **top‑1 error / top‑5 error (terminology)** – the definitions are phrased as “error where the correct label is not the most probable prediction” and “error where the correct label is not among the five most probable predictions”.  In the paper the authors also use the terms “top‑1/top‑5 error rates” interchangeably for validation and test sets (they claim the difference is ≤ 0.1 %).  The extraction does not capture this nuance, leaving the exact evaluation protocol slightly ambiguous.  \n- **training on multiple GPUs (algorithm)** – the description says “splits kernels (or neurons) roughly half‑and‑half … GPUs communicate only at selected layers”.  The exact connectivity pattern (which layers communicate, how the “columnar” scheme is realized) is not fully specified, so the extracted summary could be interpreted in more than one way.  \n\n**Important missing items (present in the source but not extracted)**  \n\n| Category | Missing element | Why it matters |\n|----------|----------------|----------------|\n| Terminology / Concepts | **data augmentation** (image translation + horizontal flip; PCA‑based intensity jitter) | The paper stresses that two distinct augmentation schemes are a primary means of combating over‑fitting; only the PCA‑based variant appears in the algorithms list. |\n| Terminology / Concepts | **max‑pooling** (standard pooling operation) | Pooling is a core component of the architecture (used after normalization layers and after the fifth conv layer) but is not listed among the extracted algorithms. |\n| Terminology / Concepts | **softmax / multinomial logistic regression objective** | The final 1000‑way classifier is described as a softmax layer that maximizes the multinomial logistic regression objective; this is central to the model’s output. |\n| Terminology / Concepts | **non‑saturating neurons** (general term for ReLUs) | The paper contrasts ReLUs with “saturating” tanh/ sigmoid units; the broader term “non‑saturating neurons” is used but not extracted. |\n| Algorithmic details | **weight initialization scheme** (Gaussian weights σ = 0.01, bias = 1 for certain layers, bias = 0 otherwise) | Initialization is highlighted as crucial for early learning; omitted from the algorithm list. |\n| Algorithmic details | **learning‑rate schedule** (start = 0.01, divide by 10 when validation plateaus, three reductions) | The schedule is described as a key heuristic for training stability; not captured. |\n| Algorithmic details | **momentum = 0.9 and weight decay = 0.0005** (part of SGD) | These hyper‑parameters are explicitly reported and affect convergence, yet only the generic “stochastic gradient descent” entry is present. |\n| Algorithmic details | **GPU‑optimized 2‑D convolution implementation (cuda‑convnet)** | The authors claim to have released a highly‑optimized GPU convolution library; this is a notable contribution not reflected in the extracted algorithms. |\n| Evaluation details | **patch‑based test‑time averaging** (five 224 × 224 patches + horizontal flips → ten predictions) | The test‑time inference procedure is described in the data‑augmentation section and influences reported error rates; missing from the extraction. |\n| Evaluation details | **error‑rate improvements per architectural change** (e.g., ReLU → ‑6× faster; response‑norm → ‑1.4 % top‑1, etc.) | Quantitative ablation results are discussed throughout the paper and are important for understanding each component’s impact. |\n\nThese gaps and ambiguities suggest that the extraction, while broadly correct, omits several methodological and experimental details that are essential for a complete technical summary of the paper."
   }
 ]
