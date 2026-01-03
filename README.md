@@ -1,10 +1,8 @@
 Environment:
 
-Python 3.11.9
-
-pip 25.3
-
-docling 2.64.0
+-Python 3.11.9
+-pip 25.3
+-docling 2.64.0
 
 Advice we take from the paper:
 
@@ -20,6 +18,7 @@ The pipeline is structured as an iterative loop where
 - An initial prompt generates a candidate output.
 - The output is evaluated against quality criteria (completeness, clarity, etc.).
 - Feedback is used to adjust the prompt for the next iteration.
+
 This loop continues until no further significant issues are detected or a maximum iteration count is reached.
 
 3. Separation of Concerns
@@ -28,6 +27,7 @@ We separate
 - Document preprocessing
 - Prompt-based results
 - Self-evaluation
+
 This separation improves modularity, debuggability, and reproducibility.
 
 4. Observed Benefits
