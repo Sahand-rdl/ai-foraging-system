@@ -1,8 +1,8 @@
 Environment:
 
--Python 3.11.9
--pip 25.3
--docling 2.64.0
+- Python 3.11.9
+- pip 25.3
+- docling 2.64.0
 
 Advice we take from the paper:
 
