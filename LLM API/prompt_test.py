@@ -3,115 +3,99 @@ print("prompt_test.py is running")
 import os
 import json
 from prompt.extractor import extract_entities
-from prompt.evaluator import evaluate_relevance
+from prompt.evaluator import evaluate_importance
 from prompt.chatter import chat_about_document
-from prompt.trust_checker import trust_checker
+from prompt.trust_checker import trust_checker, extract_key_sections
+from prompt.doc_parser import extract_metadata_heuristics
 
+DOCLING_FOLDER = "docling_docs"
 
-DOCLING_FOLDER = "docling_docs"  # Folder containing Markdown files
 
 def load_all_json_docs(folder: str):
-    """
-    Load all JSON files from the given folder.
-    Extract readable text from docling's structured JSON output.
-    """
     docs = []
+    if not os.path.exists(folder):
+        return docs
 
     for fname in os.listdir(folder):
         if not fname.endswith(".json"):
             continue
 
         path = os.path.join(folder, fname)
-
         try:
             with open(path, "r", encoding="utf-8") as f:
                 data = json.load(f)
-
-            # ---- Extract meaningful text ----
-            text_parts = []
-
-            if isinstance(data, dict):
-
-                # If docling export contains "content"
-                if "content" in data and isinstance(data["content"], list):
-                    for item in data["content"]:
-                        if isinstance(item, dict) and "text" in item:
-                            text_parts.append(item["text"])
-
-                # Sometimes text is stored under data["text"]
-                elif "text" in data and isinstance(data["text"], str):
-                    text_parts.append(data["text"])
-
-            # fallback
-            full_text = "\n".join(text_parts).strip()
-
-            if not full_text:
-                full_text = f"(No readable text extracted from {fname})"
-
-            docs.append({
-                "filename": fname,
-                "text": full_text
-            })
-
+            docs.append({"filename": fname, "data": data})
         except Exception as e:
             print(f"Failed to load {fname}: {e}")
 
     return docs
 
+
 def run_tests():
-    """
-    Run relevance evaluation, entity extraction, and chat tests
-    on Markdown documents.
-    """
-    # Load all Markdown documents
+    # 1. Load Documents
     documents = load_all_json_docs(DOCLING_FOLDER)
     if not documents:
-        print(f"No Markdown documents found in {DOCLING_FOLDER}.")
+        print(f"No JSON documents found in {DOCLING_FOLDER}.")
+        print("Please run docling_doc.py first to convert PDFs.")
         return
 
-    #adding the ability to choose different models big/small 
+    # 2. Select Document
+    print("\nAvailable Documents:")
+    for idx, doc in enumerate(documents):
+        print(f"{idx}: {doc['filename']}")
 
-    task = input("What do you want to do?\n 1: Check trustworthyness.\n 2:Extract information. \n 3: Evaluate something. \n 4: Chat with the document.")
-    
+    try:
+        selection = input("\nSelect document ID: ")
+        doc_idx = int(selection)
+        selected_doc = documents[doc_idx]
+        doc_data = selected_doc["data"]
+    except (ValueError, IndexError):
+        print("Invalid selection.")
+        return
 
-    match task:
-        case 1:
-            print("trustchecker")
-            print(trust_checker(document))
-        case 2:
-            print("=== Extraction Test ===")
-            print(extract_entities(document))
-        case 3:
-            print("=== Evaluation Test ===")
-            query = input("Input your evaluation specifications:\n")
-            print(evaluate_relevance(document, query))
-        case 4:
-            print("=== Chat Test ===")
-            query = input("What do you need help with?\n")
-            print(chat_about_document(document, query))
+    # 3. Select Task
+    print("\nTasks:")
+    print("1: Check Trustworthiness")
+    print("2: Extract Information (Entities)")
+    print("3: Evaluate Relevance")
+    print("4: Chat with Document")
 
-    # Evaluate relevance
-    relevance_list = []
-    for doc in documents:
-        score = evaluate_relevance(doc['text'], query)
-        relevance_list.append((score, doc))
-    # Sort by relevance
-    relevance_list.sort(key=lambda x: x[0], reverse=True)
-    # Take top 2
-    top_docs = relevance_list[:2]
-    # Run tests on top documents
-    for idx, (score, document) in enumerate(top_docs, 1):
-        print(f"\n=== Top {idx}: {document['filename']} (Relevance score: {score}) ===\n")
-        
-        # Entity extraction test
-        print("=== Extraction Test ===")
-        print(extract_entities(document['text']))
-        print()
+    task = input("\nSelect task ID: ")
 
-        # Chat test
-        print("=== Chat Test ===")
-        print(chat_about_document(document['text'], query))
-        print()
+    # 4. Execute Task
+    if task == "1":
+        print("\n=== Trust Checker ===")
+        # Use specific text extraction for trust check
+        trust_text = extract_key_sections(doc_data)
+        metadata = extract_metadata_heuristics(doc_data)
+        print("Metadata:", json.dumps(metadata, indent=2))
+
+        if not trust_text.strip():
+            print(
+                "WARNING: No text could be extracted from this document. Trust checker may fail."
+            )
+        else:
+            print(f"Extracted {len(trust_text)} chars for analysis.")
+            print("Result:", trust_checker(trust_text))
+
+    elif task == "2":
+        print("\n=== Extraction ===")
+        # Prepare full text for extraction
+        full_text = extract_key_sections(doc_data)
+        print(extract_entities(full_text))
+
+    elif task == "3":
+        print("\n=== Evaluation ===")
+        topic = input("Enter Topic/Project description: ")
+        full_text = extract_key_sections(doc_data)
+        print(evaluate_importance(full_text, topic))
+
+    elif task == "4":
+        print("\n=== Chat ===")
+        query = input("Ask a question: ")
+        chat_text = extract_key_sections(doc_data)
+        print(chat_about_document(chat_text, query))
+
 
 if __name__ == "__main__":
     run_tests()
