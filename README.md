@@ -8,8 +8,7 @@ Advice we take from the paper:
 
 1. Targeted Prompt Refinement
 
-Instead of repeatedly sampling with a fixed prompt, we refining prompts based on
-explicit feedback from prior outputs (e.g., missing content, ambiguity, etc.). Each refinement addresses a specific deficiency observed in the previous iteration.
+Instead of repeatedly sampling with a fixed prompt, we refining prompts based on explicit feedback from prior outputs (e.g., missing content, ambiguity, etc.). Each refinement addresses a specific deficiency observed in the previous iteration.
 
 2. Iterative Pipeline with Feedback Loops
 
@@ -24,6 +23,7 @@ This loop continues until no further significant issues are detected or a maximu
 3. Separation of Concerns
 
 We separate
+
 - Document preprocessing
 - Prompt-based results
 - Self-evaluation
@@ -33,6 +33,7 @@ This separation improves modularity, debuggability, and reproducibility.
 4. Observed Benefits
 
 According to the paper
+
 - Iterative, feedback-driven prompts improve coverage and precision.
 - Hallucinations are reduced due to explicit self-assessment constraints.
 - The results are more consistent.
