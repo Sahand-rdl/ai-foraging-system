@@ -8,7 +8,7 @@ Advice we take from the paper:
 
 1. Targeted Prompt Refinement
 
-Instead of repeatedly sampling with a fixed prompt, we refining prompts based on explicit feedback from prior outputs (e.g., missing content, ambiguity, etc.). Each refinement addresses a specific deficiency observed in the previous iteration.
+Instead of repeatedly sampling with a fixed prompt, we refine prompts based on explicit feedback from prior outputs (e.g., missing content, ambiguity, etc.). Each refinement addresses a specific deficiency observed in the previous iteration.
 
 2. Iterative Pipeline with Feedback Loops
 
