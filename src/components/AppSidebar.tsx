@@ -41,7 +41,8 @@ export function AppSidebar() {
                       to={item.url} 
                       end 
                       className="hover:bg-accent/50"
-                      activeClassName="bg-accent text-primary font-medium"
+                      activeClassName="bg-accent text-accent-foreground font-medium"
+
                     >
                       <item.icon className="h-4 w-4" />
                       {open && <span>{item.title}</span>}

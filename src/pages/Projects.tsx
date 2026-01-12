@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 export default function Projects() {
   const projects = [
     {
+      id: 1,
       name: "Machine Learning in Healthcare",
       description: "Exploring ML applications in diagnostics and treatment planning",
       sources: 12,
@@ -14,6 +15,7 @@ export default function Projects() {
       status: "active",
     },
     {
+      id: 2,
       name: "Quantum Computing Applications",
       description: "Investigating practical uses of quantum computing in cryptography",
       sources: 8,
@@ -22,6 +24,7 @@ export default function Projects() {
       status: "active",
     },
     {
+      id: 3,
       name: "Climate Change Mitigation",
       description: "Research on renewable energy solutions and carbon capture",
       sources: 4,
@@ -45,8 +48,12 @@ export default function Projects() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-        {projects.map((project, i) => (
-          <Card key={i} className="hover:shadow-lg transition-shadow cursor-pointer">
+        {projects.map((project) => (
+          <Card 
+            key={project.id} 
+            className="hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => window.location.href = `/projects/${project.id}`}
+          >
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
