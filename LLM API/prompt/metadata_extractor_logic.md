@@ -8,17 +8,15 @@ The script begins by targeting the raw text provided by the Docling conversion.
 
 Heuristic: It specifically harvests the first 4,000 characters of the document.
 
-Why: In scientific literature, 99% of the essential metadata (Title, Authors, Journal Name, and Year) resides in the first page header. Processing the entire 50-page PDF would be a waste of tokens and introduce noise.
+Why: In scientific literature, the essential metadata (Title, Authors, Journal Name, and Year) most probably resides in the first page header. Processing the entire 50-page PDF would be a waste of tokens and introduce noise.
 
-2. Phase I: LLM-First Extraction (The "Local Truth")
+2. Phase I: LLM-First Extraction
 
 Before hitting any APIs, we use extract_full_metadata_llm.
 
 Strategy: We treat the LLM as a sophisticated "Pattern Matcher." It looks at the layout and text to identify what looks like a title versus a journal header.
 
-The Goal: This provides our "Base Metadata." Even if the internet is down, we now have a working Title and Year extracted directly from the ink on the page.
-
-3. Phase II: API Enrichment (The "Authoritative Truth")
+3. Phase II: API call
 
 Once we have a title from the LLM, we use the OpenAlex API to find the paper's "Global Identity."
 
@@ -28,7 +26,7 @@ Smart Title Search: If no DOI exists, we use fetch_openalex_by_query_best_match.
 
 4. Phase III: The Best-Match Scoring System
 
-OpenAlex often returns 5+ versions of the same paper. A standard search would just pick the first one, which might be a "Stub" (low citations, no DOI). Our script uses a weighted scoring formula:
+OpenAlex often returns 5+ versions of the same paper. A standard search would just pick the first one, which might be a "Stub" (low citations, no DOI). Our script uses a weighted scoring formula (rewards):
 
 Similarity (Base): Must be > 0.85 similarity to the LLM's title to even be considered.
 
