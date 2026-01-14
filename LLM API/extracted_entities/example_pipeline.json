@@ -1,7 +1,9 @@
 [
   {
     "iteration": 1,
-    "prompt_version": "v1",
+    "prompt_versions": [
+      "v1"
+    ],
     "extraction": {
       "terminologies": [],
       "figures": [],
@@ -9,30 +11,10 @@
       "algorithms": []
     },
     "complete": true,
-    "self_assessment": "**Weakly supported items**  \n- *None.* The extraction did not propose any terminologies, figures, tables, or algorithms, so there is nothing that is only marginally justified.\n\n**Ambiguous items**  \n- *None.* The document contains only plain‑text headings, a short paragraph, and a simple numbered list. None of these elements can be reasonably interpreted as a figure, table, algorithm, or domain‑specific terminology.\n\n**Important missing items**  \n- *None.* The content does not include any technical terms, visual elements, structured data tables, or algorithmic descriptions that would belong in the four categories. The only structured element is a numbered list of “Action items,” which does not qualify as a table or algorithm."
-  },
-  {
-    "iteration": 2,
-    "prompt_version": "v_refined_disambiguation",
-    "extraction": {
-      "terminologies": [],
-      "figures": [],
-      "tables": [],
-      "algorithms": []
-    },
-    "complete": true,
-    "self_assessment": "**Weakly supported items**  \n- *None.* The extraction does not claim any terminologies, figures, tables, or algorithms, so there are no items that are only tenuously justified.\n\n**Ambiguous items**  \n- *None.* Because the result is completely empty, there is no ambiguity about the presence or classification of any extracted element.\n\n**Important missing items**  \n- *None for the requested categories.* The source document is a short set of meeting notes containing only plain‑text headings, a brief narrative, and a simple numbered list of action items. It does not contain any technical terminology that would be catalogued as “terminologies,” nor does it include any visual elements (figures), structured data grids (tables), or algorithmic descriptions. Consequently, the empty extraction correctly reflects the absence of items that belong to the four target categories."
-  },
-  {
-    "iteration": 3,
-    "prompt_version": "v_refined_disambiguation",
-    "extraction": {
-      "terminologies": [],
-      "figures": [],
-      "tables": [],
-      "algorithms": []
-    },
-    "complete": true,
-    "self_assessment": "**Weakly supported items**  \n- *None.* The extraction result does not claim any terminologies, figures, tables, or algorithms, so there are no items that are only tenuously present.\n\n**Ambiguous items**  \n- *None.* The document consists of plain‑text meeting notes; there is no content that could be reasonably interpreted as a figure, table, algorithm, or specialized terminology that would require disambiguation.\n\n**Important missing items**  \n- *None.* The source material contains only free‑form text (meeting title, date, attendees, discussion topics, and a simple bullet‑point list of action items). It does not include any of the target categories (terminologies, figures, tables, algorithms), so the empty extraction is appropriate."
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": "*None*"
+    }
   }
 ]

@@ -6,17 +6,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-# ===== Import your existing prompt logic =====
 from prompt.extractor import extract_entities
 from prompt.evaluator import evaluate_importance
 from prompt.chatter import chat_about_document
 from prompt.trust_checker import trust_checker, extract_key_sections
 from prompt.doc_parser import extract_metadata_heuristics
 
-
-# ===== Configuration =====
 DOCLING_FOLDER = "docling_docs"
-
 
 # ===== FastAPI initialization =====
 app = FastAPI(
@@ -26,7 +22,6 @@ app = FastAPI(
 )
 
 # Allow frontend (browser) to access this API
-# NOTE: In production, restrict allow_origins
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

@@ -1,122 +1,11 @@
 [
   {
     "iteration": 1,
-    "prompt_version": "v1",
+    "prompt_versions": [
+      "v1"
+    ],
     "extraction": {
       "terminologies": [
-        {
-          "term": "Random search",
-          "meaning": "more practical than grid search because it can be applied even when using a cluster of computers that can fail, and allows the experimenter to change the 'resolution' on the fly"
-        },
-        {
-          "term": "grid search",
-          "meaning": "simple to implement and parallelization is trivial"
-        },
-        {
-          "term": "low effective dimension",
-          "meaning": "functions Ψ of interest have a low effective dimension, which explains why randomly sampled trials found better values"
-        },
-        {
-          "term": "Gaussian process regression",
-          "meaning": "gives us the statistical machinery to look at Ψ and measure its effective dimensionality"
-        },
-        {
-          "term": "Automatic Relevance Determination (ARD)",
-          "meaning": "applied to hyper‑parameters of neural network experiments to show that a small number of hyper‑parameters dominate performance"
-        }
-      ],
-      "figures": [
-        {
-          "figure": "Figure 1",
-          "description": "Grid and random search of nine trials for optimizing a function f ( x , y ) = g ( x ) + h ( y ) ≈ g ( x ) with low effective dimensionality. Above each square g ( x ) is shown in green, and left of each square h ( y ) is shown in yellow. With grid search, nine trials only test g ( x ) in three distinct places. With random search, all nine trials explore distinct values of g . This failure of grid search is the rule rather than the exception in high dimensional hyper‑parameter optimization."
-        },
-        {
-          "figure": "Figure 2",
-          "description": "A random experiment efficiency curve. The trials of a random experiment are i.i.d, so an experiment of many trials (here, 256 trials optimizing a neural network to classify the rectangles data set, Section 2.3) can be interpreted as several independent smaller experiments. For example, at horizontal axis position 8, we consider our 256 trials to be 32 experiments of 8 trials each. The vertical axis shows the test accuracy of the best trial(s) from experiments of a given size, as determined by Equation 5. When there are sufficiently many experiments of a given size (i.e., 10), the distribution of performance is illustrated by a box plot whose boxed section spans the lower and upper quartiles and includes a line at the median. The whiskers above and below each boxed section show the position of the most extreme data point within 1.5 times the inter‑quartile range of the nearest quartile. Data points beyond the whiskers are plotted with '+' symbols. When there are not enough experiments to support a box plot, as occurs here for experiments of 32 trials or more, the best generalization score of each experiment is shown by a scatter plot. The two thin black lines across the top of the figure mark the upper and lower boundaries of a 95% confidence interval on the generalization of the best trial overall (Equation 6)."
-        },
-        {
-          "figure": "Figure 3",
-          "description": "From top to bottom, samples from the mnist rotated, mnist background random, mnist background images, mnist rotated background images data sets. In all data sets the task is to identify the digit (0 - 9) and ignore the various distracting factors of variation."
-        },
-        {
-          "figure": "Figure 4",
-          "description": "Top: Samples from the rectangles data set. Middle: Samples from the rectangles images data set. Bottom: Samples from the convex data set. In rectangles data sets, the image is formed by overlaying a small rectangle on a background. The task is to label the small rectangle as being either tall or wide. In convex, the task is to identify whether the set of white pixels is convex (images 1 and 4) or not convex (images 2 and 3)."
-        },
-        {
-          "figure": "Figure 5",
-          "description": "Neural network performance without preprocessing. Random experiment efficiency curves of a single‑layer neural network for eight of the data sets used in Larochelle et al. (2007), looking only at trials with no preprocessing (7 hyper‑parameters to optimize). The vertical axis is test‑set accuracy of the best model by cross‑validation, the horizontal axis is the experiment size (the number of models compared in cross‑validation). The dashed blue line represents grid search accuracy for neural network models based on a selection by grids averaging 100 trials (Larochelle et al., 2007). Random searches of 8 trials match or outperform grid searches of (on average) 100 trials."
-        },
-        {
-          "figure": "Figure 6",
-          "description": "Neural network performance when standard preprocessing algorithms are considered (9 hyper‑parameters). Dashed blue line represents grid search accuracy using (on average) 100 trials (Larochelle et al., 2007), in which no preprocessing was done. Often the extent of a search is determined by a computational budget, and with random search 64 trials are enough to find better models in a larger less promising space. Exploring just four PCA variance levels by grid search would have required 5 times as many (average 500) trials per data set."
-        },
-        {
-          "figure": "Figure 7",
-          "description": "Automatic Relevance Determination (ARD) applied to hyper‑parameters of neural network experiments (with raw preprocessing). For each data set, a small number of hyperparameters dominate performance, but the relative importance of each hyper‑parameter varies from each data set to the next. Section 2.4 describes the seven hyper‑parameters in each panel. Boxplots are obtained by randomizing the subset of data used to fit the length scales, and randomizing the length scale initialization. (Best viewed in color.)"
-        },
-        {
-          "figure": "Figure 8",
-          "description": "The efficiency in simulation of low‑discrepancy sequences relative to grid and pseudorandom experiments. The simulation tested how reliably various experiment design methods locate a multidimensional interval occupying 1% of a unit hyper‑cube. There is one grey dot in each sub‑plot for every grid of every experiment size that has at least two ticks in each dimension. The black dots indicate near‑perfect grids whose finest and coarsest dimensional resolutions differ by either 0 or 1. Hyper‑parameter search is most typically like the bottom‑right scenario. Grid search experiments are inefficient for finding axis‑aligned elongated regions in high dimensions (i.e., bottom‑right). Pseudo‑random samples are as efficient as latin hypercube samples, and slightly less efficient than the Sobol sequence."
-        },
-        {
-          "figure": "Figure 9",
-          "description": "Deep Belief Network (DBN) performance according to random search. Here random search is used to explore up to 32 hyper‑parameters. Results obtained by grid‑assisted manual search using an average of 41 trials are marked in finely‑dashed green (1‑layer DBN) and coarsely‑dashed red (3‑layer DBN). Random experiments of 128 random trials found an inferior best model for three data sets, a competitive model in four, and superior model in one (convex). (Best viewed in color.)"
-        }
-      ],
-      "tables": [],
-      "algorithms": [
-        {
-          "algorithm": "grid search",
-          "goal": "search over a grid of hyper‑parameter values",
-          "process": null
-        },
-        {
-          "algorithm": "random search",
-          "goal": "search by independent random draws from the configuration space",
-          "process": null
-        },
-        {
-          "algorithm": "Sobol sequence",
-          "goal": "provide a low‑discrepancy point set for sampling in multiple dimensions",
-          "process": null
-        },
-        {
-          "algorithm": "Latin hypercube sampling",
-          "goal": "provide a low‑discrepancy sampling method for experiment design",
-          "process": null
-        },
-        {
-          "algorithm": "coordinate descent",
-          "goal": "alternately fix a neural network architecture and search for good optimization hyper‑parameters",
-          "process": null
-        },
-        {
-          "algorithm": "hyper‑parameter search procedure",
-          "goal": "alternates between fixing a neural network architecture and searching for good optimization hyper‑parameters",
-          "process": "the procedure combines manual search, multi‑resolution grid search and coordinate descent; it fixes the architecture, explores optimization hyper‑parameters, and iteratively refines the search based on validation performance"
-        }
-      ]
-    },
-    "complete": true,
-    "self_assessment": "**1. Weakly supported items**  \n\n| Extracted item | Why the support is thin / questionable |\n|----------------|----------------------------------------|\n| **Random search – “more practical than grid search because it can be applied even when using a cluster of computers that can fail, and allows the experimenter to change the ‘resolution’ on the fly”** | The paper mentions these practical advantages, but the phrasing mixes two distinct ideas (fault‑tolerance vs dynamic resolution). The extraction treats the whole sentence as the *definition* of random search, which over‑states the concept. |\n| **Grid search – “simple to implement and parallelization is trivial”** | This is a correct observation, but the extraction presents it as the *only* meaning of “grid search”. The paper also discusses its exponential cost and curse of dimensionality, which are not reflected. |\n| **Gaussian process regression – “gives us the statistical machinery to look at Ψ and measure its effective dimensionality”** | The statement is true, yet the extraction omits that GP is used with a squared‑exponential kernel and ARD to infer length‑scales. The meaning is therefore under‑specified. |\n| **Automatic Relevance Determination (ARD) – “applied to hyper‑parameters of neural network experiments to show that a small number of hyper‑parameters dominate performance”** | The extraction captures the high‑level idea but ignores that ARD is a specific Bayesian technique (inverse length‑scale relevance) and that the analysis involved repeated fitting with random restarts. The description is therefore a bit vague. |\n\n**2. Ambiguous items**  \n\n| Extracted item | Source of ambiguity |\n|----------------|----------------------|\n| **Low effective dimension** (as a “terminology”) | The phrase could refer to (a) the intrinsic dimensionality of the response surface Ψ, (b) the number of hyper‑parameters that actually matter for a given data set, or (c) the effective dimensionality of the *search space* after accounting for irrelevant dimensions. The extraction does not clarify which interpretation is intended. |\n| **Hyper‑parameter response function Ψ** (not extracted) | If added, the term could be read as a deterministic mapping, a noisy estimate, or a surrogate model. Its precise definition (mean validation loss as a function of λ) is missing, making the concept ambiguous. |\n| **Random experiment efficiency curve** (not extracted) | The term could denote a plot of best‑found performance vs. number of trials, a statistical summary, or a theoretical bound. Without context the meaning is unclear. |\n\n**3. Important missing items**  \n\n| Category | Missing element(s) | Why it matters |\n|----------|-------------------|----------------|\n| **Terminologies / Concepts** | • *Hyper‑parameter response function* Ψ (Eq. 3‑4)  <br>• *Cross‑validation* and the distinction between validation‑set Ψ(valid) and test‑set Ψ(test)  <br>• *Effective dimensionality* (the number of relevant hyper‑parameters)  <br>• *Quasi‑Monte‑Carlo* / *low‑discrepancy* sampling (general term, not just specific sequences)  <br>• *Sequential / adaptive hyper‑parameter optimization* (e.g., Bayesian optimization, SMBO)  <br>• *High‑throughput* methods (mentioned in the abstract) | These are central to the authors’ argument that random search is a strong baseline and to the discussion of why grid search fails. |\n| **Algorithms / Procedures** | • *Sequential model‑based optimization* / *Bayesian optimization* (Section 6)  <br>• *Global optimisation* methods cited (simplex, Powell, simulated annealing, CMA‑ES)  <br>• *Quasi‑Monte‑Carlo* point‑set constructions (Halton, Niederreiter)  <br>• *Coordinate descent* (described as part of the manual‑grid hybrid)  <br>• *Weight‑penalty* and *learning‑rate annealing* update rule (Eq. 7) | The paper lists several families of optimisation algorithms as alternatives or related work; omitting them understates the breadth of the literature review. |\n| **Figures** | • *Figure 0* (the schematic of grid vs. random points) is referenced in the text but not listed.  <br>• *Figure 7* (ARD results) is captured, but the accompanying *legend* (listing hyper‑parameter names) is not extracted.  <br>• *Figure 8* (simulation of low‑discrepancy vs. grid) is captured, but the *right‑hand panels* (rectangular‑target case) are not explicitly described. | The missing figure captions reduce the completeness of the visual evidence supporting the claims. |\n| **Tables** | The paper contains **no explicit tables**, so this is not an omission. |\n| **Equations / Formal definitions** | • Eq. (1) – formal hyper‑parameter optimisation objective  <br>• Eq. (2) – cross‑validation estimator  <br>• Eq. (5)–(6) – weighting scheme for test‑set performance  <br>• Eq. (7) – learning‑rate schedule  | These equations define the methodology (e.g., how Ψ is estimated, how weights wₛ are computed). Their absence leaves the extraction without the quantitative backbone of the paper. |\n| **Experimental details** | • *Number of trials* per data set for the original grid search (e.g., “≈ 100 trials”)  <br>• *Dataset splits* (10 k train / 2 k validation / 50 k test for MNIST)  <br>• *Hyper‑parameter distributions* (log‑uniform, geometric, uniform)  | These specifics are essential for reproducibility and for understanding the comparison between random and grid search. |\n| **Discussion points** | • *Why grid search is still popular* (technical ease, low code overhead)  <br>• *Limitations of low‑discrepancy designs* (non‑i.i.d., omission sensitivity)  <br>• *Future work direction* (adaptive algorithms as baseline) | The paper’s concluding arguments hinge on these points; they are not reflected in the current extraction. |\n\n---\n\n**Summary**\n\nThe extraction captures the headline concepts (random vs. grid search, low effective dimension, GP/ARD) and the main figures, but several key definitions, algorithmic families, and methodological details are either weakly represented, ambiguous, or completely missing. Adding the missing terminology (Ψ, cross‑validation, effective dimensionality), the broader set of optimisation algorithms, and the finer details of the experimental setup would make the summary far more faithful to the original paper."
-  },
-  {
-    "iteration": 2,
-    "prompt_version": "v_refined_disambiguation",
-    "extraction": {
-      "terminologies": [
-        {
-          "term": "hyper-parameter optimization",
-          "meaning": "the problem of identifying a good value for hyper-parameters \\(\\lambda\\)"
-        },
-        {
-          "term": "response surface",
-          "meaning": "the hyper-parameter response function \\(\\Psi(\\lambda)\\) used to model performance as a function of hyper‑parameters"
-        },
-        {
-          "term": "low‑discrepancy sequences",
-          "meaning": "sets of points that try to match (minimize discrepancy with) the uniform distribution, providing more even coverage of the search space"
-        },
         {
           "term": "Automatic Relevance Determination (ARD)",
           "meaning": null
@@ -125,117 +14,387 @@
       "figures": [
         {
           "figure": "Figure 1",
-          "description": "Grid and random search of nine trials for optimizing a function f(x,y)=g(x)+h(y)≈g(x) with low effective dimensionality. With grid search, nine trials only test g(x) in three distinct places; with random search, all nine trials explore distinct values of g."
+          "description": "Grid and random search of nine trials for optimizing a function f ( x , y ) = g ( x ) + h ( y ) ≈ g ( x ) with low effective dimensionality. Above each square g ( x ) is shown in green, and left of each square h ( y ) is shown in yellow. With grid search, nine trials only test g ( x ) in three distinct places. With random search, all nine trials explore distinct values of g . This failure of grid search is the rule rather than the exception in high dimensional hyper-parameter optimization."
         },
         {
           "figure": "Figure 2",
-          "description": "Random experiment efficiency curve showing how the best test accuracy varies with experiment size when trials are i.i.d."
+          "description": "A random experiment efficiency curve. The trials of a random experiment are i.i.d, so an experiment of many trials (here, 256 trials optimizing a neural network to classify the rectangles basic data set, Section 2.3) can be interpreted as several independent smaller experiments. For example, at horizontal axis position 8, we consider our 256 trials to be 32 experiments of 8 trials each. The vertical axis shows the test accuracy of the best trial(s) from experiments of a given size, as determined by Equation 5. When there are sufficiently many experiments of a given size (i.e., 10), the distribution of performance is illustrated by a box plot whose boxed section spans the lower and upper quartiles and includes a line at the median. The whiskers above and below each boxed section show the position of the most extreme data point within 1.5 times the inter-quartile range of the nearest quartile. Data points beyond the whiskers are plotted with '+' symbols. When there are not enough experiments to support a box plot, as occurs here for experiments of 32 trials or more, the best generalization score of each experiment is shown by a scatter plot. The two thin black lines across the top of the figure mark the upper and lower boundaries of a 95% confidence interval on the generalization of the best trial overall (Equation 6)."
         },
         {
           "figure": "Figure 3",
-          "description": "Samples from the mnist rotated, mnist background random, mnist background images, and mnist rotated background images data sets; the task is digit classification (0‑9) despite distracting variations."
+          "description": "From top to bottom, samples from the mnist rotated , mnist background random , mnist background images , mnist rotated background images data sets. In all data sets the task is to identify the digit (0 - 9) and ignore the various distracting factors of variation."
         },
         {
           "figure": "Figure 4",
-          "description": "Samples from three data sets: rectangles (simple synthetic outlines), rectangles images (filled with natural patches), and convex (binary images classified by convexity)."
+          "description": "Top: Samples from the rectangles data set. Middle: Samples from the rectangles images data set. Bottom: Samples from the convex data set. In rectangles data sets, the image is formed by overlaying a small rectangle on a background. The task is to label the small rectangle as being either tall or wide. In convex , the task is to identify whether the set of white pixels is convex (images 1 and 4) or not convex (images 2 and 3)."
         },
         {
           "figure": "Figure 5",
-          "description": "Neural network performance without preprocessing. Random search with 8 trials matches or outperforms grid search that averages 100 trials."
+          "description": "Neural network performance without preprocessing. Random experiment efficiency curves of a single-layer neural network for eight of the data sets used in Larochelle et al. (2007), looking only at trials with no preprocessing (7 hyper-parameters to optimize). The vertical axis is test-set accuracy of the best model by cross-validation, the horizontal axis is the experiment size (the number of models compared in cross-validation). The dashed blue line represents grid search accuracy for neural network models based on a selection by grids averaging 100 trials (Larochelle et al., 2007). Random searches of 8 trials match or outperform grid searches of (on average) 100 trials."
         },
         {
           "figure": "Figure 6",
-          "description": "Neural network performance when standard preprocessing (9 hyper‑parameters) is considered. Random search with 64 trials finds better models than grid search with ~100 trials."
+          "description": "Neural network performance when standard preprocessing algorithms are considered (9 hyper-parameters). Dashed blue line represents grid search accuracy using (on average) 100 trials (Larochelle et al., 2007), in which no preprocessing was done. Often the extent of a search is determined by a computational budget, and with random search 64 trials are enough to find better models in a larger less promising space. Exploring just four PCA variance levels by grid search would have required 5 times as many (average 500) trials per data set."
         },
         {
           "figure": "Figure 7",
-          "description": "Automatic Relevance Determination (ARD) applied to hyper‑parameters of neural network experiments, showing that a small number of hyper‑parameters dominate performance and that importance varies across data sets."
+          "description": "Automatic Relevance Determination (ARD) applied to hyper-parameters of neural network experiments (with raw preprocessing). For each data set, a small number of hyperparameters dominate performance, but the relative importance of each hyper-parameter varies from each data set to the next. Section 2.4 describes the seven hyper-parameters in each panel. Boxplots are obtained by randomizing the subset of data used to fit the length scales, and randomizing the length scale initialization. ( Best viewed in color. )"
         },
         {
           "figure": "Figure 8",
-          "description": "Simulation efficiency of low‑discrepancy sequences (Sobol) versus grid and pseudo‑random experiments for locating a 1 % volume target in a unit hyper‑cube."
+          "description": "The efficiency in simulation of low-discrepancy sequences relative to grid and pseudorandom experiments. The simulation tested how reliably various experiment design methods locate a multidimensional interval occupying 1% of a unit hyper-cube. There is one grey dot in each sub-plot for every grid of every experiment size that has at least two ticks in each dimension. The black dots indicate near-perfect grids whose finest and coarsest dimensional resolutions differ by either 0 or 1. Hyper-parameter search is most typically like the bottom-right scenario. Grid search experiments are inefficient for finding axis-aligned elongated regions in high dimensions (i.e., bottom-right). Pseudo-random samples are as efficient as latin hypercube samples, and slightly less efficient than the Sobol sequence."
         },
         {
           "figure": "Figure 9",
-          "description": "Deep Belief Network (DBN) performance according to random search (up to 32 hyper‑parameters) compared with grid‑assisted manual search; random search finds superior, comparable, or inferior models depending on the data set."
+          "description": "Deep Belief Network (DBN) performance according to random search. Here random search is used to explore up to 32 hyper-parameters. Results obtained by grid-assisted manual search using an average of 41 trials are marked in finely-dashed green (1-layer DBN) and coarsely-dashed red (3-layer DBN). Random experiments of 128 random trials found an inferior best model for three data sets, a competitive model in four, and superior model in one ( convex ). ( Best viewed in color. )"
         }
       ],
       "tables": [],
-      "algorithms": [
-        {
-          "algorithm": "Random search",
-          "goal": "to produce a set of trial hyper‑parameter configurations \\(\\{\\lambda^{(1)}\\dots\\lambda^{(S)}\\}\\) for hyper‑parameter optimization",
-          "process": "independent draws from a uniform density over the same configuration space that would be spanned by a regular grid"
-        },
-        {
-          "algorithm": "Grid search",
-          "goal": "to evaluate the hyper‑parameter response function \\(\\Psi\\) on a systematic grid covering the search space",
-          "process": "choose a set of values for each hyper‑parameter and assemble every possible combination, yielding \\(S = \\prod_{k=1}^{K} |L^{(k)}|\\) trials"
-        },
-        {
-          "algorithm": "Sobol sequence (low‑discrepancy sampling)",
-          "goal": "to construct a low‑discrepancy point set that provides more uniform coverage of the search space than pseudo‑random sampling",
-          "process": "generate points deterministically using the Sobol algorithm, which minimizes discrepancy with the uniform distribution"
-        },
-        {
-          "algorithm": "Latin hypercube sampling",
-          "goal": "to obtain a set of points that are more representative of random uniform draws than pure random sampling",
-          "process": "divide each dimension into equal intervals and sample once from each interval, ensuring stratified coverage"
-        },
-        {
-          "algorithm": "Gaussian process regression",
-          "goal": "to model the hyper‑parameter response function \\(\\Psi(\\lambda)\\) and measure its effective dimensionality",
-          "process": "fit a Gaussian process with squared‑exponential kernels to observed \\((\\lambda, \\Psi)\\) pairs, optimizing kernel length‑scales by maximizing marginal likelihood"
-        },
-        {
-          "algorithm": "Automatic Relevance Determination (ARD)",
-          "goal": "to identify which hyper‑parameters are most relevant for a given data set",
-          "process": "fit a Gaussian process to the data and infer relevance from the inverse of the learned length‑scale for each hyper‑parameter"
-        },
-        {
-          "algorithm": "Sequential model‑based optimization (SMBO) / Bayesian optimization",
-          "goal": "to adaptively select hyper‑parameter configurations that are likely to improve performance",
-          "process": null
-        }
-      ]
+      "algorithms": []
     },
     "complete": true,
-    "self_assessment": "**1. Weakly‑supported items**  \n\n| Item (as extracted) | Why the support is thin |\n|---------------------|--------------------------|\n| **Automatic Relevance Determination (ARD)** – meaning = *None* | The paper does describe ARD (Section 3, Fig 7) and uses it to rank hyper‑parameters, but the extraction did not capture any definition or explanation of what ARD actually is. |\n| **Sequential model‑based optimization (SMBO) / Bayesian optimization** – process = *None* | The text mentions SMBO/Bayesian optimisation only in a “future‑work” paragraph; no concrete description of the algorithmic steps is given, so the extracted “process” field is empty. |\n| **Low‑discrepancy sequences** – definition | The definition (“sets of points that try to match … the uniform distribution”) is present, but the paper also stresses *why* they are useful (e.g., Sobol’s advantage in the 1 %‑target simulation). The extraction omits that motivation, making the entry a bit vague. |\n\n---\n\n**2. Ambiguous items**  \n\n| Item | Ambiguity / missing detail |\n|------|----------------------------|\n| **Automatic Relevance Determination (ARD)** | No meaning supplied; the reader cannot tell whether ARD is a statistical technique, a GP kernel trick, or a separate algorithm. |\n| **Sequential model‑based optimisation (SMBO) / Bayesian optimisation** | The entry lists the name but gives no description of its goal or workflow, leaving the entry ambiguous. |\n| **Gaussian process regression** (algorithm) | The “process” field mentions fitting a GP with squared‑exponential kernels, but does not explain the purpose (modeling Ψ, estimating effective dimensionality) – the role is only implicit. |\n| **Low‑discrepancy sequences** (algorithm) | The entry groups Sobol, Halton, Niederreiter under the same label, but the extraction does not differentiate them; the reader may think they are a single algorithm. |\n\n---\n\n**3. Important missing items**  \n\n| Missing concept / term | Reason it should be in the extraction |\n|------------------------|--------------------------------------|\n| **Effective dimensionality (low effective dimension of Ψ)** | Central to the paper’s argument (Sections 2 & 3) – the authors repeatedly stress that Ψ depends strongly on only a few hyper‑parameters. |\n| **Cross‑validation** | The primary method for estimating the validation and test performance (Equations 2‑4, Section 2.1). It is a key methodological term. |\n| **Random experiment efficiency curve** | Introduced in Section 2.2 and used throughout the empirical analysis (Fig 2). It is a distinct concept that deserves its own entry. |\n| **Curse of dimensionality** | Frequently cited as the reason grid search becomes infeasible (Section 2, bullet list). |\n| **High‑throughput methods** | Mentioned in the abstract/introduction as a class of approaches that benefit from the low‑effective‑dimension insight. |\n| **Pseudo‑random sampling** | The paper contrasts true random draws with low‑discrepancy and Latin‑hypercube sampling; “pseudo‑random” is a term used in the discussion of Fig 8. |\n| **Adaptive (sequential) hyper‑parameter optimisation** | While SMBO is listed, the broader notion of “adaptive” search (the paper’s main future‑work direction) is not captured as a separate term. |\n| **Sobol, Halton, Niederreiter sequences** (individual algorithms) | The paper discusses all three, but the extraction only keeps “Sobol sequence”. The other two are mentioned as comparable methods and should be listed. |\n| **Latin hypercube sampling** – purpose | The extraction lists it as an algorithm, but does not note that it is a *stratified* sampling method designed to mimic random uniform draws. |\n| **Gaussian kernel (squared‑exponential kernel)** – term | The kernel is explicitly defined when describing the GP; it is a technical term that could be listed under “terminologies”. |\n| **Weight‑penalty (ℓ₂ regularisation)** – term | Appears in the hyper‑parameter description (e.g., “/ℓ₂‑penalty”) and is a concrete hyper‑parameter type. |\n| **Learning‑rate annealing** – term | Discussed in the hyper‑parameter space for both NN and DBN experiments; a distinct hyper‑parameter concept. |\n| **MCMC / Bayesian optimisation references** – not needed as separate items, but the term “Bayesian optimisation” appears and could be listed with a brief definition. |\n\nThese omissions are not trivial; they are repeatedly referenced in the text and form the backbone of the authors’ argument that random (or quasi‑random) search is preferable to grid search for hyper‑parameter optimisation. Adding them would give a far more faithful representation of the paper’s content."
+    "self_assessment": {
+      "weakly_supported": [
+        "Automatic Relevance Determination (ARD)"
+      ],
+      "ambiguous": "*None*",
+      "missing": [
+        "hyper‑parameter optimization",
+        "grid search",
+        "random search",
+        "low effective dimensionality",
+        "response surface (Ψ)",
+        "Gaussian process regression (GPR)",
+        "Gaussian process (GP)",
+        "Sobol sequence",
+        "Latin hypercube sampling",
+        "low‑discrepancy sequences (e.g., Sobol, Halton, Niederreiter)",
+        "sequential model‑based optimization",
+        "Bayesian optimization",
+        "cross‑validation",
+        "validation set",
+        "test set",
+        "effective dimensionality",
+        "automatic relevance determination (ARD) relevance (1/length scale)",
+        "quasi‑Monte‑Carlo (QMC) integration",
+        "adaptive (sequential) hyper‑parameter optimization algorithms",
+        "Gaussian kernel (squared exponential kernel)",
+        "weight penalty (ℓ2 regularization)",
+        "learning rate annealing",
+        "preprocessing methods (normalization, PCA, ZCA)",
+        "deep belief network (DBN)",
+        "restricted Boltzmann machine (RBM)",
+        "stochastic gradient descent (SGD)",
+        "contrastive divergence",
+        "Mersenne Twister pseudo‑random number generator"
+      ]
+    }
   },
   {
-    "iteration": 3,
-    "prompt_version": "v_refined_disambiguation",
+    "iteration": 2,
+    "prompt_versions": [
+      "v_refined_coverage"
+    ],
     "extraction": {
       "terminologies": [
         {
           "term": "hyper-parameter optimization",
-          "meaning": "the problem of identifying a good value for hyper-parameters λ"
+          "meaning": "the problem of identifying a good value for hyper-parameters \\(\\lambda\\) that minimizes the expected generalization error of a learning algorithm"
         },
         {
           "term": "response surface",
-          "meaning": "the hyper-parameter response function Ψ"
+          "meaning": "the function \\(\\Psi(\\lambda)\\) that maps hyper-parameter configurations to validation performance; also called the response surface in the experiment‑design literature"
+        },
+        {
+          "term": "low effective dimensionality",
+          "meaning": "a property of the response surface where the function varies mainly along a small subset of dimensions, i.e., \\(\\Psi\\) is more sensitive to changes in some hyper‑parameters than others"
+        },
+        {
+          "term": "Gaussian process regression (GPR)",
+          "meaning": "statistical machinery used to model the response surface \\(\\Psi\\) and to measure its effective dimensionality"
+        },
+        {
+          "term": "Gaussian process (GP)",
+          "meaning": "a probabilistic model for functions; here used with a squared‑exponential kernel to predict \\(\\Psi(\\lambda)\\) from \\(\\lambda\\)"
+        },
+        {
+          "term": "Automatic Relevance Determination (ARD)",
+          "meaning": null
+        },
+        {
+          "term": "cross‑validation",
+          "meaning": "technique of replacing the expectation over the unknown data distribution with a mean over a validation set drawn i.i.d. from that distribution"
         },
         {
           "term": "random search",
-          "meaning": "independent draws from a uniform density from the same configuration space as would be spanned by a regular grid"
+          "meaning": "independent draws from a uniform density over the configuration space, used as an alternative to grid search for producing a trial set"
         },
         {
           "term": "grid search",
-          "meaning": "assembling every possible combination of values for each hyper-parameter variable to form the set of trials"
+          "meaning": "a strategy that chooses a set of values for each hyper‑parameter and evaluates every possible combination of those values"
         },
         {
-          "term": "low-discrepancy",
-          "meaning": "sets that try to match (minimize discrepancy with) the uniform distribution"
+          "term": "low‑discrepancy sequences",
+          "meaning": "point sets designed to approximate the uniform distribution and minimise discrepancy, used in quasi‑Monte‑Carlo integration"
+        },
+        {
+          "term": "Sobol sequence",
+          "meaning": null
+        },
+        {
+          "term": "Halton sequence",
+          "meaning": null
+        },
+        {
+          "term": "Niederreiter sequence",
+          "meaning": null
+        },
+        {
+          "term": "Latin hypercube sampling",
+          "meaning": null
+        },
+        {
+          "term": "quasi‑Monte‑Carlo (QMC) integration",
+          "meaning": null
+        },
+        {
+          "term": "sequential model‑based optimization",
+          "meaning": "adaptive hyper‑parameter search methods that use a surrogate model to propose new trials based on past results"
+        },
+        {
+          "term": "Bayesian optimization",
+          "meaning": "a type of sequential model‑based optimization that uses Bayesian models to guide the search for good hyper‑parameters"
+        },
+        {
+          "term": "deep belief network (DBN)",
+          "meaning": "a multi‑layer graphical model with directed and undirected components, parameterised similarly to a multilayer neural network"
+        },
+        {
+          "term": "restricted Boltzmann machine (RBM)",
+          "meaning": "an unsupervised learning component used for pre‑training layers of a DBN"
+        },
+        {
+          "term": "stochastic gradient descent (SGD)",
+          "meaning": "an optimization algorithm that updates parameters using noisy gradient estimates computed on minibatches"
+        },
+        {
+          "term": "contrastive divergence",
+          "meaning": "an algorithm for training RBMs"
+        },
+        {
+          "term": "Mersenne Twister pseudo‑random number generator",
+          "meaning": "the random number generator used for weight‑initialisation seeds"
+        },
+        {
+          "term": "Gaussian kernel (squared exponential kernel)",
+          "meaning": "a kernel that measures similarity between two real‑valued hyper‑parameter values \\(a\\) and \\(b\\) as \\(\\exp\\bigl(-(a-b)^2 / l^2\\bigr)\\)"
+        },
+        {
+          "term": "ℓ₂ regularization (weight penalty)",
+          "meaning": "a regularisation term applied to the weights, drawn exponentially from \\(3.1\\times10^{-7}\\) to \\(3.1\\times10^{-5}\\)"
+        },
+        {
+          "term": "learning rate annealing",
+          "meaning": "a schedule that reduces the learning rate after a certain iteration \\(t_0\\) according to \\(\\epsilon_t = t_0 \\epsilon_0 / \\max(t, t_0)\\)"
+        },
+        {
+          "term": "preprocessing methods (normalization, PCA, ZCA)",
+          "meaning": null
         }
       ],
       "figures": [
         {
           "figure": "Figure 1",
-          "description": "Grid and random search of nine trials for optimizing a function f (x, y) = g(x) + h(y) ≈ g(x) with low effective dimensionality. Above each square g(x) is shown in green, and left of each square h(y) is shown in yellow. With grid search, nine trials only test g(x) in three distinct places. With random search, all nine trials explore distinct values of g. This failure of grid search is the rule rather than the exception in high dimensional hyper-parameter optimization."
+          "description": "Grid and random search of nine trials for optimizing a function \\(f(x, y) = g(x) + h(y) \\approx g(x)\\) with low effective dimensionality. With grid search the nine trials test \\(g(x)\\) in only three distinct places, whereas random search explores distinct values of \\(g\\) in all nine trials. This illustrates why grid search fails in high‑dimensional hyper‑parameter optimisation."
         },
         {
           "figure": "Figure 2",
-          "description": "A random experiment efficiency curve. The trials of a random experiment are i.i.d., so an experiment of 256 trials (here, training neural networks to classify the rectangles data set) can be interpreted as several independent smaller experiments. The vertical axis shows the test accuracy of the best trial(s) from experiments of a given size, as determined by Equation 5. Box plots illustrate the distribution of performance for sizes with enough experiments; scatter plots are used for larger sizes. Thin black lines mark the 95% confidence interval on the generalization of the best trial overall."
+          "description": "Random experiment efficiency curve showing how the best test accuracy evolves as the number of i.i.d. random trials increases (example with 256 trials on the rectangles data set). The curve displays the minimum, maximum, median and quantiles of performance for sub‑experiments of different sizes."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Samples from four MNIST‑derived data sets: (top) mnist rotated, (second) mnist background random, (third) mnist background images, (bottom) mnist rotated background images. In all data sets the task is digit classification (0‑9) while ignoring distracting variations."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Illustrations of three synthetic data sets: top – rectangles (binary images of tall vs. wide rectangles), middle – rectangles images (rectangles filled with natural image patches), bottom – convex (binary images where the class depends on whether the white pixels form a convex region)."
+        },
+        {
+          "figure": "Figure 5",
+          "description": "Neural‑network performance without preprocessing. Random‑search efficiency curves for a single‑layer network on eight data sets (7 hyper‑parameters). The dashed blue line shows grid‑search accuracy (average 100 trials). Random searches with only 8 trials match or outperform the grid search."
+        },
+        {
+          "figure": "Figure 6",
+          "description": "Neural‑network performance when standard preprocessing (9 hyper‑parameters) is considered. The dashed blue line is grid‑search accuracy using ~100 trials (no preprocessing). Random search with 64 trials finds better models in a larger, less promising space; exploring four PCA variance levels by grid search would require ~500 trials."
+        },
+        {
+          "figure": "Figure 7",
+          "description": "Automatic Relevance Determination (ARD) applied to hyper‑parameters of neural‑network experiments (raw preprocessing). For each data set a small subset of hyper‑parameters dominates performance, but the important dimensions differ across data sets."
+        },
+        {
+          "figure": "Figure 8",
+          "description": "Simulation of low‑discrepancy sequences versus grid and pseudo‑random designs for locating a 1 % volume target in a unit hyper‑cube. Sobol sequences are consistently a few percent more efficient than random or Latin‑hypercube sampling, especially for 100–300 trials."
+        },
+        {
+          "figure": "Figure 9",
+          "description": "Deep Belief Network (DBN) performance according to random search (up to 32 hyper‑parameters). Grid‑assisted manual search (average 41 trials) is shown for 1‑layer (green) and 3‑layer (red) DBNs. Random search with 128 trials finds inferior models on three data sets, comparable models on four, and a superior model on one (convex)."
+        }
+      ],
+      "tables": [],
+      "algorithms": [
+        {
+          "algorithm": "random search",
+          "goal": "to find good hyper‑parameter configurations within a given computational budget",
+          "process": "independent draws from a uniform density over the configuration space, each trial evaluated separately"
+        },
+        {
+          "algorithm": "grid search",
+          "goal": "to exhaustively evaluate all combinations of a predefined set of hyper‑parameter values",
+          "process": "choose a discrete set of values for each hyper‑parameter and evaluate the Cartesian product of those sets"
+        },
+        {
+          "algorithm": "sequential model‑based optimization",
+          "goal": "to adaptively select hyper‑parameter trials based on a surrogate model of performance",
+          "process": null
+        },
+        {
+          "algorithm": "Bayesian optimization",
+          "goal": "to efficiently optimise hyper‑parameters by modelling the response surface probabilistically and using the model to propose promising trials",
+          "process": null
+        },
+        {
+          "algorithm": "Latin hypercube sampling",
+          "goal": "to generate a set of hyper‑parameter points that uniformly cover each dimension",
+          "process": null
+        },
+        {
+          "algorithm": "Sobol sequence",
+          "goal": "to produce low‑discrepancy points for quasi‑Monte‑Carlo integration and hyper‑parameter search",
+          "process": null
+        },
+        {
+          "algorithm": "Halton sequence",
+          "goal": "to produce low‑discrepancy points for quasi‑Monte‑Carlo integration and hyper‑parameter search",
+          "process": null
+        },
+        {
+          "algorithm": "Niederreiter sequence",
+          "goal": "to produce low‑discrepancy points for quasi‑Monte‑Carlo integration and hyper‑parameter search",
+          "process": null
+        },
+        {
+          "algorithm": "Gaussian process regression (GPR)",
+          "goal": "to model the response surface \\(\\Psi\\) and estimate its effective dimensionality",
+          "process": "fit a Gaussian process with a squared‑exponential kernel to observed \\((\\lambda, \\Psi)\\) pairs, optimizing length‑scale hyper‑parameters by marginal likelihood"
+        },
+        {
+          "algorithm": "Automatic Relevance Determination (ARD)",
+          "goal": "to identify which hyper‑parameters are most relevant for performance",
+          "process": null
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": [
+        "Automatic Relevance Determination (ARD)",
+        "Sobol sequence",
+        "Halton sequence",
+        "Niederreiter sequence",
+        "Latin hypercube sampling",
+        "quasi‑Monte‑Carlo (QMC) integration",
+        "low‑discrepancy sequences",
+        "preprocessing methods (normalization, PCA, ZCA)",
+        "ℓ₂ regularization (weight penalty)"
+      ],
+      "ambiguous": [
+        "response surface (could refer to Ψ or a generic surface)",
+        "low effective dimensionality (definition varies across sections)",
+        "sequential model‑based optimization (exact workflow not fully described)",
+        "random experiment efficiency curve (term mentioned but not extracted as a distinct concept)"
+      ],
+      "missing": [
+        "hyper‑parameter response function Ψ (explicit term)",
+        "random experiment efficiency curve (as a named concept)",
+        "low‑discrepancy point sets (distinct from sequences)",
+        "definition/meaning for Sobol, Halton, and Niederreiter sequences",
+        "definition/meaning for Latin hypercube sampling",
+        "definition/meaning for quasi‑Monte‑Carlo (QMC) integration",
+        "meaning for preprocessing methods (normalization, PCA, ZCA)",
+        "meaning for ℓ₂ regularization (weight penalty)",
+        "meaning for Automatic Relevance Determination (ARD)"
+      ]
+    }
+  },
+  {
+    "iteration": 3,
+    "prompt_versions": [
+      "v_refined_disambiguation",
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "hyper‑parameter response function Ψ",
+          "meaning": "The function that maps a set of hyper‑parameters λ to a performance measure (validation loss). It is the objective Ψ(λ) that is minimized in hyper‑parameter optimization."
+        },
+        {
+          "term": "response surface",
+          "meaning": "Another name for the hyper‑parameter response function Ψ, used in the experiment‑design literature."
+        },
+        {
+          "term": "low effective dimensionality",
+          "meaning": "A property of the response function Ψ where the function is much more sensitive to changes in a few dimensions than to others; only a small subset of hyper‑parameters matters for a given data set."
+        },
+        {
+          "term": "random experiment efficiency curve",
+          "meaning": "A curve that shows how the best test‑set accuracy obtained by a random search experiment varies with the number of trials (experiment size), illustrating trends of lower‑extreme rise and upper‑extreme decline."
+        },
+        {
+          "term": "low‑discrepancy sets",
+          "meaning": "Point sets that aim to match the uniform distribution by being roughly equidistant, minimizing discrepancy and avoiding clumps or holes."
+        },
+        {
+          "term": "Sobol sequence",
+          "meaning": "A deterministic low‑discrepancy sequence used to generate point sets that are more uniformly distributed than true random draws."
+        },
+        {
+          "term": "Halton sequence",
+          "meaning": "A deterministic low‑discrepancy sequence used to generate point sets that are more uniformly distributed than true random draws."
+        },
+        {
+          "term": "Niederreiter sequence",
+          "meaning": "A deterministic low‑discrepancy sequence used to generate point sets that are more uniformly distributed than true random draws."
+        },
+        {
+          "term": "Latin hypercube sampling",
+          "meaning": "A deterministic sampling scheme that produces low‑discrepancy point sets by stratifying each dimension into intervals and sampling without replacement."
+        },
+        {
+          "term": "Quasi Monte‑Carlo (QMC) integration",
+          "meaning": "A numerical integration technique that uses low‑discrepancy point sets (e.g., Sobol, Halton) to reduce variance compared with plain Monte‑Carlo sampling."
+        },
+        {
+          "term": "Gaussian process regression (GPR)",
+          "meaning": "A statistical method used to model the response function Ψ and to measure its effective dimensionality by fitting a Gaussian process to observed hyper‑parameter performances."
+        },
+        {
+          "term": "Gaussian kernel",
+          "meaning": "The squared‑exponential kernel used in Gaussian processes; it measures similarity between two real‑valued hyper‑parameter values a and b by exp(−(a−b)² / ℓ²)."
+        },
+        {
+          "term": "Automatic Relevance Determination (ARD)",
+          "meaning": "A technique applied to hyper‑parameters where a Gaussian process is fitted with separate length‑scale parameters; relevance of each hyper‑parameter is inferred from the inverse of its length scale."
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Grid and random search of nine trials for optimizing a function f(x, y) = g(x) + h(y) ≈ g(x) with low effective dimensionality. Above each square g(x) is shown in green, and left of each square h(y) is shown in yellow. With grid search, nine trials only test g(x) in three distinct places. With random search, all nine trials explore distinct values of g. This failure of grid search is the rule rather than the exception in high dimensional hyper‑parameter optimization."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "A random experiment efficiency curve. The trials of a random experiment are i.i.d., so an experiment of many trials (here, 256 trials optimizing a neural network to classify the rectangles basic data set) can be interpreted as several independent smaller experiments. For example, at horizontal axis position 8, we consider our 256 trials to be 32 experiments of 8 trials each. The vertical axis shows the test accuracy of the best trial(s) from experiments of a given size, as determined by Equation 5. When there are sufficiently many experiments of a given size (i.e., 10), the distribution of performance is illustrated by a box plot whose boxed section spans the lower and upper quartiles and includes a line at the median. The whiskers show the most extreme data point within 1.5 × the inter‑quartile range. Data points beyond the whiskers are plotted with ‘+’ symbols. When there are not enough experiments to support a box plot, the best generalization score of each experiment is shown by a scatter plot. The two thin black lines across the top mark the 95 % confidence interval on the generalization of the best trial overall (Equation 6)."
         },
         {
           "figure": "Figure 3",
@@ -243,23 +402,23 @@
         },
         {
           "figure": "Figure 4",
-          "description": "Top: Samples from the rectangles data set. Middle: Samples from the rectangles images data set. Bottom: Samples from the convex data set. In rectangles data sets, the image is formed by overlaying a small rectangle on a background. The task is to label the small rectangle as being either tall or wide. In convex, the task is to identify whether the set of white pixels is convex (images 1 and 4) or not convex (images 2 and 3)."
+          "description": "Top: Samples from the rectangles data set. Middle: Samples from the rectangles images data set. Bottom: Samples from the convex data set. In rectangles data sets, the image is formed by overlaying a small rectangle on a background. The task is to label the small rectangle as being either tall or wide. In convex, the task is to identify whether the set of white pixels is convex (images 1 and 4) or not convex (images 2 and 3)."
         },
         {
           "figure": "Figure 5",
-          "description": "Neural network performance without preprocessing. Random experiment efficiency curves of a single‑layer neural network for eight of the data sets used in Larochelle et al. (2007), looking only at trials with no preprocessing (7 hyper‑parameters to optimize). The vertical axis is test‑set accuracy of the best model by cross‑validation, the horizontal axis is the experiment size (the number of models compared in cross‑validation). The dashed blue line represents grid search accuracy for neural network models based on a selection by grids averaging 100 trials (Larochelle et al., 2007). Random searches of 8 trials match or outperform grid searches of (on average) 100 trials."
+          "description": "Neural network performance without preprocessing. Random experiment efficiency curves of a single‑layer neural network for eight of the data sets used in Larochelle et al. (2007), looking only at trials with no preprocessing (7 hyper‑parameters to optimize). The vertical axis is test‑set accuracy of the best model by cross‑validation, the horizontal axis is the experiment size (the number of models compared in cross‑validation). The dashed blue line represents grid search accuracy for neural network models based on a selection by grids averaging 100 trials (Larochelle et al., 2007). Random searches of 8 trials match or outperform grid searches of (on average) 100 trials."
         },
         {
           "figure": "Figure 6",
-          "description": "Neural network performance when standard preprocessing algorithms are considered (9 hyper‑parameters). Dashed blue line represents grid search accuracy using (on average) 100 trials (Larochelle et al., 2007), in which no preprocessing was done. Often the extent of a search is determined by a computational budget, and with random search 64 trials are enough to find better models in a larger less promising space. Exploring just four PCA variance levels by grid search would have required 5 times as many (average 500) trials per data set."
+          "description": "Neural network performance when standard preprocessing algorithms are considered (9 hyper‑parameters). Dashed blue line represents grid search accuracy using (on average) 100 trials (Larochelle et al., 2007), in which no preprocessing was done. Often the extent of a search is determined by a computational budget, and with random search 64 trials are enough to find better models in a larger less promising space. Exploring just four PCA variance levels by grid search would have required 5 times as many (average 500) trials per data set."
         },
         {
           "figure": "Figure 7",
-          "description": "Automatic Relevance Determination (ARD) applied to hyper‑parameters of neural network experiments (with raw preprocessing). For each data set, a small number of hyperparameters dominate performance, but the relative importance of each hyper‑parameter varies from each data set to the next. Section 2.4 describes the seven hyper‑parameters in each panel. Boxplots are obtained by randomizing the subset of data used to fit the length scales, and randomizing the length scale initialization. (Best viewed in color.)"
+          "description": "Automatic Relevance Determination (ARD) applied to hyper‑parameters of neural network experiments (with raw preprocessing). For each data set, a small number of hyper‑parameters dominate performance, but the relative importance of each hyper‑parameter varies from each data set to the next. Section 2.4 describes the seven hyper‑parameters in each panel. Boxplots are obtained by randomizing the subset of data used to fit the length scales, and randomizing the length scale initialization. (Best viewed in color.)"
         },
         {
           "figure": "Figure 8",
-          "description": "The efficiency in simulation of low‑discrepancy sequences relative to grid and pseudorandom experiments. The simulation tested how reliably various experiment design methods locate a multidimensional interval occupying 1% of a unit hyper‑cube. Grey dots represent many grid configurations; black dots indicate near‑perfect grids whose finest and coarsest dimensional resolutions differ by either 0 or 1. Grid search experiments are inefficient for finding axis‑aligned elongated regions in high dimensions (bottom‑right scenario). Pseudo‑random samples are as efficient as latin hypercube samples, and slightly less efficient than the Sobol sequence."
+          "description": "The efficiency in simulation of low‑discrepancy sequences relative to grid and pseudorandom experiments. The simulation tested how reliably various experiment design methods locate a multidimensional interval occupying 1 % of a unit hyper‑cube. There is one grey dot in each sub‑plot for every grid of every experiment size that has at least two ticks in each dimension. The black dots indicate near‑perfect grids whose finest and coarsest dimensional resolutions differ by either 0 or 1. Hyper‑parameter search is most typically like the bottom‑right scenario. Grid search experiments are inefficient for finding axis‑aligned elongated regions in high dimensions (i.e., bottom‑right). Pseudo‑random samples are as efficient as latin hypercube samples, and slightly less efficient than the Sobol sequence."
         },
         {
           "figure": "Figure 9",
@@ -270,22 +429,43 @@
       "algorithms": [
         {
           "algorithm": "Random search",
-          "goal": "to produce a trial set for hyper‑parameter optimization as an alternative to grid search",
-          "process": "independent draws from a uniform density from the same configuration space as would be spanned by a regular grid"
+          "goal": "Find good hyper‑parameter configurations for a learning algorithm.",
+          "process": "Generate independent draws from a uniform density over the configuration space (i.i.d. trials) and evaluate each trial."
         },
         {
           "algorithm": "Grid search",
-          "goal": "to search hyper‑parameter space by evaluating all possible combinations of hyper‑parameter values",
-          "process": "assemble every possible combination of values for each hyper‑parameter variable to form the set of trials"
+          "goal": "Find good hyper‑parameter configurations for a learning algorithm.",
+          "process": "Select a set of values for each hyper‑parameter and evaluate every possible combination (Cartesian product) of those values."
         },
         {
-          "algorithm": "Hyper‑parameter search procedure for Deep Belief Networks",
-          "goal": "to find hyper‑parameters for DBN models",
-          "process": "alternates between fixing a neural network architecture and searching for good optimization hyper‑parameters, similarly to coordinate descent"
+          "algorithm": "Automatic Relevance Determination (ARD)",
+          "goal": "Assess the relevance of each hyper‑parameter in modeling the response function Ψ.",
+          "process": "Fit a Gaussian process to samples of Ψ with a separate length‑scale for each hyper‑parameter; relevance is inferred from the inverse of the learned length‑scale."
+        },
+        {
+          "algorithm": "Quasi Monte‑Carlo (QMC) integration",
+          "goal": "Numerically integrate high‑dimensional functions with lower variance than plain Monte‑Carlo.",
+          "process": "Use low‑discrepancy point sets (e.g., Sobol, Halton, Niederreiter, Latin hypercube) to sample points that minimize discrepancy with the uniform distribution."
         }
       ]
     },
     "complete": true,
-    "self_assessment": "**1. Weakly‑supported items**  \n\n| Item (as extracted) | Why the support is thin or indirect |\n|---------------------|--------------------------------------|\n| **low‑discrepancy – “sets that try to match (minimize discrepancy with) the uniform distribution”** | The paper mentions low‑discrepancy *sequences* (Sobol, Halton, Niederreiter) and uses the term mainly in the context of quasi‑Monte‑Carlo point sets.  It never gives a formal definition of “low‑discrepancy” as a property of a *set*; the phrasing in the extraction is therefore a paraphrase rather than a direct citation. |\n| **response surface – “the hyper‑parameter response function Ψ”** | The term appears, but the paper treats Ψ more as a *response function* than a classical “response surface” from design‑of‑experiments literature.  The extraction’s definition is plausible but not explicitly stated in those exact words. |\n| **random search – “independent draws from a uniform density from the same configuration space as would be spanned by a regular grid”** | The paper indeed describes random search as i.i.d. uniform draws, yet it also discusses variants (e.g., using log‑uniform draws for learning‑rate, geometric draws for hidden‑units).  The extracted definition omits these nuances, making it a slightly oversimplified summary. |\n\n**2. Ambiguous items**  \n\n| Item (as extracted) | Source of ambiguity |\n|---------------------|---------------------|\n| **response surface** | “Response surface” can refer to the true underlying mapping Ψ, to the empirical surrogate built by a Gaussian process, or simply to the set of observed (λ, Ψ(λ)) pairs.  The extraction does not clarify which sense is intended. |\n| **low‑discrepancy** | The phrase could denote the *property* of a point set, a *class* of sequences (Sobol, Halton, etc.), or the *method* of constructing such sets.  The extracted meaning (“sets that try to match the uniform distribution”) is vague and could be interpreted in several ways. |\n| **random search (algorithm)** | The extraction treats it as a single algorithm, but the paper actually uses random search in several contexts (plain i.i.d. uniform, log‑uniform for some hyper‑parameters, geometric sampling).  Without that context the entry is ambiguous. |\n\n**3. Important missing items (no new items are added, only noted as absent)**  \n\n| Category | Missing concept / element | Why it matters for a faithful extraction |\n|----------|---------------------------|------------------------------------------|\n| **Terminologies / Concepts** | *Effective dimensionality* (the notion that Ψ depends strongly on only a few hyper‑parameters) | Central to the paper’s theoretical explanation of why random search outperforms grid search. |\n| | *Gaussian‑process regression (GPR)* and *Automatic Relevance Determination (ARD)* | These are the statistical tools used to quantify effective dimensionality and to produce Figure 7. |\n| | *Random experiment efficiency curve* (Section 2.2) | Introduced as a key analytical tool; the paper even gives a name to the curve. |\n| | *Sobol sequence*, *Latin hyper‑cube sampling*, *Halton*, *Niederreiter* (specific low‑discrepancy constructions) | The paper compares these explicitly in Section 4 and Figure 8. |\n| | *Sequential / adaptive hyper‑parameter optimisation* (e.g., Bayesian optimisation, SMBO) | Discussed in Sections 5–6 as future work and as a contrast to the non‑adaptive methods studied. |\n| | *Cross‑validation* (the method used to estimate Ψ(valid) and Ψ(test)) | Fundamental to the experimental protocol and to the weighting scheme in Eq. 5‑6. |\n| **Figures** | *Figure 7* (ARD relevance plot) – captured, but the caption also lists the *legend* (activation, n‑hidden‑units, etc.) which is not reflected in the extraction. | The legend items are part of the figure’s information and help interpret the relevance scores. |\n| | *Figure 8* – the caption mentions “grey dots” and “black dots” representing different grid qualities; the extraction only gives a high‑level description. | Those details are part of the figure’s contribution to the argument. |\n| **Tables** | The paper contains at least one table (e.g., Table 1 in the original JMLR version) summarising the hyper‑parameter space for the neural‑network experiments (ranges, distributions). | A table of hyper‑parameter ranges is a key reference for reproducibility and for understanding the search space. |\n| **Algorithms / Procedures** | *Random experiment efficiency curve* (the procedure for constructing the curve from i.i.d. trials) | Described in Section 2.2 and used throughout the empirical analysis. |\n| | *Gaussian‑process fitting* (the ARD procedure) – algorithmic steps for estimating length‑scales. | Provides the method by which Figure 7 was generated. |\n| | *Sequential DBN search procedure* (the manual‑grid‑coordinate‑descent loop described by Larochelle et al.) – the extraction only lists a high‑level “alternates between fixing architecture and searching hyper‑parameters”.  The detailed steps (layer‑wise search, pre‑training vs. fine‑tuning, annealing schedule, etc.) are omitted. | Those details are essential to understand why the expert‑guided method outperforms plain random search on the 32‑dimensional DBN problem. |\n| | *Simulation experiment for low‑discrepancy vs. grid vs. random* (Section 4) – the algorithm that generates the synthetic target intervals and evaluates success rates. | This synthetic benchmark underpins the claims about low‑discrepancy superiority. |\n\n**Summary**  \nThe extraction captures the core narrative (random vs. grid search, low‑discrepancy comparison) but several pivotal concepts—effective dimensionality, Gaussian‑process/ARD analysis, the specific low‑discrepancy sequences, and the adaptive optimisation discussion—are missing. Some definitions are overly terse, leading to ambiguity, and a few items (low‑discrepancy, response surface) are only weakly supported by the exact wording in the source. Adding the missing concepts (without inventing new entries) would make the extraction far more faithful to the original paper."
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": [
+        "Gaussian kernel definition (the exact formula in the text is garbled, making the precise expression uncertain)"
+      ],
+      "missing": [
+        "manual search (mentioned as a common strategy but not listed as a term or algorithm)",
+        "sequential manual optimization (described in Section 5 but not captured)",
+        "adaptive hyper‑parameter optimization (discussed as future work but not extracted)",
+        "curse of dimensionality (the phrase is used to explain grid search limitations)",
+        "high‑throughput methods (referenced in the abstract and discussion)",
+        "effective dimensionality (distinct concept from “low effective dimensionality”)",
+        "sequential model‑based optimization (mentioned in the future work section)",
+        "Bayesian optimization (cited as a promising adaptive method)",
+        "low‑discrepancy sequences (generic term, only specific sequences like Sobol, Halton, Niederreiter were extracted)"
+      ]
+    }
   }
 ]
