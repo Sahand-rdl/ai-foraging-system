@@ -35,43 +35,43 @@ def extract_entities(document_text, prompt_versions=None, feedback=""):
 
     # System prompt with feedback included
     system_prompt = f"""
-You are an information extraction FUNCTION, not a writer.
+    You are an information extraction FUNCTION, not a writer.
 
-Your job is to extract structured information from a scientific document.
+    Your job is to extract structured information from a scientific document.
 
-CRITICAL RULES:
-- ALWAYS output valid JSON
-- ALWAYS follow the EXACT schema provided
-- NEVER change keys, nesting, or value types
-- NEVER include explanations outside JSON
-- Refinement modes may ONLY change which items are included, NOT the structure
+    CRITICAL RULES:
+    - ALWAYS output valid JSON
+    - ALWAYS follow the EXACT schema provided
+    - NEVER change keys, nesting, or value types
+    - NEVER include explanations outside JSON
+    - Refinement modes may ONLY change which items are included, NOT the structure
 
-{mode_instruction_text}
+    {mode_instruction_text}
 
-PREVIOUS ITERATION FEEDBACK:
-{feedback}
-"""
+    PREVIOUS ITERATION FEEDBACK:
+    {feedback}
+    """
 
     user_prompt = f"""
-DOCUMENT:
-\"\"\"{document_text}\"\"\"
+    DOCUMENT:
+    \"\"\"{document_text}\"\"\"
 
-Extract the following elements STRICTLY from the document.
+    Extract the following elements STRICTLY from the document.
 
-OUTPUT SCHEMA (MANDATORY):
-{{
-  "terminologies": [{{"term": string, "meaning": string | null}}],
-  "figures": [{{"figure": string, "description": string}}],
-  "tables": [{{"table": string, "title": string}}],
-  "algorithms": [{{"algorithm": string, "goal": string | null, "process": string | null}}]
-}}
+    OUTPUT SCHEMA (MANDATORY):
+    {{
+    "terminologies": [{{"term": string, "meaning": string | null}}],
+    "figures": [{{"figure": string, "description": string}}],
+    "tables": [{{"table": string, "title": string}}],
+    "algorithms": [{{"algorithm": string, "goal": string | null, "process": string | null}}]
+    }}
 
-EXTRACTION RULES:
-- Only extract explicitly stated items
-- Do NOT infer or guess
-- If a category has no items, return an empty list
-- Do NOT merge categories
-"""
+    EXTRACTION RULES:
+    - Only extract explicitly stated items
+    - Do NOT infer or guess
+    - If a category has no items, return an empty list
+    - Do NOT merge categories
+    """
 
     response = call_llm(system_prompt, user_prompt)
 
