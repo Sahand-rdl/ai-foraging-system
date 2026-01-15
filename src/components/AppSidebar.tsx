@@ -119,7 +119,7 @@ export function AppSidebar() {
                     activeClassName="bg-accent text-accent-foreground font-medium"
                   >
                     <Database className="h-4 w-4" />
-                    <span>All Artifacts</span>
+                    <span>All Knowledge Artifacts</span>
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
