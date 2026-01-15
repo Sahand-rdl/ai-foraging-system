@@ -1,38 +1,48 @@
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, MoreVertical, FileText, Database } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  mockProjects,
+  mockKnowledgeSources,
+  mockKnowledgeArtifacts,
+  mockResearchers,
+} from "@/types/source";
+
+// Helper to get researcher initials
+function getInitials(name: string): string {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+}
+
+// Helper to get researchers for a project
+function getProjectResearchers(researcherIds: number[]) {
+  return mockResearchers.filter((r) => researcherIds.includes(r.id));
+}
+
+// Helper to get source count for a project
+function getProjectSourceCount(projectId: number) {
+  return mockKnowledgeSources.filter((s) => s.projectId === projectId).length;
+}
+
+// Helper to get artifact count for a project
+function getProjectArtifactCount(projectId: number) {
+  const sourceIds = mockKnowledgeSources
+    .filter((s) => s.projectId === projectId)
+    .map((s) => s.id);
+  return mockKnowledgeArtifacts.filter((a) =>
+    sourceIds.includes(a.knowledgeSourceId)
+  ).length;
+}
 
 export default function Projects() {
-  const projects = [
-    {
-      id: 1,
-      name: "Machine Learning in Healthcare",
-      description: "Exploring ML applications in diagnostics and treatment planning",
-      sources: 12,
-      artifacts: 48,
-      tags: ["machine learning", "healthcare", "diagnostics"],
-      status: "active",
-    },
-    {
-      id: 2,
-      name: "Quantum Computing Applications",
-      description: "Investigating practical uses of quantum computing in cryptography",
-      sources: 8,
-      artifacts: 35,
-      tags: ["quantum computing", "cryptography"],
-      status: "active",
-    },
-    {
-      id: 3,
-      name: "Climate Change Mitigation",
-      description: "Research on renewable energy solutions and carbon capture",
-      sources: 4,
-      artifacts: 64,
-      tags: ["climate", "renewable energy", "sustainability"],
-      status: "active",
-    },
-  ];
+  const navigate = useNavigate();
 
   return (
     <div className="space-y-6">
@@ -48,47 +58,91 @@ export default function Projects() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-        {projects.map((project) => (
-          <Card 
-            key={project.id} 
-            className="hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => window.location.href = `/projects/${project.id}`}
-          >
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <div className="space-y-1">
-                  <CardTitle className="text-lg">{project.name}</CardTitle>
-                  <Badge variant="outline" className="text-xs">
-                    {project.status}
-                  </Badge>
+        {mockProjects.map((project) => {
+          const researchers = getProjectResearchers(project.researcherIds);
+          const sourceCount = getProjectSourceCount(project.id);
+          const artifactCount = getProjectArtifactCount(project.id);
+
+          return (
+            <Card
+              key={project.id}
+              className="hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => navigate(`/projects/${project.id}`)}
+            >
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="space-y-1 flex-1">
+                    <CardTitle className="text-lg">{project.name}</CardTitle>
+                    <Badge variant="outline" className="text-xs">
+                      active
+                    </Badge>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <MoreVertical className="h-4 w-4" />
+                  </Button>
                 </div>
-                <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <MoreVertical className="h-4 w-4" />
-                </Button>
-              </div>
-              <CardDescription>{project.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between text-sm">
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <FileText className="h-4 w-4" />
-                  <span>{project.sources} sources</span>
+                <CardDescription className="line-clamp-2">
+                  {project.mlProjectDefinition}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {/* Stats */}
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <FileText className="h-4 w-4" />
+                    <span>{sourceCount} sources</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Database className="h-4 w-4" />
+                    <span>{artifactCount} artifacts</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Database className="h-4 w-4" />
-                  <span>{project.artifacts} artifacts</span>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.slice(0, 3).map((tag) => (
+                    <Badge key={tag} variant="secondary" className="text-xs">
+                      {tag}
+                    </Badge>
+                  ))}
+                  {project.tags.length > 3 && (
+                    <Badge variant="outline" className="text-xs">
+                      +{project.tags.length - 3}
+                    </Badge>
+                  )}
                 </div>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag, j) => (
-                  <Badge key={j} variant="secondary" className="text-xs">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+
+                {/* Researchers */}
+                <div className="flex items-center justify-between pt-2 border-t border-border">
+                  <span className="text-xs text-muted-foreground">Team</span>
+                  <div className="flex -space-x-2">
+                    {researchers.slice(0, 4).map((r) => (
+                      <Avatar
+                        key={r.id}
+                        className="h-7 w-7 border-2 border-background"
+                        title={r.name}
+                      >
+                        <AvatarFallback className="text-[10px]">
+                          {getInitials(r.name)}
+                        </AvatarFallback>
+                      </Avatar>
+                    ))}
+                    {researchers.length > 4 && (
+                      <div className="h-7 w-7 rounded-full bg-muted flex items-center justify-center text-[10px] border-2 border-background">
+                        +{researchers.length - 4}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
     </div>
   );

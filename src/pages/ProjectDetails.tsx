@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { KnowledgeSourcesView } from "@/components/sources";
 import { mockKnowledgeSources, mockProjects } from "@/types/source";
 
-export default function ProjectView() {
+export default function ProjectDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
