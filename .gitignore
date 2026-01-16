@@ -1,4 +1,4 @@
 .DS_Store
 __pycache__/
-chroma.sqlite3
-data_level0.bin
+LLM API/chroma_db/chroma.sqlite3
+LLM API/chroma_db/e62d4fc0-bf18-4bd4-aa57-2d42fa022103/data_level0.bin
