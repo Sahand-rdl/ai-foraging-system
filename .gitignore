@@ -2,3 +2,8 @@
 __pycache__/
 LLM API/chroma_db/chroma.sqlite3
 LLM API/chroma_db/e62d4fc0-bf18-4bd4-aa57-2d42fa022103/data_level0.bin
+chroma_db/chroma.sqlite3
+chroma.sqlite3
+chroma_db/e62d4fc0-bf18-4bd4-aa57-2d42fa022103/data_level0.bin
+e62d4fc0-bf18-4bd4-aa57-2d42fa022103/data_level0.bin
+data_level0.bin
