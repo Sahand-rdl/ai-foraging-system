@@ -1,4 +1,7 @@
 import { KnowledgeSourcesView } from "@/components/sources";
+// TODO: Replace mock data import with API call:
+// - fetchKnowledgeSources() for mockKnowledgeSources
+// import { fetchKnowledgeSources } from "@/services/api";
 import { mockKnowledgeSources } from "@/types/source";
 
 export default function KnowledgeSources() {

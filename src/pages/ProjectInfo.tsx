@@ -4,6 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+// TODO: Replace mock data imports with API calls:
+// - fetchProjectById(id) for project
+// - fetchResearchersByIds(ids) for researchers
+// - fetchKnowledgeSourcesByProjectId(projectId) for sources
+// - fetchKnowledgeArtifactsBySourceId(sourceId) for artifacts
+// import { fetchProjectById, fetchResearchersByIds, fetchKnowledgeSourcesByProjectId, fetchKnowledgeArtifactsBySourceId } from "@/services/api";
 import {
   mockProjects,
   mockResearchers,

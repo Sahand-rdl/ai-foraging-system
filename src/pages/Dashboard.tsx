@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Plus, FileText, FolderOpen, Database, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+// TODO: Replace mock data imports with API calls:
+// - fetchProjects() for mockProjects
+// - fetchResearchers() for mockResearchers
+// - fetchKnowledgeSources() for mockKnowledgeSources
+// - fetchKnowledgeArtifacts() for mockKnowledgeArtifacts
+// - fetchDashboardStats() for stats computation
+// import { fetchProjects, fetchResearchers, fetchKnowledgeSources, fetchKnowledgeArtifacts, fetchDashboardStats } from "@/services/api";
 import {
   mockProjects,
   mockKnowledgeSources,

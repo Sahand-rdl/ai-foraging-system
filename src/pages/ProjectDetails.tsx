@@ -3,6 +3,10 @@ import { ArrowLeft, Plus, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { KnowledgeSourcesView } from "@/components/sources";
+// TODO: Replace mock data imports with API calls:
+// - fetchProjectById(id) for project
+// - fetchKnowledgeSourcesByProjectId(projectId) for projectSources
+// import { fetchProjectById, fetchKnowledgeSourcesByProjectId } from "@/services/api";
 import { mockKnowledgeSources, mockProjects } from "@/types/source";
 
 export default function ProjectDetails() {

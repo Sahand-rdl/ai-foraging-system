@@ -1,6 +1,10 @@
 import { Home, FolderOpen, FileText, Database, ChevronRight } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
+// TODO: Replace mock data imports with API calls:
+// - fetchProjects() for mockProjects
+// - fetchKnowledgeSourcesByProjectId(projectId) for getProjectSourceCount
+// import { fetchProjects, fetchKnowledgeSourcesByProjectId } from "@/services/api";
 import { mockProjects, mockKnowledgeSources } from "@/types/source";
 
 import {

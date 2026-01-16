@@ -8,6 +8,15 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+// TODO: Replace local state mutations with API calls:
+// - fetchKnowledgeSourceById(id) for source and artifacts data
+// - updateArtifactStatus(id, status) for handleAccept/handleReject
+// - updateArtifactBookmark(id, isBookmarked) for toggleFavorite
+// - addArtifactTag(id, tag) for addTag
+// - removeArtifactTag(id, tag) for removeTag
+// - updateArtifactNotes(id, notes) for updateNotes
+// - sendArtifactChatMessage(artifactId, message) for sendChatMessage
+// import { fetchKnowledgeSourceById, updateArtifactStatus, updateArtifactBookmark, addArtifactTag, removeArtifactTag, updateArtifactNotes, sendArtifactChatMessage } from "@/services/api";
 
 type KACategory = "definitions" | "figures" | "methodologies";
 type KASource = "ai-generated" | "user-created";

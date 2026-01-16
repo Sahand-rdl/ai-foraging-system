@@ -4,6 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search, Filter, Bookmark, Check, Image, Table2, Code, BookOpen, Cpu, ExternalLink, MessageSquare } from "lucide-react";
+// TODO: Replace mock data imports with API calls:
+// - fetchKnowledgeArtifacts() for mockKnowledgeArtifacts
+// - fetchKnowledgeSources() for mockKnowledgeSources (source lookup)
+// - fetchProjects() for mockProjects (project lookup)
+// - updateArtifactBookmark(id, isBookmarked) for bookmark toggle
+// import { fetchKnowledgeArtifacts, fetchKnowledgeSources, fetchProjects, updateArtifactBookmark } from "@/services/api";
 import { mockKnowledgeArtifacts, mockKnowledgeSources, mockProjects, type KnowledgeArtifact, type KAType } from "@/types/source";
 
 // Get source title from source ID
