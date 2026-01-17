@@ -7,14 +7,11 @@ engine = SemanticSearchEngine(db_path=DB_PATH)
 
 
 def test_search():
-    print("\n--- Semantic Search Test (Grouped by Document) ---")
+    print("\n--- Semantic Search ---")
     query = input("Enter your search query: ")
 
     # Check collection count
     count = engine.collection.count()
-    print(
-        f"DEBUG: Collection '{engine.collection.name}' currently has {count} total chunks."
-    )
 
     if count == 0:
         print(
