@@ -57,7 +57,6 @@ def run_tests():
     print("1: Check Trustworthiness")
     print("2: Extract Information (Entities)")
     print("3: Evaluate Relevance")
-    print("4: Chat with Document")
 
     task = input("\nSelect task ID: ")
 
@@ -88,12 +87,6 @@ def run_tests():
         topic = input("Enter Topic/Project description: ")
         full_text = extract_key_sections(doc_data)
         print(evaluate_importance(full_text, topic))
-
-    elif task == "4":
-        print("\n=== Chat ===")
-        query = input("Ask a question: ")
-        chat_text = extract_key_sections(doc_data)
-        print(chat_about_document(chat_text, query))
 
 
 if __name__ == "__main__":
