@@ -20,16 +20,14 @@ def extract_entities(document_text, prompt_versions=None, feedback=""):
             mode_instructions.append(
                 "MODE: BASELINE EXTRACTION - Extract only explicitly stated items, conservative, no disambiguation"
             )
-        elif version == "v_refined_disambiguation":
+        if version == "v_refined_disambiguation":
             mode_instructions.append(
                 "MODE: DISAMBIGUATION - Remove ambiguous items, prefer exact mentions, exclude uncertainty"
             )
-        elif version == "v_refined_coverage":
+        if version == "v_refined_coverage":
             mode_instructions.append(
                 "MODE: COVERAGE - Add clearly stated items that may have been missed"
             )
-        else:
-            mode_instructions.append("MODE: DEFAULT")
 
     mode_instruction_text = "\n".join(mode_instructions)
 
