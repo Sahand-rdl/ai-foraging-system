@@ -138,6 +138,10 @@ def check_trustworthiness(req: TrustRequest):
     }
 
 
+# input: path
+# output: 
+
+
 @app.post("/api/extract")
 def extract_information(req: ExtractRequest):
     """

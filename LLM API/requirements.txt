@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+pydantic
+openai
+requests
+docling==2.64.0
+chromadb
+sentence-transformers

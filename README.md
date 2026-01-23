@@ -37,3 +37,89 @@ According to the paper
 - Iterative, feedback-driven prompts improve coverage and precision.
 - Hallucinations are reduced due to explicit self-assessment constraints.
 - The results are more consistent.
+
+
+
+
+JSON FORMAT:
+
+INPUT:
+{
+    "project_definition": string,
+    "path": string  
+}
+Example:
+{ 
+    "project_definition": "Project definition",
+    "path": "/Users/alex/Documents/AIForaging/papers/raw/1/1706.03762.pdf"
+}
+
+    
+OUTPUT:
+
+{
+    "extracted_path": string,
+    "metadata": {
+        "title": string,
+        "author": string,
+        "date": string,
+        "abstract": string,
+    },
+    "trust_result": {
+        "trust_level": string,
+        "reason": string
+    },
+    "tags": [
+        string,
+        string,
+        string
+    ],
+    "relevance": float,
+    "knowledge_artifacts": [
+        {
+            "type": string,
+            "title": string,
+            "content": string,
+            "status": string,
+            "tags": string,
+            "notes": string,
+            "external_link": string,
+            "is_bookmarked": boolean,
+            "chat_history": string
+        }
+    ]
+}
+
+Example:
+{
+    "extracted_path": "/Users/alex/Documents/AIForaging/papers/extracted/1/1706.03762.json",
+    "metadata": {
+        "title": "Title",
+        "author": "Author",
+        "date": "Date",
+        "abstract": "Abstract",
+    },
+    "trust_result": {
+        "trust_level": "High | Medium | Low",
+        "reason": "Reason for trust level"
+    },
+    "tags": [
+        "Tag1",
+        "Tag2",
+        "Tag3"
+    ],
+    "relevance": 0.95,
+    "knowledge_artifacts": [
+        {
+            "type": "type",
+            "title": "title",
+            "content": "content",
+            "status": "status",
+            "tags": "tags",
+            "notes": "notes",
+            "external_link": "external_link",
+            "is_bookmarked": "is_bookmarked",
+            "chat_history": "chat_history"
+        }
+    ]
+}
