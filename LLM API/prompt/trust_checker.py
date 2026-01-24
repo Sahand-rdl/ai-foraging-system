@@ -2,10 +2,32 @@ import json
 from .llm_core import call_llm
 
 
+def extract_full_text(doc_data: dict) -> str:
+    """
+    Extracts the entire text content from the Docling JSON structure
+    without any truncation or section filtering.
+    """
+    if isinstance(doc_data, str):
+        return doc_data
+
+    content_list = []
+    if "texts" in doc_data and isinstance(doc_data["texts"], list):
+        content_list = doc_data["texts"]
+    elif "content" in doc_data:
+        content_list = doc_data["content"]
+    elif "main_text" in doc_data:
+        content_list = doc_data["main_text"]
+
+    full_text_list = [
+        item.get("text", "") for item in content_list if isinstance(item, dict)
+    ]
+    return " ".join(full_text_list)
+
+
 def extract_key_sections(doc_data: dict) -> str:
     """
     Extracts high-value sections (Abstract, Intro, Conclusion)
-    from Docling v1.8.0 JSON structure.
+    from Docling v1.8.0 JSON structure. Used specifically for Trust Checks.
     """
     targets = ["abstract", "introduction", "conclusion", "discussion", "summary"]
     kept_text = []
@@ -17,7 +39,6 @@ def extract_key_sections(doc_data: dict) -> str:
         )
 
     # 2. LOCATE CONTENT
-    # Your files use the 'texts' key for the actual text content
     content_list = []
     if "texts" in doc_data and isinstance(doc_data["texts"], list):
         content_list = doc_data["texts"]
@@ -33,9 +54,7 @@ def extract_key_sections(doc_data: dict) -> str:
         if not isinstance(item, dict):
             continue
 
-        # In Docling v1.8, the text is under 'text' and label under 'label'
         text = item.get("text", "").strip()
-        # label might be missing or None
         label = (item.get("label") or "").lower()
 
         # Check for Headers
@@ -51,15 +70,10 @@ def extract_key_sections(doc_data: dict) -> str:
         if capture_mode:
             kept_text.append(text)
 
-    # 4. Fallback: If no sections found, dump all text from 'texts' list
+    # 4. Fallback: If no sections found, dump all text with truncation
     if not kept_text:
-        full_text_list = [
-            item.get("text", "") for item in content_list if isinstance(item, dict)
-        ]
-        full_text = " ".join(full_text_list)
-
+        full_text = extract_full_text(doc_data)
         if not full_text:
-            # Last resort
             full_text = str(doc_data)
 
         return (
@@ -72,12 +86,7 @@ def extract_key_sections(doc_data: dict) -> str:
 def trust_checker(document_text: str):
     """
     Evaluates a scientific paper for trustworthiness on a 1-3 scale.
-    Scale:
-    1 = Bad
-    2 = Ok
-    3 = Good
     """
-
     system_prompt = """
     You are an expert AI Research Assistant. Evaluate the trustworthiness of the provided scientific paper.
     
