@@ -6,12 +6,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from prompt.extractor import extract_entities
-from prompt.evaluator import evaluate_importance
-from prompt.trust_checker import trust_checker, extract_key_sections
-from prompt.doc_parser import extract_metadata_heuristics
-
 from embeddings.chatter import ScientificAssistant
+from main_pipeline import run_automatic_pipeline
 
 
 # ===== Path setup =====
@@ -76,18 +72,9 @@ class ChatRequest(BaseModel):
     doc_id: str
     query: str
 
-
-class TrustRequest(BaseModel):
-    doc_id: str
-
-
-class ExtractRequest(BaseModel):
-    doc_id: str
-
-
-class EvaluateRequest(BaseModel):
-    doc_id: str
-    topic: str
+class ProcessRequest(BaseModel):
+    path: str
+    project_definition: str
 
 
 # ===== API endpoints =====
@@ -118,59 +105,15 @@ def chat_with_document(req: ChatRequest):
         "reply": reply
     }
 
-
-@app.post("/api/trust")
-def check_trustworthiness(req: TrustRequest):
+@app.post("/api/process_document")
+def process_document(req: ProcessRequest):
     """
-    Task 1: Check Trustworthiness
+    Runs the full automatic processing pipeline for a single document.
     """
-    doc = get_document_by_id(req.doc_id)
-    if doc is None:
-        raise HTTPException(status_code=404, detail="Document not found")
-
-    text = extract_key_sections(doc["data"])
-    metadata = extract_metadata_heuristics(doc["data"])
-    result = trust_checker(text)
-
-    return {
-        "metadata": metadata,
-        "trust_result": result
-    }
-
-
-# input: path
-# output: 
-
-
-@app.post("/api/extract")
-def extract_information(req: ExtractRequest):
-    """
-    Task 2: Extract Information
-    """
-    doc = get_document_by_id(req.doc_id)
-    if doc is None:
-        raise HTTPException(status_code=404, detail="Document not found")
-
-    text = extract_key_sections(doc["data"])
-    entities = extract_entities(text)
-
-    return {
-        "entities": entities
-    }
-
-
-@app.post("/api/evaluate")
-def evaluate_relevance(req: EvaluateRequest):
-    """
-    Task 3: Evaluate Relevance
-    """
-    doc = get_document_by_id(req.doc_id)
-    if doc is None:
-        raise HTTPException(status_code=404, detail="Document not found")
-
-    text = extract_key_sections(doc["data"])
-    evaluation = evaluate_importance(text, req.topic)
-
-    return {
-        "evaluation": evaluation
-    }
+    try:
+        result = run_automatic_pipeline(req.path, req.project_definition)
+        return result
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {e}")
