@@ -49,10 +49,7 @@ def load_all_json_docs(folder: str):
         try:
             with open(path, "r", encoding="utf-8") as f:
                 data = json.load(f)
-            docs.append({
-                "id": fname,
-                "data": data
-            })
+            docs.append({"id": fname, "data": data})
         except Exception as e:
             print(f"Failed to load {fname}: {e}")
 
@@ -72,6 +69,7 @@ class ChatRequest(BaseModel):
     doc_id: str
     query: str
 
+
 class ProcessRequest(BaseModel):
     path: str
     project_definition: str
@@ -79,14 +77,13 @@ class ProcessRequest(BaseModel):
 
 # ===== API endpoints =====
 
+
 @app.get("/api/docs")
 def list_documents():
     """
     List all available document IDs.
     """
-    return {
-        "documents": assistant.list_documents()
-    }
+    return {"documents": assistant.list_documents()}
 
 
 @app.post("/api/chat")
@@ -101,9 +98,8 @@ def chat_with_document(req: ChatRequest):
     assistant.set_active_document(req.doc_id)
     reply = assistant.ask(req.query)
 
-    return {
-        "reply": reply
-    }
+    return {"reply": reply}
+
 
 @app.post("/api/process_document")
 def process_document(req: ProcessRequest):
@@ -116,4 +112,6 @@ def process_document(req: ProcessRequest):
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {e}")
+        raise HTTPException(
+            status_code=500, detail=f"An unexpected error occurred: {e}"
+        )
