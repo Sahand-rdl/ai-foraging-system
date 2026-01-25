@@ -12,6 +12,7 @@ from routes import (
     projects_router,
     knowledge_sources_router,
     knowledge_artifacts_router,
+    ai_router,
 )
 from routes.knowledge_sources import download_paper_for_project
 
@@ -35,6 +36,7 @@ app.include_router(researchers_router)
 app.include_router(projects_router)
 app.include_router(knowledge_sources_router)
 app.include_router(knowledge_artifacts_router)
+app.include_router(ai_router)
 
 # Download paper endpoint (special case - under /projects but creates KnowledgeSource)
 @app.post("/projects/{project_id}/download-paper", response_model=KnowledgeSourceSchema, tags=["projects"])

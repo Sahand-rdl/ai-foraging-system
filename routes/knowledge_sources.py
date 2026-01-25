@@ -5,9 +5,11 @@ import urllib.request
 from urllib.parse import urlparse
 
 from fastapi import APIRouter, HTTPException, Depends
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from typing import List
 
+from config import settings
 from database import get_db
 from models import KnowledgeSourceDB, ProjectDB
 from schemas import (
@@ -43,6 +45,20 @@ def read_knowledge_source(ks_id: int, db: Session = Depends(get_db)):
     if ks is None:
         raise HTTPException(status_code=404, detail="Knowledge source not found")
     return ks
+
+
+@router.get("/{ks_id}/content")
+def get_knowledge_source_content(ks_id: int, db: Session = Depends(get_db)):
+    """Stream the content of a knowledge source file."""
+    ks = db.query(KnowledgeSourceDB).filter(KnowledgeSourceDB.id == ks_id).first()
+    if ks is None:
+        raise HTTPException(status_code=404, detail="Knowledge source not found")
+    
+    # Check if path exists
+    if not os.path.exists(ks.path):
+        raise HTTPException(status_code=404, detail="File not found on server")
+        
+    return FileResponse(ks.path, media_type="application/pdf", filename=os.path.basename(ks.path))
 
 
 @router.put("/{ks_id}", response_model=KnowledgeSourceSchema)
@@ -81,8 +97,8 @@ def download_paper_for_project(
     if not filename:
         filename = "downloaded_paper.pdf"
 
-    # Create save directory and path
-    save_dir = f"papers/{project_id}"
+    # Create save directory using configured papers path (raw subfolder for PDFs)
+    save_dir = settings.get_raw_papers_path(project_id)
     os.makedirs(save_dir, exist_ok=True)
     file_path = os.path.join(save_dir, filename)
 
@@ -101,7 +117,7 @@ def download_paper_for_project(
     db_ks = KnowledgeSourceDB(
         path=file_path,
         source_metadata=request.source_metadata,
-        trustworthiness=request.trustworthiness or 0.0,
+        trustworthiness=request.trustworthiness,  # None = not evaluated
         is_favourite=False
     )
     db.add(db_ks)

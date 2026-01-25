@@ -51,7 +51,7 @@ class KnowledgeSourceDB(Base):
     path = Column(String, index=True)  # Path to the source file
     source_metadata = Column(JSON, nullable=True)  # JSON metadata
     raw_text = Column(Text, nullable=True)
-    trustworthiness = Column(Float, default=0.0)
+    trustworthiness = Column(Integer, nullable=True)  # null=not evaluated, 1-3=rating
     is_favourite = Column(Boolean, default=False)
 
     projects = relationship("ProjectDB", secondary=project_knowledge_source, back_populates="knowledge_sources")

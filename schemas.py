@@ -1,5 +1,5 @@
 """Pydantic schemas for request/response validation."""
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, field_validator
 from typing import List, Optional, Any
 
 
@@ -46,8 +46,15 @@ class KnowledgeSourceBase(BaseModel):
     path: str
     source_metadata: Optional[Any] = None
     raw_text: Optional[str] = None
-    trustworthiness: Optional[float] = 0.0
+    trustworthiness: Optional[int] = None  # null=not evaluated, 1-3=rating
     is_favourite: Optional[bool] = False
+    
+    @field_validator('trustworthiness')
+    @classmethod
+    def validate_trustworthiness(cls, v):
+        if v is not None and v not in (1, 2, 3):
+            raise ValueError('trustworthiness must be null (not evaluated) or 1, 2, or 3')
+        return v
 
 
 class KnowledgeSourceCreate(KnowledgeSourceBase):
@@ -58,7 +65,14 @@ class KnowledgeSourceDownload(BaseModel):
     """Schema for downloading a paper and creating a knowledge source."""
     url: str
     source_metadata: Optional[Any] = None
-    trustworthiness: Optional[float] = 0.0
+    trustworthiness: Optional[int] = None  # null=not evaluated, 1-3=rating
+    
+    @field_validator('trustworthiness')
+    @classmethod
+    def validate_trustworthiness(cls, v):
+        if v is not None and v not in (1, 2, 3):
+            raise ValueError('trustworthiness must be null (not evaluated) or 1, 2, or 3')
+        return v
 
 
 class KnowledgeSourceSchema(KnowledgeSourceBase):
