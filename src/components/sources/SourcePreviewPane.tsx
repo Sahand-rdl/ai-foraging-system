@@ -26,6 +26,15 @@ function getTypeIcon(type: KAType) {
     }
 }
 
+// Format authors - handles both array and string formats from the API
+function formatAuthors(authors: string | string[] | undefined): string {
+  if (!authors) return "";
+  if (Array.isArray(authors)) {
+    return authors.join(", ");
+  }
+  return authors;
+}
+
 export function SourcePreviewPane({ source, title, onClose, onOpenSource }: SourcePreviewPaneProps) {
   const displayTitle = title || `Source #${source.id}`;
   const [artifacts, setArtifacts] = useState<KnowledgeArtifact[]>([]);
@@ -71,7 +80,7 @@ export function SourcePreviewPane({ source, title, onClose, onOpenSource }: Sour
               {source.metadata.authors && (
                 <>
                   <span className="text-muted-foreground">Authors</span>
-                  <span className="font-medium">{source.metadata.authors}</span>
+                  <span className="font-medium">{formatAuthors(source.metadata.authors)}</span>
                 </>
               )}
 
