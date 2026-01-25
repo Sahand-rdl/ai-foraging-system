@@ -1,20 +1,19 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, MoreVertical, FileText, Database } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-// TODO: Replace mock data imports with API calls:
-// - fetchProjects() for mockProjects
-// - fetchResearchersByIds(ids) for getProjectResearchers
-// - fetchKnowledgeSourcesByProjectId(projectId) for getProjectSourceCount
-// - fetchKnowledgeArtifactsBySourceId(sourceId) for getProjectArtifactCount
-// import { fetchProjects, fetchResearchersByIds, fetchKnowledgeSourcesByProjectId } from "@/services/api";
+import { 
+  fetchProjects, 
+  fetchResearchers, 
+  fetchKnowledgeSources,
+  fetchKnowledgeArtifacts
+} from "@/services/api";
 import {
-  mockProjects,
-  mockKnowledgeSources,
-  mockKnowledgeArtifacts,
-  mockResearchers,
+  type Project,
+  type Researcher,
 } from "@/types/source";
 
 // Helper to get researcher initials
@@ -27,28 +26,43 @@ function getInitials(name: string): string {
     .slice(0, 2);
 }
 
-// Helper to get researchers for a project
-function getProjectResearchers(researcherIds: number[]) {
-  return mockResearchers.filter((r) => researcherIds.includes(r.id));
-}
-
-// Helper to get source count for a project
-function getProjectSourceCount(projectId: number) {
-  return mockKnowledgeSources.filter((s) => s.projectId === projectId).length;
-}
-
-// Helper to get artifact count for a project
-function getProjectArtifactCount(projectId: number) {
-  const sourceIds = mockKnowledgeSources
-    .filter((s) => s.projectId === projectId)
-    .map((s) => s.id);
-  return mockKnowledgeArtifacts.filter((a) =>
-    sourceIds.includes(a.knowledgeSourceId)
-  ).length;
-}
-
 export default function Projects() {
   const navigate = useNavigate();
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [researchers, setResearchers] = useState<Researcher[]>([]);
+  const [projectCounts, setProjectCounts] = useState<Record<number, { sources: number; artifacts: number }>>({});
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const [projectsData, researchersData, allSources, allArtifacts] = await Promise.all([
+          fetchProjects(),
+          fetchResearchers(),
+          fetchKnowledgeSources(),
+          fetchKnowledgeArtifacts(),
+        ]);
+        
+        setProjects(projectsData);
+        setResearchers(researchersData);
+
+        const counts: Record<number, { sources: number; artifacts: number }> = {};
+        projectsData.forEach(p => {
+            const pSources = allSources.filter(s => s.projectId === p.id);
+            const pSourceIds = pSources.map(s => s.id);
+            const pArtifacts = allArtifacts.filter(a => pSourceIds.includes(a.knowledgeSourceId));
+            counts[p.id] = {
+                sources: pSources.length,
+                artifacts: pArtifacts.length
+            };
+        });
+        setProjectCounts(counts);
+
+      } catch (error) {
+        console.error("Failed to load projects data", error);
+      }
+    }
+    loadData();
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -64,10 +78,9 @@ export default function Projects() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-        {mockProjects.map((project) => {
-          const researchers = getProjectResearchers(project.researcherIds);
-          const sourceCount = getProjectSourceCount(project.id);
-          const artifactCount = getProjectArtifactCount(project.id);
+        {projects.map((project) => {
+          const projectResearchers = researchers.filter(r => project.researcherIds.includes(r.id));
+          const counts = projectCounts[project.id] || { sources: 0, artifacts: 0 };
 
           return (
             <Card
@@ -101,11 +114,11 @@ export default function Projects() {
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <FileText className="h-4 w-4" />
-                    <span>{sourceCount} sources</span>
+                    <span>{counts.sources} sources</span>
                   </div>
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Database className="h-4 w-4" />
-                    <span>{artifactCount} artifacts</span>
+                    <span>{counts.artifacts} artifacts</span>
                   </div>
                 </div>
 
@@ -127,7 +140,7 @@ export default function Projects() {
                 <div className="flex items-center justify-between pt-2 border-t border-border">
                   <span className="text-xs text-muted-foreground">Team</span>
                   <div className="flex -space-x-2">
-                    {researchers.slice(0, 4).map((r) => (
+                    {projectResearchers.slice(0, 4).map((r) => (
                       <Avatar
                         key={r.id}
                         className="h-7 w-7 border-2 border-background"
@@ -138,9 +151,9 @@ export default function Projects() {
                         </AvatarFallback>
                       </Avatar>
                     ))}
-                    {researchers.length > 4 && (
+                    {projectResearchers.length > 4 && (
                       <div className="h-7 w-7 rounded-full bg-muted flex items-center justify-center text-[10px] border-2 border-background">
-                        +{researchers.length - 4}
+                        +{projectResearchers.length - 4}
                       </div>
                     )}
                   </div>

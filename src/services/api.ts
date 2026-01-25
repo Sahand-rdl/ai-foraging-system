@@ -1,15 +1,10 @@
 /**
  * API Service Layer
  * 
- * This file contains placeholder HTTP request functions for all data operations.
- * Currently returns mock data but structured for easy replacement with actual API calls.
+ * This file contains HTTP request functions for all data operations.
  */
 
 import {
-  mockProjects,
-  mockResearchers,
-  mockKnowledgeSources,
-  mockKnowledgeArtifacts,
   type Project,
   type Researcher,
   type KnowledgeSource,
@@ -21,7 +16,7 @@ import {
 // Configuration
 // =============================================================================
 
-const API_BASE_URL = "/api"; // TODO: Configure actual API base URL
+export const API_BASE_URL = "http://localhost:8000";
 
 // =============================================================================
 // Helper Functions
@@ -29,141 +24,247 @@ const API_BASE_URL = "/api"; // TODO: Configure actual API base URL
 
 /**
  * Generic fetch wrapper with error handling
- * TODO: Implement actual HTTP requests
  */
 async function apiRequest<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
-  // TODO: Replace with actual fetch implementation
-  // const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     ...options.headers,
-  //   },
-  //   ...options,
-  // });
-  // if (!response.ok) {
-  //   throw new Error(`API Error: ${response.statusText}`);
-  // }
-  // return response.json();
-  
-  console.log(`[API Placeholder] ${options.method || "GET"} ${endpoint}`);
-  throw new Error("Not implemented - replace with actual API call");
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+    ...options,
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`API Error: ${response.status} ${response.statusText} - ${errorBody}`);
+  }
+
+  return response.json();
 }
+
+/**
+ * Mappers to transform backend snake_case to frontend camelCase
+ * and handle data type differences (like tags string <-> array)
+ */
+
+interface BackendProject {
+  id: number;
+  name: string;
+  ml_project_definition?: string;
+  tags?: string;
+  researchers?: BackendResearcher[];
+  knowledge_sources?: BackendKnowledgeSource[];
+}
+
+interface BackendResearcher {
+  id: number;
+  name: string;
+  email: string;
+}
+
+interface BackendKnowledgeSource {
+  id: number;
+  path: string;
+  source_metadata?: any;
+  raw_text?: string;
+  trustworthiness?: number;
+  is_favourite?: boolean;
+  artifacts?: BackendKnowledgeArtifact[];
+  project_id?: number;
+}
+
+interface BackendKnowledgeArtifact {
+  id: number;
+  type: string;
+  title: string;
+  content?: string;
+  status?: "suggestion" | "final";
+  tags?: string;
+  notes?: string;
+  external_link?: string;
+  is_bookmarked?: boolean;
+  chat_history?: any;
+  knowledge_source_id: number;
+}
+
+// Validation / Type Guard helpers could be added here if needed, 
+// for now we trust the backend returns proper structure but mapping is needed.
+
+function mapResearcher(r: BackendResearcher): Researcher {
+  return {
+    id: r.id,
+    name: r.name,
+    email: r.email,
+  };
+}
+
+function mapProject(p: BackendProject): Project {
+  return {
+    id: p.id,
+    name: p.name,
+    mlProjectDefinition: p.ml_project_definition || "",
+    // Backend returns objects, frontend expects IDs list for relationships currently
+    // or maybe we should update frontend to use objects? 
+    // Types in source.ts say:
+    // knowledgeSourceIds: number[]; 
+    // researcherIds: number[]; 
+    // But backend returns full objects potentially? 
+    // Let's check backend endpoint again. 
+    // Backend endpoint says:
+    // "researchers": ["ResearcherSchema"],
+    // "knowledge_sources": ["KnowledgeSourceBriefSchema"]
+    // So we map them to IDs to match current frontend type definitions.
+    researcherIds: p.researchers?.map(r => r.id) || [],
+    knowledgeSourceIds: p.knowledge_sources?.map(ks => ks.id) || [],
+    tags: p.tags ? p.tags.split(",").map(t => t.trim()) : [],
+  };
+}
+
+function mapKnowledgeSource(ks: BackendKnowledgeSource): KnowledgeSource {
+  // Map trustworthiness int to string enum
+  let trust: "High" | "Medium" | "Low" = "Medium";
+  if (ks.trustworthiness === 3) trust = "High";
+  else if (ks.trustworthiness === 1) trust = "Low";
+
+  return {
+    id: ks.id,
+    metadata: ks.source_metadata || {},
+    rawText: ks.raw_text || "",
+    knowledgeArtifactIds: ks.artifacts?.map(a => a.id) || [],
+    trustworthiness: trust,
+    projectId: ks.project_id || 0, // Backend might not send projectId if fetched via project endpoint?
+    isFavourite: ks.is_favourite || false,
+    path: ks.path,
+  };
+}
+
+function mapKnowledgeArtifact(ka: BackendKnowledgeArtifact): KnowledgeArtifact {
+  return {
+    id: ka.id,
+    type: ka.type as any, // Cast to generic or specific KAType if strictly verified
+    title: ka.title,
+    content: ka.content || "",
+    status: ka.status || "suggestion",
+    tags: ka.tags ? ka.tags.split(",").map(t => t.trim()) : [],
+    notes: ka.notes || "",
+    knowledgeSourceId: ka.knowledge_source_id,
+    externalLink: ka.external_link,
+    isBookmarked: ka.is_bookmarked || false,
+    chatHistory: ka.chat_history || [],
+  };
+}
+
 
 // =============================================================================
 // READ Operations - Projects
 // =============================================================================
 
-/**
- * Fetch all projects
- * TODO: GET /api/projects
- */
 export async function fetchProjects(): Promise<Project[]> {
-  // TODO: return apiRequest<Project[]>("/projects");
-  console.log("[API Placeholder] GET /projects");
-  return Promise.resolve(mockProjects);
+  const backendProjects = await apiRequest<BackendProject[]>("/projects/");
+  return backendProjects.map(mapProject);
 }
 
-/**
- * Fetch a single project by ID
- * TODO: GET /api/projects/:id
- */
 export async function fetchProjectById(id: number): Promise<Project | undefined> {
-  // TODO: return apiRequest<Project>(`/projects/${id}`);
-  console.log(`[API Placeholder] GET /projects/${id}`);
-  return Promise.resolve(mockProjects.find((p) => p.id === id));
+  try {
+    const p = await apiRequest<BackendProject>(`/projects/${id}`);
+    return mapProject(p);
+  } catch (e) {
+    console.error(`Failed to fetch project ${id}`, e);
+    return undefined;
+  }
 }
 
 // =============================================================================
 // READ Operations - Researchers
 // =============================================================================
 
-/**
- * Fetch all researchers
- * TODO: GET /api/researchers
- */
 export async function fetchResearchers(): Promise<Researcher[]> {
-  // TODO: return apiRequest<Researcher[]>("/researchers");
-  console.log("[API Placeholder] GET /researchers");
-  return Promise.resolve(mockResearchers);
+  const researchers = await apiRequest<BackendResearcher[]>("/researchers/");
+  return researchers.map(mapResearcher);
 }
 
-/**
- * Fetch researchers by their IDs
- * TODO: GET /api/researchers?ids=1,2,3
- */
 export async function fetchResearchersByIds(ids: number[]): Promise<Researcher[]> {
-  // TODO: return apiRequest<Researcher[]>(`/researchers?ids=${ids.join(",")}`);
-  console.log(`[API Placeholder] GET /researchers?ids=${ids.join(",")}`);
-  return Promise.resolve(mockResearchers.filter((r) => ids.includes(r.id)));
+  // Not directly supported by backend as a batch endpoint based on known endpoints.
+  // We can fetch all and filter (inefficient but works for small sets) or simple loop.
+  // Given the backend endpoints doc doesn't show a bulk get.
+  // Let's fetch all for now or check if we even need this if project has researchers embedded.
+  // Actually, project usually needs to show researchers.
+  // If ids list is small, we can fetch individual or fetch all.
+  const all = await fetchResearchers();
+  return all.filter(r => ids.includes(r.id));
 }
 
 // =============================================================================
 // READ Operations - Knowledge Sources
 // =============================================================================
 
-/**
- * Fetch all knowledge sources
- * TODO: GET /api/knowledge-sources
- */
 export async function fetchKnowledgeSources(): Promise<KnowledgeSource[]> {
-  // TODO: return apiRequest<KnowledgeSource[]>("/knowledge-sources");
-  console.log("[API Placeholder] GET /knowledge-sources");
-  return Promise.resolve(mockKnowledgeSources);
+  const sources = await apiRequest<BackendKnowledgeSource[]>("/knowledge-sources/");
+  return sources.map(mapKnowledgeSource);
 }
 
-/**
- * Fetch knowledge sources by project ID
- * TODO: GET /api/knowledge-sources?projectId=:projectId
- */
 export async function fetchKnowledgeSourcesByProjectId(
   projectId: number
 ): Promise<KnowledgeSource[]> {
-  // TODO: return apiRequest<KnowledgeSource[]>(`/knowledge-sources?projectId=${projectId}`);
-  console.log(`[API Placeholder] GET /knowledge-sources?projectId=${projectId}`);
-  return Promise.resolve(mockKnowledgeSources.filter((s) => s.projectId === projectId));
+  // Backend doesn't seem to have ?projectId= filter on /knowledge-sources based on docs.
+  // But Project detail has knowledge_sources embedded.
+  // Or we can assume there might be a filter?
+  // Docs say: GET /projects/{project_id} Returns ProjectSchema which has knowledge_sources.
+  // Let's use that.
+  try {
+    const project = await apiRequest<BackendProject>(`/projects/${projectId}`);
+    // The project.knowledge_sources returned might be brief schemas.
+    // If we need full details, we might need to fetch them individually if brief is too brief.
+    // Assuming backend returns enough info.
+    // Wait, `BackendProject` interface above has `knowledge_sources?: BackendKnowledgeSource[]`.
+    // Valid for now.
+    if (!project.knowledge_sources) return [];
+    
+    // We need to inject projectId manually if not present, as these belong to this project
+    return project.knowledge_sources.map(ks => ({
+      ...mapKnowledgeSource(ks),
+      projectId: projectId // Ensure projectId is set correctly
+    }));
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
 }
 
-/**
- * Fetch a single knowledge source by ID (with its artifacts)
- * TODO: GET /api/knowledge-sources/:id
- */
 export async function fetchKnowledgeSourceById(
   id: number
 ): Promise<KnowledgeSource | undefined> {
-  // TODO: return apiRequest<KnowledgeSource>(`/knowledge-sources/${id}`);
-  console.log(`[API Placeholder] GET /knowledge-sources/${id}`);
-  return Promise.resolve(mockKnowledgeSources.find((s) => s.id === id));
+  try {
+    const ks = await apiRequest<BackendKnowledgeSource>(`/knowledge-sources/${id}`);
+    return mapKnowledgeSource(ks);
+  } catch (e) {
+    return undefined;
+  }
 }
 
 // =============================================================================
 // READ Operations - Knowledge Artifacts
 // =============================================================================
 
-/**
- * Fetch all knowledge artifacts
- * TODO: GET /api/knowledge-artifacts
- */
 export async function fetchKnowledgeArtifacts(): Promise<KnowledgeArtifact[]> {
-  // TODO: return apiRequest<KnowledgeArtifact[]>("/knowledge-artifacts");
-  console.log("[API Placeholder] GET /knowledge-artifacts");
-  return Promise.resolve(mockKnowledgeArtifacts);
+  const artifacts = await apiRequest<BackendKnowledgeArtifact[]>("/knowledge-artifacts/");
+  return artifacts.map(mapKnowledgeArtifact);
 }
 
-/**
- * Fetch knowledge artifacts by source ID
- * TODO: GET /api/knowledge-artifacts?sourceId=:sourceId
- */
 export async function fetchKnowledgeArtifactsBySourceId(
   sourceId: number
 ): Promise<KnowledgeArtifact[]> {
-  // TODO: return apiRequest<KnowledgeArtifact[]>(`/knowledge-artifacts?sourceId=${sourceId}`);
-  console.log(`[API Placeholder] GET /knowledge-artifacts?sourceId=${sourceId}`);
-  return Promise.resolve(
-    mockKnowledgeArtifacts.filter((a) => a.knowledgeSourceId === sourceId)
-  );
+  // Similar to sources, backend docs don't show ?sourceId filter on /knowledge-artifacts
+  // But accessing /knowledge-sources/{id} usually returns artifacts.
+  try {
+    const source = await apiRequest<BackendKnowledgeSource>(`/knowledge-sources/${sourceId}`);
+    return source.artifacts?.map(mapKnowledgeArtifact) || [];
+  } catch (e) {
+    return [];
+  }
 }
 
 // =============================================================================
@@ -179,114 +280,116 @@ export interface DashboardStats {
   bookmarkedArtifacts: number;
 }
 
-/**
- * Fetch aggregated dashboard statistics
- * TODO: GET /api/dashboard/stats
- */
 export async function fetchDashboardStats(): Promise<DashboardStats> {
-  // TODO: return apiRequest<DashboardStats>("/dashboard/stats");
-  console.log("[API Placeholder] GET /dashboard/stats");
-  return Promise.resolve({
-    projects: mockProjects.length,
-    sources: mockKnowledgeSources.length,
-    artifacts: mockKnowledgeArtifacts.length,
-    researchers: mockResearchers.length,
-    favouriteSources: mockKnowledgeSources.filter((s) => s.isFavourite).length,
-    bookmarkedArtifacts: mockKnowledgeArtifacts.filter((a) => a.isBookmarked).length,
-  });
+  // Not implemented in backend docs yet?
+  // "GET /ai/health" exists but not stats.
+  // We might have to fetch lists and count.
+  // Or maybe there is a new endpoint not documented?
+  // Let's fetching lists for now as fallback.
+  try {
+    const [projects, sources, artifacts, researchers] = await Promise.all([
+      fetchProjects(),
+      fetchKnowledgeSources(),
+      fetchKnowledgeArtifacts(),
+      fetchResearchers()
+    ]);
+    
+    return {
+      projects: projects.length,
+      sources: sources.length,
+      artifacts: artifacts.length,
+      researchers: researchers.length,
+      favouriteSources: sources.filter(s => s.isFavourite).length,
+      bookmarkedArtifacts: artifacts.filter(a => a.isBookmarked).length,
+    };
+  } catch (e) {
+    console.error("Failed to fetch dashboard stats", e);
+    // Return zeros on error
+    return {
+      projects: 0,
+      sources: 0,
+      artifacts: 0,
+      researchers: 0,
+      favouriteSources: 0,
+      bookmarkedArtifacts: 0,
+    };
+  }
 }
 
 // =============================================================================
 // WRITE Operations - Artifact Mutations
 // =============================================================================
 
-/**
- * Update artifact status (accept/reject)
- * TODO: PATCH /api/knowledge-artifacts/:id/status
- */
 export async function updateArtifactStatus(
   id: number,
   status: "suggestion" | "final"
 ): Promise<KnowledgeArtifact> {
-  // TODO: return apiRequest<KnowledgeArtifact>(`/knowledge-artifacts/${id}/status`, {
-  //   method: "PATCH",
-  //   body: JSON.stringify({ status }),
-  // });
-  console.log(`[API Placeholder] PATCH /knowledge-artifacts/${id}/status`, { status });
-  const artifact = mockKnowledgeArtifacts.find((a) => a.id === id);
-  if (!artifact) throw new Error("Artifact not found");
-  return Promise.resolve({ ...artifact, status });
+  const updated = await apiRequest<BackendKnowledgeArtifact>(`/knowledge-artifacts/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ status }),
+  });
+  return mapKnowledgeArtifact(updated);
 }
 
-/**
- * Toggle artifact bookmark
- * TODO: PATCH /api/knowledge-artifacts/:id/bookmark
- */
 export async function updateArtifactBookmark(
   id: number,
   isBookmarked: boolean
 ): Promise<KnowledgeArtifact> {
-  // TODO: return apiRequest<KnowledgeArtifact>(`/knowledge-artifacts/${id}/bookmark`, {
-  //   method: "PATCH",
-  //   body: JSON.stringify({ isBookmarked }),
-  // });
-  console.log(`[API Placeholder] PATCH /knowledge-artifacts/${id}/bookmark`, { isBookmarked });
-  const artifact = mockKnowledgeArtifacts.find((a) => a.id === id);
-  if (!artifact) throw new Error("Artifact not found");
-  return Promise.resolve({ ...artifact, isBookmarked });
+  const updated = await apiRequest<BackendKnowledgeArtifact>(`/knowledge-artifacts/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ is_bookmarked: isBookmarked }),
+  });
+  return mapKnowledgeArtifact(updated);
 }
 
-/**
- * Add a tag to an artifact
- * TODO: POST /api/knowledge-artifacts/:id/tags
- */
 export async function addArtifactTag(
   id: number,
   tag: string
 ): Promise<KnowledgeArtifact> {
-  // TODO: return apiRequest<KnowledgeArtifact>(`/knowledge-artifacts/${id}/tags`, {
-  //   method: "POST",
-  //   body: JSON.stringify({ tag }),
-  // });
-  console.log(`[API Placeholder] POST /knowledge-artifacts/${id}/tags`, { tag });
-  const artifact = mockKnowledgeArtifacts.find((a) => a.id === id);
-  if (!artifact) throw new Error("Artifact not found");
-  return Promise.resolve({ ...artifact, tags: [...artifact.tags, tag] });
+  // Backend stores tags as comma-separated string.
+  // READ -> MODIFY -> WRITE pattern needed if backend doesn't support "ADD TAG" atomic op.
+  // Or maybe backend handles "tags" field update?
+  // Docs say Update Body: KnowledgeArtifactBase.
+  // So we probably need to fetch, append, update.
+  const artifact = await apiRequest<BackendKnowledgeArtifact>(`/knowledge-artifacts/${id}`);
+  const currentTags = artifact.tags ? artifact.tags.split(",").map(t => t.trim()) : [];
+  if (!currentTags.includes(tag)) {
+    currentTags.push(tag);
+    const newTagsStr = currentTags.join(",");
+    const updated = await apiRequest<BackendKnowledgeArtifact>(`/knowledge-artifacts/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({ tags: newTagsStr }),
+    });
+    return mapKnowledgeArtifact(updated);
+  }
+  return mapKnowledgeArtifact(artifact);
 }
 
-/**
- * Remove a tag from an artifact
- * TODO: DELETE /api/knowledge-artifacts/:id/tags/:tag
- */
 export async function removeArtifactTag(
   id: number,
   tag: string
 ): Promise<KnowledgeArtifact> {
-  // TODO: return apiRequest<KnowledgeArtifact>(`/knowledge-artifacts/${id}/tags/${encodeURIComponent(tag)}`, {
-  //   method: "DELETE",
-  // });
-  console.log(`[API Placeholder] DELETE /knowledge-artifacts/${id}/tags/${tag}`);
-  const artifact = mockKnowledgeArtifacts.find((a) => a.id === id);
-  if (!artifact) throw new Error("Artifact not found");
-  return Promise.resolve({ ...artifact, tags: artifact.tags.filter((t) => t !== tag) });
+  const artifact = await apiRequest<BackendKnowledgeArtifact>(`/knowledge-artifacts/${id}`);
+  const currentTags = artifact.tags ? artifact.tags.split(",").map(t => t.trim()) : [];
+  const newTags = currentTags.filter(t => t !== tag);
+  const newTagsStr = newTags.join(",");
+  
+  const updated = await apiRequest<BackendKnowledgeArtifact>(`/knowledge-artifacts/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ tags: newTagsStr }),
+  });
+  return mapKnowledgeArtifact(updated);
 }
 
-/**
- * Update artifact notes
- * TODO: PATCH /api/knowledge-artifacts/:id/notes
- */
 export async function updateArtifactNotes(
   id: number,
   notes: string
 ): Promise<KnowledgeArtifact> {
-  // TODO: return apiRequest<KnowledgeArtifact>(`/knowledge-artifacts/${id}/notes`, {
-  //   method: "PATCH",
-  //   body: JSON.stringify({ notes }),
-  // });
-  console.log(`[API Placeholder] PATCH /knowledge-artifacts/${id}/notes`, { notes });
-  const artifact = mockKnowledgeArtifacts.find((a) => a.id === id);
-  if (!artifact) throw new Error("Artifact not found");
-  return Promise.resolve({ ...artifact, notes });
+  const updated = await apiRequest<BackendKnowledgeArtifact>(`/knowledge-artifacts/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ notes }),
+  });
+  return mapKnowledgeArtifact(updated);
 }
 
 // =============================================================================
@@ -298,19 +401,31 @@ export interface ChatResponse {
   assistantMessage: ChatMessage;
 }
 
-/**
- * Send a chat message and get AI response
- * TODO: POST /api/knowledge-artifacts/:id/chat
- */
 export async function sendArtifactChatMessage(
   artifactId: number,
   message: string
 ): Promise<ChatResponse> {
-  // TODO: return apiRequest<ChatResponse>(`/knowledge-artifacts/${artifactId}/chat`, {
-  //   method: "POST",
-  //   body: JSON.stringify({ message }),
-  // });
-  console.log(`[API Placeholder] POST /knowledge-artifacts/${artifactId}/chat`, { message });
+  // Needs knowledge source context.
+  // First, find the artifact to get its source ID?
+  // Or assume the chat endpoint handles it?
+  // Docs: POST /ai/chat
+  // Body: { message, knowledge_source_id, ... }
+  // We need the Source ID.
+  // Let's fetch the artifact first to be sure.
+  const artifact = await apiRequest<BackendKnowledgeArtifact>(`/knowledge-artifacts/${artifactId}`);
+  const sourceId = artifact.knowledge_source_id;
+
+  const result = await apiRequest<any>("/ai/chat", {
+    method: "POST",
+    body: JSON.stringify({
+      message,
+      knowledge_source_id: sourceId,
+    }),
+  });
+
+  // Result will likely be just the answer string or object?
+  // Docs say "Chat result".
+  // Assuming it returns the assistant's response content.
   
   const userMessage: ChatMessage = {
     role: "user",
@@ -318,34 +433,26 @@ export async function sendArtifactChatMessage(
     timestamp: new Date().toISOString(),
   };
   
-  // Simulate AI response
   const assistantMessage: ChatMessage = {
     role: "assistant",
-    content: "This is a simulated response about the artifact. In a real implementation, this would be an AI-powered answer to your question.",
+    content: result.response || result.message || JSON.stringify(result), // Adjust based on actual AI response structure
     timestamp: new Date().toISOString(),
   };
   
-  return Promise.resolve({ userMessage, assistantMessage });
+  return { userMessage, assistantMessage };
 }
 
 // =============================================================================
 // WRITE Operations - Knowledge Source Mutations
 // =============================================================================
 
-/**
- * Toggle knowledge source favourite status
- * TODO: PATCH /api/knowledge-sources/:id/favourite
- */
 export async function updateKnowledgeSourceFavourite(
   id: number,
   isFavourite: boolean
 ): Promise<KnowledgeSource> {
-  // TODO: return apiRequest<KnowledgeSource>(`/knowledge-sources/${id}/favourite`, {
-  //   method: "PATCH",
-  //   body: JSON.stringify({ isFavourite }),
-  // });
-  console.log(`[API Placeholder] PATCH /knowledge-sources/${id}/favourite`, { isFavourite });
-  const source = mockKnowledgeSources.find((s) => s.id === id);
-  if (!source) throw new Error("Knowledge source not found");
-  return Promise.resolve({ ...source, isFavourite });
+  const updated = await apiRequest<BackendKnowledgeSource>(`/knowledge-sources/${id}`, {
+    method: "PUT", // Docs say PUT for update
+    body: JSON.stringify({ is_favourite: isFavourite }),
+  });
+  return mapKnowledgeSource(updated);
 }

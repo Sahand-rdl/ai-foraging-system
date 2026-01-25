@@ -1,30 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search, Filter, Bookmark, Check, Image, Table2, Code, BookOpen, Cpu, ExternalLink, MessageSquare } from "lucide-react";
-// TODO: Replace mock data imports with API calls:
-// - fetchKnowledgeArtifacts() for mockKnowledgeArtifacts
-// - fetchKnowledgeSources() for mockKnowledgeSources (source lookup)
-// - fetchProjects() for mockProjects (project lookup)
-// - updateArtifactBookmark(id, isBookmarked) for bookmark toggle
-// import { fetchKnowledgeArtifacts, fetchKnowledgeSources, fetchProjects, updateArtifactBookmark } from "@/services/api";
-import { mockKnowledgeArtifacts, mockKnowledgeSources, mockProjects, type KnowledgeArtifact, type KAType } from "@/types/source";
-
-// Get source title from source ID
-function getSourceTitle(sourceId: number): string {
-  const source = mockKnowledgeSources.find(s => s.id === sourceId);
-  return source?.metadata.title || `Source #${sourceId}`;
-}
-
-// Get project name from source ID
-function getProjectName(sourceId: number): string {
-  const source = mockKnowledgeSources.find(s => s.id === sourceId);
-  if (!source) return "Unknown Project";
-  const project = mockProjects.find(p => p.id === source.projectId);
-  return project?.name || "Unknown Project";
-}
+import { 
+  fetchKnowledgeArtifacts, 
+  fetchKnowledgeSources, 
+  fetchProjects, 
+  updateArtifactBookmark 
+} from "@/services/api";
+import { 
+  type KnowledgeArtifact, 
+  type KAType,
+  type KnowledgeSource,
+  type Project
+} from "@/types/source";
 
 // Get icon for KA type
 function getTypeIcon(type: KAType) {
@@ -38,10 +29,49 @@ function getTypeIcon(type: KAType) {
 }
 
 export default function Artifacts() {
+  const [artifacts, setArtifacts] = useState<KnowledgeArtifact[]>([]);
+  const [sources, setSources] = useState<KnowledgeSource[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const [usedArtifacts, setUsedArtifacts] = useState<Set<number>>(new Set());
   const [selectedTypes, setSelectedTypes] = useState<Set<KAType>>(new Set());
 
   const availableTypes: KAType[] = ["Figure", "Table", "Algo", "Def", "Tech"];
+
+  useEffect(() => {
+    async function loadData() {
+        try {
+            const [artData, srcData, prjData] = await Promise.all([
+                fetchKnowledgeArtifacts(),
+                fetchKnowledgeSources(),
+                fetchProjects()
+            ]);
+            setArtifacts(artData);
+            setSources(srcData);
+            setProjects(prjData);
+        } catch (error) {
+            console.error("Failed to load artifacts data", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+    loadData();
+  }, []);
+
+  // Helper to get source title
+  const getSourceTitle = (sourceId: number): string => {
+    const source = sources.find(s => s.id === sourceId);
+    return source?.metadata.title || `Source #${sourceId}`;
+  };
+
+  // Helper to get project name
+  const getProjectName = (sourceId: number): string => {
+    const source = sources.find(s => s.id === sourceId);
+    if (!source) return "Unknown Project";
+    const project = projects.find(p => p.id === source.projectId);
+    return project?.name || "Unknown Project";
+  };
 
   const toggleUsed = (id: number) => {
     setUsedArtifacts(prev => {
@@ -53,6 +83,15 @@ export default function Artifacts() {
       }
       return newSet;
     });
+  };
+
+  const toggleBookmark = async (artifact: KnowledgeArtifact) => {
+      try {
+          const updated = await updateArtifactBookmark(artifact.id, !artifact.isBookmarked);
+          setArtifacts(prev => prev.map(a => a.id === updated.id ? updated : a));
+      } catch (error) {
+          console.error("Failed to toggle bookmark", error);
+      }
   };
 
   const toggleType = (type: KAType) => {
@@ -68,12 +107,14 @@ export default function Artifacts() {
   };
 
   const filteredArtifacts = selectedTypes.size === 0 
-    ? mockKnowledgeArtifacts 
-    : mockKnowledgeArtifacts.filter(artifact => selectedTypes.has(artifact.type));
+    ? artifacts 
+    : artifacts.filter(artifact => selectedTypes.has(artifact.type));
 
   const getStatusBadge = (status: KnowledgeArtifact["status"]) => {
     return status === "final" ? "default" : "secondary";
   };
+  
+  if (loading) return <div className="p-8 text-center text-muted-foreground">Loading artifacts...</div>;
 
   return (
     <div className="space-y-6">
@@ -83,7 +124,7 @@ export default function Artifacts() {
           <p className="text-muted-foreground mt-1">Browse and manage extracted knowledge artifacts</p>
         </div>
         <Badge variant="outline" className="text-sm">
-          {mockKnowledgeArtifacts.length} artifacts
+          {artifacts.length} artifacts
         </Badge>
       </div>
 
@@ -186,7 +227,7 @@ export default function Artifacts() {
                     variant="ghost" 
                     size="icon" 
                     className="shrink-0"
-                    onClick={() => {/* Toggle bookmark */}}
+                    onClick={() => toggleBookmark(artifact)}
                   >
                     <Bookmark className={`h-4 w-4 ${artifact.isBookmarked ? "fill-current" : ""}`} />
                   </Button>

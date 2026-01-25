@@ -1,21 +1,23 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, FileText, FolderOpen, Database, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-// TODO: Replace mock data imports with API calls:
-// - fetchProjects() for mockProjects
-// - fetchResearchers() for mockResearchers
-// - fetchKnowledgeSources() for mockKnowledgeSources
-// - fetchKnowledgeArtifacts() for mockKnowledgeArtifacts
-// - fetchDashboardStats() for stats computation
-// import { fetchProjects, fetchResearchers, fetchKnowledgeSources, fetchKnowledgeArtifacts, fetchDashboardStats } from "@/services/api";
+import { 
+  fetchProjects, 
+  fetchResearchers, 
+  fetchDashboardStats,
+  type DashboardStats,
+  fetchKnowledgeSourcesByProjectId,
+  fetchKnowledgeArtifactsBySourceId,
+  fetchKnowledgeSources,
+  fetchKnowledgeArtifacts
+} from "@/services/api";
 import {
-  mockProjects,
-  mockKnowledgeSources,
-  mockKnowledgeArtifacts,
-  mockResearchers,
+  type Project,
+  type Researcher,
 } from "@/types/source";
 
 // Helper to get researcher initials
@@ -28,38 +30,64 @@ function getInitials(name: string): string {
     .slice(0, 2);
 }
 
-// Helper to get researchers for a project
-function getProjectResearchers(researcherIds: number[]) {
-  return mockResearchers.filter((r) => researcherIds.includes(r.id));
-}
-
-// Helper to get source count for a project
-function getProjectSourceCount(projectId: number) {
-  return mockKnowledgeSources.filter((s) => s.projectId === projectId).length;
-}
-
-// Helper to get artifact count for a project
-function getProjectArtifactCount(projectId: number) {
-  const sourceIds = mockKnowledgeSources
-    .filter((s) => s.projectId === projectId)
-    .map((s) => s.id);
-  return mockKnowledgeArtifacts.filter((a) =>
-    sourceIds.includes(a.knowledgeSourceId)
-  ).length;
-}
-
 export default function Dashboard() {
   const navigate = useNavigate();
+  const [stats, setStats] = useState<DashboardStats>({
+    projects: 0,
+    sources: 0,
+    artifacts: 0,
+    researchers: 0,
+    favouriteSources: 0,
+    bookmarkedArtifacts: 0,
+  });
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [researchers, setResearchers] = useState<Researcher[]>([]);
+  // We need counts per project, which might differ from global stats
+  const [projectCounts, setProjectCounts] = useState<Record<number, { sources: number; artifacts: number }>>({});
 
-  // Compute real stats from mock data
-  const stats = {
-    projects: mockProjects.length,
-    sources: mockKnowledgeSources.length,
-    artifacts: mockKnowledgeArtifacts.length,
-    researchers: mockResearchers.length,
-    favouriteSources: mockKnowledgeSources.filter((s) => s.isFavourite).length,
-    bookmarkedArtifacts: mockKnowledgeArtifacts.filter((a) => a.isBookmarked).length,
-  };
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const [statsData, projectsData, researchersData] = await Promise.all([
+          fetchDashboardStats(),
+          fetchProjects(),
+          fetchResearchers(),
+        ]);
+        
+        setStats(statsData);
+        setProjects(projectsData);
+        setResearchers(researchersData);
+
+        // Load project specific counts (this could be optimized if backend returns it)
+        // Ideally backend Project schema includes counts.
+        // For now, we fetch sources/artifacts for each project or use the global lists if cached.
+        // Since we don't have global cache yet, we'll implement a lighter check.
+        // Actually, Project schema likely has source IDs or we can infer from global lists if we fetch all.
+        // Let's fetch all sources and artifacts to compute counts locally for the dashboard view
+        // to avoid N+1 requests if the dashboard is high traffic.
+        // Or just rely on what we have.
+        
+        const allSources = await fetchKnowledgeSources();
+        const allArtifacts = await fetchKnowledgeArtifacts();
+        
+        const counts: Record<number, { sources: number; artifacts: number }> = {};
+        projectsData.forEach(p => {
+            const pSources = allSources.filter(s => s.projectId === p.id);
+            const pSourceIds = pSources.map(s => s.id);
+            const pArtifacts = allArtifacts.filter(a => pSourceIds.includes(a.knowledgeSourceId));
+            counts[p.id] = {
+                sources: pSources.length,
+                artifacts: pArtifacts.length
+            };
+        });
+        setProjectCounts(counts);
+
+      } catch (error) {
+        console.error("Failed to load dashboard data", error);
+      }
+    }
+    loadData();
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -148,10 +176,9 @@ export default function Dashboard() {
             <CardDescription>Your research projects</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {mockProjects.map((project) => {
-              const researchers = getProjectResearchers(project.researcherIds);
-              const sourceCount = getProjectSourceCount(project.id);
-              const artifactCount = getProjectArtifactCount(project.id);
+            {projects.map((project) => {
+              const projectResearchers = researchers.filter(r => project.researcherIds.includes(r.id));
+              const counts = projectCounts[project.id] || { sources: 0, artifacts: 0 };
 
               return (
                 <div
@@ -162,7 +189,7 @@ export default function Dashboard() {
                   <div className="flex-1">
                     <div className="font-medium text-foreground">{project.name}</div>
                     <div className="text-sm text-muted-foreground mt-1">
-                      {sourceCount} sources • {artifactCount} artifacts
+                      {counts.sources} sources • {counts.artifacts} artifacts
                     </div>
                     <div className="flex flex-wrap gap-1 mt-2">
                       {project.tags.slice(0, 3).map((tag) => (
@@ -173,16 +200,16 @@ export default function Dashboard() {
                     </div>
                   </div>
                   <div className="flex -space-x-2 ml-4">
-                    {researchers.slice(0, 3).map((r) => (
+                    {projectResearchers.slice(0, 3).map((r) => (
                       <Avatar key={r.id} className="h-8 w-8 border-2 border-background">
                         <AvatarFallback className="text-xs">
                           {getInitials(r.name)}
                         </AvatarFallback>
                       </Avatar>
                     ))}
-                    {researchers.length > 3 && (
+                    {projectResearchers.length > 3 && (
                       <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center text-xs border-2 border-background">
-                        +{researchers.length - 3}
+                        +{projectResearchers.length - 3}
                       </div>
                     )}
                   </div>
@@ -198,8 +225,8 @@ export default function Dashboard() {
             <CardDescription>Researchers across all projects</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {mockResearchers.map((researcher) => {
-              const projectCount = mockProjects.filter((p) =>
+            {researchers.map((researcher) => {
+              const projectCount = projects.filter((p) =>
                 p.researcherIds.includes(researcher.id)
               ).length;
 

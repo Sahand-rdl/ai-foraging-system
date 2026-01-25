@@ -1,20 +1,21 @@
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, User, Mail, FolderOpen, FileText, Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-// TODO: Replace mock data imports with API calls:
-// - fetchProjectById(id) for project
-// - fetchResearchersByIds(ids) for researchers
-// - fetchKnowledgeSourcesByProjectId(projectId) for sources
-// - fetchKnowledgeArtifactsBySourceId(sourceId) for artifacts
-// import { fetchProjectById, fetchResearchersByIds, fetchKnowledgeSourcesByProjectId, fetchKnowledgeArtifactsBySourceId } from "@/services/api";
+import { 
+  fetchProjectById, 
+  fetchResearchersByIds, 
+  fetchKnowledgeSourcesByProjectId, 
+  fetchKnowledgeArtifacts 
+} from "@/services/api";
 import {
-  mockProjects,
-  mockResearchers,
-  mockKnowledgeSources,
-  mockKnowledgeArtifacts,
+  type Project,
+  type Researcher,
+  type KnowledgeSource,
+  type KnowledgeArtifact,
 } from "@/types/source";
 
 // Helper to get researcher initials
@@ -31,10 +32,48 @@ export default function ProjectInfo() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const projectId = parseInt(id || "1", 10);
+  const [project, setProject] = useState<Project | null>(null);
+  const [researchers, setResearchers] = useState<Researcher[]>([]);
+  const [sources, setSources] = useState<KnowledgeSource[]>([]);
+  const [artifacts, setArtifacts] = useState<KnowledgeArtifact[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Get project from mock data
-  const project = mockProjects.find((p) => p.id === projectId);
+  useEffect(() => {
+     async function loadData() {
+        if (!id) return;
+        const projectId = parseInt(id, 10);
+        try {
+           const projectData = await fetchProjectById(projectId);
+           if (!projectData) {
+              setProject(null);
+              setLoading(false);
+              return;
+           }
+           setProject(projectData);
+
+           const [fetchedSources, fetchedResearchers, allArtifacts] = await Promise.all([
+               fetchKnowledgeSourcesByProjectId(projectId),
+               fetchResearchersByIds(projectData.researcherIds),
+               fetchKnowledgeArtifacts() // We fetch all then filter, or improvement: fetch by sources
+           ]);
+           
+           setSources(fetchedSources);
+           setResearchers(fetchedResearchers);
+
+           const sourceIds = fetchedSources.map(s => s.id);
+           const projectArtifacts = allArtifacts.filter(a => sourceIds.includes(a.knowledgeSourceId));
+           setArtifacts(projectArtifacts);
+
+        } catch (error) {
+           console.error("Failed to load project info", error);
+        } finally {
+            setLoading(false);
+        }
+     }
+     loadData();
+  }, [id]);
+
+  if (loading) return <div className="p-8 text-center text-muted-foreground">Loading...</div>;
 
   if (!project) {
     return (
@@ -43,20 +82,6 @@ export default function ProjectInfo() {
       </div>
     );
   }
-
-  // Get researchers for this project
-  const researchers = mockResearchers.filter((r) =>
-    project.researcherIds.includes(r.id)
-  );
-
-  // Get sources for this project
-  const sources = mockKnowledgeSources.filter((s) => s.projectId === projectId);
-
-  // Get artifacts for this project
-  const sourceIds = sources.map((s) => s.id);
-  const artifacts = mockKnowledgeArtifacts.filter((a) =>
-    sourceIds.includes(a.knowledgeSourceId)
-  );
 
   return (
     <div className="space-y-6">

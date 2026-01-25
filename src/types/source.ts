@@ -41,6 +41,7 @@ export interface KnowledgeSource {
   trustworthiness: Trustworthiness;
   projectId: number; // PID
   isFavourite: boolean;
+  path?: string; // Path to raw PDF
 }
 
 // --- Knowledge Artifact (KAID) ---

@@ -1,10 +1,12 @@
-import { Star, ExternalLink, ChevronRight, Heart } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Star, ExternalLink, ChevronRight, Heart, FileText, Table2, Image, Code, BookOpen, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
-import type { KnowledgeSource } from "@/types/source";
+import { fetchKnowledgeArtifactsBySourceId } from "@/services/api";
+import type { KnowledgeSource, KnowledgeArtifact, KAType } from "@/types/source";
 
 interface SourcePreviewPaneProps {
   source: KnowledgeSource;
@@ -13,8 +15,37 @@ interface SourcePreviewPaneProps {
   onOpenSource?: (id: number) => void;
 }
 
+function getTypeIcon(type: KAType) {
+    switch (type) {
+      case "Figure": return <Image className="h-3 w-3" />;
+      case "Table": return <Table2 className="h-3 w-3" />;
+      case "Algo": return <Code className="h-3 w-3" />;
+      case "Def": return <BookOpen className="h-3 w-3" />;
+      case "Tech": return <Cpu className="h-3 w-3" />;
+      default: return <FileText className="h-3 w-3" />;
+    }
+}
+
 export function SourcePreviewPane({ source, title, onClose, onOpenSource }: SourcePreviewPaneProps) {
   const displayTitle = title || `Source #${source.id}`;
+  const [artifacts, setArtifacts] = useState<KnowledgeArtifact[]>([]);
+  const [loadingArtifacts, setLoadingArtifacts] = useState(false);
+
+  useEffect(() => {
+    async function loadArtifacts() {
+        setLoadingArtifacts(true);
+        try {
+            const data = await fetchKnowledgeArtifactsBySourceId(source.id);
+            setArtifacts(data);
+        } catch (error) {
+            console.error("Failed to load artifacts for source preview", error);
+            setArtifacts([]);
+        } finally {
+            setLoadingArtifacts(false);
+        }
+    }
+    loadArtifacts();
+  }, [source.id]);
 
   return (
     <div className="w-1/3 min-w-[400px] flex flex-col gap-4 border-l pl-6 animate-in slide-in-from-right-10 fade-in duration-200">
@@ -101,18 +132,34 @@ export function SourcePreviewPane({ source, title, onClose, onOpenSource }: Sour
           {/* Knowledge Artifacts */}
           <div className="space-y-2">
             <h4 className="text-sm font-semibold">
-              Knowledge Artifacts ({source.knowledgeArtifactIds.length})
+              Knowledge Artifacts ({artifacts.length})
             </h4>
-            <div className="flex flex-wrap gap-1">
-              {source.knowledgeArtifactIds.map((kaId) => (
-                <Badge key={kaId} variant="outline" className="text-xs">
-                  KA #{kaId}
-                </Badge>
-              ))}
-              {source.knowledgeArtifactIds.length === 0 && (
-                <span className="text-sm text-muted-foreground">No artifacts extracted yet</span>
-              )}
-            </div>
+            
+            {loadingArtifacts ? (
+                <div className="text-sm text-muted-foreground">Loading artifacts...</div>
+            ) : (
+                <div className="flex flex-col gap-2">
+                {artifacts.map((ka) => (
+                    <div key={ka.id} className="flex flex-col gap-1 p-2 rounded-md border text-sm hover:bg-muted/50 transition-colors">
+                        <div className="flex items-center gap-2">
+                            <Badge variant="outline" className="gap-1 px-1.5 py-0 text-[10px]">
+                                {getTypeIcon(ka.type)}
+                                {ka.type}
+                            </Badge>
+                            <span className="font-medium truncate">{ka.title}</span>
+                        </div>
+                        {ka.content && (
+                            <p className="text-xs text-muted-foreground line-clamp-2">
+                                {ka.content}
+                            </p>
+                        )}
+                    </div>
+                ))}
+                {artifacts.length === 0 && (
+                    <span className="text-sm text-muted-foreground">No artifacts extracted yet</span>
+                )}
+                </div>
+            )}
           </div>
 
           {/* Engineer Notes */}

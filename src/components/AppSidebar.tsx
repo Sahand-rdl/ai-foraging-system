@@ -1,11 +1,9 @@
+import { useEffect, useState } from "react";
 import { Home, FolderOpen, FileText, Database, ChevronRight } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
-// TODO: Replace mock data imports with API calls:
-// - fetchProjects() for mockProjects
-// - fetchKnowledgeSourcesByProjectId(projectId) for getProjectSourceCount
-// import { fetchProjects, fetchKnowledgeSourcesByProjectId } from "@/services/api";
-import { mockProjects, mockKnowledgeSources } from "@/types/source";
+import { fetchProjects } from "@/services/api";
+import { type Project } from "@/types/source";
 
 import {
   Sidebar,
@@ -20,14 +18,22 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 
-// Helper to get source count for a project
-function getProjectSourceCount(projectId: number) {
-  return mockKnowledgeSources.filter((s) => s.projectId === projectId).length;
-}
-
 export function AppSidebar() {
   const location = useLocation();
   const currentPath = location.pathname;
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    async function loadProjects() {
+      try {
+        const data = await fetchProjects();
+        setProjects(data);
+      } catch (error) {
+        console.error("Failed to load projects for sidebar", error);
+      }
+    }
+    loadProjects();
+  }, []);
 
   return (
     <Sidebar className="w-60 sticky top-0 h-screen border-r bg-sidebar" collapsible="none">
@@ -74,9 +80,7 @@ export function AppSidebar() {
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              {mockProjects.map((project) => {
-                const sourceCount = getProjectSourceCount(project.id);
-                
+              {projects.map((project) => {
                 return (
                   <SidebarMenuItem key={project.id}>
                     <SidebarMenuButton asChild>
@@ -88,7 +92,6 @@ export function AppSidebar() {
                         <span className="truncate">{project.name}</span>
                       </NavLink>
                     </SidebarMenuButton>
-                    {/* <SidebarMenuBadge>{sourceCount}</SidebarMenuBadge> */}
                   </SidebarMenuItem>
                 );
               })}
