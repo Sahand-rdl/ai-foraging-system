@@ -129,38 +129,6 @@ export function SourcePreviewPane({ source, title, onClose, onOpenSource }: Sour
             </p>
           </div>
 
-          {/* Knowledge Artifacts */}
-          <div className="space-y-2">
-            <h4 className="text-sm font-semibold">
-              Knowledge Artifacts ({artifacts.length})
-            </h4>
-            
-            {loadingArtifacts ? (
-                <div className="text-sm text-muted-foreground">Loading artifacts...</div>
-            ) : (
-                <div className="flex flex-col gap-2">
-                {artifacts.map((ka) => (
-                    <div key={ka.id} className="flex flex-col gap-1 p-2 rounded-md border text-sm hover:bg-muted/50 transition-colors">
-                        <div className="flex items-center gap-2">
-                            <Badge variant="outline" className="gap-1 px-1.5 py-0 text-[10px]">
-                                {getTypeIcon(ka.type)}
-                                {ka.type}
-                            </Badge>
-                            <span className="font-medium truncate">{ka.title}</span>
-                        </div>
-                        {ka.content && (
-                            <p className="text-xs text-muted-foreground line-clamp-2">
-                                {ka.content}
-                            </p>
-                        )}
-                    </div>
-                ))}
-                {artifacts.length === 0 && (
-                    <span className="text-sm text-muted-foreground">No artifacts extracted yet</span>
-                )}
-                </div>
-            )}
-          </div>
 
           {/* Engineer Notes */}
           <div className="space-y-3">
@@ -175,7 +143,7 @@ export function SourcePreviewPane({ source, title, onClose, onOpenSource }: Sour
 
       <div className="pt-4 mt-auto">
         <Button className="w-full gap-2" onClick={() => onOpenSource?.(source.id)}>
-          Open Source & Extract KAs
+          Open Source
           <ChevronRight className="h-4 w-4" />
         </Button>
       </div>

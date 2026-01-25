@@ -23,7 +23,6 @@ import {
 } from "@/types/source";
 
 // Components
-import { SourceDetailHeader } from "@/components/source-detail/SourceDetailHeader";
 import { PDFPreview } from "@/components/source-detail/PDFPreview";
 import { ArtifactList } from "@/components/source-detail/ArtifactList";
 import { ArtifactDetail } from "@/components/source-detail/ArtifactDetail";
@@ -174,15 +173,10 @@ export default function SourceDetail() {
 
   return (
     <div className="h-screen flex flex-col bg-background">
-      <SourceDetailHeader 
-        onBack={() => navigate("/sources")}
-        pdfUrl={pdfUrl}
-      />
-
       <ResizablePanelGroup direction="horizontal" className="flex-1">
         {/* PDF Viewer */}
         <ResizablePanel defaultSize={60} minSize={30}>
-          <PDFPreview pdfUrl={pdfUrl} />
+          <PDFPreview pdfUrl={pdfUrl} onBack={() => navigate("/sources")} />
         </ResizablePanel>
 
         <ResizableHandle withHandle />
