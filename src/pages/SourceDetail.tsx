@@ -159,16 +159,14 @@ export default function SourceDetail() {
   if (loading) return <div className="h-screen flex items-center justify-center">Loading...</div>;
   if (!source) return <div className="h-screen flex items-center justify-center">Source not found</div>;
 
-  // Use source.path if available, otherwise check url. If path is relative, prepend API url.
+  // Use source.path if available, and if it's not a web URL, use the content endpoint.
   let pdfUrl = "";
   if (source.path) {
       if (source.path.startsWith("http")) {
           pdfUrl = source.path;
       } else {
-          // ensure no double slashes or missing slashes. API_BASE_URL does not end with slash? (checked: "http://localhost:8000")
-          // source.path usually starts with "/"? If not, we add it.
-          const cleanPath = source.path.startsWith("/") ? source.path : `/${source.path}`;
-          pdfUrl = `${API_BASE_URL}${cleanPath}`;
+          // It's a local path, so we stream via backend endpoint
+          pdfUrl = `${API_BASE_URL}/knowledge-sources/${source.id}/content`;
       }
   } else if (source.metadata.url) {
       pdfUrl = source.metadata.url;
