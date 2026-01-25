@@ -124,6 +124,55 @@ def download_paper_for_project(
     db.commit()
     db.refresh(db_ks)
 
+
+    # Link KnowledgeSource to project
+    project.knowledge_sources.append(db_ks)
+    db.commit()
+    db.refresh(db_ks)
+
+    return db_ks
+
+
+def upload_paper_for_project(
+    project_id: int, file, db: Session = Depends(get_db)
+):
+    """Upload a paper file and create a KnowledgeSource linked to the project."""
+    # Verify project exists
+    project = db.query(ProjectDB).filter(ProjectDB.id == project_id).first()
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    # Generate filename from uploaded file
+    filename = file.filename
+    if not filename:
+        filename = "uploaded_paper.pdf"
+    
+    # Sanitize filename
+    filename = "".join([c for c in filename if c.isalpha() or c.isdigit() or c in (' ', '.', '_', '-')]).strip()
+    
+    # Create save directory using configured papers path (raw subfolder for PDFs)
+    save_dir = settings.get_raw_papers_path(project_id)
+    os.makedirs(save_dir, exist_ok=True)
+    file_path = os.path.join(save_dir, filename)
+
+    # Save the file
+    try:
+        with open(file_path, 'wb') as out_file:
+            shutil.copyfileobj(file.file, out_file)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Failed to save file: {str(e)}")
+
+    # Create KnowledgeSource entry
+    db_ks = KnowledgeSourceDB(
+        path=file_path,
+        source_metadata={"original_filename": file.filename, "upload_method": "direct_upload"},
+        trustworthiness=None,  # None = not evaluated
+        is_favourite=False
+    )
+    db.add(db_ks)
+    db.commit()
+    db.refresh(db_ks)
+
     # Link KnowledgeSource to project
     project.knowledge_sources.append(db_ks)
     db.commit()

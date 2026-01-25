@@ -1,6 +1,6 @@
 """Data Service API - Main application entry point."""
 import uvicorn
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
@@ -14,7 +14,7 @@ from routes import (
     knowledge_artifacts_router,
     ai_router,
 )
-from routes.knowledge_sources import download_paper_for_project
+from routes.knowledge_sources import download_paper_for_project, upload_paper_for_project
 
 # Create all tables
 Base.metadata.create_all(bind=engine)
@@ -45,5 +45,12 @@ def download_paper(project_id: int, request: KnowledgeSourceDownload, db: Sessio
     return download_paper_for_project(project_id, request, db)
 
 
+# Upload paper endpoint
+@app.post("/projects/{project_id}/upload-paper", response_model=KnowledgeSourceSchema, tags=["projects"])
+def upload_paper(project_id: int, file: UploadFile = File(...), db: Session = Depends(get_db)):
+    """Upload a PDF paper directly and create a KnowledgeSource linked to the project."""
+    return upload_paper_for_project(project_id, file, db)
+
+
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)

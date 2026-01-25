@@ -44,6 +44,12 @@ This API provides endpoints for managing Projects, Researchers, Knowledge Source
 - **Body**: `ProjectCreate`
 - **Response**: `ProjectSchema`
 
+### Delete Project
+- **URL**: `/projects/{project_id}`
+- **Method**: `DELETE`
+- **Path Params**: `project_id` (int)
+- **Response**: 204 No Content
+
 ### Add Researcher to Project
 - **URL**: `/projects/{project_id}/researchers/{researcher_id}`
 - **Method**: `POST`
@@ -72,6 +78,14 @@ This API provides endpoints for managing Projects, Researchers, Knowledge Source
       "trustworthiness": "int (optional, 1-3)"
     }
     ```
+- **Response**: `KnowledgeSourceSchema`
+
+### Upload PDF Paper to Project
+- **URL**: `/projects/{project_id}/upload-paper`
+- **Method**: `POST`
+- **Path Params**: `project_id` (int)
+- **Body**: `multipart/form-data`
+    - `file`: PDF file
 - **Response**: `KnowledgeSourceSchema`
 
 ---

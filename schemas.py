@@ -46,6 +46,7 @@ class KnowledgeSourceBase(BaseModel):
     path: str
     source_metadata: Optional[Any] = None
     raw_text: Optional[str] = None
+    tags: Optional[str] = None
     trustworthiness: Optional[int] = None  # null=not evaluated, 1-3=rating
     is_favourite: Optional[bool] = False
     
