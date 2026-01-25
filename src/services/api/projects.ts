@@ -62,3 +62,35 @@ export async function deleteProject(id: number): Promise<void> {
     method: "DELETE",
   });
 }
+
+export interface DownloadPaperInput {
+  url: string;
+  source_metadata?: Record<string, unknown>;
+  trustworthiness?: number;
+}
+
+export async function downloadPaper(projectId: number, input: DownloadPaperInput): Promise<Project> {
+  await apiRequest<BackendProject>(`/projects/${projectId}/download-paper`, {
+    method: "POST",
+    body: JSON.stringify(input),
+  });
+  
+  // Return updated project to refresh state
+  const updated = await apiRequest<BackendProject>(`/projects/${projectId}`);
+  return mapProject(updated);
+}
+
+export async function uploadPaper(projectId: number, file: File): Promise<Project> {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  await apiRequest<BackendProject>(`/projects/${projectId}/upload-paper`, {
+    method: "POST",
+    body: formData,
+    // Content-Type header should be left undefined for FormData so browser sets it with boundary
+  });
+
+  // Return updated project to refresh state
+  const updated = await apiRequest<BackendProject>(`/projects/${projectId}`);
+  return mapProject(updated);
+}

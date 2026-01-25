@@ -52,7 +52,7 @@ export function SourcesTable({
   const titleFn = getTitle || defaultGetTitle;
 
   return (
-    <div className="rounded-md border bg-card">
+    <div className="bg-card">
       <Table>
         <TableHeader>
           <TableRow className="hover:bg-transparent">

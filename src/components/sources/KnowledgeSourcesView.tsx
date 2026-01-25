@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Search, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { SourcesTable } from "./SourcesTable";
 import { SourcePreviewPane } from "./SourcePreviewPane";
 import type { KnowledgeSource } from "@/types/source";
@@ -65,13 +66,15 @@ export function KnowledgeSourcesView({
             selectedSource ? "w-2/3" : "w-full"
           }`}
         >
-          <SourcesTable
-            sources={sources}
-            selectedSourceId={selectedSourceId}
-            onSelectSource={setSelectedSourceId}
-            onOpenSource={handleOpenSource}
-            getTitle={titleFn}
-          />
+          <ScrollArea className="flex-1 border rounded-md">
+            <SourcesTable
+              sources={sources}
+              selectedSourceId={selectedSourceId}
+              onSelectSource={setSelectedSourceId}
+              onOpenSource={handleOpenSource}
+              getTitle={titleFn}
+            />
+          </ScrollArea>
         </div>
 
         {/* Right Column: Preview Pane */}

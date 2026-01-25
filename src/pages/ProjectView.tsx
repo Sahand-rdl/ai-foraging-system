@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Plus, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { KnowledgeSourcesView } from "@/components/sources";
+import { AddSourceModal, KnowledgeSourcesView } from "@/components/sources";
 import { 
   fetchProjectById, 
   fetchKnowledgeSourcesByProjectId 
@@ -16,7 +16,27 @@ export default function ProjectView() {
   const [project, setProject] = useState<Project | null>(null);
   const [projectSources, setProjectSources] = useState<KnowledgeSource[]>([]);
   const [loading, setLoading] = useState(true);
+    const [isAddSourceOpen, setIsAddSourceOpen] = useState(false);
 
+   const loadData = useCallback(async () => {
+      if (!id) return;
+      const projectId = parseInt(id, 10);
+      try {
+        const [projectData, sourcesData] = await Promise.all([
+          fetchProjectById(projectId),
+          fetchKnowledgeSourcesByProjectId(projectId)
+        ]);
+        
+        if (projectData) {
+            setProject(projectData);
+        }
+        setProjectSources(sourcesData);
+      } catch (error) {
+        console.error("Failed to load project details", error);
+      } finally {
+        setLoading(false);
+      }
+    }, [id]);
   useEffect(() => {
     async function loadData() {
       if (!id) return;
@@ -76,10 +96,18 @@ export default function ProjectView() {
             <Info className="h-4 w-4 mr-2" />
             Project Details
           </Button>
-          <Button>
-            <Plus className="h-4 w-4 mr-2" />
-            Add Source
-          </Button>
+          <AddSourceModal 
+                      projectId={project.id} 
+                      open={isAddSourceOpen}
+                      onOpenChange={setIsAddSourceOpen}
+                      onSuccess={loadData}
+                      trigger={
+                        <Button>
+                          <Plus className="h-4 w-4 mr-2" />
+                          Add Source
+                        </Button>
+                      }
+                    />
         </div>
       </div>
 
