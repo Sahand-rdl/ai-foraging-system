@@ -2,19 +2,28 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, MoreVertical, FileText, Database } from "lucide-react";
+import { Plus, MoreVertical, FileText, Database, Trash } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { 
-  fetchProjects, 
   fetchResearchers, 
   fetchKnowledgeSources,
-  fetchKnowledgeArtifacts
+  fetchKnowledgeArtifacts,
+  deleteProject
 } from "@/services/api";
 import {
   type Project,
   type Researcher,
 } from "@/types/source";
+import { useProjects } from "@/contexts/ProjectsContext";
+import { CreateProjectDialog } from "@/components/CreateProjectDialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { toast } from "sonner";
 
 // Helper to get researcher initials
 function getInitials(name: string): string {
@@ -28,25 +37,24 @@ function getInitials(name: string): string {
 
 export default function Projects() {
   const navigate = useNavigate();
-  const [projects, setProjects] = useState<Project[]>([]);
+  const { projects, refreshProjects } = useProjects();
   const [researchers, setResearchers] = useState<Researcher[]>([]);
   const [projectCounts, setProjectCounts] = useState<Record<number, { sources: number; artifacts: number }>>({});
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
   useEffect(() => {
     async function loadData() {
       try {
-        const [projectsData, researchersData, allSources, allArtifacts] = await Promise.all([
-          fetchProjects(),
+        const [researchersData, allSources, allArtifacts] = await Promise.all([
           fetchResearchers(),
           fetchKnowledgeSources(),
           fetchKnowledgeArtifacts(),
         ]);
         
-        setProjects(projectsData);
         setResearchers(researchersData);
 
         const counts: Record<number, { sources: number; artifacts: number }> = {};
-        projectsData.forEach(p => {
+        projects.forEach(p => {
             const pSources = allSources.filter(s => s.projectId === p.id);
             const pSourceIds = pSources.map(s => s.id);
             const pArtifacts = allArtifacts.filter(a => pSourceIds.includes(a.knowledgeSourceId));
@@ -62,7 +70,26 @@ export default function Projects() {
       }
     }
     loadData();
-  }, []);
+  }, [projects]); // Re-run when projects change
+
+  const handleProjectCreated = () => {
+    // Context handles refresh, but we might want to re-fetch other data if needed
+    // For now, the useEffect [projects] dependency will handle recomputing counts
+  };
+
+  const handleDeleteProject = async (e: React.MouseEvent, projectId: number) => {
+    e.stopPropagation(); // Prevent card navigation
+    if (!confirm("Are you sure you want to delete this project?")) return;
+    
+    try {
+      await deleteProject(projectId);
+      toast.success("Project deleted successfully");
+      await refreshProjects();
+    } catch (error) {
+      console.error("Failed to delete project", error);
+      toast.error("Failed to delete project");
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -71,7 +98,7 @@ export default function Projects() {
           <h2 className="text-3xl font-bold text-foreground">Projects</h2>
           <p className="text-muted-foreground mt-1">Manage your research projects</p>
         </div>
-        <Button className="gap-2">
+        <Button className="gap-2" onClick={() => setIsCreateDialogOpen(true)}>
           <Plus className="h-4 w-4" />
           New Project
         </Button>
@@ -96,14 +123,27 @@ export default function Projects() {
                       active
                     </Badge>
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <MoreVertical className="h-4 w-4" />
-                  </Button>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <MoreVertical className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem 
+                        className="text-destructive focus:text-destructive cursor-pointer"
+                        onClick={(e) => handleDeleteProject(e, project.id)}
+                      >
+                        <Trash className="mr-2 h-4 w-4" />
+                        Delete Project
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
                 <CardDescription className="line-clamp-2">
                   {project.mlProjectDefinition}
@@ -163,6 +203,12 @@ export default function Projects() {
           );
         })}
       </div>
+
+      <CreateProjectDialog
+        open={isCreateDialogOpen}
+        onOpenChange={setIsCreateDialogOpen}
+        onProjectCreated={handleProjectCreated}
+      />
     </div>
   );
 }

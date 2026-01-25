@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import { Home, FolderOpen, FileText, Database, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { Home, FolderOpen, FileText, Database, ChevronRight, Plus } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
-import { fetchProjects } from "@/services/api";
+import { useProjects } from "@/contexts/ProjectsContext";
 import { type Project } from "@/types/source";
+import { CreateProjectDialog } from "@/components/CreateProjectDialog";
 
 import {
   Sidebar,
@@ -21,19 +22,12 @@ import {
 export function AppSidebar() {
   const location = useLocation();
   const currentPath = location.pathname;
-  const [projects, setProjects] = useState<Project[]>([]);
+  const { projects, refreshProjects } = useProjects();
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
-  useEffect(() => {
-    async function loadProjects() {
-      try {
-        const data = await fetchProjects();
-        setProjects(data);
-      } catch (error) {
-        console.error("Failed to load projects for sidebar", error);
-      }
-    }
-    loadProjects();
-  }, []);
+  const handleProjectCreated = () => {
+    refreshProjects().catch(console.error);
+  };
 
   return (
     <Sidebar className="w-60 sticky top-0 h-screen border-r bg-sidebar" collapsible="none">
@@ -64,7 +58,16 @@ export function AppSidebar() {
 
         {/* Projects */}
         <SidebarGroup>
-          <SidebarGroupLabel>Projects</SidebarGroupLabel>
+          <div className="flex items-center justify-between px-2">
+            <SidebarGroupLabel className="px-0">Projects</SidebarGroupLabel>
+            <button
+              onClick={() => setIsCreateDialogOpen(true)}
+              className="h-5 w-5 flex items-center justify-center rounded hover:bg-accent/50 transition-colors"
+              title="Create new project"
+            >
+              <Plus className="h-3.5 w-3.5 text-muted-foreground" />
+            </button>
+          </div>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -134,6 +137,12 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      <CreateProjectDialog
+        open={isCreateDialogOpen}
+        onOpenChange={setIsCreateDialogOpen}
+        onProjectCreated={handleProjectCreated}
+      />
     </Sidebar>
   );
 }
