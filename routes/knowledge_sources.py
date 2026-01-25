@@ -58,7 +58,7 @@ def get_knowledge_source_content(ks_id: int, db: Session = Depends(get_db)):
     if not os.path.exists(ks.path):
         raise HTTPException(status_code=404, detail="File not found on server")
         
-    return FileResponse(ks.path, media_type="application/pdf", filename=os.path.basename(ks.path))
+    return FileResponse(ks.path, media_type="application/pdf", filename=os.path.basename(ks.path), content_disposition_type="inline")
 
 
 @router.put("/{ks_id}", response_model=KnowledgeSourceSchema)
