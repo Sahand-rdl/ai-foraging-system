@@ -57,7 +57,7 @@ export function SourcePreviewPane({ source, title, onClose, onOpenSource }: Sour
   }, [source.id]);
 
   return (
-    <div className="w-1/3 min-w-[400px] flex flex-col gap-4 border-l pl-6 animate-in slide-in-from-right-10 fade-in duration-200">
+    <div className="w-1/3 min-w-[400px] flex flex-col gap-4 border rounded-md p-4 animate-in slide-in-from-right-10 fade-in duration-200">
       <div className="space-y-1">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold leading-none flex items-center gap-2">
