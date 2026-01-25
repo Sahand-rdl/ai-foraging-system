@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Plus, Info } from "lucide-react";
+import { ArrowLeft, Plus, Info, Search, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { AddSourceModal, KnowledgeSourcesView } from "@/components/sources";
 import { 
   fetchProjectById, 
@@ -76,23 +77,29 @@ export default function ProjectView() {
   return (
     <div className="flex flex-col h-[calc(100vh-3rem)] gap-4">
       {/* Header with Back Button */}
-      <div className="flex items-center gap-4 shrink-0">
+      <div className="flex items-center gap-4 shrink-0 px-1 pt-2">
         <Button variant="ghost" size="icon" onClick={() => navigate("/projects")}>
           <ArrowLeft className="h-4 w-4" />
         </Button>
         <div className="flex-1">
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold text-foreground">{project.name}</h1>
+            <h1 className="text-2xl font-bold text-foreground">{project.name}</h1>
             <Badge variant="outline" className="text-sm">
               {projectSources.length} sources
             </Badge>
           </div>
-          <p className="text-muted-foreground mt-1 line-clamp-1">
-            {project.mlProjectDefinition}
-          </p>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" onClick={() => navigate(`/projects/${id}/details`)}>
+        
+        {/* Right side actions */}
+        <div className="flex items-center gap-2">
+          <div className="relative w-64">
+             <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+             <Input placeholder="Search sources..." className="pl-8 h-9" />
+          </div>
+          <Button variant="outline" size="icon" className="h-9 w-9">
+             <Filter className="h-4 w-4" />
+           </Button>
+          <Button variant="outline" size="sm" className="h-9" onClick={() => navigate(`/projects/${id}/details`)}>
             <Info className="h-4 w-4 mr-2" />
             Project Details
           </Button>
@@ -102,7 +109,7 @@ export default function ProjectView() {
                       onOpenChange={setIsAddSourceOpen}
                       onSuccess={loadData}
                       trigger={
-                        <Button>
+                        <Button size="sm" className="h-9">
                           <Plus className="h-4 w-4 mr-2" />
                           Add Source
                         </Button>
@@ -115,8 +122,7 @@ export default function ProjectView() {
       <div className="flex-1 min-h-0">
         <KnowledgeSourcesView
           sources={projectSources}
-          title="Project Knowledge Sources"
-          description="Academic papers and documents linked to this project"
+          showHeader={false}
           getSourceTitle={(source) => source.metadata.title || `Source #${source.id}`}
         />
       </div>
