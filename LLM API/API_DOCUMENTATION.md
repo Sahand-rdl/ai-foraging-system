@@ -2,7 +2,7 @@
 
 This documentation defines the interface for the **LLM API**, a FastAPI service designed for prompt-based document analysis and deep-dive interactions.
 
-**Base URL**: `http://127.0.0.1:8001` (or your configured port)
+**Base URL**: `http://127.0.0.1:8002` (or your configured port)
 
 ## Data Models
 
