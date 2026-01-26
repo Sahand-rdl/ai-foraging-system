@@ -9,6 +9,7 @@ from schemas import (
     KnowledgeArtifactSchema,
     KnowledgeArtifactCreate,
     KnowledgeArtifactBase,
+    KnowledgeArtifactUpdate,
 )
 
 router = APIRouter(prefix="/knowledge-artifacts", tags=["knowledge-artifacts"])
@@ -46,7 +47,7 @@ def read_knowledge_artifact(artifact_id: int, db: Session = Depends(get_db)):
 
 
 @router.put("/{artifact_id}", response_model=KnowledgeArtifactSchema)
-def update_knowledge_artifact(artifact_id: int, artifact_update: KnowledgeArtifactBase, db: Session = Depends(get_db)):
+def update_knowledge_artifact(artifact_id: int, artifact_update: KnowledgeArtifactUpdate, db: Session = Depends(get_db)):
     """Update a knowledge artifact."""
     db_artifact = db.query(KnowledgeArtifactDB).filter(KnowledgeArtifactDB.id == artifact_id).first()
     if db_artifact is None:
@@ -58,3 +59,15 @@ def update_knowledge_artifact(artifact_id: int, artifact_update: KnowledgeArtifa
     db.commit()
     db.refresh(db_artifact)
     return db_artifact
+
+
+@router.delete("/{artifact_id}", status_code=204)
+def delete_knowledge_artifact(artifact_id: int, db: Session = Depends(get_db)):
+    """Delete a knowledge artifact."""
+    db_artifact = db.query(KnowledgeArtifactDB).filter(KnowledgeArtifactDB.id == artifact_id).first()
+    if db_artifact is None:
+        raise HTTPException(status_code=404, detail="Knowledge artifact not found")
+    
+    db.delete(db_artifact)
+    db.commit()
+    return None

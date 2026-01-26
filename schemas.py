@@ -35,10 +35,23 @@ class KnowledgeArtifactCreate(KnowledgeArtifactBase):
     knowledge_source_id: int
 
 
+class KnowledgeArtifactUpdate(BaseModel):
+    type: Optional[str] = None
+    title: Optional[str] = None
+    content: Optional[str] = None
+    status: Optional[str] = None
+    tags: Optional[str] = None
+    notes: Optional[str] = None
+    external_link: Optional[str] = None
+    is_bookmarked: Optional[bool] = None
+    chat_history: Optional[Any] = None
+
+
 class KnowledgeArtifactSchema(KnowledgeArtifactBase):
     id: int
     knowledge_source_id: int
     model_config = ConfigDict(from_attributes=True)
+
 
 
 # --- Knowledge Source Schemas ---
