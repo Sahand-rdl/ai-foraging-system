@@ -25,6 +25,7 @@ export interface BackendKnowledgeSource {
   source_metadata?: any;
   raw_text?: string;
   trustworthiness?: number;
+  trustworthiness_reason?: string;
   is_favourite?: boolean;
   artifacts?: BackendKnowledgeArtifact[];
   project_id?: number;

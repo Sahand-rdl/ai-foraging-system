@@ -39,6 +39,7 @@ export interface KnowledgeSource {
   rawText: string;
   knowledgeArtifactIds: number[]; // List of KAID
   trustworthiness: Trustworthiness;
+  trustworthinessReason?: string;
   projectId: number; // PID
   isFavourite: boolean;
   path?: string; // Path to raw PDF

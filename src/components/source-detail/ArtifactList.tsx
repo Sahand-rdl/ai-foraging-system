@@ -26,7 +26,7 @@ export function ArtifactList({
 }: ArtifactListProps) {
   return (
     <>
-      <div className=" border-b border-border h-[64px] flex items-center justify-center">
+      <div className="border-b border-border h-[64px] flex items-center justify-center">
         {/* <p className="text-sm font-medium text-foreground mb-3">Filter by Type</p> */}
         <div className="flex flex-wrap gap-2">
           {FILTER_TYPES.map((type) => (
@@ -57,8 +57,6 @@ export function ArtifactList({
           ))}
         </div>
       </ScrollArea>
-
-      
     </>
   );
 }

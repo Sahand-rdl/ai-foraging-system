@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
-import { Star, ExternalLink, ChevronRight, Heart, FileText, Table2, Image, Code, BookOpen, Cpu } from "lucide-react";
+import { Star, ExternalLink, ChevronRight, Heart, FileText, Table2, Image, Code, BookOpen, Cpu, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { fetchKnowledgeArtifactsBySourceId } from "@/services/api";
 import type { KnowledgeSource, KnowledgeArtifact, KAType } from "@/types/source";
 
@@ -113,18 +119,34 @@ export function SourcePreviewPane({ source, title, onClose, onOpenSource }: Sour
               )}
 
               <span className="text-muted-foreground">Trustworthiness</span>
-              <Badge
-                variant={
-                  source.trustworthiness === "High"
-                    ? "default"
-                    : source.trustworthiness === "Medium"
-                    ? "secondary"
-                    : "destructive"
-                }
-                className="w-fit"
-              >
-                {source.trustworthiness}
-              </Badge>
+              <div className="flex items-center gap-2">
+                <Badge
+                  variant={
+                    source.trustworthiness === "High"
+                      ? "default"
+                      : source.trustworthiness === "Medium"
+                      ? "secondary"
+                      : "destructive"
+                  }
+                  className="w-fit"
+                >
+                  {source.trustworthiness}
+                </Badge>
+                {source.trustworthinessReason && (
+                  <TooltipProvider delayDuration={0}>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div className="cursor-help text-muted-foreground hover:text-foreground transition-colors">
+                          <Info className="h-4 w-4" />
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p className="max-w-xs">{source.trustworthinessReason}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                )}
+              </div>
             </div>
           </div>
 

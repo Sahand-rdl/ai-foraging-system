@@ -50,6 +50,7 @@ export function mapKnowledgeSource(ks: BackendKnowledgeSource): KnowledgeSource 
     rawText: ks.raw_text || "",
     knowledgeArtifactIds: ks.artifacts?.map(a => a.id) || [],
     trustworthiness: trust,
+    trustworthinessReason: ks.trustworthiness_reason,
     projectId: ks.project_id || 0, // Backend might not send projectId if fetched via project endpoint
     isFavourite: ks.is_favourite || false,
     path: ks.path,
