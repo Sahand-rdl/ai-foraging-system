@@ -76,8 +76,6 @@ def run_automatic_pipeline(
     # 6. Run Relevancy Checker
     print("6. Running Relevancy Checker...")
     relevance_result = evaluate_importance(full_text, project_definition)
-    print("RAW relevance_result:", relevance_result)
-    print("TYPE:", type(relevance_result))
     if isinstance(relevance_result, str):
         try:
             relevance_result = json.loads(relevance_result)

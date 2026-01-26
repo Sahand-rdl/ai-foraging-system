@@ -38,7 +38,6 @@ def evaluate_importance(document_text, project_definition):
     Output JSON ONLY in the following format:
     {{
       "relevance_score": 0-100,
-      "reason": "Brief justification based only on document content"
     }}
     Scale definition:
     - relevance_score:
