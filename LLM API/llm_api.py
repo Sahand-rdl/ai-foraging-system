@@ -126,6 +126,12 @@ def search_documents(req: SearchRequest):
 
     return {"results": results}
 
+@app.get("/health")
+def health_check():
+    """Health check endpoint."""
+    return {"status": "ok"}
+
+
 
 @app.post("/api/process_document")
 def process_document(req: ProcessRequest):
