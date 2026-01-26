@@ -23,7 +23,11 @@ DB_PATH = os.path.join(BASE_DIR, "chroma_db")
 os.makedirs(PROCESSED_DOCS_DIR, exist_ok=True)
 os.makedirs(ARTIFACTS_DIR, exist_ok=True)
 
-def run_automatic_pipeline(raw_doc_path: str, project_definition: str) -> Dict[str, Any]:
+
+def run_automatic_pipeline(
+    raw_doc_path: str,
+    project_definition: str,
+) -> Dict[str, Any]:
     """
     Runs the full automatic processing pipeline for a single document.
     """
@@ -54,7 +58,7 @@ def run_automatic_pipeline(raw_doc_path: str, project_definition: str) -> Dict[s
 
     # 4. Run Entity Extractor
     print("4. Running Entity Extractor...")
-    entities = extract_entities(key_sections) # Using key_sections for focused extraction
+    entities = extract_entities(doc_data)  # Using doc_data for focused extraction
     print("   ... Entities extracted.")
 
     # 5. TF-IDF for tags
@@ -79,11 +83,16 @@ def run_automatic_pipeline(raw_doc_path: str, project_definition: str) -> Dict[s
         "metadata": metadata,
         "trust_result": trust_result,
         "tags": tags,
-        "relevance": relevance_result.get("relevance_score", 0.0) if isinstance(relevance_result, dict) else 0.0,
+        "relevance": (
+            relevance_result.get("relevance_score") or 0.0
+            if isinstance(relevance_result, dict)
+            else 0.0
+        ),
         "knowledge_artifacts": entities,
     }
 
     return pipeline_output
+
 
 def run_search(query: str, search_type: str = "semantic"):
     """
@@ -92,7 +101,7 @@ def run_search(query: str, search_type: str = "semantic"):
     searcher = KnowledgeSearch()
     if search_type == "semantic":
         return searcher.semantic_search(query)
-    else: # keyword
+    else:  # keyword
         return searcher.keyword_search(query)
 
 
@@ -104,20 +113,23 @@ def run_chat(doc_id: str, query: str):
     assistant.set_active_document(doc_id)
     return assistant.ask(query)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     # Example usage of the automatic pipeline
     print("===== Running Automatic Pipeline =====")
     # As an example, we'll use the first PDF found in the raw_docs folder
     try:
         pdf_files = [f for f in os.listdir(RAW_DOCS_DIR) if f.endswith(".pdf")]
         if not pdf_files:
-            raise FileNotFoundError("No PDF files found in the raw_docs directory for testing.")
-        
+            raise FileNotFoundError(
+                "No PDF files found in the raw_docs directory for testing."
+            )
+
         test_doc_path = os.path.join(RAW_DOCS_DIR, pdf_files[0])
-        project_def = "A project about machine learning and its applications."
-        
+        project_def = "an algorithm for first-order gradient-based optimization of stochastic objective functions"
+
         final_output = run_automatic_pipeline(test_doc_path, project_def)
-        
+
         print("\n===== Pipeline Complete. Final Output: =====")
         print(json.dumps(final_output, indent=2))
 
@@ -126,15 +138,15 @@ if __name__ == '__main__':
 
     # Example usage of search and chat
     print("\n===== Running On-demand Search and Chat (Example) =====")
-    if 'pdf_files' in locals() and pdf_files:
+    if "pdf_files" in locals() and pdf_files:
         test_doc_id = os.path.splitext(pdf_files[0])[0] + ".json"
-        
+
         # Search
         search_query = "What is the main contribution of this paper?"
         print(f"\n--- Searching with query: '{search_query}' ---")
         search_results = run_search(search_query)
         print("Search Results:", search_results)
-        
+
         # Chat
         chat_query = "Can you explain the methodology in simple terms?"
         print(f"\n--- Chatting with query: '{chat_query}' ---")

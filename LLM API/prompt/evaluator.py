@@ -1,6 +1,8 @@
 from .llm_core import call_llm
+import json
 
-def evaluate_importance(document_text, topic_or_project):
+
+def evaluate_importance(document_text, project_definition):
     system_prompt = """
     You are an academic reviewer evaluating the importance
     of a document for a given topic or project.
@@ -21,9 +23,9 @@ def evaluate_importance(document_text, topic_or_project):
     {document_text}
     \"\"\"
 
-    TOPIC / PROJECT:
+    TOPIC / PROJECT DEFINITION:
     \"\"\"
-    {topic_or_project}
+    {project_definition}
     \"\"\"
 
     Evaluate how important this document is for the given topic/project.
@@ -35,21 +37,19 @@ def evaluate_importance(document_text, topic_or_project):
 
     Output JSON ONLY in the following format:
     {{
-      "importance_level": 0-5,
-      "support_level": 0-5,
-      "reason": "Brief justification based only on document content"
+      "relevance_score": 0-100,
     }}
-
     Scale definition:
-    - importance_level:
+    - relevance_score:
       0 = not relevant
-      1 = marginally related
-      3 = moderately important
-      5 = central to the topic/project
+      30 = marginally related
+      65 = moderately important
+      100 = central to the topic/project
+    Note: The scale is continuous; provide precise scores.
 
-    - support_level:
-      0 = no explicit support
-      5 = strong, explicit, repeated support
+    The relevance_score should reflect the document's direct
+    contribution to the topic/project based solely on its content.
     """
 
-    return call_llm(system_prompt, user_prompt)
+    raw = call_llm(system_prompt, user_prompt)
+    return json.loads(raw)
