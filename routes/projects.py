@@ -153,11 +153,10 @@ async def upload_paper_to_project(
             
         # Update trustworthiness
         if "trust_result" in processing_result:
-            trust_level = processing_result["trust_result"].get("trust_level")
-            # Map string to int: Low=1, Medium=2, High=3
-            trust_map = {"Low": 1, "Medium": 2, "High": 3}
-            if trust_level in trust_map:
-                ks.trustworthiness = trust_map[trust_level]
+            trust_result = processing_result["trust_result"]
+            if isinstance(trust_result, dict):
+                ks.trustworthiness = trust_result.get("trustworthiness_score")
+                ks.trustworthiness_reason = trust_result.get("reason")
         
         # 6. Create Artifacts
         from models import KnowledgeArtifactDB
@@ -289,10 +288,10 @@ async def download_paper_to_project(
             
         # Update trustworthiness if not set manually
         if ks.trustworthiness is None and "trust_result" in processing_result:
-            trust_level = processing_result["trust_result"].get("trust_level")
-            trust_map = {"Low": 1, "Medium": 2, "High": 3}
-            if trust_level in trust_map:
-                ks.trustworthiness = trust_map[trust_level]
+            trust_result = processing_result["trust_result"]
+            if isinstance(trust_result, dict):
+                ks.trustworthiness = trust_result.get("trustworthiness_score")
+                ks.trustworthiness_reason = trust_result.get("reason")
         
         # 6. Create Artifacts
         from models import KnowledgeArtifactDB

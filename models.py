@@ -53,6 +53,7 @@ class KnowledgeSourceDB(Base):
     raw_text = Column(Text, nullable=True)
     tags = Column(String, nullable=True)  # Comma-separated tags from LLM processing
     trustworthiness = Column(Integer, nullable=True)  # null=not evaluated, 1-3=rating
+    trustworthiness_reason = Column(Text, nullable=True)
     is_favourite = Column(Boolean, default=False)
 
     projects = relationship("ProjectDB", secondary=project_knowledge_source, back_populates="knowledge_sources")

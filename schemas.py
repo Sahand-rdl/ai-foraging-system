@@ -61,6 +61,7 @@ class KnowledgeSourceBase(BaseModel):
     raw_text: Optional[str] = None
     tags: Optional[str] = None
     trustworthiness: Optional[int] = None  # null=not evaluated, 1-3=rating
+    trustworthiness_reason: Optional[str] = None
     is_favourite: Optional[bool] = False
     
     @field_validator('trustworthiness')
