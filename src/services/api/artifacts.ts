@@ -89,3 +89,20 @@ export async function updateArtifactNotes(
   });
   return mapKnowledgeArtifact(updated);
 }
+
+export async function updateArtifactContent(
+  id: number,
+  content: string
+): Promise<KnowledgeArtifact> {
+  const updated = await apiRequest<BackendKnowledgeArtifact>(`/knowledge-artifacts/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ content }),
+  });
+  return mapKnowledgeArtifact(updated);
+}
+
+export async function deleteArtifact(id: number): Promise<void> {
+  await apiRequest(`/knowledge-artifacts/${id}`, {
+    method: "DELETE",
+  });
+}

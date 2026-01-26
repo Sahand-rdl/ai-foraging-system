@@ -9,6 +9,8 @@ interface ArtifactListProps {
   onFilterChange: (filter: KAType | "all") => void;
   onArtifactSelect: (id: number) => void;
   getTypeColor: (type: string) => string;
+  onAccept?: (id: number) => void;
+  onDecline?: (id: number) => void;
 }
 
 const FILTER_TYPES = ["all", "Figure", "Table", "Algo", "Def", "Tech"];
@@ -18,7 +20,9 @@ export function ArtifactList({
   selectedFilter, 
   onFilterChange, 
   onArtifactSelect,
-  getTypeColor 
+  getTypeColor,
+  onAccept,
+  onDecline
 }: ArtifactListProps) {
   return (
     <>
@@ -47,6 +51,8 @@ export function ArtifactList({
               artifact={artifact}
               onClick={() => onArtifactSelect(artifact.id)}
               getTypeColor={getTypeColor}
+              onAccept={onAccept}
+              onDecline={onDecline}
             />
           ))}
         </div>
@@ -56,3 +62,4 @@ export function ArtifactList({
     </>
   );
 }
+

@@ -10,7 +10,9 @@ import {
   addArtifactTag,
   removeArtifactTag,
   updateArtifactNotes,
+  updateArtifactContent,
   sendArtifactChatMessage,
+  deleteArtifact,
   API_BASE_URL,
   type ChatResponse
 } from "@/services/api";
@@ -70,16 +72,11 @@ export default function SourceDetail() {
   const selectedArtifact = artifacts.find(a => a.id === selectedArtifactId);
 
   // Mutations
-  const handleAccept = async (artifactId: number) => {
+  const handleStatusChange = async (artifactId: number, status: "suggestion" | "final") => {
     try {
-        const updated = await updateArtifactStatus(artifactId, "final");
+        const updated = await updateArtifactStatus(artifactId, status);
         setArtifacts(prev => prev.map(a => a.id === artifactId ? updated : a));
     } catch (e) { console.error(e); }
-  };
-
-  const handleReject = async (artifactId: number) => {
-    // Backend doesn't have "rejected" status in KnowledgeArtifact interface (only suggestion/final)
-    console.warn("Reject not implemented in backend API for this status schema");
   };
 
   const toggleFavorite = async (artifactId: number) => {
@@ -115,6 +112,13 @@ export default function SourceDetail() {
     } catch (e) { console.error(e); }
   };
 
+  const handleUpdateContent = async (artifactId: number, content: string) => {
+    setArtifacts(prev => prev.map(a => a.id === artifactId ? { ...a, content } : a));
+    try {
+        await updateArtifactContent(artifactId, content);
+    } catch (e) { console.error(e); }
+  };
+
   const handleSendChatMessage = async (artifactId: number) => {
     if (!currentMessage.trim()) return;
     
@@ -141,6 +145,22 @@ export default function SourceDetail() {
             }
             return a;
         }));
+    } catch (e) { console.error(e); }
+  };
+
+  // Accept a suggestion (mark as final)
+  const handleAccept = async (artifactId: number) => {
+    try {
+      const updated = await updateArtifactStatus(artifactId, "final");
+      setArtifacts(prev => prev.map(a => a.id === artifactId ? updated : a));
+    } catch (e) { console.error(e); }
+  };
+
+  // Decline a suggestion (delete it)
+  const handleDecline = async (artifactId: number) => {
+    try {
+      await deleteArtifact(artifactId);
+      setArtifacts(prev => prev.filter(a => a.id !== artifactId));
     } catch (e) { console.error(e); }
   };
 
@@ -200,8 +220,7 @@ export default function SourceDetail() {
                 getTypeColor={getTypeColor}
                 onBack={() => setSelectedArtifactId(null)}
                 onToggleFavorite={toggleFavorite}
-                onAccept={handleAccept}
-                onReject={handleReject}
+                onStatusChange={handleStatusChange}
                 onRemoveTag={handleRemoveTag}
                 onAddTag={handleAddTag}
                 onUpdateNotes={handleUpdateNotes}
@@ -210,6 +229,9 @@ export default function SourceDetail() {
                 onMessageChange={setCurrentMessage}
                 newTag={newTag}
                 onNewTagChange={setNewTag}
+                onUpdateContent={handleUpdateContent}
+                onAccept={handleAccept}
+                onDecline={handleDecline}
               />
             ) : (
               <ArtifactList 
@@ -218,6 +240,8 @@ export default function SourceDetail() {
                 onFilterChange={setSelectedFilter}
                 onArtifactSelect={setSelectedArtifactId}
                 getTypeColor={getTypeColor}
+                onAccept={handleAccept}
+                onDecline={handleDecline}
               />
             )}
           </div>

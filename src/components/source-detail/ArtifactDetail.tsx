@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ChevronLeft, Sparkles, Heart, X, Check, Tag, MessageSquare, Send } from "lucide-react";
 import { KnowledgeArtifact } from "@/types/source";
 
@@ -11,8 +12,7 @@ interface ArtifactDetailProps {
   getTypeColor: (type: string) => string;
   onBack: () => void;
   onToggleFavorite: (id: number) => void;
-  onAccept: (id: number) => void;
-  onReject: (id: number) => void;
+  onStatusChange: (id: number, status: "suggestion" | "final") => void;
   onRemoveTag: (id: number, tag: string) => void;
   onAddTag: (id: number, tag: string) => void;
   onUpdateNotes: (id: number, notes: string) => void;
@@ -21,6 +21,9 @@ interface ArtifactDetailProps {
   onMessageChange: (message: string) => void;
   newTag: string;
   onNewTagChange: (tag: string) => void;
+  onUpdateContent?: (id: number, content: string) => void;
+  onAccept?: (id: number) => void;
+  onDecline?: (id: number) => void;
 }
 
 export function ArtifactDetail({
@@ -28,8 +31,7 @@ export function ArtifactDetail({
   getTypeColor,
   onBack,
   onToggleFavorite,
-  onAccept,
-  onReject,
+  onStatusChange,
   onRemoveTag,
   onAddTag,
   onUpdateNotes,
@@ -37,8 +39,13 @@ export function ArtifactDetail({
   currentMessage,
   onMessageChange,
   newTag,
-  onNewTagChange
+  onNewTagChange,
+  onUpdateContent,
+  onAccept,
+  onDecline
 }: ArtifactDetailProps) {
+  const isSuggestion = artifact.status === "suggestion";
+
   return (
     <div className="h-full flex flex-col">
       {/* Header with back button */}
@@ -59,13 +66,31 @@ export function ArtifactDetail({
               <Badge variant={getTypeColor(artifact.type) as any} className="text-xs">
                 {artifact.type}
               </Badge>
-              {artifact.status === "suggestion" && (
-                <Badge variant="outline" className="text-xs bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400">
-                  <Sparkles className="h-3 w-3 mr-1" />
-                  Suggestion
-                </Badge>
-              )}
+
+              <Select
+                value={artifact.status}
+                onValueChange={(value) => onStatusChange(artifact.id, value as "suggestion" | "final")}
+              >
+                <SelectTrigger className="h-6 w-[130px] text-xs">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="suggestion">
+                    <div className="flex items-center">
+                      <Sparkles className="h-3 w-3 mr-2" />
+                      Suggestion
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="final">
+                    <div className="flex items-center">
+                      <Check className="h-3 w-3 mr-2" />
+                      Final
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
+
             <h2 className="text-lg font-semibold">KA: {artifact.title}</h2>
           </div>
           <Button
@@ -85,36 +110,32 @@ export function ArtifactDetail({
           {/* Content */}
           <div>
             <h3 className="text-sm font-semibold mb-2">Content</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {artifact.content}
-            </p>
-          </div>
-
-          {/* AI Actions - only show if Suggestion */}
-          {artifact.status === "suggestion" && (
-            <div>
-              <h3 className="text-sm font-semibold mb-2">AI Generated Actions</h3>
-              <div className="flex gap-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => onReject(artifact.id)}
-                  className=""
+            <Textarea 
+              value={artifact.content} 
+              onChange={(e) => onUpdateContent?.(artifact.id, e.target.value)}
+              className="min-h-[150px] font-mono text-sm leading-relaxed"
+            />
+            {isSuggestion && (
+              <div className="flex gap-2 mt-2 justify-end">
+                <Button 
+                  size="sm" 
+                  variant="destructive"
+                  onClick={() => onDecline?.(artifact.id)}
                 >
                   <X className="h-3 w-3 mr-1" />
-                  Reject
+                  Decline
                 </Button>
-                <Button
-                  variant="default"
-                  size="sm"
-                  onClick={() => onAccept(artifact.id)}
+                <Button 
+                  size="sm" 
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                  onClick={() => onAccept?.(artifact.id)}
                 >
                   <Check className="h-3 w-3 mr-1" />
                   Accept
                 </Button>
               </div>
-            </div>
-          )}
+            )}
+          </div>
 
           {/* Tags */}
           <div>
@@ -222,3 +243,4 @@ export function ArtifactDetail({
     </div>
   );
 }
+
