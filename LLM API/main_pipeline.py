@@ -69,7 +69,14 @@ def run_automatic_pipeline(raw_doc_path: str, project_definition: str) -> Dict[s
 
     # 6. Run Relevancy Checker
     print("6. Running Relevancy Checker...")
-    relevance_result = evaluate_importance(key_sections, project_definition)
+    relevance_result = evaluate_importance(full_text, project_definition)
+    print("RAW relevance_result:", relevance_result)
+    print("TYPE:", type(relevance_result))
+    if isinstance(relevance_result, str):
+        try:
+            relevance_result = json.loads(relevance_result)
+        except json.JSONDecodeError:
+            relevance_result = {}
     print("   ... Relevancy Checker complete.")
 
     # 7. Run Ingestion for embeddings

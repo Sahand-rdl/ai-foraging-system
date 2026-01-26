@@ -35,21 +35,19 @@ def evaluate_importance(document_text, topic_or_project):
 
     Output JSON ONLY in the following format:
     {{
-      "importance_level": 0-100,
-      "support_level": 0-100,
+      "relevance_score": 0-100,
       "reason": "Brief justification based only on document content"
     }}
 
     Scale definition:
-    - importance_level:
+    - relevance_score:
       0 = not relevant
       50 = marginally related
       75 = moderately important
       100 = central to the topic/project
-
-    - support_level:
-      0 = no explicit support
-      100 = strong, explicit, repeated support
+    - The relevance_score must be an integer between 0 and 100
+    - You may infer relevance if the document provides foundational methods
+  commonly used in the given topic/project
     """
 
     return call_llm(system_prompt, user_prompt)
