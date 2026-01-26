@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from embeddings.chatter import ScientificAssistant
+from embeddings.searchEngine import KnowledgeSearch
 from main_pipeline import run_automatic_pipeline
 
 
@@ -32,6 +33,7 @@ app.add_middleware(
 
 # ===== Initialize Scientific Assistant (shared instance) =====
 assistant = ScientificAssistant()
+searcher = KnowledgeSearch()
 
 
 # ===== Utility functions =====
@@ -75,6 +77,11 @@ class ProcessRequest(BaseModel):
     project_definition: str
 
 
+class SearchRequest(BaseModel):
+    query: str
+    search_type: str = "semantic"  # or "keyword"
+
+
 # ===== API endpoints =====
 
 
@@ -89,7 +96,7 @@ def list_documents():
 @app.post("/api/chat")
 def chat_with_document(req: ChatRequest):
     """
-    Task 4: Chat with Document (deep-dive using ScientificAssistant)
+    Chat with Document (deep-dive using ScientificAssistant)
     """
     docs = assistant.list_documents()
     if req.doc_id not in docs:
@@ -99,6 +106,25 @@ def chat_with_document(req: ChatRequest):
     reply = assistant.ask(req.query)
 
     return {"reply": reply}
+
+
+@app.post("/api/search")
+def search_documents(req: SearchRequest):
+    """
+    Search the Documents (two modes, semantic or keyword)
+    """
+    if req.search_type not in ["semantic", "keyword"]:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid search_type. Must be 'semantic' or 'keyword'.",
+        )
+
+    if req.search_type == "semantic":
+        results = searcher.semantic_search(req.query)
+    else:
+        results = searcher.keyword_search(req.query)
+
+    return {"results": results}
 
 
 @app.post("/api/process_document")
