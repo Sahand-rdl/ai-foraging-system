@@ -124,6 +124,7 @@ export default function ProjectView() {
           sources={projectSources}
           showHeader={false}
           getSourceTitle={(source) => source.metadata.title || `Source #${source.id}`}
+          projectId={project.id}
         />
       </div>
     </div>

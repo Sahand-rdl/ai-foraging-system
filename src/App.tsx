@@ -32,6 +32,7 @@ const App = () => (
             <Route path="/projects/:id/details" element={<Layout><ProjectInfo /></Layout>} />
             <Route path="/sources" element={<Layout><KnowledgeSources /></Layout>} />
             <Route path="/sources/:id" element={<SourceDetail />} />
+            <Route path="/projects/:projectId/sources/:id" element={<SourceDetail />} />
             <Route path="/artifacts" element={<Layout><Artifacts /></Layout>} />
 
             <Route path="*" element={<NotFound />} />

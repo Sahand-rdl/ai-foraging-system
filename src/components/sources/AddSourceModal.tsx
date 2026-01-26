@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Upload, Link, Loader2, FileText, X } from "lucide-react";
 import { downloadPaper, uploadPaper } from "@/services/api";
 import { useToast } from "@/components/ui/use-toast";
+import { UploadProgress, UPLOAD_STEPS } from "./UploadProgress";
 
 interface AddSourceModalProps {
   projectId: number;
@@ -29,6 +30,8 @@ export function AddSourceModal({ projectId, trigger, onSuccess, open: controlled
   const [url, setUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showProgress, setShowProgress] = useState(false);
+  const [uploadStep, setUploadStep] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUrlSubmit = async (e: React.FormEvent) => {
@@ -61,24 +64,68 @@ export function AddSourceModal({ projectId, trigger, onSuccess, open: controlled
     if (!file) return;
 
     setIsSubmitting(true);
+    setShowProgress(true);
+    setUploadStep(1);
+    
+    // Track if this upload interaction is still active to prevent race conditions from retries
+    const isCurrentUploadActive = { current: true };
+
+    // Simulate the steps
+    let currentStepIndex = 0;
+    
+    // We'll use a recursive timeout function to advance steps based on their duration
+    const advanceStep = () => {
+      if (!isCurrentUploadActive.current || currentStepIndex >= UPLOAD_STEPS.length) {
+         return;
+      }
+
+      const step = UPLOAD_STEPS[currentStepIndex];
+      
+      setTimeout(() => {
+        if (!isCurrentUploadActive.current) return;
+        setUploadStep(step.id + 1); 
+        currentStepIndex++;
+        advanceStep();
+      }, step.duration || 3000);
+    };
+
+    advanceStep();
+
     try {
-      await uploadPaper(projectId, file);
-      toast({
-        title: "Success",
-        description: "Paper uploaded successfully.",
-      });
-      setFile(null);
-      if (setOpen) setOpen(false);
-      onSuccess?.();
+      const totalDuration = UPLOAD_STEPS.reduce((acc, step) => acc + (step.duration || 0), 0);
+      const minTimePromise = new Promise(resolve => setTimeout(resolve, totalDuration));
+
+      // Wait for both the actual upload and the simulation time to complete
+      await Promise.all([
+        uploadPaper(projectId, file),
+        minTimePromise
+      ]);
+      
+      // Success handling after both are done
+      setTimeout(() => {
+        toast({
+            title: "Success",
+            description: "Paper uploaded successfully.",
+          });
+          setFile(null);
+          setShowProgress(false); // Reset UI
+          setUploadStep(0);
+          if (setOpen) setOpen(false);
+          onSuccess?.();
+          setIsSubmitting(false);
+      }, 1000); // Small buffer for the final step to settle visually
+
     } catch (error) {
       console.error(error);
+      isCurrentUploadActive.current = false; // Stop the simulation
       toast({
         variant: "destructive",
         title: "Error",
         description: "Failed to upload paper.",
       });
-    } finally {
       setIsSubmitting(false);
+      setShowProgress(false); 
+      return;
     }
   };
 
@@ -131,49 +178,57 @@ export function AddSourceModal({ projectId, trigger, onSuccess, open: controlled
           </TabsContent>
 
           <TabsContent value="upload" className="space-y-4 py-4">
-            <div 
-              className="border-2 border-dashed rounded-lg p-8 flex flex-col items-center justify-center text-center hover:bg-accent/50 transition-colors cursor-pointer"
-              onClick={() => fileInputRef.current?.click()}
-            >
-              <input 
-                type="file" 
-                className="hidden" 
-                ref={fileInputRef} 
-                accept=".pdf" 
-                onChange={handleFileChange}
-              />
-              {file ? (
-                <div className="flex flex-col items-center gap-2">
-                  <FileText className="h-10 w-10 text-primary" />
-                  <p className="font-medium text-sm">{file.name}</p>
-                  <p className="text-xs text-muted-foreground">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="mt-2 h-8 text-destructive hover:text-destructive"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setFile(null);
-                    }}
-                  >
-                    <X className="mr-2 h-3 w-3" /> Remove
-                  </Button>
+            {showProgress ? (
+                <div className="py-4">
+                    <UploadProgress currentStep={uploadStep} fileName={file?.name || "Document"} />
                 </div>
-              ) : (
+            ) : (
                 <>
-                  <Upload className="h-10 w-10 text-muted-foreground mb-4" />
-                  <p className="text-sm font-medium">Click to select a PDF file</p>
-                  <p className="text-xs text-muted-foreground mt-1">Accepts PDF files up to 50MB</p>
+                    <div 
+                    className="border-2 border-dashed rounded-lg p-8 flex flex-col items-center justify-center text-center hover:bg-accent/50 transition-colors cursor-pointer"
+                    onClick={() => fileInputRef.current?.click()}
+                    >
+                    <input 
+                        type="file" 
+                        className="hidden" 
+                        ref={fileInputRef} 
+                        accept=".pdf" 
+                        onChange={handleFileChange}
+                    />
+                    {file ? (
+                        <div className="flex flex-col items-center gap-2">
+                        <FileText className="h-10 w-10 text-primary" />
+                        <p className="font-medium text-sm">{file.name}</p>
+                        <p className="text-xs text-muted-foreground">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                        <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="mt-2 h-8 text-destructive hover:text-destructive"
+                            onClick={(e) => {
+                            e.stopPropagation();
+                            setFile(null);
+                            }}
+                        >
+                            <X className="mr-2 h-3 w-3" /> Remove
+                        </Button>
+                        </div>
+                    ) : (
+                        <>
+                        <Upload className="h-10 w-10 text-muted-foreground mb-4" />
+                        <p className="text-sm font-medium">Click to select a PDF file</p>
+                        <p className="text-xs text-muted-foreground mt-1">Accepts PDF files up to 50MB</p>
+                        </>
+                    )}
+                    </div>
+        
+                    <div className="flex justify-end mt-4">
+                    <Button onClick={handleFileUpload} disabled={!file || isSubmitting}>
+                        {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                        Upload PDF
+                    </Button>
+                    </div>
                 </>
-              )}
-            </div>
-
-            <div className="flex justify-end">
-              <Button onClick={handleFileUpload} disabled={!file || isSubmitting}>
-                {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Upload PDF
-              </Button>
-            </div>
+            )}
           </TabsContent>
         </Tabs>
       </DialogContent>

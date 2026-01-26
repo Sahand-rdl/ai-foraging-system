@@ -28,7 +28,7 @@ import { ArtifactList } from "@/components/source-detail/ArtifactList";
 import { ArtifactDetail } from "@/components/source-detail/ArtifactDetail";
 
 export default function SourceDetail() {
-  const { id } = useParams();
+  const { id, projectId } = useParams();
   const navigate = useNavigate();
   
   const [source, setSource] = useState<KnowledgeSource | null>(null);
@@ -171,12 +171,20 @@ export default function SourceDetail() {
       pdfUrl = source.metadata.url;
   }
 
+  const handleBack = () => {
+    if (projectId) {
+        navigate(`/projects/${projectId}`);
+    } else {
+        navigate("/sources");
+    }
+  };
+
   return (
     <div className="h-screen flex flex-col bg-background">
       <ResizablePanelGroup direction="horizontal" className="flex-1">
         {/* PDF Viewer */}
         <ResizablePanel defaultSize={60} minSize={30}>
-          <PDFPreview pdfUrl={pdfUrl} onBack={() => navigate("/sources")} />
+          <PDFPreview pdfUrl={pdfUrl} onBack={handleBack} />
         </ResizablePanel>
 
         <ResizableHandle withHandle />

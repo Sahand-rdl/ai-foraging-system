@@ -128,20 +128,9 @@ export function SourcePreviewPane({ source, title, onClose, onOpenSource }: Sour
             </div>
           </div>
 
-          {/* Raw Text / Abstract */}
-          <div className="space-y-2">
-            <h4 className="text-sm font-semibold">Content Preview</h4>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {source.rawText.length > 500
-                ? `${source.rawText.substring(0, 500)}...`
-                : source.rawText}
-            </p>
-          </div>
-
-
+        
           {/* Engineer Notes */}
           <div className="space-y-3">
-            <h4 className="text-sm font-semibold">Engineer Notes</h4>
             <Textarea
               placeholder="Add your notes about this source..."
               className="min-h-[100px] text-sm resize-none"

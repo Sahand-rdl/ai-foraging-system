@@ -16,6 +16,7 @@ interface SourcesTableProps {
   onSelectSource: (id: number | null) => void;
   onOpenSource?: (id: number) => void;
   getTitle?: (source: KnowledgeSource) => string;
+  compact?: boolean;
 }
 
 function getTrustworthinessColor(level: Trustworthiness) {
@@ -43,6 +44,7 @@ export function SourcesTable({
   onSelectSource,
   onOpenSource,
   getTitle,
+  compact = false,
 }: SourcesTableProps) {
   const defaultGetTitle = (source: KnowledgeSource) => {
     // Extract title from metadata or use a default
@@ -53,13 +55,17 @@ export function SourcesTable({
 
   return (
     <div className="bg-card">
-      <Table>
+      <Table className="table-fixed w-full">
         <TableHeader>
           <TableRow className="hover:bg-transparent">
             <TableHead className="w-[50px]">Type</TableHead>
-            <TableHead>Title</TableHead>
-            <TableHead className="w-[120px]">Trustworthiness</TableHead>
-            <TableHead className="w-[240px]">Authors</TableHead>
+            <TableHead className="w-auto">Title</TableHead>
+            {!compact && (
+              <>
+                <TableHead className="w-[120px]">Trustworthiness</TableHead>
+                <TableHead className="w-[240px]">Authors</TableHead>
+              </>
+            )}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -74,28 +80,36 @@ export function SourcesTable({
               }
               onDoubleClick={() => onOpenSource?.(source.id)}
             >
-              <TableCell>
+              <TableCell className="w-[50px]">
                 {getSourceType(source) === "PDF" ? (
                   <FileText className="h-4 w-4 text-red-400" />
                 ) : (
                   <LinkIcon className="h-4 w-4 text-blue-400" />
                 )}
               </TableCell>
-              <TableCell className="font-medium">{titleFn(source)}</TableCell>
-              <TableCell>
-                <span
-                  className={`text-sm font-semibold ${getTrustworthinessColor(
-                    source.trustworthiness
-                  )}`}
-                >
-                  {source.trustworthiness}
-                </span>
+              <TableCell className="font-medium">
+                <div className=" w-full max-w-[300px] md:max-w-md lg:max-w-lg xl:max-w-xl" title={titleFn(source)}>
+                  {titleFn(source)}
+                </div>
               </TableCell>
-              <TableCell>
-                <span className="text-sm text-muted-foreground truncate block max-w-[200px]">
-                  {source.metadata.authors || "Unknown"}
-                </span>
-              </TableCell>
+              {!compact && (
+                <>
+                  <TableCell className="w-[120px]">
+                    <span
+                      className={`text-sm font-semibold ${getTrustworthinessColor(
+                        source.trustworthiness
+                      )}`}
+                    >
+                      {source.trustworthiness}
+                    </span>
+                  </TableCell>
+                  <TableCell className="w-[240px]">
+                    <span className="text-sm text-muted-foreground truncate block max-w-[200px]">
+                      {source.metadata.authors || "Unknown"}
+                    </span>
+                  </TableCell>
+                </>
+              )}
             </TableRow>
           ))}
         </TableBody>

@@ -200,7 +200,7 @@ export function PDFPreview({ pdfUrl, onBack }: PDFPreviewProps) {
   return (
     <div className="h-full flex flex-col bg-muted/30">
       {/* Controls */}
-      <div className="flex items-center justify-between gap-2 p-2 border-b border-border bg-card">
+      <div className="flex items-center justify-between gap-2 p-2 border-b border-border bg-card h-[64px]">
         {/* Left: Back button, Page count and zoom */}
         <div className="flex items-center gap-2">
           {onBack && (

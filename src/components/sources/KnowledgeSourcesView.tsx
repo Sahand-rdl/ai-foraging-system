@@ -14,6 +14,7 @@ interface KnowledgeSourcesViewProps {
   description?: string;
   showHeader?: boolean;
   getSourceTitle?: (source: KnowledgeSource) => string;
+  projectId?: number;
 }
 
 export function KnowledgeSourcesView({
@@ -22,6 +23,7 @@ export function KnowledgeSourcesView({
   description = "Manage and analyze your knowledge sources",
   showHeader = true,
   getSourceTitle,
+  projectId,
 }: KnowledgeSourcesViewProps) {
   const navigate = useNavigate();
   const [selectedSourceId, setSelectedSourceId] = useState<number | null>(null);
@@ -36,7 +38,11 @@ export function KnowledgeSourcesView({
   const titleFn = getSourceTitle || defaultGetTitle;
 
   const handleOpenSource = (id: number) => {
-    navigate(`/sources/${id}`);
+    if (projectId) {
+      navigate(`/projects/${projectId}/sources/${id}`);
+    } else {
+      navigate(`/sources/${id}`);
+    }
   };
 
   return (
@@ -73,6 +79,7 @@ export function KnowledgeSourcesView({
               onSelectSource={setSelectedSourceId}
               onOpenSource={handleOpenSource}
               getTitle={titleFn}
+              compact={!!selectedSource}
             />
           </ScrollArea>
         </div>
