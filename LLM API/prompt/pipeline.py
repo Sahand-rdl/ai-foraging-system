@@ -2,7 +2,7 @@ from .extractor import extract_entities
 from .self_evaluator import check_completeness, self_assess
 import json
 
-def run_pipeline(document_text, iterations=5, prompt_versions=None):
+def run_pipeline(document_text, iterations=3, prompt_versions=None):
     """
     Run iterative extraction with self-assessment feedback.
 
