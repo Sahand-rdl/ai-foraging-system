@@ -207,6 +207,7 @@
         "$ref": "#/pictures/1"
       },
       {
+<<<<<<< HEAD
         "$ref": "#/texts/73"
       },
       {
@@ -226,6 +227,15 @@
       },
       {
         "$ref": "#/groups/2"
+=======
+        "$ref": "#/texts/78"
+      },
+      {
+        "$ref": "#/texts/79"
+      },
+      {
+        "$ref": "#/texts/80"
+>>>>>>> origin/main
       },
       {
         "$ref": "#/texts/81"
@@ -237,6 +247,7 @@
         "$ref": "#/texts/83"
       },
       {
+<<<<<<< HEAD
         "$ref": "#/texts/84"
       },
       {
@@ -247,12 +258,15 @@
       },
       {
         "$ref": "#/texts/87"
+=======
+        "$ref": "#/groups/2"
+>>>>>>> origin/main
       },
       {
-        "$ref": "#/texts/88"
+        "$ref": "#/texts/86"
       },
       {
-        "$ref": "#/texts/89"
+        "$ref": "#/texts/87"
       },
       {
         "$ref": "#/texts/90"
@@ -282,6 +296,7 @@
         "$ref": "#/pictures/3"
       },
       {
+<<<<<<< HEAD
         "$ref": "#/texts/99"
       },
       {
@@ -294,6 +309,8 @@
         "$ref": "#/texts/102"
       },
       {
+=======
+>>>>>>> origin/main
         "$ref": "#/texts/103"
       },
       {
@@ -333,15 +350,26 @@
         "$ref": "#/texts/115"
       },
       {
-        "$ref": "#/texts/116"
+        "$ref": "#/pictures/4"
       },
       {
+<<<<<<< HEAD
         "$ref": "#/groups/3"
+=======
+        "$ref": "#/texts/117"
+      },
+      {
+        "$ref": "#/texts/118"
+      },
+      {
+        "$ref": "#/texts/119"
+>>>>>>> origin/main
       },
       {
         "$ref": "#/texts/120"
       },
       {
+<<<<<<< HEAD
         "$ref": "#/texts/121"
       },
       {
@@ -349,6 +377,18 @@
       },
       {
         "$ref": "#/texts/123"
+      },
+      {
+        "$ref": "#/texts/124"
+      },
+      {
+        "$ref": "#/texts/125"
+      },
+      {
+        "$ref": "#/texts/126"
+=======
+        "$ref": "#/groups/3"
+>>>>>>> origin/main
       },
       {
         "$ref": "#/texts/124"
@@ -384,7 +424,7 @@
         "$ref": "#/texts/134"
       },
       {
-        "$ref": "#/texts/135"
+        "$ref": "#/tables/0"
       },
       {
         "$ref": "#/texts/136"
@@ -471,7 +511,7 @@
         "$ref": "#/texts/163"
       },
       {
-        "$ref": "#/texts/164"
+        "$ref": "#/tables/1"
       },
       {
         "$ref": "#/texts/165"
@@ -510,10 +550,10 @@
         "$ref": "#/texts/176"
       },
       {
-        "$ref": "#/texts/177"
+        "$ref": "#/tables/2"
       },
       {
-        "$ref": "#/texts/178"
+        "$ref": "#/tables/3"
       },
       {
         "$ref": "#/texts/179"
@@ -552,49 +592,97 @@
         "$ref": "#/texts/190"
       },
       {
+<<<<<<< HEAD
         "$ref": "#/groups/4"
       },
       {
         "$ref": "#/texts/197"
+=======
+        "$ref": "#/texts/191"
+      },
+      {
+        "$ref": "#/texts/192"
+      },
+      {
+        "$ref": "#/texts/193"
+      },
+      {
+        "$ref": "#/texts/194"
+      },
+      {
+        "$ref": "#/groups/4"
+      },
+      {
+        "$ref": "#/texts/201"
+>>>>>>> origin/main
       },
       {
         "$ref": "#/groups/5"
       },
       {
+<<<<<<< HEAD
         "$ref": "#/texts/218"
+=======
+        "$ref": "#/texts/222"
+>>>>>>> origin/main
       },
       {
         "$ref": "#/groups/6"
       },
       {
+<<<<<<< HEAD
         "$ref": "#/texts/233"
       },
       {
         "$ref": "#/texts/234"
+=======
+        "$ref": "#/texts/237"
+      },
+      {
+        "$ref": "#/texts/238"
+>>>>>>> origin/main
       },
       {
         "$ref": "#/pictures/5"
       },
       {
+<<<<<<< HEAD
         "$ref": "#/texts/302"
       },
       {
         "$ref": "#/texts/303"
+=======
+        "$ref": "#/texts/306"
+      },
+      {
+        "$ref": "#/texts/307"
+>>>>>>> origin/main
       },
       {
         "$ref": "#/pictures/6"
       },
       {
+<<<<<<< HEAD
         "$ref": "#/texts/414"
       },
       {
         "$ref": "#/texts/415"
+=======
+        "$ref": "#/texts/418"
+      },
+      {
+        "$ref": "#/texts/419"
+>>>>>>> origin/main
       },
       {
         "$ref": "#/pictures/7"
       },
       {
+<<<<<<< HEAD
         "$ref": "#/texts/526"
+=======
+        "$ref": "#/texts/530"
+>>>>>>> origin/main
       }
     ],
     "content_layer": "body",
@@ -637,10 +725,17 @@
       },
       "children": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/79"
         },
         {
           "$ref": "#/texts/80"
+=======
+          "$ref": "#/texts/84"
+        },
+        {
+          "$ref": "#/texts/85"
+>>>>>>> origin/main
         }
       ],
       "content_layer": "body",
@@ -654,6 +749,7 @@
       },
       "children": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/117"
         },
         {
@@ -661,6 +757,15 @@
         },
         {
           "$ref": "#/texts/119"
+=======
+          "$ref": "#/texts/121"
+        },
+        {
+          "$ref": "#/texts/122"
+        },
+        {
+          "$ref": "#/texts/123"
+>>>>>>> origin/main
         }
       ],
       "content_layer": "body",
@@ -674,6 +779,7 @@
       },
       "children": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/191"
         },
         {
@@ -686,10 +792,13 @@
           "$ref": "#/texts/194"
         },
         {
+=======
+>>>>>>> origin/main
           "$ref": "#/texts/195"
         },
         {
           "$ref": "#/texts/196"
+<<<<<<< HEAD
         }
       ],
       "content_layer": "body",
@@ -702,6 +811,12 @@
         "$ref": "#/body"
       },
       "children": [
+=======
+        },
+        {
+          "$ref": "#/texts/197"
+        },
+>>>>>>> origin/main
         {
           "$ref": "#/texts/198"
         },
@@ -710,10 +825,34 @@
         },
         {
           "$ref": "#/texts/200"
+<<<<<<< HEAD
         },
         {
           "$ref": "#/texts/201"
         },
+        {
+          "$ref": "#/texts/202"
+        },
+        {
+          "$ref": "#/texts/203"
+        },
+        {
+          "$ref": "#/texts/204"
+        },
+=======
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/5",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+>>>>>>> origin/main
         {
           "$ref": "#/texts/202"
         },
@@ -781,10 +920,34 @@
         },
         {
           "$ref": "#/texts/221"
+<<<<<<< HEAD
         },
         {
           "$ref": "#/texts/222"
         },
+        {
+          "$ref": "#/texts/223"
+        },
+        {
+          "$ref": "#/texts/224"
+        },
+        {
+          "$ref": "#/texts/225"
+        },
+=======
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/6",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+>>>>>>> origin/main
         {
           "$ref": "#/texts/223"
         },
@@ -814,6 +977,21 @@
         },
         {
           "$ref": "#/texts/232"
+<<<<<<< HEAD
+=======
+        },
+        {
+          "$ref": "#/texts/233"
+        },
+        {
+          "$ref": "#/texts/234"
+        },
+        {
+          "$ref": "#/texts/235"
+        },
+        {
+          "$ref": "#/texts/236"
+>>>>>>> origin/main
         }
       ],
       "content_layer": "body",
@@ -2707,6 +2885,657 @@
       "text": "total of 6"
     },
     {
+<<<<<<< HEAD
+=======
+      "self_ref": "#/texts/45",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 330.33333333333337,
+            "t": 720.8541666666666,
+            "r": 359.0,
+            "b": 709.8541666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        }
+      ],
+      "orig": "ndino",
+      "text": "ndino"
+    },
+    {
+      "self_ref": "#/texts/46",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 321.33333333333337,
+            "t": 709.1875,
+            "r": 368.33333333333337,
+            "b": 700.5208333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "Probabilities",
+      "text": "Probabilities"
+    },
+    {
+      "self_ref": "#/texts/47",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 330.33333333333337,
+            "t": 689.1875,
+            "r": 359.33333333333337,
+            "b": 680.5208333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            7
+          ]
+        }
+      ],
+      "orig": "Softmax",
+      "text": "Softmax"
+    },
+    {
+      "self_ref": "#/texts/48",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 334.33333333333337,
+            "t": 668.5208333333334,
+            "r": 355.66666666666663,
+            "b": 660.5208333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "Linear",
+      "text": "Linear"
+    },
+    {
+      "self_ref": "#/texts/49",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 324.33333333333337,
+            "t": 645.8541666666667,
+            "r": 365.66666666666663,
+            "b": 638.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            8
+          ]
+        }
+      ],
+      "orig": "Add&Norm",
+      "text": "Add&Norm"
+    },
+    {
+      "self_ref": "#/texts/50",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 335.33333333333337,
+            "t": 633.1875,
+            "r": 354.33333333333337,
+            "b": 624.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            4
+          ]
+        }
+      ],
+      "orig": "Feed",
+      "text": "Feed"
+    },
+    {
+      "self_ref": "#/texts/51",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 330.33333333333337,
+            "t": 624.5208333333333,
+            "r": 359.33333333333337,
+            "b": 614.5208333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            7
+          ]
+        }
+      ],
+      "orig": "Forward",
+      "text": "Forward"
+    },
+    {
+      "self_ref": "#/texts/52",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 324.0,
+            "t": 601.8541666666666,
+            "r": 366.33333333333337,
+            "b": 592.5208333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            8
+          ]
+        }
+      ],
+      "orig": "Add&Norm",
+      "text": "Add&Norm"
+    },
+    {
+      "self_ref": "#/texts/53",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 246.0,
+            "t": 593.5208333333334,
+            "r": 288.3333333333333,
+            "b": 584.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            8
+          ]
+        }
+      ],
+      "orig": "Add&Norm",
+      "text": "Add&Norm"
+    },
+    {
+      "self_ref": "#/texts/54",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 326.33333333333337,
+            "t": 587.5208333333334,
+            "r": 363.33333333333337,
+            "b": 579.5208333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "Multi-Head",
+      "text": "Multi-Head"
+    },
+    {
+      "self_ref": "#/texts/55",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 258.0,
+            "t": 579.5208333333334,
+            "r": 276.3333333333333,
+            "b": 571.5208333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            4
+          ]
+        }
+      ],
+      "orig": "Feed",
+      "text": "Feed"
+    },
+    {
+      "self_ref": "#/texts/56",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 329.33333333333337,
+            "t": 578.8541666666666,
+            "r": 360.66666666666663,
+            "b": 569.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "Attention",
+      "text": "Attention"
+    },
+    {
+      "self_ref": "#/texts/57",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 252.66666666666669,
+            "t": 570.8541666666666,
+            "r": 281.6666666666667,
+            "b": 562.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            7
+          ]
+        }
+      ],
+      "orig": "Forward",
+      "text": "Forward"
+    },
+    {
+      "self_ref": "#/texts/58",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 395.0,
+            "t": 570.5208333333334,
+            "r": 408.0,
+            "b": 561.8541666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2
+          ]
+        }
+      ],
+      "orig": "Nx",
+      "text": "Nx"
+    },
+    {
+      "self_ref": "#/texts/59",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 324.0,
+            "t": 549.1875,
+            "r": 366.33333333333337,
+            "b": 539.5208333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            8
+          ]
+        }
+      ],
+      "orig": "Add&Norm",
+      "text": "Add&Norm"
+    },
+    {
+      "self_ref": "#/texts/60",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 201.66666666666666,
+            "t": 542.5208333333334,
+            "r": 213.66666666666666,
+            "b": 535.5208333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2
+          ]
+        }
+      ],
+      "orig": "Nx",
+      "text": "Nx"
+    },
+    {
+      "self_ref": "#/texts/61",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 246.33333333333334,
+            "t": 540.5208333333334,
+            "r": 288.6666666666667,
+            "b": 530.8541666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            8
+          ]
+        }
+      ],
+      "orig": "Add&Norm",
+      "text": "Add&Norm"
+    },
+    {
+      "self_ref": "#/texts/62",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 331.0,
+            "t": 535.5208333333334,
+            "r": 359.0,
+            "b": 526.8541666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "Masked",
+      "text": "Masked"
+    },
+    {
+      "self_ref": "#/texts/63",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 248.33333333333334,
+            "t": 526.5208333333334,
+            "r": 285.3333333333333,
+            "b": 518.8541666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "Multi-Head",
+      "text": "Multi-Head"
+    },
+    {
+      "self_ref": "#/texts/64",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 326.33333333333337,
+            "t": 525.8541666666666,
+            "r": 363.66666666666663,
+            "b": 518.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "Multi-Head",
+      "text": "Multi-Head"
+    },
+    {
+      "self_ref": "#/texts/65",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 251.33333333333331,
+            "t": 518.5208333333334,
+            "r": 283.0,
+            "b": 508.52083333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "Attention",
+      "text": "Attention"
+    },
+    {
+      "self_ref": "#/texts/66",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 330.66666666666663,
+            "t": 517.8541666666666,
+            "r": 362.0,
+            "b": 507.85416666666663,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "Attention",
+      "text": "Attention"
+    },
+    {
+      "self_ref": "#/texts/67",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 195.66666666666666,
+            "t": 482.85416666666663,
+            "r": 233.33333333333334,
+            "b": 472.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "Positional",
+      "text": "Positional"
+    },
+    {
+      "self_ref": "#/texts/68",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 378.0,
+            "t": 480.52083333333337,
+            "r": 416.66666666666663,
+            "b": 470.8541666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "Positional",
+      "text": "Positional"
+    },
+    {
+>>>>>>> origin/main
       "self_ref": "#/texts/69",
       "parent": {
         "$ref": "#/pictures/1"
@@ -2718,20 +3547,36 @@
         {
           "page_no": 3,
           "bbox": {
+<<<<<<< HEAD
             "l": 209.33333324285715,
             "t": 632.1874999714286,
             "r": 221.99999990952378,
             "b": 624.1874999714286,
+=======
+            "l": 196.0,
+            "t": 472.1875,
+            "r": 232.66666666666666,
+            "b": 460.8541666666667,
+>>>>>>> origin/main
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
             0,
+<<<<<<< HEAD
             2
           ]
         }
       ],
       "orig": "Nx",
       "text": "Nx"
+=======
+            8
+          ]
+        }
+      ],
+      "orig": "Encoding",
+      "text": "Encoding"
+>>>>>>> origin/main
     },
     {
       "self_ref": "#/texts/70",
@@ -2745,20 +3590,36 @@
         {
           "page_no": 3,
           "bbox": {
+<<<<<<< HEAD
             "l": 154.66666661904762,
             "t": 535.5208333095238,
             "r": 161.33333328571428,
             "b": 528.1874999761906,
+=======
+            "l": 378.0,
+            "t": 470.8541666666667,
+            "r": 415.33333333333337,
+            "b": 458.8541666666667,
+>>>>>>> origin/main
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
             0,
+<<<<<<< HEAD
             1
           ]
         }
       ],
       "orig": "+",
       "text": "+"
+=======
+            8
+          ]
+        }
+      ],
+      "orig": "Encoding",
+      "text": "Encoding"
+>>>>>>> origin/main
     },
     {
       "self_ref": "#/texts/71",
@@ -2772,20 +3633,36 @@
         {
           "page_no": 3,
           "bbox": {
+<<<<<<< HEAD
             "l": 192.62184749330015,
             "t": 542.3884491022018,
             "r": 230.7114852496478,
             "b": 533.3198843693322,
+=======
+            "l": 258.0,
+            "t": 457.1875,
+            "r": 277.0,
+            "b": 447.8541666666667,
+>>>>>>> origin/main
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
             0,
+<<<<<<< HEAD
             10
           ]
         }
       ],
       "orig": "Positional",
       "text": "Positional"
+=======
+            5
+          ]
+        }
+      ],
+      "orig": "Input",
+      "text": "Input"
+>>>>>>> origin/main
     },
     {
       "self_ref": "#/texts/72",
@@ -2799,24 +3676,169 @@
         {
           "page_no": 3,
           "bbox": {
+<<<<<<< HEAD
             "l": 192.66666646296298,
             "t": 530.8541666444444,
             "r": 229.33333312962964,
             "b": 521.5208333111111,
+=======
+            "l": 333.0,
+            "t": 456.5208333333333,
+            "r": 357.0,
+            "b": 448.5208333333333,
+>>>>>>> origin/main
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
             0,
-            8
+            6
           ]
         }
       ],
-      "orig": "Encoding",
-      "text": "Encoding"
+      "orig": "Output",
+      "text": "Output"
     },
     {
       "self_ref": "#/texts/73",
       "parent": {
+<<<<<<< HEAD
+=======
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 247.66666666666666,
+            "t": 448.8541666666667,
+            "r": 286.6666666666667,
+            "b": 437.8541666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "Embedding",
+      "text": "Embedding"
+    },
+    {
+      "self_ref": "#/texts/74",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 325.33333333333337,
+            "t": 448.5208333333333,
+            "r": 364.66666666666663,
+            "b": 438.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "Embedding",
+      "text": "Embedding"
+    },
+    {
+      "self_ref": "#/texts/75",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 254.33333333333331,
+            "t": 418.1875,
+            "r": 280.0,
+            "b": 408.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "Inputs",
+      "text": "Inputs"
+    },
+    {
+      "self_ref": "#/texts/76",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 328.66666666666663,
+            "t": 419.1875,
+            "r": 361.33333333333337,
+            "b": 408.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            7
+          ]
+        }
+      ],
+      "orig": "Outputs",
+      "text": "Outputs"
+    },
+    {
+      "self_ref": "#/texts/77",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 320.66666666666663,
+            "t": 407.5208333333333,
+            "r": 369.66666666666663,
+            "b": 397.5208333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "(shifted right)",
+      "text": "(shifted right)"
+    },
+    {
+      "self_ref": "#/texts/78",
+      "parent": {
+>>>>>>> origin/main
         "$ref": "#/body"
       },
       "children": [],
@@ -2843,7 +3865,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/74",
+=======
+      "self_ref": "#/texts/79",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -2870,7 +3896,11 @@
       "text": "Encoder: The encoder is composed of a stack of N = 6 identical layers. Each layer has two sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, positionwise fully connected feed-forward network. We employ a residual connection [11] around each of the two sub-layers, followed by layer normalization [1]. That is, the output of each sub-layer is LayerNorm( x +Sublayer( x )) , where Sublayer( x ) is the function implemented by the sub-layer itself. To facilitate these residual connections, all sub-layers in the model, as well as the embedding layers, produce outputs of dimension d model = 512 ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/75",
+=======
+      "self_ref": "#/texts/80",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -2897,7 +3927,11 @@
       "text": "Decoder: The decoder is also composed of a stack of N = 6 identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head attention over the output of the encoder stack. Similar to the encoder, we employ residual connections around each of the sub-layers, followed by layer normalization. We also modify the self-attention sub-layer in the decoder stack to prevent positions from attending to subsequent positions. This masking, combined with fact that the output embeddings are offset by one position, ensures that the predictions for position i can depend only on the known outputs at positions less than i ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/76",
+=======
+      "self_ref": "#/texts/81",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -2925,7 +3959,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/77",
+=======
+      "self_ref": "#/texts/82",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -2952,7 +3990,11 @@
       "text": "An attention function can be described as mapping a query and a set of key-value pairs to an output, where the query, keys, values, and output are all vectors. The output is computed as a weighted sum of the values, where the weight assigned to each value is computed by a compatibility function of the query with the corresponding key."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/78",
+=======
+      "self_ref": "#/texts/83",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -2979,7 +4021,11 @@
       "text": "•"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/79",
+=======
+      "self_ref": "#/texts/84",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/2"
       },
@@ -3008,7 +4054,11 @@
       "marker": ""
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/80",
+=======
+      "self_ref": "#/texts/85",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/2"
       },
@@ -3037,7 +4087,11 @@
       "marker": ""
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/81",
+=======
+      "self_ref": "#/texts/86",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3064,6 +4118,7 @@
       "text": "3"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/82",
       "parent": {
         "$ref": "#/body"
@@ -3254,6 +4309,9 @@
     },
     {
       "self_ref": "#/texts/89",
+=======
+      "self_ref": "#/texts/87",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3470,7 +4528,173 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/97",
+=======
+      "self_ref": "#/texts/88",
+      "parent": {
+        "$ref": "#/pictures/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 203.66666666666666,
+            "t": 684.8541666666666,
+            "r": 228.0,
+            "b": 678.5208333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "MatMul",
+      "text": "MatMul"
+    },
+    {
+      "self_ref": "#/texts/89",
+      "parent": {
+        "$ref": "#/pictures/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 184.66666666666666,
+            "t": 664.1875,
+            "r": 212.33333333333334,
+            "b": 657.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            7
+          ]
+        }
+      ],
+      "orig": "SoftMax",
+      "text": "SoftMax"
+    },
+    {
+      "self_ref": "#/texts/90",
+      "parent": {
+        "$ref": "#/pictures/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 179.33333333333334,
+            "t": 643.5208333333333,
+            "r": 217.0,
+            "b": 635.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            11
+          ]
+        }
+      ],
+      "orig": "Mask (opt.)",
+      "text": "Mask (opt.)"
+    },
+    {
+      "self_ref": "#/texts/91",
+      "parent": {
+        "$ref": "#/pictures/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 189.0,
+            "t": 623.1875,
+            "r": 208.0,
+            "b": 615.8541666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        }
+      ],
+      "orig": "Scale",
+      "text": "Scale"
+    },
+    {
+      "self_ref": "#/texts/92",
+      "parent": {
+        "$ref": "#/pictures/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 186.0,
+            "t": 601.1875,
+            "r": 210.66666666666666,
+            "b": 594.8541666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "MatMul",
+      "text": "MatMul"
+    },
+    {
+      "self_ref": "#/texts/93",
+      "parent": {
+        "$ref": "#/pictures/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 206.66666666666666,
+            "t": 579.8541666666666,
+            "r": 212.66666666666666,
+            "b": 572.5208333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1
+          ]
+        }
+      ],
+      "orig": "K",
+      "text": "K"
+    },
+    {
+      "self_ref": "#/texts/94",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/3"
       },
@@ -3497,7 +4721,7 @@
       "text": "Figure 2: (left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of several attention layers running in parallel."
     },
     {
-      "self_ref": "#/texts/98",
+      "self_ref": "#/texts/95",
       "parent": {
         "$ref": "#/pictures/3"
       },
@@ -3525,8 +4749,200 @@
       "level": 1
     },
     {
+      "self_ref": "#/texts/96",
+      "parent": {
+<<<<<<< HEAD
+=======
+        "$ref": "#/pictures/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 388.3333333333333,
+            "t": 697.5208333333334,
+            "r": 408.3333333333333,
+            "b": 687.5208333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "Linear",
+      "text": "Linear"
+    },
+    {
+      "self_ref": "#/texts/97",
+      "parent": {
+        "$ref": "#/pictures/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 385.0,
+            "t": 672.1875,
+            "r": 410.3333333333333,
+            "b": 663.8541666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "Concat",
+      "text": "Concat"
+    },
+    {
+      "self_ref": "#/texts/98",
+      "parent": {
+        "$ref": "#/pictures/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 365.6666666666667,
+            "t": 641.5208333333333,
+            "r": 431.3333333333333,
+            "b": 634.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            17
+          ]
+        }
+      ],
+      "orig": "ScaledDot-Product",
+      "text": "ScaledDot-Product"
+    },
+    {
       "self_ref": "#/texts/99",
       "parent": {
+        "$ref": "#/pictures/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 384.6666666666667,
+            "t": 632.1875,
+            "r": 414.6666666666667,
+            "b": 624.5208333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "Attention",
+      "text": "Attention"
+    },
+    {
+      "self_ref": "#/texts/100",
+      "parent": {
+        "$ref": "#/pictures/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 353.0,
+            "t": 602.5208333333333,
+            "r": 373.0,
+            "b": 595.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "Linear",
+      "text": "Linear"
+    },
+    {
+      "self_ref": "#/texts/101",
+      "parent": {
+        "$ref": "#/pictures/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 388.0,
+            "t": 602.1875,
+            "r": 408.0,
+            "b": 595.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "Linear",
+      "text": "Linear"
+    },
+    {
+      "self_ref": "#/texts/102",
+      "parent": {
+        "$ref": "#/pictures/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 423.3333333333333,
+            "t": 602.5208333333333,
+            "r": 442.6666666666667,
+            "b": 595.1875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "Linear",
+      "text": "Linear"
+    },
+    {
+      "self_ref": "#/texts/103",
+      "parent": {
+>>>>>>> origin/main
         "$ref": "#/body"
       },
       "children": [],
@@ -3553,7 +4969,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/100",
+=======
+      "self_ref": "#/texts/104",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3580,7 +5000,11 @@
       "text": "We call our particular attention \"Scaled Dot-Product Attention\" (Figure 2). The input consists of queries and keys of dimension d k , and values of dimension d v . We compute the dot products of the query with all keys, divide each by √ d k , and apply a softmax function to obtain the weights on the values."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/101",
+=======
+      "self_ref": "#/texts/105",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3607,7 +5031,11 @@
       "text": "In practice, we compute the attention function on a set of queries simultaneously, packed together into a matrix Q . The keys and values are also packed together into matrices K and V . We compute the matrix of outputs as:"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/102",
+=======
+      "self_ref": "#/texts/106",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3634,7 +5062,11 @@
       "text": ""
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/103",
+=======
+      "self_ref": "#/texts/107",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3661,7 +5093,11 @@
       "text": "The two most commonly used attention functions are additive attention [2], and dot-product (multiplicative) attention. Dot-product attention is identical to our algorithm, except for the scaling factor of 1 √ d k . Additive attention computes the compatibility function using a feed-forward network with a single hidden layer. While the two are similar in theoretical complexity, dot-product attention is much faster and more space-efficient in practice, since it can be implemented using highly optimized matrix multiplication code."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/104",
+=======
+      "self_ref": "#/texts/108",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3688,7 +5124,11 @@
       "text": "While for small values of d k the two mechanisms perform similarly, additive attention outperforms dot product attention without scaling for larger values of d k [3]. We suspect that for large values of d k , the dot products grow large in magnitude, pushing the softmax function into regions where it has extremely small gradients 4 . To counteract this effect, we scale the dot products by 1 √ d k ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/105",
+=======
+      "self_ref": "#/texts/109",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3716,7 +5156,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/106",
+=======
+      "self_ref": "#/texts/110",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3743,7 +5187,11 @@
       "text": "Instead of performing a single attention function with d model-dimensional keys, values and queries, we found it beneficial to linearly project the queries, keys and values h times with different, learned linear projections to d k , d k and d v dimensions, respectively. On each of these projected versions of queries, keys and values we then perform the attention function in parallel, yielding d v -dimensional output values. These are concatenated and once again projected, resulting in the final values, as depicted in Figure 2."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/107",
+=======
+      "self_ref": "#/texts/111",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3770,7 +5218,11 @@
       "text": "4 To illustrate why the dot products get large, assume that the components of q and k are independent random variables with mean 0 and variance 1 . Then their dot product, q · k = ∑ d k i =1 q i k i , has mean 0 and variance d k ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/108",
+=======
+      "self_ref": "#/texts/112",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3797,7 +5249,11 @@
       "text": "•"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/109",
+=======
+      "self_ref": "#/texts/113",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3824,7 +5280,11 @@
       "text": "Need more clarity"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/110",
+=======
+      "self_ref": "#/texts/114",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3851,7 +5311,11 @@
       "text": "4"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/111",
+=======
+      "self_ref": "#/texts/115",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3878,7 +5342,11 @@
       "text": "Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/112",
+=======
+      "self_ref": "#/texts/116",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/4"
       },
@@ -3905,7 +5373,11 @@
       "text": "MultiHead( Q,K,V ) = Concat(head 1 , ..., head h ) W O where head i = Attention( QW Q i , KW K i , V W V i )"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/113",
+=======
+      "self_ref": "#/texts/117",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3932,7 +5404,11 @@
       "text": "Where the projections are parameter matrices W Q i ∈ R d model × d k , W i K ∈ R d model × d k , W V i ∈ R d model × d v and W O ∈ R hd v × d model ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/114",
+=======
+      "self_ref": "#/texts/118",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3959,7 +5435,11 @@
       "text": "In this work we employ h = 8 parallel attention layers, or heads. For each of these we use d k = d v = d model /h = 64 . Due to the reduced dimension of each head, the total computational cost is similar to that of single-head attention with full dimensionality."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/115",
+=======
+      "self_ref": "#/texts/119",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -3987,7 +5467,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/116",
+=======
+      "self_ref": "#/texts/120",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4014,7 +5498,11 @@
       "text": "The Transformer uses multi-head attention in three different ways:"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/117",
+=======
+      "self_ref": "#/texts/121",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/3"
       },
@@ -4043,7 +5531,11 @@
       "marker": "·"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/118",
+=======
+      "self_ref": "#/texts/122",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/3"
       },
@@ -4072,7 +5564,11 @@
       "marker": "·"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/119",
+=======
+      "self_ref": "#/texts/123",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/3"
       },
@@ -4101,7 +5597,11 @@
       "marker": "·"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/120",
+=======
+      "self_ref": "#/texts/124",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4129,7 +5629,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/121",
+=======
+      "self_ref": "#/texts/125",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4156,7 +5660,11 @@
       "text": "In addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully connected feed-forward network, which is applied to each position separately and identically. This consists of two linear transformations with a ReLU activation in between."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/122",
+=======
+      "self_ref": "#/texts/126",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4183,7 +5691,11 @@
       "text": ""
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/123",
+=======
+      "self_ref": "#/texts/127",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4210,7 +5722,11 @@
       "text": "While the linear transformations are the same across different positions, they use different parameters from layer to layer. Another way of describing this is as two convolutions with kernel size 1. The dimensionality of input and output is d model = 512 , and the inner-layer has dimensionality d ff = 2048 ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/124",
+=======
+      "self_ref": "#/texts/128",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4238,7 +5754,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/125",
+=======
+      "self_ref": "#/texts/129",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4265,7 +5785,11 @@
       "text": "Similarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension d model. We also use the usual learned linear transformation and softmax function to convert the decoder output to predicted next-token probabilities. In our model, we share the same weight matrix between the two embedding layers and the pre-softmax linear transformation, similar to [30]. In the embedding layers, we multiply those weights by √ d model ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/126",
+=======
+      "self_ref": "#/texts/130",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4293,7 +5817,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/127",
+=======
+      "self_ref": "#/texts/131",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4320,7 +5848,11 @@
       "text": "Since our model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/128",
+=======
+      "self_ref": "#/texts/132",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4347,7 +5879,11 @@
       "text": "•"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/129",
+=======
+      "self_ref": "#/texts/133",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4374,7 +5910,11 @@
       "text": "Adds mask to remove values beyond its position."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/130",
+=======
+      "self_ref": "#/texts/134",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4401,7 +5941,11 @@
       "text": "5"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/131",
+=======
+      "self_ref": "#/texts/135",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/tables/0"
       },
@@ -4428,7 +5972,11 @@
       "text": "Table 1: Maximum path lengths, per-layer complexity and minimum number of sequential operations for different layer types. n is the sequence length, d is the representation dimension, k is the kernel size of convolutions and r the size of the neighborhood in restricted self-attention."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/132",
+=======
+      "self_ref": "#/texts/136",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4455,7 +6003,11 @@
       "text": "tokens in the sequence. To this end, we add \"positional encodings\" to the input embeddings at the bottoms of the encoder and decoder stacks. The positional encodings have the same dimension d model as the embeddings, so that the two can be summed. There are many choices of positional encodings, learned and fixed [9]."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/133",
+=======
+      "self_ref": "#/texts/137",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4482,7 +6034,11 @@
       "text": "In this work, we use sine and cosine functions of different frequencies:"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/134",
+=======
+      "self_ref": "#/texts/138",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4509,7 +6065,11 @@
       "text": ""
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/135",
+=======
+      "self_ref": "#/texts/139",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4536,7 +6096,11 @@
       "text": "where pos is the position and i is the dimension. That is, each dimension of the positional encoding corresponds to a sinusoid. The wavelengths form a geometric progression from 2 π to 10000 · 2 π . We chose this function because we hypothesized it would allow the model to easily learn to attend by relative positions, since for any fixed offset k , PE pos + k can be represented as a linear function of PE pos ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/136",
+=======
+      "self_ref": "#/texts/140",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4563,7 +6127,11 @@
       "text": "We also experimented with using learned positional embeddings [9] instead, and found that the two versions produced nearly identical results (see Table 3 row (E)). We chose the sinusoidal version because it may allow the model to extrapolate to sequence lengths longer than the ones encountered during training."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/137",
+=======
+      "self_ref": "#/texts/141",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4591,7 +6159,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/138",
+=======
+      "self_ref": "#/texts/142",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4618,7 +6190,11 @@
       "text": "In this section we compare various aspects of self-attention layers to the recurrent and convolutional layers commonly used for mapping one variable-length sequence of symbol representations ( x 1 , ..., x n ) to another sequence of equal length ( z 1 , ..., z n ) , with x i , z i ∈ R d , such as a hidden layer in a typical sequence transduction encoder or decoder. Motivating our use of self-attention we consider three desiderata."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/139",
+=======
+      "self_ref": "#/texts/143",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4645,7 +6221,11 @@
       "text": "One is the total computational complexity per layer. Another is the amount of computation that can be parallelized, as measured by the minimum number of sequential operations required."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/140",
+=======
+      "self_ref": "#/texts/144",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4672,7 +6252,11 @@
       "text": "The third is the path length between long-range dependencies in the network. Learning long-range dependencies is a key challenge in many sequence transduction tasks. One key factor affecting the ability to learn such dependencies is the length of the paths forward and backward signals have to traverse in the network. The shorter these paths between any combination of positions in the input and output sequences, the easier it is to learn long-range dependencies [12]. Hence we also compare the maximum path length between any two input and output positions in networks composed of the different layer types."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/141",
+=======
+      "self_ref": "#/texts/145",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4699,7 +6283,11 @@
       "text": "As noted in Table 1, a self-attention layer connects all positions with a constant number of sequentially executed operations, whereas a recurrent layer requires O ( n ) sequential operations. In terms of computational complexity, self-attention layers are faster than recurrent layers when the sequence length n is smaller than the representation dimensionality d , which is most often the case with sentence representations used by state-of-the-art models in machine translations, such as word-piece [38] and byte-pair [31] representations. To improve computational performance for tasks involving very long sequences, self-attention could be restricted to considering only a neighborhood of size r in"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/142",
+=======
+      "self_ref": "#/texts/146",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4726,7 +6314,11 @@
       "text": "6"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/143",
+=======
+      "self_ref": "#/texts/147",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4753,7 +6345,11 @@
       "text": "the input sequence centered around the respective output position. This would increase the maximum path length to O ( n/r ) . We plan to investigate this approach further in future work."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/144",
+=======
+      "self_ref": "#/texts/148",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4780,7 +6376,11 @@
       "text": "A single convolutional layer with kernel width k < n does not connect all pairs of input and output positions. Doing so requires a stack of O ( n/k ) convolutional layers in the case of contiguous kernels, or O ( log k ( n )) in the case of dilated convolutions [18], increasing the length of the longest paths between any two positions in the network. Convolutional layers are generally more expensive than recurrent layers, by a factor of k . Separable convolutions [6], however, decrease the complexity considerably, to O ( k · n · d + n · d 2 ) . Even with k = n , however, the complexity of a separable convolution is equal to the combination of a self-attention layer and a point-wise feed-forward layer, the approach we take in our model."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/145",
+=======
+      "self_ref": "#/texts/149",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4807,7 +6407,11 @@
       "text": "As side benefit, self-attention could yield more interpretable models. We inspect attention distributions from our models and present and discuss examples in the appendix. Not only do individual attention heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic and semantic structure of the sentences."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/146",
+=======
+      "self_ref": "#/texts/150",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4835,7 +6439,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/147",
+=======
+      "self_ref": "#/texts/151",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4862,7 +6470,11 @@
       "text": "This section describes the training regime for our models."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/148",
+=======
+      "self_ref": "#/texts/152",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4890,7 +6502,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/149",
+=======
+      "self_ref": "#/texts/153",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4917,7 +6533,11 @@
       "text": "We trained on the standard WMT 2014 English-German dataset consisting of about 4.5 million sentence pairs. Sentences were encoded using byte-pair encoding [3], which has a shared sourcetarget vocabulary of about 37000 tokens. For English-French, we used the significantly larger WMT 2014 English-French dataset consisting of 36M sentences and split tokens into a 32000 word-piece vocabulary [38]. Sentence pairs were batched together by approximate sequence length. Each training batch contained a set of sentence pairs containing approximately 25000 source tokens and 25000 target tokens."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/150",
+=======
+      "self_ref": "#/texts/154",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4945,7 +6565,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/151",
+=======
+      "self_ref": "#/texts/155",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -4972,7 +6596,11 @@
       "text": "We trained our models on one machine with 8 NVIDIA P100 GPUs. For our base models using the hyperparameters described throughout the paper, each training step took about 0.4 seconds. We trained the base models for a total of 100,000 steps or 12 hours. For our big models,(described on the bottom line of table 3), step time was 1.0 seconds. The big models were trained for 300,000 steps (3.5 days)."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/152",
+=======
+      "self_ref": "#/texts/156",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5000,7 +6628,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/153",
+=======
+      "self_ref": "#/texts/157",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5027,7 +6659,11 @@
       "text": "We used the Adam optimizer [20] with β 1 = 0 . 9 , β 2 = 0 . 98 and /epsilon1 = 10 -9 . We varied the learning rate over the course of training, according to the formula:"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/154",
+=======
+      "self_ref": "#/texts/158",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5054,7 +6690,11 @@
       "text": ""
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/155",
+=======
+      "self_ref": "#/texts/159",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5081,7 +6721,11 @@
       "text": "This corresponds to increasing the learning rate linearly for the first warmup _ steps training steps, and decreasing it thereafter proportionally to the inverse square root of the step number. We used warmup _ steps = 4000 ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/156",
+=======
+      "self_ref": "#/texts/160",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5109,7 +6753,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/157",
+=======
+      "self_ref": "#/texts/161",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5136,7 +6784,11 @@
       "text": "We employ three types of regularization during training:"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/158",
+=======
+      "self_ref": "#/texts/162",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5163,7 +6815,11 @@
       "text": "Residual Dropout We apply dropout [33] to the output of each sub-layer, before it is added to the sub-layer input and normalized. In addition, we apply dropout to the sums of the embeddings and the positional encodings in both the encoder and decoder stacks. For the base model, we use a rate of P drop = 0 . 1 ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/159",
+=======
+      "self_ref": "#/texts/163",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5190,7 +6846,11 @@
       "text": "7"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/160",
+=======
+      "self_ref": "#/texts/164",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/tables/1"
       },
@@ -5217,7 +6877,11 @@
       "text": "Table 2: The Transformer achieves better BLEU scores than previous state-of-the-art models on the English-to-German and English-to-French newstest2014 tests at a fraction of the training cost."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/161",
+=======
+      "self_ref": "#/texts/165",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5244,7 +6908,11 @@
       "text": "Label Smoothing During training, we employed label smoothing of value /epsilon1 ls = 0 . 1 [36]. This hurts perplexity, as the model learns to be more unsure, but improves accuracy and BLEU score."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/162",
+=======
+      "self_ref": "#/texts/166",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5272,7 +6940,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/163",
+=======
+      "self_ref": "#/texts/167",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5300,7 +6972,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/164",
+=======
+      "self_ref": "#/texts/168",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5327,7 +7003,11 @@
       "text": "On the WMT 2014 English-to-German translation task, the big transformer model (Transformer (big) in Table 2) outperforms the best previously reported models (including ensembles) by more than 2 . 0 BLEU, establishing a new state-of-the-art BLEU score of 28 . 4 . The configuration of this model is listed in the bottom line of Table 3. Training took 3 . 5 days on 8 P100 GPUs. Even our base model surpasses all previously published models and ensembles, at a fraction of the training cost of any of the competitive models."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/165",
+=======
+      "self_ref": "#/texts/169",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5354,7 +7034,11 @@
       "text": "On the WMT 2014 English-to-French translation task, our big model achieves a BLEU score of 41 . 0 , outperforming all of the previously published single models, at less than 1 / 4 the training cost of the previous state-of-the-art model. The Transformer (big) model trained for English-to-French used dropout rate P drop = 0 . 1 , instead of 0 . 3 ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/166",
+=======
+      "self_ref": "#/texts/170",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5381,7 +7065,11 @@
       "text": "For the base models, we used a single model obtained by averaging the last 5 checkpoints, which were written at 10-minute intervals. For the big models, we averaged the last 20 checkpoints. We used beam search with a beam size of 4 and length penalty α = 0 . 6 [38]. These hyperparameters were chosen after experimentation on the development set. We set the maximum output length during inference to input length + 50 , but terminate early when possible [38]."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/167",
+=======
+      "self_ref": "#/texts/171",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5408,7 +7096,11 @@
       "text": "Table 2 summarizes our results and compares our translation quality and training costs to other model architectures from the literature. We estimate the number of floating point operations used to train a model by multiplying the training time, the number of GPUs used, and an estimate of the sustained single-precision floating-point capacity of each GPU 5 ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/168",
+=======
+      "self_ref": "#/texts/172",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5436,7 +7128,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/169",
+=======
+      "self_ref": "#/texts/173",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5463,7 +7159,11 @@
       "text": "To evaluate the importance of different components of the Transformer, we varied our base model in different ways, measuring the change in performance on English-to-German translation on the development set, newstest2013. We used beam search as described in the previous section, but no checkpoint averaging. We present these results in Table 3."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/170",
+=======
+      "self_ref": "#/texts/174",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5490,7 +7190,11 @@
       "text": "In Table 3 rows (A), we vary the number of attention heads and the attention key and value dimensions, keeping the amount of computation constant, as described in Section 3.2.2. While single-head attention is 0.9 BLEU worse than the best setting, quality also drops off with too many heads."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/171",
+=======
+      "self_ref": "#/texts/175",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5517,7 +7221,11 @@
       "text": "5 We used values of 2.8, 3.7, 6.0 and 9.5 TFLOPS for K80, K40, M40 and P100, respectively."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/172",
+=======
+      "self_ref": "#/texts/176",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5544,7 +7252,11 @@
       "text": "8"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/173",
+=======
+      "self_ref": "#/texts/177",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/tables/2"
       },
@@ -5571,7 +7283,11 @@
       "text": "Table 3: Variations on the Transformer architecture. Unlisted values are identical to those of the base model. All metrics are on the English-to-German translation development set, newstest2013. Listed perplexities are per-wordpiece, according to our byte-pair encoding, and should not be compared to per-word perplexities."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/174",
+=======
+      "self_ref": "#/texts/178",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/tables/3"
       },
@@ -5598,7 +7314,11 @@
       "text": "Table 4: The Transformer generalizes well to English constituency parsing (Results are on Section 23 of WSJ)"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/175",
+=======
+      "self_ref": "#/texts/179",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5625,7 +7345,11 @@
       "text": "In Table 3 rows (B), we observe that reducing the attention key size d k hurts model quality. This suggests that determining compatibility is not easy and that a more sophisticated compatibility function than dot product may be beneficial. We further observe in rows (C) and (D) that, as expected, bigger models are better, and dropout is very helpful in avoiding over-fitting. In row (E) we replace our sinusoidal positional encoding with learned positional embeddings [9], and observe nearly identical results to the base model."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/176",
+=======
+      "self_ref": "#/texts/180",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5653,7 +7377,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/177",
+=======
+      "self_ref": "#/texts/181",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5680,7 +7408,11 @@
       "text": "To evaluate if the Transformer can generalize to other tasks we performed experiments on English constituency parsing. This task presents specific challenges: the output is subject to strong structural"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/178",
+=======
+      "self_ref": "#/texts/182",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5707,7 +7439,11 @@
       "text": "9"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/179",
+=======
+      "self_ref": "#/texts/183",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5734,7 +7470,11 @@
       "text": "constraints and is significantly longer than the input. Furthermore, RNN sequence-to-sequence models have not been able to attain state-of-the-art results in small-data regimes [37]."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/180",
+=======
+      "self_ref": "#/texts/184",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5761,7 +7501,11 @@
       "text": "We trained a 4-layer transformer with d model = 1024 on the Wall Street Journal (WSJ) portion of the Penn Treebank [25], about 40K training sentences. We also trained it in a semi-supervised setting, using the larger high-confidence and BerkleyParser corpora from with approximately 17M sentences [37]. We used a vocabulary of 16K tokens for the WSJ only setting and a vocabulary of 32K tokens for the semi-supervised setting."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/181",
+=======
+      "self_ref": "#/texts/185",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5788,7 +7532,11 @@
       "text": "We performed only a small number of experiments to select the dropout, both attention and residual (section 5.4), learning rates and beam size on the Section 22 development set, all other parameters remained unchanged from the English-to-German base translation model. During inference, we increased the maximum output length to input length + 300 . We used a beam size of 21 and α = 0 . 3 for both WSJ only and the semi-supervised setting."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/182",
+=======
+      "self_ref": "#/texts/186",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5815,7 +7563,11 @@
       "text": "Our results in Table 4 show that despite the lack of task-specific tuning our model performs surprisingly well, yielding better results than all previously reported models with the exception of the Recurrent Neural Network Grammar [8]."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/183",
+=======
+      "self_ref": "#/texts/187",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5842,7 +7594,11 @@
       "text": "In contrast to RNN sequence-to-sequence models [37], the Transformer outperforms the BerkeleyParser [29] even when training only on the WSJ training set of 40K sentences."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/184",
+=======
+      "self_ref": "#/texts/188",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5870,7 +7626,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/185",
+=======
+      "self_ref": "#/texts/189",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5897,7 +7657,11 @@
       "text": "In this work, we presented the Transformer, the first sequence transduction model based entirely on attention, replacing the recurrent layers most commonly used in encoder-decoder architectures with multi-headed self-attention."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/186",
+=======
+      "self_ref": "#/texts/190",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5924,7 +7688,11 @@
       "text": "For translation tasks, the Transformer can be trained significantly faster than architectures based on recurrent or convolutional layers. On both WMT 2014 English-to-German and WMT 2014 English-to-French translation tasks, we achieve a new state of the art. In the former task our best model outperforms even all previously reported ensembles."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/187",
+=======
+      "self_ref": "#/texts/191",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5951,7 +7719,11 @@
       "text": "We are excited about the future of attention-based models and plan to apply them to other tasks. We plan to extend the Transformer to problems involving input and output modalities other than text and to investigate local, restricted attention mechanisms to efficiently handle large inputs and outputs such as images, audio and video. Making generation less sequential is another research goals of ours."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/188",
+=======
+      "self_ref": "#/texts/192",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -5978,7 +7750,11 @@
       "text": "The code we used to train and evaluate our models is available at https://github.com/ tensorflow/tensor2tensor ."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/189",
+=======
+      "self_ref": "#/texts/193",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -6005,7 +7781,11 @@
       "text": "Acknowledgements We are grateful to Nal Kalchbrenner and Stephan Gouws for their fruitful comments, corrections and inspiration."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/190",
+=======
+      "self_ref": "#/texts/194",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -6033,7 +7813,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/191",
+=======
+      "self_ref": "#/texts/195",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/4"
       },
@@ -6062,7 +7846,11 @@
       "marker": "[1]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/192",
+=======
+      "self_ref": "#/texts/196",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/4"
       },
@@ -6091,7 +7879,11 @@
       "marker": "[2]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/193",
+=======
+      "self_ref": "#/texts/197",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/4"
       },
@@ -6120,7 +7912,11 @@
       "marker": "[3]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/194",
+=======
+      "self_ref": "#/texts/198",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/4"
       },
@@ -6149,7 +7945,11 @@
       "marker": "[4]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/195",
+=======
+      "self_ref": "#/texts/199",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/4"
       },
@@ -6178,7 +7978,11 @@
       "marker": "[5]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/196",
+=======
+      "self_ref": "#/texts/200",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/4"
       },
@@ -6207,7 +8011,11 @@
       "marker": "[6]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/197",
+=======
+      "self_ref": "#/texts/201",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -6234,7 +8042,11 @@
       "text": "10"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/198",
+=======
+      "self_ref": "#/texts/202",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6263,7 +8075,11 @@
       "marker": "[7]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/199",
+=======
+      "self_ref": "#/texts/203",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6292,7 +8108,11 @@
       "marker": "[8]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/200",
+=======
+      "self_ref": "#/texts/204",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6321,7 +8141,11 @@
       "marker": "[9]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/201",
+=======
+      "self_ref": "#/texts/205",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6350,7 +8174,11 @@
       "marker": "[10]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/202",
+=======
+      "self_ref": "#/texts/206",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6379,7 +8207,11 @@
       "marker": "[11]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/203",
+=======
+      "self_ref": "#/texts/207",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6408,7 +8240,11 @@
       "marker": "[12]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/204",
+=======
+      "self_ref": "#/texts/208",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6437,7 +8273,11 @@
       "marker": "[13]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/205",
+=======
+      "self_ref": "#/texts/209",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6466,7 +8306,11 @@
       "marker": "[14]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/206",
+=======
+      "self_ref": "#/texts/210",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6495,7 +8339,11 @@
       "marker": "[15]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/207",
+=======
+      "self_ref": "#/texts/211",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6524,7 +8372,11 @@
       "marker": "[16]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/208",
+=======
+      "self_ref": "#/texts/212",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6553,7 +8405,11 @@
       "marker": "[17]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/209",
+=======
+      "self_ref": "#/texts/213",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6582,7 +8438,11 @@
       "marker": "[18]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/210",
+=======
+      "self_ref": "#/texts/214",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6611,7 +8471,11 @@
       "marker": "[19]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/211",
+=======
+      "self_ref": "#/texts/215",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6640,7 +8504,11 @@
       "marker": "[20]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/212",
+=======
+      "self_ref": "#/texts/216",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6669,7 +8537,11 @@
       "marker": "[21]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/213",
+=======
+      "self_ref": "#/texts/217",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6698,7 +8570,11 @@
       "marker": "[22]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/214",
+=======
+      "self_ref": "#/texts/218",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6727,7 +8603,11 @@
       "marker": "[23]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/215",
+=======
+      "self_ref": "#/texts/219",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6756,7 +8636,11 @@
       "marker": "[24]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/216",
+=======
+      "self_ref": "#/texts/220",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6785,7 +8669,11 @@
       "marker": "[25]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/217",
+=======
+      "self_ref": "#/texts/221",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/5"
       },
@@ -6814,7 +8702,11 @@
       "marker": "[26]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/218",
+=======
+      "self_ref": "#/texts/222",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -6841,7 +8733,11 @@
       "text": "11"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/219",
+=======
+      "self_ref": "#/texts/223",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -6870,7 +8766,11 @@
       "marker": "[27]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/220",
+=======
+      "self_ref": "#/texts/224",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -6899,7 +8799,11 @@
       "marker": "[28]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/221",
+=======
+      "self_ref": "#/texts/225",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -6928,7 +8832,11 @@
       "marker": "[29]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/222",
+=======
+      "self_ref": "#/texts/226",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -6957,7 +8865,11 @@
       "marker": "[30]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/223",
+=======
+      "self_ref": "#/texts/227",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -6986,7 +8898,11 @@
       "marker": "[31]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/224",
+=======
+      "self_ref": "#/texts/228",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -7015,7 +8931,11 @@
       "marker": "[32]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/225",
+=======
+      "self_ref": "#/texts/229",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -7044,7 +8964,11 @@
       "marker": "[33]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/226",
+=======
+      "self_ref": "#/texts/230",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -7073,7 +8997,11 @@
       "marker": "[34]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/227",
+=======
+      "self_ref": "#/texts/231",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -7102,7 +9030,11 @@
       "marker": "[35]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/228",
+=======
+      "self_ref": "#/texts/232",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -7131,7 +9063,11 @@
       "marker": "[36]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/229",
+=======
+      "self_ref": "#/texts/233",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -7160,7 +9096,11 @@
       "marker": "[37]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/230",
+=======
+      "self_ref": "#/texts/234",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -7189,7 +9129,11 @@
       "marker": "[38]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/231",
+=======
+      "self_ref": "#/texts/235",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -7218,7 +9162,11 @@
       "marker": "[39]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/232",
+=======
+      "self_ref": "#/texts/236",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/groups/6"
       },
@@ -7247,7 +9195,11 @@
       "marker": "[40]"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/233",
+=======
+      "self_ref": "#/texts/237",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -7274,7 +9226,11 @@
       "text": "12"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/234",
+=======
+      "self_ref": "#/texts/238",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -7302,7 +9258,11 @@
       "level": 1
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/235",
+=======
+      "self_ref": "#/texts/239",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7329,7 +9289,11 @@
       "text": "Figure 3: An example of the attention mechanism following long-distance dependencies in the encoder self-attention in layer 5 of 6. Many of the attention heads attend to a distant dependency of the verb 'making', completing the phrase 'making...more difficult'. Attentions here shown only for the word 'making'. Different colors represent different heads. Best viewed in color."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/236",
+=======
+      "self_ref": "#/texts/240",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7356,7 +9320,11 @@
       "text": "It"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/237",
+=======
+      "self_ref": "#/texts/241",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7383,7 +9351,11 @@
       "text": "is"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/238",
+=======
+      "self_ref": "#/texts/242",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7410,7 +9382,11 @@
       "text": "in"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/239",
+=======
+      "self_ref": "#/texts/243",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7437,7 +9413,11 @@
       "text": "this"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/240",
+=======
+      "self_ref": "#/texts/244",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7464,7 +9444,11 @@
       "text": "spirit"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/241",
+=======
+      "self_ref": "#/texts/245",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7491,7 +9475,11 @@
       "text": "that"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/242",
+=======
+      "self_ref": "#/texts/246",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7518,7 +9506,11 @@
       "text": "a"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/243",
+=======
+      "self_ref": "#/texts/247",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7545,7 +9537,11 @@
       "text": "majority"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/244",
+=======
+      "self_ref": "#/texts/248",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7572,7 +9568,11 @@
       "text": "of"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/245",
+=======
+      "self_ref": "#/texts/249",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7599,7 +9599,11 @@
       "text": "American"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/246",
+=======
+      "self_ref": "#/texts/250",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7626,7 +9630,11 @@
       "text": "governments"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/247",
+=======
+      "self_ref": "#/texts/251",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7653,7 +9661,11 @@
       "text": "have"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/248",
+=======
+      "self_ref": "#/texts/252",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7680,7 +9692,11 @@
       "text": "passed"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/249",
+=======
+      "self_ref": "#/texts/253",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7707,7 +9723,11 @@
       "text": "new"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/250",
+=======
+      "self_ref": "#/texts/254",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7734,7 +9754,11 @@
       "text": "laws"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/251",
+=======
+      "self_ref": "#/texts/255",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7761,7 +9785,11 @@
       "text": "since"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/252",
+=======
+      "self_ref": "#/texts/256",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7788,7 +9816,11 @@
       "text": "2009"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/253",
+=======
+      "self_ref": "#/texts/257",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7815,7 +9847,11 @@
       "text": "making"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/254",
+=======
+      "self_ref": "#/texts/258",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7842,7 +9878,11 @@
       "text": "the"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/255",
+=======
+      "self_ref": "#/texts/259",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7869,7 +9909,11 @@
       "text": "registration"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/256",
+=======
+      "self_ref": "#/texts/260",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7896,7 +9940,11 @@
       "text": "or"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/257",
+=======
+      "self_ref": "#/texts/261",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7923,7 +9971,11 @@
       "text": "voting"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/258",
+=======
+      "self_ref": "#/texts/262",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7950,7 +10002,11 @@
       "text": "process"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/259",
+=======
+      "self_ref": "#/texts/263",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -7977,7 +10033,11 @@
       "text": "more"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/260",
+=======
+      "self_ref": "#/texts/264",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8004,7 +10064,11 @@
       "text": "difficult"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/261",
+=======
+      "self_ref": "#/texts/265",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8031,7 +10095,11 @@
       "text": "."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/262",
+=======
+      "self_ref": "#/texts/266",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8058,7 +10126,11 @@
       "text": "<EOS>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/263",
+=======
+      "self_ref": "#/texts/267",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8085,7 +10157,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/264",
+=======
+      "self_ref": "#/texts/268",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8112,7 +10188,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/265",
+=======
+      "self_ref": "#/texts/269",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8139,7 +10219,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/266",
+=======
+      "self_ref": "#/texts/270",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8166,7 +10250,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/267",
+=======
+      "self_ref": "#/texts/271",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8193,7 +10281,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/268",
+=======
+      "self_ref": "#/texts/272",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8220,7 +10312,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/269",
+=======
+      "self_ref": "#/texts/273",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8247,7 +10343,11 @@
       "text": "It"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/270",
+=======
+      "self_ref": "#/texts/274",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8274,7 +10374,11 @@
       "text": "is"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/271",
+=======
+      "self_ref": "#/texts/275",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8301,7 +10405,11 @@
       "text": "in"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/272",
+=======
+      "self_ref": "#/texts/276",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8328,7 +10436,11 @@
       "text": "this"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/273",
+=======
+      "self_ref": "#/texts/277",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8355,7 +10467,11 @@
       "text": "spirit"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/274",
+=======
+      "self_ref": "#/texts/278",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8382,7 +10498,11 @@
       "text": "that"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/275",
+=======
+      "self_ref": "#/texts/279",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8409,7 +10529,11 @@
       "text": "a"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/276",
+=======
+      "self_ref": "#/texts/280",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8436,7 +10560,11 @@
       "text": "majority"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/277",
+=======
+      "self_ref": "#/texts/281",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8463,7 +10591,11 @@
       "text": "of"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/278",
+=======
+      "self_ref": "#/texts/282",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8490,7 +10622,11 @@
       "text": "American"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/279",
+=======
+      "self_ref": "#/texts/283",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8517,7 +10653,11 @@
       "text": "governments"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/280",
+=======
+      "self_ref": "#/texts/284",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8544,7 +10684,11 @@
       "text": "have"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/281",
+=======
+      "self_ref": "#/texts/285",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8571,7 +10715,11 @@
       "text": "passed"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/282",
+=======
+      "self_ref": "#/texts/286",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8598,7 +10746,11 @@
       "text": "new"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/283",
+=======
+      "self_ref": "#/texts/287",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8625,7 +10777,11 @@
       "text": "laws"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/284",
+=======
+      "self_ref": "#/texts/288",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8652,7 +10808,11 @@
       "text": "since"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/285",
+=======
+      "self_ref": "#/texts/289",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8679,7 +10839,11 @@
       "text": "2009"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/286",
+=======
+      "self_ref": "#/texts/290",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8706,7 +10870,11 @@
       "text": "making"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/287",
+=======
+      "self_ref": "#/texts/291",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8733,7 +10901,11 @@
       "text": "the"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/288",
+=======
+      "self_ref": "#/texts/292",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8760,7 +10932,11 @@
       "text": "registration"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/289",
+=======
+      "self_ref": "#/texts/293",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8787,7 +10963,11 @@
       "text": "or"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/290",
+=======
+      "self_ref": "#/texts/294",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8814,7 +10994,11 @@
       "text": "voting"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/291",
+=======
+      "self_ref": "#/texts/295",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8841,7 +11025,11 @@
       "text": "process"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/292",
+=======
+      "self_ref": "#/texts/296",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8868,7 +11056,11 @@
       "text": "more"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/293",
+=======
+      "self_ref": "#/texts/297",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8895,7 +11087,11 @@
       "text": "difficult"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/294",
+=======
+      "self_ref": "#/texts/298",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8922,7 +11118,11 @@
       "text": "."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/295",
+=======
+      "self_ref": "#/texts/299",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8949,7 +11149,11 @@
       "text": "<EOS>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/296",
+=======
+      "self_ref": "#/texts/300",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -8976,7 +11180,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/297",
+=======
+      "self_ref": "#/texts/301",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -9003,7 +11211,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/298",
+=======
+      "self_ref": "#/texts/302",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -9030,7 +11242,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/299",
+=======
+      "self_ref": "#/texts/303",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -9057,7 +11273,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/300",
+=======
+      "self_ref": "#/texts/304",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -9084,7 +11304,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/301",
+=======
+      "self_ref": "#/texts/305",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/5"
       },
@@ -9111,7 +11335,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/302",
+=======
+      "self_ref": "#/texts/306",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -9138,7 +11366,11 @@
       "text": "13"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/303",
+=======
+      "self_ref": "#/texts/307",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -9165,7 +11397,11 @@
       "text": "Input-Input Layer5"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/304",
+=======
+      "self_ref": "#/texts/308",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9192,7 +11428,11 @@
       "text": "Figure 4: Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution. Top: Full attentions for head 5. Bottom: Isolated attentions from just the word 'its' for attention heads 5 and 6. Note that the attentions are very sharp for this word."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/305",
+=======
+      "self_ref": "#/texts/309",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9219,7 +11459,11 @@
       "text": "The"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/306",
+=======
+      "self_ref": "#/texts/310",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9246,7 +11490,11 @@
       "text": "Law"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/307",
+=======
+      "self_ref": "#/texts/311",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9273,7 +11521,11 @@
       "text": "will"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/308",
+=======
+      "self_ref": "#/texts/312",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9300,7 +11552,11 @@
       "text": "never"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/309",
+=======
+      "self_ref": "#/texts/313",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9327,7 +11583,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/310",
+=======
+      "self_ref": "#/texts/314",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9354,7 +11614,11 @@
       "text": "perfect"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/311",
+=======
+      "self_ref": "#/texts/315",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9381,7 +11645,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/312",
+=======
+      "self_ref": "#/texts/316",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9408,7 +11676,11 @@
       "text": "but"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/313",
+=======
+      "self_ref": "#/texts/317",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9435,7 +11707,11 @@
       "text": "its"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/314",
+=======
+      "self_ref": "#/texts/318",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9462,7 +11738,11 @@
       "text": "application"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/315",
+=======
+      "self_ref": "#/texts/319",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9489,7 +11769,11 @@
       "text": "should"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/316",
+=======
+      "self_ref": "#/texts/320",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9516,7 +11800,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/317",
+=======
+      "self_ref": "#/texts/321",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9543,7 +11831,11 @@
       "text": "just"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/318",
+=======
+      "self_ref": "#/texts/322",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9570,7 +11862,11 @@
       "text": "-"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/319",
+=======
+      "self_ref": "#/texts/323",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9597,7 +11893,11 @@
       "text": "this"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/320",
+=======
+      "self_ref": "#/texts/324",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9624,7 +11924,11 @@
       "text": "is"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/321",
+=======
+      "self_ref": "#/texts/325",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9651,7 +11955,11 @@
       "text": "what"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/322",
+=======
+      "self_ref": "#/texts/326",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9678,7 +11986,11 @@
       "text": "we"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/323",
+=======
+      "self_ref": "#/texts/327",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9705,7 +12017,11 @@
       "text": "are"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/324",
+=======
+      "self_ref": "#/texts/328",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9732,7 +12048,11 @@
       "text": "missing"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/325",
+=======
+      "self_ref": "#/texts/329",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9759,7 +12079,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/326",
+=======
+      "self_ref": "#/texts/330",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9786,7 +12110,11 @@
       "text": "in"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/327",
+=======
+      "self_ref": "#/texts/331",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9813,7 +12141,11 @@
       "text": "my"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/328",
+=======
+      "self_ref": "#/texts/332",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9840,7 +12172,11 @@
       "text": "opinion"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/329",
+=======
+      "self_ref": "#/texts/333",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9867,7 +12203,11 @@
       "text": "."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/330",
+=======
+      "self_ref": "#/texts/334",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9894,7 +12234,11 @@
       "text": "<EOS>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/331",
+=======
+      "self_ref": "#/texts/335",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9921,7 +12265,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/332",
+=======
+      "self_ref": "#/texts/336",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9948,7 +12296,11 @@
       "text": "The"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/333",
+=======
+      "self_ref": "#/texts/337",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -9975,7 +12327,11 @@
       "text": "Law"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/334",
+=======
+      "self_ref": "#/texts/338",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10002,7 +12358,11 @@
       "text": "will"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/335",
+=======
+      "self_ref": "#/texts/339",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10029,7 +12389,11 @@
       "text": "never"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/336",
+=======
+      "self_ref": "#/texts/340",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10056,7 +12420,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/337",
+=======
+      "self_ref": "#/texts/341",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10083,7 +12451,11 @@
       "text": "perfect"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/338",
+=======
+      "self_ref": "#/texts/342",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10110,7 +12482,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/339",
+=======
+      "self_ref": "#/texts/343",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10137,7 +12513,11 @@
       "text": "but"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/340",
+=======
+      "self_ref": "#/texts/344",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10164,7 +12544,11 @@
       "text": "its"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/341",
+=======
+      "self_ref": "#/texts/345",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10191,7 +12575,11 @@
       "text": "application"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/342",
+=======
+      "self_ref": "#/texts/346",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10218,7 +12606,11 @@
       "text": "should"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/343",
+=======
+      "self_ref": "#/texts/347",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10245,7 +12637,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/344",
+=======
+      "self_ref": "#/texts/348",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10272,7 +12668,11 @@
       "text": "just"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/345",
+=======
+      "self_ref": "#/texts/349",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10299,7 +12699,11 @@
       "text": "-"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/346",
+=======
+      "self_ref": "#/texts/350",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10326,7 +12730,11 @@
       "text": "this"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/347",
+=======
+      "self_ref": "#/texts/351",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10353,7 +12761,11 @@
       "text": "is"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/348",
+=======
+      "self_ref": "#/texts/352",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10380,7 +12792,11 @@
       "text": "what"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/349",
+=======
+      "self_ref": "#/texts/353",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10407,7 +12823,11 @@
       "text": "we"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/350",
+=======
+      "self_ref": "#/texts/354",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10434,7 +12854,11 @@
       "text": "are"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/351",
+=======
+      "self_ref": "#/texts/355",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10461,7 +12885,11 @@
       "text": "missing"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/352",
+=======
+      "self_ref": "#/texts/356",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10488,7 +12916,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/353",
+=======
+      "self_ref": "#/texts/357",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10515,7 +12947,11 @@
       "text": "in"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/354",
+=======
+      "self_ref": "#/texts/358",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10542,7 +12978,11 @@
       "text": "my"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/355",
+=======
+      "self_ref": "#/texts/359",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10569,7 +13009,11 @@
       "text": "opinion"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/356",
+=======
+      "self_ref": "#/texts/360",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10596,7 +13040,11 @@
       "text": "."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/357",
+=======
+      "self_ref": "#/texts/361",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10623,7 +13071,11 @@
       "text": "<EOS>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/358",
+=======
+      "self_ref": "#/texts/362",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10650,7 +13102,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/359",
+=======
+      "self_ref": "#/texts/363",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10677,7 +13133,11 @@
       "text": "Input-Input Layer5"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/360",
+=======
+      "self_ref": "#/texts/364",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10704,7 +13164,11 @@
       "text": "The"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/361",
+=======
+      "self_ref": "#/texts/365",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10731,7 +13195,11 @@
       "text": "Law"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/362",
+=======
+      "self_ref": "#/texts/366",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10758,7 +13226,11 @@
       "text": "will"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/363",
+=======
+      "self_ref": "#/texts/367",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10785,7 +13257,11 @@
       "text": "never"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/364",
+=======
+      "self_ref": "#/texts/368",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10812,7 +13288,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/365",
+=======
+      "self_ref": "#/texts/369",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10839,7 +13319,11 @@
       "text": "perfect"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/366",
+=======
+      "self_ref": "#/texts/370",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10866,7 +13350,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/367",
+=======
+      "self_ref": "#/texts/371",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10893,7 +13381,11 @@
       "text": "but"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/368",
+=======
+      "self_ref": "#/texts/372",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10920,7 +13412,11 @@
       "text": "its"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/369",
+=======
+      "self_ref": "#/texts/373",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10947,7 +13443,11 @@
       "text": "application"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/370",
+=======
+      "self_ref": "#/texts/374",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -10974,7 +13474,11 @@
       "text": "should"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/371",
+=======
+      "self_ref": "#/texts/375",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11001,7 +13505,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/372",
+=======
+      "self_ref": "#/texts/376",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11028,7 +13536,11 @@
       "text": "just"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/373",
+=======
+      "self_ref": "#/texts/377",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11055,7 +13567,11 @@
       "text": "-"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/374",
+=======
+      "self_ref": "#/texts/378",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11082,7 +13598,11 @@
       "text": "this"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/375",
+=======
+      "self_ref": "#/texts/379",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11109,7 +13629,11 @@
       "text": "is"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/376",
+=======
+      "self_ref": "#/texts/380",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11136,7 +13660,11 @@
       "text": "what"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/377",
+=======
+      "self_ref": "#/texts/381",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11163,7 +13691,11 @@
       "text": "we"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/378",
+=======
+      "self_ref": "#/texts/382",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11190,7 +13722,11 @@
       "text": "are"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/379",
+=======
+      "self_ref": "#/texts/383",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11217,7 +13753,11 @@
       "text": "missing"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/380",
+=======
+      "self_ref": "#/texts/384",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11244,7 +13784,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/381",
+=======
+      "self_ref": "#/texts/385",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11271,7 +13815,11 @@
       "text": "in"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/382",
+=======
+      "self_ref": "#/texts/386",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11298,7 +13846,11 @@
       "text": "my"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/383",
+=======
+      "self_ref": "#/texts/387",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11325,7 +13877,11 @@
       "text": "opinion"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/384",
+=======
+      "self_ref": "#/texts/388",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11352,7 +13908,11 @@
       "text": "."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/385",
+=======
+      "self_ref": "#/texts/389",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11379,7 +13939,11 @@
       "text": "<EOS>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/386",
+=======
+      "self_ref": "#/texts/390",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11406,7 +13970,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/387",
+=======
+      "self_ref": "#/texts/391",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11433,7 +14001,11 @@
       "text": "The"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/388",
+=======
+      "self_ref": "#/texts/392",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11460,7 +14032,11 @@
       "text": "Law"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/389",
+=======
+      "self_ref": "#/texts/393",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11487,7 +14063,11 @@
       "text": "will"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/390",
+=======
+      "self_ref": "#/texts/394",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11514,7 +14094,11 @@
       "text": "never"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/391",
+=======
+      "self_ref": "#/texts/395",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11541,7 +14125,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/392",
+=======
+      "self_ref": "#/texts/396",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11568,7 +14156,11 @@
       "text": "perfect"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/393",
+=======
+      "self_ref": "#/texts/397",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11595,7 +14187,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/394",
+=======
+      "self_ref": "#/texts/398",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11622,7 +14218,11 @@
       "text": "but"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/395",
+=======
+      "self_ref": "#/texts/399",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11649,7 +14249,11 @@
       "text": "its"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/396",
+=======
+      "self_ref": "#/texts/400",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11676,7 +14280,11 @@
       "text": "application"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/397",
+=======
+      "self_ref": "#/texts/401",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11703,7 +14311,11 @@
       "text": "should"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/398",
+=======
+      "self_ref": "#/texts/402",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11730,7 +14342,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/399",
+=======
+      "self_ref": "#/texts/403",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11757,7 +14373,11 @@
       "text": "just"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/400",
+=======
+      "self_ref": "#/texts/404",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11784,7 +14404,11 @@
       "text": "-"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/401",
+=======
+      "self_ref": "#/texts/405",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11811,7 +14435,11 @@
       "text": "this"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/402",
+=======
+      "self_ref": "#/texts/406",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11838,7 +14466,11 @@
       "text": "is"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/403",
+=======
+      "self_ref": "#/texts/407",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11865,7 +14497,11 @@
       "text": "what"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/404",
+=======
+      "self_ref": "#/texts/408",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11892,7 +14528,11 @@
       "text": "we"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/405",
+=======
+      "self_ref": "#/texts/409",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11919,7 +14559,11 @@
       "text": "are"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/406",
+=======
+      "self_ref": "#/texts/410",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11946,7 +14590,11 @@
       "text": "missing"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/407",
+=======
+      "self_ref": "#/texts/411",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -11973,7 +14621,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/408",
+=======
+      "self_ref": "#/texts/412",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -12000,7 +14652,11 @@
       "text": "in"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/409",
+=======
+      "self_ref": "#/texts/413",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -12027,7 +14683,11 @@
       "text": "my"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/410",
+=======
+      "self_ref": "#/texts/414",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -12054,7 +14714,11 @@
       "text": "opinion"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/411",
+=======
+      "self_ref": "#/texts/415",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -12081,7 +14745,11 @@
       "text": "."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/412",
+=======
+      "self_ref": "#/texts/416",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -12108,7 +14776,11 @@
       "text": "<EOS>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/413",
+=======
+      "self_ref": "#/texts/417",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/6"
       },
@@ -12135,7 +14807,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/414",
+=======
+      "self_ref": "#/texts/418",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -12162,7 +14838,11 @@
       "text": "14"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/415",
+=======
+      "self_ref": "#/texts/419",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -12189,7 +14869,11 @@
       "text": "Input-Input Layer5"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/416",
+=======
+      "self_ref": "#/texts/420",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12216,7 +14900,11 @@
       "text": "Figure 5: Many of the attention heads exhibit behaviour that seems related to the structure of the sentence. We give two such examples above, from two different heads from the encoder self-attention at layer 5 of 6. The heads clearly learned to perform different tasks."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/417",
+=======
+      "self_ref": "#/texts/421",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12243,7 +14931,11 @@
       "text": "The"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/418",
+=======
+      "self_ref": "#/texts/422",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12270,7 +14962,11 @@
       "text": "Law"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/419",
+=======
+      "self_ref": "#/texts/423",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12297,7 +14993,11 @@
       "text": "will"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/420",
+=======
+      "self_ref": "#/texts/424",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12324,7 +15024,11 @@
       "text": "never"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/421",
+=======
+      "self_ref": "#/texts/425",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12351,7 +15055,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/422",
+=======
+      "self_ref": "#/texts/426",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12378,7 +15086,11 @@
       "text": "perfect"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/423",
+=======
+      "self_ref": "#/texts/427",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12405,7 +15117,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/424",
+=======
+      "self_ref": "#/texts/428",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12432,7 +15148,11 @@
       "text": "but"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/425",
+=======
+      "self_ref": "#/texts/429",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12459,7 +15179,11 @@
       "text": "its"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/426",
+=======
+      "self_ref": "#/texts/430",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12486,7 +15210,11 @@
       "text": "application"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/427",
+=======
+      "self_ref": "#/texts/431",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12513,7 +15241,11 @@
       "text": "should"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/428",
+=======
+      "self_ref": "#/texts/432",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12540,7 +15272,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/429",
+=======
+      "self_ref": "#/texts/433",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12567,7 +15303,11 @@
       "text": "just"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/430",
+=======
+      "self_ref": "#/texts/434",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12594,7 +15334,11 @@
       "text": "-"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/431",
+=======
+      "self_ref": "#/texts/435",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12621,7 +15365,11 @@
       "text": "this"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/432",
+=======
+      "self_ref": "#/texts/436",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12648,7 +15396,11 @@
       "text": "is"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/433",
+=======
+      "self_ref": "#/texts/437",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12675,7 +15427,11 @@
       "text": "what"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/434",
+=======
+      "self_ref": "#/texts/438",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12702,7 +15458,11 @@
       "text": "we"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/435",
+=======
+      "self_ref": "#/texts/439",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12729,7 +15489,11 @@
       "text": "are"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/436",
+=======
+      "self_ref": "#/texts/440",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12756,7 +15520,11 @@
       "text": "missing"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/437",
+=======
+      "self_ref": "#/texts/441",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12783,7 +15551,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/438",
+=======
+      "self_ref": "#/texts/442",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12810,7 +15582,11 @@
       "text": "in"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/439",
+=======
+      "self_ref": "#/texts/443",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12837,7 +15613,11 @@
       "text": "my"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/440",
+=======
+      "self_ref": "#/texts/444",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12864,7 +15644,11 @@
       "text": "opinion"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/441",
+=======
+      "self_ref": "#/texts/445",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12891,7 +15675,11 @@
       "text": "."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/442",
+=======
+      "self_ref": "#/texts/446",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12918,7 +15706,11 @@
       "text": "<EOS>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/443",
+=======
+      "self_ref": "#/texts/447",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12945,7 +15737,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/444",
+=======
+      "self_ref": "#/texts/448",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12972,7 +15768,11 @@
       "text": "The"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/445",
+=======
+      "self_ref": "#/texts/449",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -12999,7 +15799,11 @@
       "text": "Law"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/446",
+=======
+      "self_ref": "#/texts/450",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13026,7 +15830,11 @@
       "text": "will"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/447",
+=======
+      "self_ref": "#/texts/451",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13053,7 +15861,11 @@
       "text": "never"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/448",
+=======
+      "self_ref": "#/texts/452",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13080,7 +15892,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/449",
+=======
+      "self_ref": "#/texts/453",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13107,7 +15923,11 @@
       "text": "perfect"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/450",
+=======
+      "self_ref": "#/texts/454",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13134,7 +15954,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/451",
+=======
+      "self_ref": "#/texts/455",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13161,7 +15985,11 @@
       "text": "but"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/452",
+=======
+      "self_ref": "#/texts/456",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13188,7 +16016,11 @@
       "text": "its"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/453",
+=======
+      "self_ref": "#/texts/457",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13215,7 +16047,11 @@
       "text": "application"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/454",
+=======
+      "self_ref": "#/texts/458",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13242,7 +16078,11 @@
       "text": "should"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/455",
+=======
+      "self_ref": "#/texts/459",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13269,7 +16109,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/456",
+=======
+      "self_ref": "#/texts/460",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13296,7 +16140,11 @@
       "text": "just"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/457",
+=======
+      "self_ref": "#/texts/461",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13323,7 +16171,11 @@
       "text": "-"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/458",
+=======
+      "self_ref": "#/texts/462",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13350,7 +16202,11 @@
       "text": "this"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/459",
+=======
+      "self_ref": "#/texts/463",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13377,7 +16233,11 @@
       "text": "is"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/460",
+=======
+      "self_ref": "#/texts/464",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13404,7 +16264,11 @@
       "text": "what"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/461",
+=======
+      "self_ref": "#/texts/465",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13431,7 +16295,11 @@
       "text": "we"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/462",
+=======
+      "self_ref": "#/texts/466",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13458,7 +16326,11 @@
       "text": "are"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/463",
+=======
+      "self_ref": "#/texts/467",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13485,7 +16357,11 @@
       "text": "missing"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/464",
+=======
+      "self_ref": "#/texts/468",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13512,7 +16388,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/465",
+=======
+      "self_ref": "#/texts/469",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13539,7 +16419,11 @@
       "text": "in"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/466",
+=======
+      "self_ref": "#/texts/470",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13566,7 +16450,11 @@
       "text": "my"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/467",
+=======
+      "self_ref": "#/texts/471",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13593,7 +16481,11 @@
       "text": "opinion"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/468",
+=======
+      "self_ref": "#/texts/472",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13620,7 +16512,11 @@
       "text": "."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/469",
+=======
+      "self_ref": "#/texts/473",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13647,7 +16543,11 @@
       "text": "<EOS>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/470",
+=======
+      "self_ref": "#/texts/474",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13674,7 +16574,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/471",
+=======
+      "self_ref": "#/texts/475",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13701,7 +16605,11 @@
       "text": "Input-Input Layer5"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/472",
+=======
+      "self_ref": "#/texts/476",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13728,7 +16636,11 @@
       "text": "The"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/473",
+=======
+      "self_ref": "#/texts/477",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13755,7 +16667,11 @@
       "text": "Law"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/474",
+=======
+      "self_ref": "#/texts/478",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13782,7 +16698,11 @@
       "text": "will"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/475",
+=======
+      "self_ref": "#/texts/479",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13809,7 +16729,11 @@
       "text": "never"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/476",
+=======
+      "self_ref": "#/texts/480",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13836,7 +16760,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/477",
+=======
+      "self_ref": "#/texts/481",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13863,7 +16791,11 @@
       "text": "perfect"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/478",
+=======
+      "self_ref": "#/texts/482",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13890,7 +16822,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/479",
+=======
+      "self_ref": "#/texts/483",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13917,7 +16853,11 @@
       "text": "but"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/480",
+=======
+      "self_ref": "#/texts/484",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13944,7 +16884,11 @@
       "text": "its"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/481",
+=======
+      "self_ref": "#/texts/485",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13971,7 +16915,11 @@
       "text": "application"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/482",
+=======
+      "self_ref": "#/texts/486",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -13998,7 +16946,11 @@
       "text": "should"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/483",
+=======
+      "self_ref": "#/texts/487",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14025,7 +16977,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/484",
+=======
+      "self_ref": "#/texts/488",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14052,7 +17008,11 @@
       "text": "just"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/485",
+=======
+      "self_ref": "#/texts/489",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14079,7 +17039,11 @@
       "text": "-"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/486",
+=======
+      "self_ref": "#/texts/490",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14106,7 +17070,11 @@
       "text": "this"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/487",
+=======
+      "self_ref": "#/texts/491",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14133,7 +17101,11 @@
       "text": "is"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/488",
+=======
+      "self_ref": "#/texts/492",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14160,7 +17132,11 @@
       "text": "what"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/489",
+=======
+      "self_ref": "#/texts/493",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14187,7 +17163,11 @@
       "text": "we"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/490",
+=======
+      "self_ref": "#/texts/494",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14214,7 +17194,11 @@
       "text": "are"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/491",
+=======
+      "self_ref": "#/texts/495",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14241,7 +17225,11 @@
       "text": "missing"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/492",
+=======
+      "self_ref": "#/texts/496",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14268,7 +17256,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/493",
+=======
+      "self_ref": "#/texts/497",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14295,7 +17287,11 @@
       "text": "in"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/494",
+=======
+      "self_ref": "#/texts/498",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14322,7 +17318,11 @@
       "text": "my"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/495",
+=======
+      "self_ref": "#/texts/499",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14349,7 +17349,11 @@
       "text": "opinion"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/496",
+=======
+      "self_ref": "#/texts/500",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14376,7 +17380,11 @@
       "text": "."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/497",
+=======
+      "self_ref": "#/texts/501",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14403,7 +17411,11 @@
       "text": "<EOS>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/498",
+=======
+      "self_ref": "#/texts/502",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14430,7 +17442,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/499",
+=======
+      "self_ref": "#/texts/503",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14457,7 +17473,11 @@
       "text": "The"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/500",
+=======
+      "self_ref": "#/texts/504",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14484,7 +17504,11 @@
       "text": "Law"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/501",
+=======
+      "self_ref": "#/texts/505",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14511,7 +17535,11 @@
       "text": "will"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/502",
+=======
+      "self_ref": "#/texts/506",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14538,7 +17566,11 @@
       "text": "never"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/503",
+=======
+      "self_ref": "#/texts/507",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14565,7 +17597,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/504",
+=======
+      "self_ref": "#/texts/508",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14592,7 +17628,11 @@
       "text": "perfect"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/505",
+=======
+      "self_ref": "#/texts/509",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14619,7 +17659,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/506",
+=======
+      "self_ref": "#/texts/510",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14646,7 +17690,11 @@
       "text": "but"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/507",
+=======
+      "self_ref": "#/texts/511",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14673,7 +17721,11 @@
       "text": "its"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/508",
+=======
+      "self_ref": "#/texts/512",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14700,7 +17752,11 @@
       "text": "application"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/509",
+=======
+      "self_ref": "#/texts/513",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14727,7 +17783,11 @@
       "text": "should"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/510",
+=======
+      "self_ref": "#/texts/514",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14754,7 +17814,11 @@
       "text": "be"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/511",
+=======
+      "self_ref": "#/texts/515",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14781,7 +17845,11 @@
       "text": "just"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/512",
+=======
+      "self_ref": "#/texts/516",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14808,7 +17876,11 @@
       "text": "-"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/513",
+=======
+      "self_ref": "#/texts/517",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14835,7 +17907,11 @@
       "text": "this"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/514",
+=======
+      "self_ref": "#/texts/518",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14862,7 +17938,11 @@
       "text": "is"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/515",
+=======
+      "self_ref": "#/texts/519",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14889,7 +17969,11 @@
       "text": "what"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/516",
+=======
+      "self_ref": "#/texts/520",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14916,7 +18000,11 @@
       "text": "we"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/517",
+=======
+      "self_ref": "#/texts/521",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14943,7 +18031,11 @@
       "text": "are"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/518",
+=======
+      "self_ref": "#/texts/522",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14970,7 +18062,11 @@
       "text": "missing"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/519",
+=======
+      "self_ref": "#/texts/523",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -14997,7 +18093,11 @@
       "text": ","
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/520",
+=======
+      "self_ref": "#/texts/524",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -15024,7 +18124,11 @@
       "text": "in"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/521",
+=======
+      "self_ref": "#/texts/525",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -15051,7 +18155,11 @@
       "text": "my"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/522",
+=======
+      "self_ref": "#/texts/526",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -15078,7 +18186,11 @@
       "text": "opinion"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/523",
+=======
+      "self_ref": "#/texts/527",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -15105,7 +18217,11 @@
       "text": "."
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/524",
+=======
+      "self_ref": "#/texts/528",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -15132,7 +18248,11 @@
       "text": "<EOS>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/525",
+=======
+      "self_ref": "#/texts/529",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/pictures/7"
       },
@@ -15159,7 +18279,11 @@
       "text": "<pad>"
     },
     {
+<<<<<<< HEAD
       "self_ref": "#/texts/526",
+=======
+      "self_ref": "#/texts/530",
+>>>>>>> origin/main
       "parent": {
         "$ref": "#/body"
       },
@@ -15258,6 +18382,24 @@
         },
         {
           "$ref": "#/texts/72"
+<<<<<<< HEAD
+=======
+        },
+        {
+          "$ref": "#/texts/73"
+        },
+        {
+          "$ref": "#/texts/74"
+        },
+        {
+          "$ref": "#/texts/75"
+        },
+        {
+          "$ref": "#/texts/76"
+        },
+        {
+          "$ref": "#/texts/77"
+>>>>>>> origin/main
         }
       ],
       "content_layer": "body",
@@ -15292,7 +18434,30 @@
       "parent": {
         "$ref": "#/body"
       },
+<<<<<<< HEAD
       "children": [],
+=======
+      "children": [
+        {
+          "$ref": "#/texts/88"
+        },
+        {
+          "$ref": "#/texts/89"
+        },
+        {
+          "$ref": "#/texts/90"
+        },
+        {
+          "$ref": "#/texts/91"
+        },
+        {
+          "$ref": "#/texts/92"
+        },
+        {
+          "$ref": "#/texts/93"
+        }
+      ],
+>>>>>>> origin/main
       "content_layer": "body",
       "label": "picture",
       "prov": [
@@ -15323,10 +18488,34 @@
       },
       "children": [
         {
+          "$ref": "#/texts/94"
+        },
+        {
+          "$ref": "#/texts/95"
+        },
+        {
+          "$ref": "#/texts/96"
+        },
+        {
           "$ref": "#/texts/97"
         },
         {
           "$ref": "#/texts/98"
+<<<<<<< HEAD
+=======
+        },
+        {
+          "$ref": "#/texts/99"
+        },
+        {
+          "$ref": "#/texts/100"
+        },
+        {
+          "$ref": "#/texts/101"
+        },
+        {
+          "$ref": "#/texts/102"
+>>>>>>> origin/main
         }
       ],
       "content_layer": "body",
@@ -15349,7 +18538,7 @@
       ],
       "captions": [
         {
-          "$ref": "#/texts/97"
+          "$ref": "#/texts/94"
         }
       ],
       "references": [],
@@ -15363,7 +18552,11 @@
       },
       "children": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/112"
+=======
+          "$ref": "#/texts/116"
+>>>>>>> origin/main
         }
       ],
       "content_layer": "body",
@@ -15396,6 +18589,7 @@
       },
       "children": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/235"
         },
         {
@@ -15408,6 +18602,8 @@
           "$ref": "#/texts/238"
         },
         {
+=======
+>>>>>>> origin/main
           "$ref": "#/texts/239"
         },
         {
@@ -15635,6 +18831,7 @@
         },
         {
           "$ref": "#/texts/305"
+<<<<<<< HEAD
         },
         {
           "$ref": "#/texts/306"
@@ -15642,6 +18839,38 @@
         {
           "$ref": "#/texts/307"
         },
+        {
+          "$ref": "#/texts/308"
+        },
+=======
+        }
+      ],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+>>>>>>> origin/main
+        {
+          "$ref": "#/texts/309"
+        },
+        {
+<<<<<<< HEAD
+          "$ref": "#/texts/310"
+        },
+=======
+          "$ref": "#/texts/239"
+        }
+      ],
+      "references": [],
+      "footnotes": [],
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/6",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+>>>>>>> origin/main
         {
           "$ref": "#/texts/308"
         },
@@ -15999,6 +19228,7 @@
         },
         {
           "$ref": "#/texts/417"
+<<<<<<< HEAD
         },
         {
           "$ref": "#/texts/418"
@@ -16006,6 +19236,38 @@
         {
           "$ref": "#/texts/419"
         },
+        {
+          "$ref": "#/texts/420"
+        },
+=======
+        }
+      ],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+>>>>>>> origin/main
+        {
+          "$ref": "#/texts/421"
+        },
+        {
+<<<<<<< HEAD
+          "$ref": "#/texts/422"
+        },
+=======
+          "$ref": "#/texts/308"
+        }
+      ],
+      "references": [],
+      "footnotes": [],
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/7",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+>>>>>>> origin/main
         {
           "$ref": "#/texts/420"
         },
@@ -16323,6 +19585,21 @@
         },
         {
           "$ref": "#/texts/525"
+<<<<<<< HEAD
+=======
+        },
+        {
+          "$ref": "#/texts/526"
+        },
+        {
+          "$ref": "#/texts/527"
+        },
+        {
+          "$ref": "#/texts/528"
+        },
+        {
+          "$ref": "#/texts/529"
+>>>>>>> origin/main
         }
       ],
       "content_layer": "body",
@@ -16331,10 +19608,17 @@
         {
           "page_no": 15,
           "bbox": {
+<<<<<<< HEAD
             "l": 120.38782501220703,
             "t": 606.9881134033203,
             "r": 498.00946044921875,
             "b": 202.56982421875,
+=======
+            "l": 120.38777160644531,
+            "t": 606.9880065917969,
+            "r": 498.0096130371094,
+            "b": 202.5697021484375,
+>>>>>>> origin/main
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
@@ -16345,7 +19629,11 @@
       ],
       "captions": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/416"
+=======
+          "$ref": "#/texts/420"
+>>>>>>> origin/main
         }
       ],
       "references": [],
@@ -16361,7 +19649,11 @@
       },
       "children": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/131"
+=======
+          "$ref": "#/texts/135"
+>>>>>>> origin/main
         }
       ],
       "content_layer": "body",
@@ -16384,7 +19676,11 @@
       ],
       "captions": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/131"
+=======
+          "$ref": "#/texts/135"
+>>>>>>> origin/main
         }
       ],
       "references": [],
@@ -17216,7 +20512,11 @@
       },
       "children": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/160"
+=======
+          "$ref": "#/texts/164"
+>>>>>>> origin/main
         }
       ],
       "content_layer": "body",
@@ -17239,7 +20539,11 @@
       ],
       "captions": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/160"
+=======
+          "$ref": "#/texts/164"
+>>>>>>> origin/main
         }
       ],
       "references": [],
@@ -19389,7 +22693,11 @@
       },
       "children": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/173"
+=======
+          "$ref": "#/texts/177"
+>>>>>>> origin/main
         }
       ],
       "content_layer": "body",
@@ -19412,7 +22720,11 @@
       ],
       "captions": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/173"
+=======
+          "$ref": "#/texts/177"
+>>>>>>> origin/main
         }
       ],
       "references": [],
@@ -26179,7 +29491,11 @@
       },
       "children": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/174"
+=======
+          "$ref": "#/texts/178"
+>>>>>>> origin/main
         }
       ],
       "content_layer": "body",
@@ -26202,7 +29518,11 @@
       ],
       "captions": [
         {
+<<<<<<< HEAD
           "$ref": "#/texts/174"
+=======
+          "$ref": "#/texts/178"
+>>>>>>> origin/main
         }
       ],
       "references": [],

@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import traceback
 
 # Ensure sibling imports work
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -9,53 +10,43 @@ if current_dir not in sys.path:
 
 from documentEmbedder import SemanticSearchEngine
 
-# Using the relative paths you preferred
-JSON_FOLDER = os.path.join("..", "docling_docs")
+# Using the relative paths
+JSON_FOLDER = os.path.join(os.path.dirname(__file__), "docling_docs")
 DB_PATH = os.path.join("..", "chroma_db")
+
+# Ensure folders exist
+os.makedirs(JSON_FOLDER, exist_ok=True)
+os.makedirs(DB_PATH, exist_ok=True)
 
 engine = SemanticSearchEngine(db_path=DB_PATH)
 
 
 def run_ingestion():
-    if not os.path.exists(JSON_FOLDER):
-        print(f"Error: Folder {JSON_FOLDER} not found.")
-        return
-
     files = [f for f in os.listdir(JSON_FOLDER) if f.endswith(".json")]
     print(f"Found {len(files)} files in directory.")
 
-    # 1. Get a list of what's already in the database to show a summary
-    # Note: We check by 'filename' metadata which we save during add_document
     total_in_db = engine.collection.count()
     print(f"Current database contains {total_in_db} chunks.")
 
     new_files_count = 0
 
     for fname in files:
-        # 2. CHECK FOR REDUNDANCY
-        # We query the collection to see if this specific filename has any entries
-        existing = engine.collection.get(
-            where={"filename": fname},
-            limit=1,  # We only need to find one chunk to know the file is there
-        )
-
-        if existing and existing.get("ids"):
-            # print(f"Skipping {fname}: Already indexed.")
-            continue
-
-        # 3. PROCESS NEW FILE
-        path = os.path.join(JSON_FOLDER, fname)
         try:
+            # Check if already indexed
+            existing = engine.collection.get(where={"filename": fname}, limit=1)
+            if existing and existing.get("ids"):
+                continue
+
+            path = os.path.join(JSON_FOLDER, fname)
             with open(path, "r", encoding="utf-8") as f:
                 doc_data = json.load(f)
 
             content_list = doc_data.get("texts", []) or doc_data.get("content", [])
+            if not isinstance(content_list, list):
+                content_list = []
+
             full_text = " ".join(
-                [
-                    item.get("text", "")
-                    for item in content_list
-                    if isinstance(item, dict)
-                ]
+                [item.get("text", "") for item in content_list if isinstance(item, dict)]
             )
 
             if not full_text.strip():
@@ -71,6 +62,7 @@ def run_ingestion():
 
         except Exception as e:
             print(f"Error processing {fname}: {e}")
+            traceback.print_exc()
 
     if new_files_count == 0:
         print("No new documents found. Database is up to date.")

@@ -38,11 +38,12 @@ def evaluate_importance(document_text, project_definition):
     Output JSON ONLY in the following format:
     {{
       "relevance_score": 0-100,
+      "reason": "Brief justification based only on document content"
     }}
     Scale definition:
     - relevance_score:
       0 = not relevant
-      30 = marginally related
+      40 = marginally related
       65 = moderately important
       100 = central to the topic/project
     Note: The scale is continuous; provide precise scores.

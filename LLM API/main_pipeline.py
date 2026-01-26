@@ -4,13 +4,14 @@ from typing import Dict, Any
 
 from docling_doc import convert_to_json
 from prompt.trust_checker import trust_checker, extract_key_sections
-from prompt.extractor import extract_entities
 from prompt.evaluator import evaluate_importance
 from embeddings.ingestor import run_ingestion
 from embeddings.searchEngine import KnowledgeSearch
 from prompt.doc_parser import extract_metadata_heuristics
 from tfidf import analyze_document_tfidf
 from embeddings.chatter import ScientificAssistant
+from prompt.pipeline import run_pipeline
+from prompt_batch_extract import load_docling_json_text
 
 # ===== Path Constants =====
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -36,7 +37,10 @@ def run_automatic_pipeline(
 
     file_name = os.path.basename(raw_doc_path)
     base_name = os.path.splitext(file_name)[0]
-    processed_doc_path = os.path.join(PROCESSED_DOCS_DIR, f"{base_name}.json")
+    processed_doc_path = os.path.join(
+        os.path.dirname(__file__), "docling_docs", f"{base_name}.json"
+    )
+    os.makedirs(os.path.dirname(processed_doc_path), exist_ok=True)
 
     # 1. Parse the document
     print(f"1. Parsing document: {file_name}")
@@ -58,7 +62,9 @@ def run_automatic_pipeline(
 
     # 4. Run Entity Extractor
     print("4. Running Entity Extractor...")
-    entities = extract_entities(doc_data)  # Using doc_data for focused extraction
+    full_text = load_docling_json_text(processed_doc_path)
+    pipeline_history = run_pipeline(full_text, iterations=3)
+    entities = pipeline_history[-1]["extraction"] if pipeline_history else {}
     print("   ... Entities extracted.")
 
     # 5. TF-IDF for tags
@@ -69,7 +75,14 @@ def run_automatic_pipeline(
 
     # 6. Run Relevancy Checker
     print("6. Running Relevancy Checker...")
-    relevance_result = evaluate_importance(key_sections, project_definition)
+    relevance_result = evaluate_importance(full_text, project_definition)
+    print("RAW relevance_result:", relevance_result)
+    print("TYPE:", type(relevance_result))
+    if isinstance(relevance_result, str):
+        try:
+            relevance_result = json.loads(relevance_result)
+        except json.JSONDecodeError:
+            relevance_result = {}
     print("   ... Relevancy Checker complete.")
 
     # 7. Run Ingestion for embeddings
