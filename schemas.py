@@ -118,3 +118,20 @@ class ProjectSchema(ProjectBase):
     researchers: List[ResearcherSchema] = []
     knowledge_sources: List[KnowledgeSourceBriefSchema] = []
     model_config = ConfigDict(from_attributes=True)
+
+
+# --- Search Schemas ---
+class SearchQuery(BaseModel):
+    query: str
+    search_type: str  # "keyword" or "semantic"
+
+
+class SearchResultItem(BaseModel):
+    filename: str
+    snippet: str
+    type: str  # "Keyword Match" or "Semantic Match"
+    score: Optional[float] = None
+
+
+class SearchResponse(BaseModel):
+    results: List[SearchResultItem]
