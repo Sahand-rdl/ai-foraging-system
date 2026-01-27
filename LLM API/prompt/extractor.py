@@ -58,10 +58,10 @@ def extract_entities(document_text, prompt_versions=None, feedback=""):
 
     OUTPUT SCHEMA (MANDATORY):
     {{
-    "terminologies": [{{"term": string, "meaning": string | null}}],
+    "terminologies": [{{"term": string, "meaning": string}}],
     "figures": [{{"figure": string, "description": string}}],
     "tables": [{{"table": string, "title": string}}],
-    "algorithms": [{{"algorithm": string, "goal": string | null, "process": string | null}}]
+    "algorithms": [{{"algorithm": string, "goal": string | null, "process": string}}]
     }}
 
     EXTRACTION RULES:
@@ -69,6 +69,7 @@ def extract_entities(document_text, prompt_versions=None, feedback=""):
     - Do NOT infer or guess
     - If a category has no items, return an empty list
     - Do NOT merge categories
+    - Do NOT output terms that don't have meanings
     """
 
     response = call_llm(system_prompt, user_prompt)

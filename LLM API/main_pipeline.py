@@ -65,8 +65,7 @@ def run_automatic_pipeline(
     full_text = load_docling_json_text(processed_doc_path)
     pipeline_history = run_pipeline(full_text, iterations=3)
     entities = pipeline_history[-1]["extraction"] if pipeline_history else {}
-    print("   ... Entities extracted.")
-
+    
     # 5. TF-IDF for tags
     print("5. Generating tags (TF-IDF)...")
     tags_with_scores = analyze_document_tfidf(f"{base_name}.json", PROCESSED_DOCS_DIR)
