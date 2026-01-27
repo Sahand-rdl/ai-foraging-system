@@ -178,6 +178,15 @@ async def upload_paper_to_project(
                     title = data.get("figure", "Untitled")
                     content = data.get("description", "")
                     artifact_type_db = "figure"
+                elif artifact_type == "algorithms":
+                    title = data.get("algorithm", "Untitled")
+                    goal = data.get("goal")
+                    process = data.get("process")
+                    if goal:
+                        content = f"Goal: {goal}, Process: {process}"
+                    else:
+                        content = f"Process: {process}"
+                    artifact_type_db = "algorithm"
                 elif artifact_type == "tables":
                     title = data.get("table", "Untitled")
                     if "title" in data:
@@ -314,6 +323,15 @@ async def download_paper_to_project(
                     title = data.get("figure", "Untitled")
                     content = data.get("description", "")
                     artifact_type_db = "figure"
+                elif artifact_type == "algorithms":
+                    title = data.get("algorithm", "Untitled")
+                    goal = data.get("goal")
+                    process = data.get("process")
+                    if goal:
+                        content = f"Goal: {goal}, Process: {process}"
+                    else:
+                        content = f"Process: {process}"
+                    artifact_type_db = "algorithm"
                 elif artifact_type == "tables":
                     title = data.get("table", "Untitled")
                     if "title" in data:
