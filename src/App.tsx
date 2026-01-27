@@ -12,8 +12,10 @@ import KnowledgeSources from "./pages/KnowledgeSources";
 import SourceDetail from "./pages/SourceDetail";
 
 
+
 import NotFound from "./pages/NotFound";
 import Artifacts from "./pages/Artifacts";
+import Search from "./pages/Search";
 import { ProjectsProvider } from "./contexts/ProjectsContext";
 
 const queryClient = new QueryClient();
@@ -33,6 +35,7 @@ const App = () => (
             <Route path="/sources" element={<Layout><KnowledgeSources /></Layout>} />
             <Route path="/sources/:id" element={<SourceDetail />} />
             <Route path="/projects/:projectId/sources/:id" element={<SourceDetail />} />
+            <Route path="/search" element={<Layout><Search /></Layout>} />
             <Route path="/artifacts" element={<Layout><Artifacts /></Layout>} />
 
             <Route path="*" element={<NotFound />} />

@@ -105,7 +105,9 @@ export function SourcesTable({
                   </TableCell>
                   <TableCell className="w-[240px]">
                     <span className="text-sm text-muted-foreground truncate block max-w-[200px]">
-                      {source.metadata.authors || "Unknown"}
+                      {Array.isArray(source.metadata.authors)
+                        ? source.metadata.authors.join(", ")
+                        : source.metadata.authors || "Unknown"}
                     </span>
                   </TableCell>
                 </>

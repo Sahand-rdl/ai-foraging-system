@@ -25,7 +25,7 @@ export type Trustworthiness = "High" | "Medium" | "Low";
 
 export interface KnowledgeSourceMetadata {
   title?: string;
-  authors?: string;
+  authors?: string | string[];
   date?: string;
   venue?: string;
   doi?: string;
@@ -462,7 +462,7 @@ export type Source = {
   id: number;
   type: "PDF" | "Link";
   title: string;
-  authors: string;
+  authors: string | string[];
   date: string;
   venue: string;
   trustworthiness: Trustworthiness;

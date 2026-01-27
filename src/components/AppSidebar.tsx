@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Home, FolderOpen, FileText, Database, ChevronRight, Plus } from "lucide-react";
+import { Home, FolderOpen, FileText, Database, ChevronRight, Plus, Search } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import { useProjects } from "@/contexts/ProjectsContext";
@@ -109,6 +109,18 @@ export function AppSidebar() {
           <SidebarGroupLabel>Repository</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink 
+                    to="/search" 
+                    className="hover:bg-accent/50"
+                    activeClassName="bg-accent text-accent-foreground font-medium"
+                  >
+                    <Search className="h-4 w-4" />
+                    <span>Search</span>
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <NavLink 
