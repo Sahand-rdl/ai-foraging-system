@@ -1,3 +1,7 @@
+How to run:
+
+Open the terminal and input "python -m uvicorn llm_api:app --reload --port 8002".
+
 Environment:
 
 - Python 3.11.9
