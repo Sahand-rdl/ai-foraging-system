@@ -133,10 +133,15 @@ class SearchQuery(BaseModel):
 
 
 class SearchResultItem(BaseModel):
-    filename: str
-    snippet: str
-    type: str  # "Keyword Match" or "Semantic Match"
+    # Enriched data added by the data-service
+    id: int  # The ID of the KnowledgeSource in the database
+    project_id: int
+
+    # Data from the llm-service
+    snippet: Optional[str] = None
     score: Optional[float] = None
+    type: Optional[str] = None
+    filename: Optional[str] = None
 
 
 class SearchResponse(BaseModel):

@@ -1,4 +1,7 @@
 """AI-powered endpoints using external microservices."""
+import os
+import httpx
+import logging
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 from typing import Optional, List
@@ -6,17 +9,17 @@ from pydantic import BaseModel
 
 from database import get_db
 from models import KnowledgeSourceDB, KnowledgeArtifactDB
-from services.semantic_search import semantic_search_client
 from services.llm_service import llm_service_client
+from config import settings
 
 router = APIRouter(prefix="/ai", tags=["ai"])
+logger = logging.getLogger(__name__)
 
 
 # --- Request/Response Models ---
 class SearchRequest(BaseModel):
     query: str
-    limit: int = 10
-    project_id: Optional[int] = None
+    search_type: str = "semantic"
 
 
 class ExtractArtifactsRequest(BaseModel):
@@ -37,18 +40,68 @@ class SummarizeRequest(BaseModel):
 
 # --- Endpoints ---
 @router.post("/search")
-async def semantic_search(request: SearchRequest):
-    """Search knowledge sources using semantic similarity."""
-    filters = {}
-    if request.project_id:
-        filters["project_id"] = request.project_id
-    
-    result = await semantic_search_client.search(
-        query=request.query,
-        limit=request.limit,
-        filters=filters
-    )
-    return result
+async def search(request: SearchRequest, db: Session = Depends(get_db)):
+    """
+    Search documents using the LLM service, then enrich the results
+    with local database IDs.
+    """
+    if not settings.llm_enabled:
+        logger.warning(
+            "LLM service is disabled in config, but proceeding for search."
+        )
+
+    url = f"{settings.llm_service_url}/api/search"
+    payload = {"query": request.query, "search_type": request.search_type}
+
+    try:
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            response = await client.post(url, json=payload)
+
+            if response.status_code != 200:
+                logger.error(
+                    f"LLM Search failed with status {response.status_code}: {response.text}"
+                )
+                raise HTTPException(
+                    status_code=response.status_code,
+                    detail=f"Search service error: {response.text}",
+                )
+
+            llm_results = response.json().get("results", [])
+            enriched_results = []
+
+            for result in llm_results:
+                filename = result.get("filename")
+                if not filename:
+                    continue
+                
+                base_name = os.path.splitext(filename)[0]
+                search_pattern = f"%/{base_name}.pdf"
+
+                source_db = (
+                    db.query(KnowledgeSourceDB)
+                    .filter(KnowledgeSourceDB.file_path.like(search_pattern))
+                    .first()
+                )
+
+                if source_db:
+                    enriched_results.append(
+                        {
+                            "id": source_db.id,
+                            "project_id": source_db.project_id,
+                            **result,
+                        }
+                    )
+            
+            return {"results": enriched_results}
+
+    except httpx.RequestError as e:
+        logger.error(f"Error connecting to LLM service: {e}")
+        raise HTTPException(status_code=503, detail="Search service unavailable")
+    except Exception as e:
+        logger.error(f"Unexpected search error: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500, detail="Internal server error during search"
+        )
 
 
 @router.post("/extract-artifacts")
@@ -108,10 +161,8 @@ async def summarize_source(request: SummarizeRequest, db: Session = Depends(get_
 @router.get("/health")
 async def check_services_health():
     """Check the health of all AI microservices."""
-    search_health = await semantic_search_client.health_check()
     llm_health = await llm_service_client.health_check()
     
     return {
-        "semantic_search": search_health,
         "llm_service": llm_health
     }
