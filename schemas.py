@@ -96,10 +96,16 @@ class KnowledgeSourceSchema(KnowledgeSourceBase):
     model_config = ConfigDict(from_attributes=True)
 
 
+
 class KnowledgeSourceBriefSchema(KnowledgeSourceBase):
     """Brief schema without nested artifacts to avoid circular refs."""
     id: int
     model_config = ConfigDict(from_attributes=True)
+
+
+class KnowledgeSourcePathQuery(BaseModel):
+    paths: List[str]
+
 
 
 # --- Project Schemas ---
