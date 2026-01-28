@@ -76,6 +76,19 @@ def update_knowledge_source(ks_id: int, ks_update: KnowledgeSourceCreate, db: Se
     return db_ks
 
 
+@router.delete("/{ks_id}", response_model=dict)
+def delete_knowledge_source(ks_id: int, db: Session = Depends(get_db)):
+    """Delete a knowledge source by KSID (and its artifacts)"""
+    db_ks = db.query(KnowledgeSourceDB).filter(KnowledgeSourceDB.id == ks_id).first()
+    if db_ks is None:
+        raise HTTPException(status_code=404, detail="Knowledge source not found")
+    
+    db.delete(db_ks)
+    db.commit()
+
+    return {"detail": f"Knowledge source {ks_id} (and its knowledge artifacts) deleted successfully"}
+
+
 # Note: This endpoint uses /projects/ prefix but is here for logical grouping with KS operations
 def download_paper_for_project(
     project_id: int, request: KnowledgeSourceDownload, db: Session = Depends(get_db)
