@@ -1,10 +1,13 @@
 from openai import OpenAI
+import os
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
 
-# Do we use the OpenAI client even if we use a different model? - Dario
-# Initialize the client for RWTH Aachen LLM
+# Initialize the client for RWTH Aachen LLM, loading the key from the environment
 client = OpenAI(
-    api_key="sk-1D3VVV2S52kdBhGPav4tIQ",
+    api_key=os.getenv("OPENAI_API_KEY"),
     base_url="https://llm.hpc.itc.rwth-aachen.de"
 )
 

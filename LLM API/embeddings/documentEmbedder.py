@@ -2,13 +2,14 @@ import os
 import chromadb
 from chromadb.utils import embedding_functions
 from typing import List, Dict, Any
+from config import CHROMA_DB_PATH
 
 
 class SemanticSearchEngine:
     def __init__(self, db_path=None):
-        # Set a default path if none provided (pointing to parent dir of the embedding folder)
+        # Set a default path if none provided, using the central config
         if db_path is None:
-            db_path = os.path.join(os.path.dirname(__file__), "..", "chroma_db")
+            db_path = CHROMA_DB_PATH
 
         # Ensure the directory exists
         os.makedirs(db_path, exist_ok=True)

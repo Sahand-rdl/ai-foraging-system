@@ -13,17 +13,7 @@ from embeddings.chatter import ScientificAssistant
 from prompt.pipeline import run_pipeline
 from prompt_batch_extract import load_docling_json_text
 
-# ===== Path Constants =====
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RAW_DOCS_DIR = os.path.join(BASE_DIR, "raw_docs")
-PROCESSED_DOCS_DIR = os.path.join(BASE_DIR, "docling_docs")
-ARTIFACTS_DIR = os.path.join(BASE_DIR, "extracted_entities")
-DB_PATH = os.path.join(BASE_DIR, "chroma_db")
-
-# Create directories if they don't exist
-os.makedirs(PROCESSED_DOCS_DIR, exist_ok=True)
-os.makedirs(ARTIFACTS_DIR, exist_ok=True)
-
+from config import PROCESSED_DOCS_DIR, RAW_DOCS_BASE_DIR
 
 def run_automatic_pipeline(
     raw_doc_path: str,
@@ -37,10 +27,9 @@ def run_automatic_pipeline(
 
     file_name = os.path.basename(raw_doc_path)
     base_name = os.path.splitext(file_name)[0]
-    processed_doc_path = os.path.join(
-        os.path.dirname(__file__), "docling_docs", f"{base_name}.json"
-    )
-    os.makedirs(os.path.dirname(processed_doc_path), exist_ok=True)
+    
+    # Use the new static config path to define the output location
+    processed_doc_path = os.path.join(PROCESSED_DOCS_DIR, f"{base_name}.json")
 
     # 1. Parse the document
     print(f"1. Parsing document: {file_name}")
@@ -65,10 +54,10 @@ def run_automatic_pipeline(
     full_text = load_docling_json_text(processed_doc_path)
     pipeline_history = run_pipeline(full_text, iterations=3)
     entities = pipeline_history[-1]["extraction"] if pipeline_history else {}
-    print("   ... Entities extracted.")
-
+    
     # 5. TF-IDF for tags
     print("5. Generating tags (TF-IDF)...")
+    # The corpus is the entire flat directory of processed documents
     tags_with_scores = analyze_document_tfidf(f"{base_name}.json", PROCESSED_DOCS_DIR)
     tags = [tag for tag, score in tags_with_scores]
     print("   ... Tag generation complete.")
@@ -128,15 +117,28 @@ def run_chat(doc_id: str, query: str):
 if __name__ == "__main__":
     # Example usage of the automatic pipeline
     print("===== Running Automatic Pipeline =====")
-    # As an example, we'll use the first PDF found in the raw_docs folder
+    
     try:
-        pdf_files = [f for f in os.listdir(RAW_DOCS_DIR) if f.endswith(".pdf")]
-        if not pdf_files:
+        # To make this test runnable, we'll look in the first subdirectory of the raw docs path
+        # This simulates a real project structure like '.../raw/1/'
+        first_project_dir = None
+        if os.path.exists(RAW_DOCS_BASE_DIR):
+            subdirs = [d for d in os.listdir(RAW_DOCS_BASE_DIR) if os.path.isdir(os.path.join(RAW_DOCS_BASE_DIR, d))]
+            if subdirs:
+                first_project_dir = os.path.join(RAW_DOCS_BASE_DIR, subdirs[0])
+
+        if not first_project_dir:
             raise FileNotFoundError(
-                "No PDF files found in the raw_docs directory for testing."
+                f"No project subdirectories found in '{RAW_DOCS_BASE_DIR}' to find test PDFs."
             )
 
-        test_doc_path = os.path.join(RAW_DOCS_DIR, pdf_files[0])
+        pdf_files = [f for f in os.listdir(first_project_dir) if f.endswith(".pdf")]
+        if not pdf_files:
+            raise FileNotFoundError(
+                f"No PDF files found in '{first_project_dir}' for testing."
+            )
+
+        test_doc_path = os.path.join(first_project_dir, pdf_files[0])
         project_def = "an algorithm for first-order gradient-based optimization of stochastic objective functions"
 
         final_output = run_automatic_pipeline(test_doc_path, project_def)

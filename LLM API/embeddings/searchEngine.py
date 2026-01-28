@@ -12,11 +12,14 @@ if current_dir not in sys.path:
     sys.path.append(current_dir)
 
 
+from config import CHROMA_DB_PATH, PROCESSED_DOCS_DIR
+
+
 class KnowledgeSearch:
     def __init__(self):
-        # Paths relative to the script location
-        self.json_folder = os.path.join(parent_dir, "docling_docs")
-        self.db_path = os.path.join(parent_dir, "chroma_db")
+        # Paths from the central config file
+        self.json_folder = PROCESSED_DOCS_DIR
+        self.db_path = CHROMA_DB_PATH
 
         # We set this to None to avoid loading the heavy AI model
         # until the user actually selects Semantic Search.
