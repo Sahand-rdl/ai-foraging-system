@@ -77,17 +77,18 @@ async def search(request: SearchRequest, db: Session = Depends(get_db)):
                 base_name = os.path.splitext(filename)[0]
                 search_pattern = f"%/{base_name}.pdf"
 
+                # Find the corresponding KnowledgeSource in the database
                 source_db = (
                     db.query(KnowledgeSourceDB)
-                    .filter(KnowledgeSourceDB.file_path.like(search_pattern))
+                    .filter(KnowledgeSourceDB.path.like(search_pattern))
                     .first()
                 )
 
-                if source_db:
+                if source_db and source_db.projects:
                     enriched_results.append(
                         {
                             "id": source_db.id,
-                            "project_id": source_db.project_id,
+                            "project_id": source_db.projects[0].id,
                             **result,
                         }
                     )
