@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ChevronLeft, Sparkles, Heart, X, Check, Tag, MessageSquare, Send } from "lucide-react";
+import { ChevronLeft, Sparkles, Heart, X, Check, Tag, MessageSquare, Send, ExternalLink } from "lucide-react";
 import { KnowledgeArtifact } from "@/types/source";
 
 interface ArtifactDetailProps {
@@ -24,6 +24,7 @@ interface ArtifactDetailProps {
   onUpdateContent?: (id: number, content: string) => void;
   onAccept?: (id: number) => void;
   onDecline?: (id: number) => void;
+  onUpdateExternalLink?: (id: number, link: string) => void;
 }
 
 export function ArtifactDetail({
@@ -42,7 +43,8 @@ export function ArtifactDetail({
   onNewTagChange,
   onUpdateContent,
   onAccept,
-  onDecline
+  onDecline,
+  onUpdateExternalLink
 }: ArtifactDetailProps) {
   const isSuggestion = artifact.status === "suggestion";
 
@@ -135,6 +137,19 @@ export function ArtifactDetail({
                 </Button>
               </div>
             )}
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
+              <ExternalLink className="h-4 w-4" />
+              External Link
+            </h3>
+            <Input
+              placeholder="https://example.com"
+              value={artifact.externalLink || ""}
+              onChange={(e) => onUpdateExternalLink?.(artifact.id, e.target.value)}
+              className="font-mono text-sm"
+            />
           </div>
 
           {/* Tags */}

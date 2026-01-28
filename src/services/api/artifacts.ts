@@ -101,6 +101,17 @@ export async function updateArtifactContent(
   return mapKnowledgeArtifact(updated);
 }
 
+export async function updateArtifactExternalLink(
+  id: number,
+  externalLink: string
+): Promise<KnowledgeArtifact> {
+  const updated = await apiRequest<BackendKnowledgeArtifact>(`/knowledge-artifacts/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ external_link: externalLink }),
+  });
+  return mapKnowledgeArtifact(updated);
+}
+
 export async function deleteArtifact(id: number): Promise<void> {
   await apiRequest(`/knowledge-artifacts/${id}`, {
     method: "DELETE",

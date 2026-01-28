@@ -11,6 +11,7 @@ import {
   removeArtifactTag,
   updateArtifactNotes,
   updateArtifactContent,
+  updateArtifactExternalLink,
   sendArtifactChatMessage,
   deleteArtifact,
   API_BASE_URL,
@@ -128,6 +129,13 @@ export default function SourceDetail() {
     } catch (e) { console.error(e); }
   };
 
+  const handleUpdateExternalLink = async (artifactId: number, link: string) => {
+    setArtifacts(prev => prev.map(a => a.id === artifactId ? { ...a, externalLink: link } : a));
+    try {
+        await updateArtifactExternalLink(artifactId, link);
+    } catch (e) { console.error(e); }
+  };
+
   const handleSendChatMessage = async (artifactId: number) => {
     if (!currentMessage.trim()) return;
     
@@ -175,11 +183,10 @@ export default function SourceDetail() {
 
   const getTypeColor = (type: string) => {
     const colors = {
-      Def: "default",
-      Figure: "secondary",
-      Algo: "outline",
-      Tech: "outline",
-      Table: "secondary"
+      terminology: "default",
+      figure: "secondary",
+      algorithm: "outline",
+      table: "secondary"
     };
     return colors[type as keyof typeof colors] || "outline";
   };
@@ -239,6 +246,7 @@ export default function SourceDetail() {
                 newTag={newTag}
                 onNewTagChange={setNewTag}
                 onUpdateContent={handleUpdateContent}
+                onUpdateExternalLink={handleUpdateExternalLink}
                 onAccept={handleAccept}
                 onDecline={handleDecline}
               />

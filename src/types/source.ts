@@ -46,7 +46,7 @@ export interface KnowledgeSource {
 }
 
 // --- Knowledge Artifact (KAID) ---
-export type KAType = "Figure" | "Table" | "Algo" | "Def" | "Tech";
+export type KAType = "terminology" | "figure" | "table" | "algorithm";
 export type KAStatus = "suggestion" | "final";
 
 export interface ChatMessage {
@@ -269,7 +269,7 @@ export const mockKnowledgeSources: KnowledgeSource[] = [
 export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   {
     id: 1,
-    type: "Algo",
+    type: "algorithm",
     title: "Scaled Dot-Product Attention",
     content: "Attention(Q, K, V) = softmax(QK^T / sqrt(d_k))V",
     status: "final",
@@ -281,7 +281,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 2,
-    type: "Figure",
+    type: "figure",
     title: "Transformer Architecture Diagram",
     content: "Multi-head attention layers with encoder-decoder structure.",
     status: "final",
@@ -294,7 +294,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 3,
-    type: "Def",
+    type: "terminology",
     title: "BERT Pre-training Objectives",
     content: "Masked Language Model (MLM) and Next Sentence Prediction (NSP).",
     status: "suggestion",
@@ -309,7 +309,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 4,
-    type: "Tech",
+    type: "algorithm",
     title: "Residual Connection Formula",
     content: "y = F(x, {W_i}) + x, where F is the residual mapping.",
     status: "final",
@@ -321,7 +321,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 5,
-    type: "Table",
+    type: "table",
     title: "ImageNet Classification Results",
     content: "ResNet-152 achieves 3.57% top-5 error on ImageNet.",
     status: "final",
@@ -333,7 +333,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 6,
-    type: "Algo",
+    type: "algorithm",
     title: "Vision Transformer Patch Embedding",
     content: "Image is split into 16x16 patches, linearly projected to embedding dimension.",
     status: "suggestion",
@@ -345,7 +345,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 7,
-    type: "Algo",
+    type: "algorithm",
     title: "FinBERT Training Procedure",
     content: "Fine-tune BERT on TRC2-financial and Reuters datasets with a classification head.",
     status: "final",
@@ -357,7 +357,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 8,
-    type: "Tech",
+    type: "algorithm",
     title: "Sentiment Scoring Formula",
     content: "Score = (Pos - Neg) / (Pos + Neg + 1)",
     status: "suggestion",
@@ -369,7 +369,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 9,
-    type: "Def",
+    type: "terminology",
     title: "Domain Adaptation in Finance",
     content: "The process of adapting a general-purpose model to the specific nuances of financial language.",
     status: "final",
@@ -381,7 +381,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 10,
-    type: "Table",
+    type: "table",
     title: "Financial Lexicon Performance",
     content: "Loughran-McDonald lexicon outperforms generic Harvard IV-4 lexicon by 12% on earnings calls.",
     status: "final",
@@ -393,7 +393,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 11,
-    type: "Algo",
+    type: "algorithm",
     title: "PPO Clip Objective",
     content: "L = E[min(r_t * A_t, clip(r_t, 1-e, 1+e) * A_t)]",
     status: "final",
@@ -405,7 +405,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 12,
-    type: "Figure",
+    type: "figure",
     title: "PPO Training Curves",
     content: "Comparison of PPO vs TRPO and vanilla Policy Gradient on MuJoCo tasks.",
     status: "final",
@@ -417,7 +417,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 13,
-    type: "Tech",
+    type: "algorithm",
     title: "Reward Shaping for Manipulation",
     content: "R = d_goal - d_current + alpha * (velocity alignment)",
     status: "suggestion",
@@ -429,7 +429,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 14,
-    type: "Def",
+    type: "terminology",
     title: "SLAM",
     content: "Simultaneous Localization and Mapping: building a map of an unknown environment while keeping track of current location.",
     status: "final",
@@ -441,7 +441,7 @@ export const mockKnowledgeArtifacts: KnowledgeArtifact[] = [
   },
   {
     id: 15,
-    type: "Figure",
+    type: "figure",
     title: "Autonomous Path Planning Diagram",
     content: "A* algorithm search tree on a occupancy grid map.",
     status: "suggestion",

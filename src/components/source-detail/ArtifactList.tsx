@@ -13,7 +13,7 @@ interface ArtifactListProps {
   onDecline?: (id: number) => void;
 }
 
-const FILTER_TYPES = ["all", "Figure", "Table", "Algo", "Def", "Tech"];
+const FILTER_TYPES = ["all", "terminology", "figure", "table", "algorithm"];
 
 export function ArtifactList({ 
   artifacts, 
@@ -35,7 +35,7 @@ export function ArtifactList({
               variant={selectedFilter === type ? "default" : "outline"}
               size="sm"
               onClick={() => onFilterChange(type as KAType | "all")}
-              className="flex-1 min-w-[60px]"
+              className="flex-1 "
             >
               {type}
             </Button>

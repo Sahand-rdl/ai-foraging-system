@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, Filter, Bookmark, Check, Image, Table2, Code, BookOpen, Cpu, ExternalLink, MessageSquare } from "lucide-react";
+import { Search, Filter, Bookmark, Check, Image, Table2, Code, BookOpen, ExternalLink, MessageSquare } from "lucide-react";
 import { 
   fetchKnowledgeArtifacts, 
   fetchKnowledgeSources, 
@@ -20,11 +20,10 @@ import {
 // Get icon for KA type
 function getTypeIcon(type: KAType) {
   switch (type) {
-    case "Figure": return <Image className="h-4 w-4" />;
-    case "Table": return <Table2 className="h-4 w-4" />;
-    case "Algo": return <Code className="h-4 w-4" />;
-    case "Def": return <BookOpen className="h-4 w-4" />;
-    case "Tech": return <Cpu className="h-4 w-4" />;
+    case "figure": return <Image className="h-4 w-4" />;
+    case "table": return <Table2 className="h-4 w-4" />;
+    case "algorithm": return <Code className="h-4 w-4" />;
+    case "terminology": return <BookOpen className="h-4 w-4" />;
   }
 }
 
@@ -36,8 +35,9 @@ export default function Artifacts() {
 
   const [usedArtifacts, setUsedArtifacts] = useState<Set<number>>(new Set());
   const [selectedTypes, setSelectedTypes] = useState<Set<KAType>>(new Set());
+  const [showBookmarkedOnly, setShowBookmarkedOnly] = useState(false);
 
-  const availableTypes: KAType[] = ["Figure", "Table", "Algo", "Def", "Tech"];
+  const availableTypes: KAType[] = ["terminology", "figure", "table", "algorithm"];
 
   useEffect(() => {
     async function loadData() {
@@ -106,9 +106,11 @@ export default function Artifacts() {
     });
   };
 
-  const filteredArtifacts = selectedTypes.size === 0 
-    ? artifacts 
-    : artifacts.filter(artifact => selectedTypes.has(artifact.type));
+  const filteredArtifacts = artifacts.filter(artifact => {
+    const typeMatch = selectedTypes.size === 0 || selectedTypes.has(artifact.type);
+    const bookmarkMatch = !showBookmarkedOnly || artifact.isBookmarked;
+    return typeMatch && bookmarkMatch;
+  });
 
   const getStatusBadge = (status: KnowledgeArtifact["status"]) => {
     return status === "final" ? "default" : "secondary";
@@ -142,7 +144,20 @@ export default function Artifacts() {
           </div>
         </CardHeader>
         <CardContent className="pt-0">
-          <div className="space-y-2">
+          <div className="space-y-4">
+            <div className="flex items-center gap-4 border-b border-border pb-4">
+              <Button
+                variant={showBookmarkedOnly ? "default" : "outline"}
+                size="sm"
+                onClick={() => setShowBookmarkedOnly(!showBookmarkedOnly)}
+                className="gap-2"
+              >
+                <Bookmark className="h-4 w-4" />
+                Bookmarked Only
+              </Button>
+            </div>
+            
+            <div className="space-y-2">
             <p className="text-sm font-medium text-foreground">Filter by Type</p>
             <div className="flex flex-wrap gap-2">
               {availableTypes.map((type) => (
@@ -168,6 +183,7 @@ export default function Artifacts() {
                 </Button>
               )}
             </div>
+          </div>
           </div>
         </CardContent>
       </Card>

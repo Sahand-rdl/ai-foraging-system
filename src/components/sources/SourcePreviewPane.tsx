@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Star, ExternalLink, ChevronRight, Heart, FileText, Table2, Image, Code, BookOpen, Cpu, Info } from "lucide-react";
+import { Star, ExternalLink, ChevronRight, Heart, FileText, Table2, Image, Code, BookOpen, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,11 +23,10 @@ interface SourcePreviewPaneProps {
 
 function getTypeIcon(type: KAType) {
     switch (type) {
-      case "Figure": return <Image className="h-3 w-3" />;
-      case "Table": return <Table2 className="h-3 w-3" />;
-      case "Algo": return <Code className="h-3 w-3" />;
-      case "Def": return <BookOpen className="h-3 w-3" />;
-      case "Tech": return <Cpu className="h-3 w-3" />;
+      case "figure": return <Image className="h-3 w-3" />;
+      case "table": return <Table2 className="h-3 w-3" />;
+      case "algorithm": return <Code className="h-3 w-3" />;
+      case "terminology": return <BookOpen className="h-3 w-3" />;
       default: return <FileText className="h-3 w-3" />;
     }
 }
