@@ -9,10 +9,11 @@ if current_dir not in sys.path:
     sys.path.append(current_dir)
 
 from documentEmbedder import SemanticSearchEngine
+from config import PROCESSED_DOCS_DIR, CHROMA_DB_PATH
 
-# Using the relative paths
-JSON_FOLDER = os.path.join(os.path.dirname(__file__), "docling_docs")
-DB_PATH = os.path.join("..", "chroma_db")
+# Using paths from the central config
+JSON_FOLDER = PROCESSED_DOCS_DIR
+DB_PATH = CHROMA_DB_PATH
 
 # Ensure folders exist
 os.makedirs(JSON_FOLDER, exist_ok=True)
