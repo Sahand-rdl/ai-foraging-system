@@ -39,3 +39,6 @@ MANIFEST
 .env.production
 env/
 venv/
+
+# Ignored directories
+LLM API/docling_docs/
