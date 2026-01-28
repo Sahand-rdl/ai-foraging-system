@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Dict, Optional
 
 from config import settings
 from database import get_db
@@ -16,6 +16,7 @@ from schemas import (
     KnowledgeSourceSchema,
     KnowledgeSourceCreate,
     KnowledgeSourceDownload,
+    KnowledgeSourcePathQuery,
 )
 
 router = APIRouter(prefix="/knowledge-sources", tags=["knowledge-sources"])
@@ -29,6 +30,27 @@ def create_knowledge_source(ks: KnowledgeSourceCreate, db: Session = Depends(get
     db.commit()
     db.refresh(db_ks)
     return db_ks
+
+
+@router.post("/bulk-lookup", response_model=Dict[str, Optional[int]])
+def get_knowledge_source_ids(query: KnowledgeSourcePathQuery, db: Session = Depends(get_db)):
+    """Get KSIDs for a list of file paths. Returns a map of path -> ksid (or None if not found)."""
+    results = {}
+    
+    # Optimize by querying all paths at once
+    # We might need to handle large lists, but for now a single IN query is fine
+    # Note: paths in DB might be absolute, so exact match is required.
+    knowledge_sources = db.query(KnowledgeSourceDB).filter(KnowledgeSourceDB.path.in_(query.paths)).all()
+    
+    # Create a lookup map from the results
+    found_map = {ks.path: ks.id for ks in knowledge_sources}
+    
+    # innovative response: return all requested paths, with None if not found
+    for path in query.paths:
+        results[path] = found_map.get(path)
+        
+    return results
+
 
 
 @router.get("/", response_model=List[KnowledgeSourceSchema])
@@ -192,3 +214,10 @@ def upload_paper_for_project(
     db.refresh(db_ks)
 
     return db_ks
+
+
+
+# TODO
+# endpoint that receives al list of pdf paths and returns corresponding KSIDs
+
+

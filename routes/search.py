@@ -10,6 +10,7 @@ from schemas import SearchQuery, SearchResponse
 router = APIRouter(prefix="/search", tags=["search"])
 logger = logging.getLogger(__name__)
 
+
 @router.post("/", response_model=SearchResponse)
 async def search(query: SearchQuery):
     """
