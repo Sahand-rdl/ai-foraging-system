@@ -1,9 +1,41 @@
+# IDE and OS files
 .DS_Store
+.vscode/
+
+# Python artifacts
 __pycache__/
-LLM API/chroma_db/chroma.sqlite3
-LLM API/chroma_db/e62d4fc0-bf18-4bd4-aa57-2d42fa022103/data_level0.bin
-chroma_db/chroma.sqlite3
-chroma.sqlite3
-chroma_db/e62d4fc0-bf18-4bd4-aa57-2d42fa022103/data_level0.bin
-e62d4fc0-bf18-4bd4-aa57-2d42fa022103/data_level0.bin
-data_level0.bin
+*.pyc
+*.pyo
+*.pyd
+
+# Database files
+chroma_db/
+*.sqlite3
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+env/
+venv/

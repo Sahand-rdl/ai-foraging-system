@@ -1,7 +1,11 @@
 from openai import OpenAI
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 client = OpenAI(
-    api_key="sk-1D3VVV2S52kdBhGPav4tIQ",
+    api_key=os.getenv("OPENAI_API_KEY"),
     base_url="https://llm.hpc.itc.rwth-aachen.de"
 )
 
