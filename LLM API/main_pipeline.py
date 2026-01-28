@@ -52,7 +52,7 @@ def run_automatic_pipeline(
     # 4. Run Entity Extractor
     print("4. Running Entity Extractor...")
     full_text = load_docling_json_text(processed_doc_path)
-    pipeline_history = run_pipeline(full_text, iterations=3)
+    pipeline_history = run_pipeline(full_text, iterations=1)
     entities = pipeline_history[-1]["extraction"] if pipeline_history else {}
     
     # 5. TF-IDF for tags
