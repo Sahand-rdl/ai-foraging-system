@@ -41,27 +41,36 @@ export default function Search() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-6 items-center sticky top-4 z-10 bg-background/95 backdrop-blur py-4 rounded-xl border shadow-sm px-6">
-        <div className="w-full max-w-2xl flex gap-3">
+      <div className="flex flex-col items-center w-full max-w-2xl mx-auto space-y-6">
+        <div className="w-full p-8 rounded-2xl border bg-card/50 shadow-sm space-y-6">
+          <div className="flex w-full items-center gap-3">
             <Input 
-              className="h-12 text-lg shadow-sm" 
+              className="h-14 text-lg bg-secondary/30 border-secondary-foreground/10 focus-visible:ring-primary/20" 
               placeholder="Enter your search query..." 
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               autoFocus
             />
-            <Button size="lg" className="h-12 w-16" onClick={handleSearch} disabled={isLoading}>
-              {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <SearchIcon className="h-5 w-5" />}
+            <Button 
+              size="lg" 
+              className="h-14 w-14 rounded-lg bg-blue-500 hover:bg-blue-600 shadow-lg shadow-blue-500/20 shrink-0 p-0" 
+              onClick={handleSearch} 
+              disabled={isLoading}
+            >
+              {isLoading ? <Loader2 className="h-6 w-6 animate-spin text-white" /> : <SearchIcon className="h-6 w-6 text-white" />}
             </Button>
+          </div>
+          
+          <div className="flex justify-center w-full">
+            <Tabs value={searchType} onValueChange={(v) => setSearchType(v as "keyword" | "semantic")} className="w-full max-w-md">
+              <TabsList className="grid w-full grid-cols-2 h-11 bg-secondary/30 p-1">
+                <TabsTrigger value="keyword" className="data-[state=active]:bg-background/50 data-[state=active]:shadow-sm transition-all duration-200">Keyword Search</TabsTrigger>
+                <TabsTrigger value="semantic" className="data-[state=active]:bg-background/50 data-[state=active]:shadow-sm transition-all duration-200">Semantic Search</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
         </div>
-        
-        <Tabs value={searchType} onValueChange={(v) => setSearchType(v as "keyword" | "semantic")} className="w-[400px]">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="keyword">Keyword Search</TabsTrigger>
-            <TabsTrigger value="semantic">Semantic Search</TabsTrigger>
-          </TabsList>
-        </Tabs>
       </div>
 
       <div className="space-y-4">

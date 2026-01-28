@@ -52,3 +52,9 @@ export async function updateKnowledgeSourceFavourite(
   });
   return mapKnowledgeSource(updated);
 }
+
+export async function deleteKnowledgeSource(id: number): Promise<void> {
+  await apiRequest<void>(`/knowledge-sources/${id}`, {
+    method: "DELETE",
+  });
+}

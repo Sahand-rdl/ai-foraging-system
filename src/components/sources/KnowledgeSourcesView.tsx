@@ -4,9 +4,11 @@ import { Search, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { toast } from "sonner";
 import { SourcesTable } from "./SourcesTable";
 import { SourcePreviewPane } from "./SourcePreviewPane";
 import type { KnowledgeSource } from "@/types/source";
+import { deleteKnowledgeSource } from "@/services/api/sources";
 
 interface KnowledgeSourcesViewProps {
   sources: KnowledgeSource[];
@@ -45,6 +47,18 @@ export function KnowledgeSourcesView({
     }
   };
 
+  const handleDeleteSource = async (id: number) => {
+    try {
+      await deleteKnowledgeSource(id);
+      toast.success("Knowledge source deleted successfully");
+   
+      window.location.reload(); 
+    } catch (error) {
+      console.error("Failed to delete source:", error);
+      toast.error("Failed to delete knowledge source");
+    }
+  };
+
   return (
     <div className="flex h-full flex-col gap-4">
       {showHeader && (
@@ -78,6 +92,7 @@ export function KnowledgeSourcesView({
               selectedSourceId={selectedSourceId}
               onSelectSource={setSelectedSourceId}
               onOpenSource={handleOpenSource}
+              onDeleteSource={handleDeleteSource}
               getTitle={titleFn}
               compact={!!selectedSource}
             />

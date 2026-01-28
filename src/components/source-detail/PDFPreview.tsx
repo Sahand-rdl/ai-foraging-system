@@ -12,6 +12,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 interface PDFPreviewProps {
   pdfUrl: string;
   onBack?: () => void;
+  externalSearchQuery?: string;
 }
 
 interface SearchMatch {
@@ -19,7 +20,7 @@ interface SearchMatch {
   pageNumber: number;
 }
 
-export function PDFPreview({ pdfUrl, onBack }: PDFPreviewProps) {
+export function PDFPreview({ pdfUrl, onBack, externalSearchQuery }: PDFPreviewProps) {
   const [numPages, setNumPages] = useState<number>(0);
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const [zoom, setZoom] = useState<number>(1.0);
@@ -28,6 +29,13 @@ export function PDFPreview({ pdfUrl, onBack }: PDFPreviewProps) {
   const [currentMatchIndex, setCurrentMatchIndex] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Sync external search query with internal state
+  useEffect(() => {
+    if (externalSearchQuery) {
+      setSearchQuery(externalSearchQuery);
+    }
+  }, [externalSearchQuery]);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);

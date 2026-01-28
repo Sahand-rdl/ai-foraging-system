@@ -1,4 +1,11 @@
-import { FileText, Link as LinkIcon } from "lucide-react";
+import { FileText, Link as LinkIcon, MoreHorizontal, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -15,6 +22,7 @@ interface SourcesTableProps {
   selectedSourceId: number | null;
   onSelectSource: (id: number | null) => void;
   onOpenSource?: (id: number) => void;
+  onDeleteSource?: (id: number) => void;
   getTitle?: (source: KnowledgeSource) => string;
   compact?: boolean;
 }
@@ -43,6 +51,7 @@ export function SourcesTable({
   selectedSourceId,
   onSelectSource,
   onOpenSource,
+  onDeleteSource,
   getTitle,
   compact = false,
 }: SourcesTableProps) {
@@ -64,6 +73,7 @@ export function SourcesTable({
               <>
                 <TableHead className="w-[120px]">Trustworthiness</TableHead>
                 <TableHead className="w-[240px]">Authors</TableHead>
+                <TableHead className="w-[60px]"></TableHead>
               </>
             )}
           </TableRow>
@@ -109,6 +119,32 @@ export function SourcesTable({
                         ? source.metadata.authors.join(", ")
                         : source.metadata.authors || "Unknown"}
                     </span>
+                  </TableCell>
+                  <TableCell>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          className="h-8 w-8"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <span className="sr-only">Open menu</span>
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem
+                          className="text-red-600 focus:text-red-600"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onDeleteSource?.(source.id);
+                          }}
+                        >
+                          <Trash2 className="mr-2 h-4 w-4" />
+                          Delete
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </TableCell>
                 </>
               )}

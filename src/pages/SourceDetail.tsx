@@ -44,6 +44,7 @@ export default function SourceDetail() {
   // Local state for chat input/tag input
   const [currentMessage, setCurrentMessage] = useState("");
   const [newTag, setNewTag] = useState("");
+  const [previewSearchQuery, setPreviewSearchQuery] = useState("");
 
   useEffect(() => {
     async function loadData() {
@@ -70,6 +71,14 @@ export default function SourceDetail() {
     : artifacts.filter(a => a.type === selectedFilter);
 
   const selectedArtifact = artifacts.find(a => a.id === selectedArtifactId);
+
+  const handleArtifactSelect = (id: number) => {
+    setSelectedArtifactId(id);
+    const artifact = artifacts.find(a => a.id === id);
+    if (artifact) {
+      setPreviewSearchQuery(artifact.title);
+    }
+  };
 
   // Mutations
   const handleStatusChange = async (artifactId: number, status: "suggestion" | "final") => {
@@ -204,7 +213,7 @@ export default function SourceDetail() {
       <ResizablePanelGroup direction="horizontal" className="flex-1">
         {/* PDF Viewer */}
         <ResizablePanel defaultSize={60} minSize={30}>
-          <PDFPreview pdfUrl={pdfUrl} onBack={handleBack} />
+          <PDFPreview pdfUrl={pdfUrl} onBack={handleBack} externalSearchQuery={previewSearchQuery} />
         </ResizablePanel>
 
         <ResizableHandle withHandle />
@@ -238,7 +247,7 @@ export default function SourceDetail() {
                 artifacts={filteredArtifacts}
                 selectedFilter={selectedFilter}
                 onFilterChange={setSelectedFilter}
-                onArtifactSelect={setSelectedArtifactId}
+                onArtifactSelect={handleArtifactSelect}
                 getTypeColor={getTypeColor}
                 onAccept={handleAccept}
                 onDecline={handleDecline}
