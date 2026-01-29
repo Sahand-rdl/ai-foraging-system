@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, Filter, Bookmark, Check, Image, Table2, Code, BookOpen, ExternalLink, MessageSquare } from "lucide-react";
+import { Search, Filter, Bookmark, Check, Image, Table2, Code, BookOpen, ExternalLink, MessageSquare, ArrowRight } from "lucide-react";
 import { 
   fetchKnowledgeArtifacts, 
   fetchKnowledgeSources, 
@@ -28,6 +29,7 @@ function getTypeIcon(type: KAType) {
 }
 
 export default function Artifacts() {
+  const navigate = useNavigate();
   const [artifacts, setArtifacts] = useState<KnowledgeArtifact[]>([]);
   const [sources, setSources] = useState<KnowledgeSource[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
@@ -231,13 +233,13 @@ export default function Artifacts() {
                 </div>
                 <div className="flex gap-2 shrink-0">
                   <Button 
-                    variant={usedArtifacts.has(artifact.id) ? "default" : "outline"}
+                    variant="outline"
                     size="sm"
-                    onClick={() => toggleUsed(artifact.id)}
-                    className={usedArtifacts.has(artifact.id) ? "bg-emerald-600 hover:bg-emerald-700" : ""}
+                    onClick={() => navigate(`/sources/${artifact.knowledgeSourceId}?aid=${artifact.id}`)}
+                    className="gap-1"
                   >
-                    {usedArtifacts.has(artifact.id) && <Check className="h-3 w-3 mr-1" />}
-                    {usedArtifacts.has(artifact.id) ? "Used" : "Use This"}
+                    View Source
+                    <ArrowRight className="h-3 w-3" />
                   </Button>
                   <Button 
                     variant="ghost" 

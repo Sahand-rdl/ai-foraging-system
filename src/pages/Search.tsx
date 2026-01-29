@@ -1,15 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { searchApi, SearchResultItem } from "@/services/api/search";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search as SearchIcon, Loader2, FileText } from "lucide-react";
+import { Search as SearchIcon, Loader2, FileText, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 
 export default function Search() {
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
   const [searchType, setSearchType] = useState<"keyword" | "semantic">("keyword");
   const [results, setResults] = useState<SearchResultItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -108,11 +110,29 @@ export default function Search() {
                 <div className="text-sm text-foreground/80 font-mono bg-muted/50 p-3 rounded-md overflow-x-auto whitespace-pre-wrap">
                   {result.snippet}
                 </div>
-                {(result.score !== undefined && result.score !== null) && (
-                    <div className="mt-2 text-xs text-muted-foreground text-right">
-                        Score: {result.score.toFixed(4)}
-                    </div>
-                )}
+                <div className="mt-4 flex items-center justify-between">
+                  {(result.score !== undefined && result.score !== null) ? (
+                      <div className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">
+                          Score: {result.score.toFixed(3)}
+                      </div>
+                  ) : <div />}
+                  
+                  <Button 
+                    variant="default" 
+                    size="sm"
+                    className="gap-2"
+                    onClick={() => {
+                      const searchTerms = result.snippet
+                        // Remove leading/trailing ellipses
+                        .replace(/^\.{3}|^\u2026|\.{3}$|\u2026$/g, "") 
+                        .trim();
+                      navigate(`/projects/${result.project_id}/sources/${result.id}?search=${encodeURIComponent(searchTerms)}`);
+                    }}
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Open Source
+                  </Button>
+                </div>
               </CardContent>
             </Card>
         ))}

@@ -6,6 +6,8 @@ export interface SearchQuery {
 }
 
 export interface SearchResultItem {
+  id: number;
+  project_id: number;
   filename: string;
   snippet: string;
   type: string;
@@ -18,7 +20,7 @@ export interface SearchResponse {
 
 export const searchApi = {
   search: (data: SearchQuery) => 
-    apiRequest<SearchResponse>("/search/", {
+    apiRequest<SearchResponse>("/ai/search/", {
       method: "POST",
       body: JSON.stringify(data),
     }),

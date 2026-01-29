@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 
 import { 
@@ -33,6 +33,9 @@ import { ArtifactDetail } from "@/components/source-detail/ArtifactDetail";
 export default function SourceDetail() {
   const { id, projectId } = useParams();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const aidParam = searchParams.get("aid");
+  const searchParam = searchParams.get("search");
   
   const [source, setSource] = useState<KnowledgeSource | null>(null);
   const [artifacts, setArtifacts] = useState<KnowledgeArtifact[]>([]);
@@ -58,6 +61,19 @@ export default function SourceDetail() {
             ]);
             setSource(sourceData || null);
             setArtifacts(artifactsData);
+            
+            // Handle deep link to artifact
+            if (aidParam) {
+                const aid = parseInt(aidParam, 10);
+                if (!isNaN(aid)) {
+                    setSelectedArtifactId(aid);
+                    // Also trigger search in preview
+                    const linkedArtifact = artifactsData.find(a => a.id === aid);
+                    if (linkedArtifact) {
+                        setPreviewSearchQuery(linkedArtifact.title);
+                    }
+                }
+            }
         } catch (error) {
             console.error("Failed to load source details", error);
         } finally {
@@ -67,6 +83,12 @@ export default function SourceDetail() {
     loadData();
   }, [id]);
 
+  useEffect(() => {
+    if (searchParam) {
+      setPreviewSearchQuery(searchParam);
+    }
+  }, [searchParam]);
+
   const filteredArtifacts = selectedFilter === "all" 
     ? artifacts 
     : artifacts.filter(a => a.type === selectedFilter);
@@ -75,6 +97,7 @@ export default function SourceDetail() {
 
   const handleArtifactSelect = (id: number) => {
     setSelectedArtifactId(id);
+    setSearchParams({ aid: id.toString() });
     const artifact = artifacts.find(a => a.id === id);
     if (artifact) {
       setPreviewSearchQuery(artifact.title);
@@ -234,7 +257,10 @@ export default function SourceDetail() {
               <ArtifactDetail 
                 artifact={selectedArtifact}
                 getTypeColor={getTypeColor}
-                onBack={() => setSelectedArtifactId(null)}
+                onBack={() => {
+                    setSelectedArtifactId(null);
+                    setSearchParams({});
+                }}
                 onToggleFavorite={toggleFavorite}
                 onStatusChange={handleStatusChange}
                 onRemoveTag={handleRemoveTag}
