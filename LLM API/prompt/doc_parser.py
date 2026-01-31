@@ -222,7 +222,7 @@ def parse_openalex_response(item: dict) -> Dict[str, Any]:
         elif item.get("ids", {}).get("openalex"):
             url = item["ids"]["openalex"]
 
-    return {
+    extracted_metadata = {
         "title": title,
         "authors": authors,
         "year": year,
@@ -231,3 +231,4 @@ def parse_openalex_response(item: dict) -> Dict[str, Any]:
         "url": url,
         "doi": doi,
     }
+    return extracted_metadata

@@ -83,12 +83,13 @@ def extract_key_sections(doc_data: dict) -> str:
     return "\n".join(kept_text)
 
 
-def trust_checker(document_text: str):
+def trust_checker(document_text: str, metadata: dict):
     """
     Evaluates a scientific paper for trustworthiness on a 1-3 scale.
     """
     system_prompt = """
     You are an expert AI Research Assistant. Evaluate the trustworthiness of the provided scientific paper.
+    Base your evaluation on both the provided metadata (venue, citations, publication context) and the scientific content itself.
     
     You must output a JSON object with these exact keys:
     - trustworthiness_score (1-3): 
@@ -101,6 +102,14 @@ def trust_checker(document_text: str):
     """
 
     user_prompt = f"""
+    METADATA:
+    Title: {metadata.get("title")}
+    Venue: {metadata.get("venue")}
+    Year: {metadata.get("year")}
+    Citation Count: {metadata.get("citation_count")}
+    DOI: {metadata.get("doi")}
+    URL: {metadata.get("url")}
+
     DOCUMENT:\"\"\"{document_text}\"\"\" 
     
     Expected JSON format:

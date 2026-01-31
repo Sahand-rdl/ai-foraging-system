@@ -81,7 +81,7 @@ def run_tests():
         trust_text = extract_key_sections(doc_data)
         metadata = extract_metadata_heuristics(doc_data)
         print("Metadata:", json.dumps(metadata, indent=2))
-        print("Result:", trust_checker(trust_text))
+        print("Result:", trust_checker(trust_text, metadata))
 
     elif task == "2":
         print("\n=== Extraction ===")

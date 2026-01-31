@@ -15,6 +15,7 @@ from prompt_batch_extract import load_docling_json_text
 
 from config import PROCESSED_DOCS_DIR, RAW_DOCS_BASE_DIR
 
+
 def run_automatic_pipeline(
     raw_doc_path: str,
     project_definition: str,
@@ -27,7 +28,7 @@ def run_automatic_pipeline(
 
     file_name = os.path.basename(raw_doc_path)
     base_name = os.path.splitext(file_name)[0]
-    
+
     # Use the new static config path to define the output location
     processed_doc_path = os.path.join(PROCESSED_DOCS_DIR, f"{base_name}.json")
 
@@ -46,7 +47,7 @@ def run_automatic_pipeline(
     # 3. Run Trust Checker
     print("3. Running Trust Checker...")
     key_sections = extract_key_sections(doc_data)
-    trust_result = trust_checker(key_sections)
+    trust_result = trust_checker(key_sections, metadata)
     print("   ... Trust Checker complete.")
 
     # 4. Run Entity Extractor
@@ -54,7 +55,7 @@ def run_automatic_pipeline(
     full_text = load_docling_json_text(processed_doc_path)
     pipeline_history = run_pipeline(full_text, iterations=1)
     entities = pipeline_history[-1]["extraction"] if pipeline_history else {}
-    
+
     # 5. TF-IDF for tags
     print("5. Generating tags (TF-IDF)...")
     # The corpus is the entire flat directory of processed documents
@@ -117,13 +118,17 @@ def run_chat(doc_id: str, query: str):
 if __name__ == "__main__":
     # Example usage of the automatic pipeline
     print("===== Running Automatic Pipeline =====")
-    
+
     try:
         # To make this test runnable, we'll look in the first subdirectory of the raw docs path
         # This simulates a real project structure like '.../raw/1/'
         first_project_dir = None
         if os.path.exists(RAW_DOCS_BASE_DIR):
-            subdirs = [d for d in os.listdir(RAW_DOCS_BASE_DIR) if os.path.isdir(os.path.join(RAW_DOCS_BASE_DIR, d))]
+            subdirs = [
+                d
+                for d in os.listdir(RAW_DOCS_BASE_DIR)
+                if os.path.isdir(os.path.join(RAW_DOCS_BASE_DIR, d))
+            ]
             if subdirs:
                 first_project_dir = os.path.join(RAW_DOCS_BASE_DIR, subdirs[0])
 
