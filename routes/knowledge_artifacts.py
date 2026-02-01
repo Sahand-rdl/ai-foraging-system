@@ -31,9 +31,9 @@ def create_knowledge_artifact(artifact: KnowledgeArtifactCreate, db: Session = D
 
 
 @router.get("/", response_model=List[KnowledgeArtifactSchema])
-def read_knowledge_artifacts(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def read_knowledge_artifacts(skip: int = 0, db: Session = Depends(get_db)):
     """Get all knowledge artifacts."""
-    artifacts = db.query(KnowledgeArtifactDB).offset(skip).limit(limit).all()
+    artifacts = db.query(KnowledgeArtifactDB).offset(skip).all()
     return artifacts
 
 

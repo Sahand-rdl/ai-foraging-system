@@ -42,16 +42,16 @@ app.include_router(search_router)
 
 # Download paper endpoint (special case - under /projects but creates KnowledgeSource)
 @app.post("/projects/{project_id}/download-paper", response_model=KnowledgeSourceSchema, tags=["projects"])
-def download_paper(project_id: int, request: KnowledgeSourceDownload, db: Session = Depends(get_db)):
+async def download_paper(project_id: int, request: KnowledgeSourceDownload, db: Session = Depends(get_db)):
     """Download a paper from URL and create a KnowledgeSource linked to the project."""
-    return download_paper_for_project(project_id, request, db)
+    return await download_paper_for_project(project_id, request, db)
 
 
 # Upload paper endpoint
 @app.post("/projects/{project_id}/upload-paper", response_model=KnowledgeSourceSchema, tags=["projects"])
-def upload_paper(project_id: int, file: UploadFile = File(...), db: Session = Depends(get_db)):
+async def upload_paper(project_id: int, file: UploadFile = File(...), db: Session = Depends(get_db)):
     """Upload a PDF paper directly and create a KnowledgeSource linked to the project."""
-    return upload_paper_for_project(project_id, file, db)
+    return await upload_paper_for_project(project_id, file, db)
 
 
 @app.get("/health", tags=["health"])

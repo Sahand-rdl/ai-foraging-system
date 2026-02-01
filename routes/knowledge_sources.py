@@ -4,7 +4,7 @@ import shutil
 import urllib.request
 from urllib.parse import urlparse
 
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, UploadFile
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from typing import List, Dict, Optional
@@ -33,7 +33,9 @@ def create_knowledge_source(ks: KnowledgeSourceCreate, db: Session = Depends(get
 
 
 @router.post("/bulk-lookup", response_model=Dict[str, Optional[int]])
-def get_knowledge_source_ids(query: KnowledgeSourcePathQuery, db: Session = Depends(get_db)):
+def get_knowledge_source_ids(
+    query: KnowledgeSourcePathQuery, db: Session = Depends(get_db)
+):
     """Get KSIDs for a list of file paths. Returns a map of path -> ksid (or None if not found)."""
     results = {}
     
@@ -73,26 +75,26 @@ def read_knowledge_source(ks_id: int, db: Session = Depends(get_db)):
 def get_knowledge_source_content(ks_id: int, db: Session = Depends(get_db)):
     """Stream the content of a knowledge source file."""
     ks = db.query(KnowledgeSourceDB).filter(KnowledgeSourceDB.id == ks_id).first()
-    if ks is None:
-        raise HTTPException(status_code=404, detail="Knowledge source not found")
-    
-    # Check if path exists
-    if not os.path.exists(ks.path):
-        raise HTTPException(status_code=404, detail="File not found on server")
-        
-    return FileResponse(ks.path, media_type="application/pdf", filename=os.path.basename(ks.path), content_disposition_type="inline")
+    if ks is None or not ks.path or not os.path.exists(ks.path):
+        raise HTTPException(status_code=404, detail="File not found for this source")
+    return FileResponse(
+        ks.path,
+        media_type="application/pdf",
+        filename=os.path.basename(ks.path),
+        content_disposition_type="inline",
+    )
 
 
 @router.put("/{ks_id}", response_model=KnowledgeSourceSchema)
-def update_knowledge_source(ks_id: int, ks_update: KnowledgeSourceCreate, db: Session = Depends(get_db)):
+def update_knowledge_source(
+    ks_id: int, ks_update: KnowledgeSourceCreate, db: Session = Depends(get_db)
+):
     """Update a knowledge source."""
     db_ks = db.query(KnowledgeSourceDB).filter(KnowledgeSourceDB.id == ks_id).first()
     if db_ks is None:
         raise HTTPException(status_code=404, detail="Knowledge source not found")
-    
     for key, value in ks_update.model_dump(exclude_unset=True).items():
         setattr(db_ks, key, value)
-    
     db.commit()
     db.refresh(db_ks)
     return db_ks
@@ -104,17 +106,14 @@ def delete_knowledge_source(ks_id: int, db: Session = Depends(get_db)):
     db_ks = db.query(KnowledgeSourceDB).filter(KnowledgeSourceDB.id == ks_id).first()
     if db_ks is None:
         raise HTTPException(status_code=404, detail="Knowledge source not found")
-    
     db.delete(db_ks)
     db.commit()
+    return {"detail": f"Knowledge source {ks_id} deleted successfully"}
 
-    return {"detail": f"Knowledge source {ks_id} (and its knowledge artifacts) deleted successfully"}
 
-
-# Note: This endpoint uses /projects/ prefix but is here for logical grouping with KS operations
-def download_paper_for_project(
+async def download_paper_for_project(
     project_id: int, request: KnowledgeSourceDownload, db: Session = Depends(get_db)
-):
+) -> KnowledgeSourceSchema:
     """Download a paper from URL and create a KnowledgeSource linked to the project."""
     # Verify project exists
     project = db.query(ProjectDB).filter(ProjectDB.id == project_id).first()
@@ -163,14 +162,24 @@ def download_paper_for_project(
     # Link KnowledgeSource to project
     project.knowledge_sources.append(db_ks)
     db.commit()
+    
+    # 4. Trigger LLM Processing
+    from services.llm_processing import process_document, update_source_with_processing_results
+    
+    project_def = project.ml_project_definition or f"Project: {project.name}"
+    
+    processing_result = await process_document(project_def, file_path)
+    
+    if processing_result:
+        update_source_with_processing_results(db, db_ks, processing_result)
+        
     db.refresh(db_ks)
-
     return db_ks
 
 
-def upload_paper_for_project(
-    project_id: int, file, db: Session = Depends(get_db)
-):
+async def upload_paper_for_project(
+    project_id: int, file: UploadFile, db: Session = Depends(get_db)
+) -> KnowledgeSourceSchema:
     """Upload a paper file and create a KnowledgeSource linked to the project."""
     # Verify project exists
     project = db.query(ProjectDB).filter(ProjectDB.id == project_id).first()
@@ -211,13 +220,16 @@ def upload_paper_for_project(
     # Link KnowledgeSource to project
     project.knowledge_sources.append(db_ks)
     db.commit()
+    
+    # 4. Trigger LLM Processing
+    from services.llm_processing import process_document, update_source_with_processing_results
+    
+    project_def = project.ml_project_definition or f"Project: {project.name}"
+    
+    processing_result = await process_document(project_def, file_path)
+    
+    if processing_result:
+        update_source_with_processing_results(db, db_ks, processing_result)
+        
     db.refresh(db_ks)
-
     return db_ks
-
-
-
-# TODO
-# endpoint that receives al list of pdf paths and returns corresponding KSIDs
-
-

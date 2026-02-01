@@ -48,7 +48,7 @@ class LLMServiceClient(BaseServiceClient):
         )
     
     async def chat(self, doc_id: str, query: str) -> Dict[str, Any]:
-        """Perform a deep-dive query on a specific document.
+        """Perform a deep-dive query on the currently active document.
         
         Uses a scientific assistant context to extract and answer questions
         about the specified document.
@@ -142,8 +142,8 @@ class LLMServiceClient(BaseServiceClient):
         )
     
     async def health_check(self) -> Dict[str, Any]:
-        """Check if the LLM service is healthy by listing documents."""
-        return await self.list_documents()
+        """Check if the LLM service is healthy."""
+        return await self._request(method="GET", endpoint="/health")
 
 
 # Singleton instance
