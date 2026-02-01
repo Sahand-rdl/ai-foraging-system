@@ -32,6 +32,7 @@ export default function KnowledgeSources() {
         title="All Knowledge Sources"
         description="Manage and analyze your knowledge sources across all projects"
         getSourceTitle={(source) => source.metadata.title || `Source #${source.id}`}
+        showRelevance={false} // Hide relevance column for global view
       />
     </div>
   );

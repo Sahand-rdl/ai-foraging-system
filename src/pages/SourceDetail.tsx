@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 
 import { 
   fetchKnowledgeSourceById, 
-    fetchKnowledgeArtifactsBySourceId,
+  fetchKnowledgeArtifactsBySourceId,
   updateArtifactStatus,
   updateArtifactBookmark,
   addArtifactTag,
@@ -12,7 +12,7 @@ import {
   updateArtifactNotes,
   updateArtifactContent,
   updateArtifactExternalLink,
-  sendArtifactChatMessage,
+  sendChatMessageToSource,
   deleteArtifact,
   API_BASE_URL,
   type ChatResponse
@@ -26,7 +26,7 @@ import {
 } from "@/types/source";
 
 // Components
-import { PDFPreview } from "@/components/source-detail/PDFPreview";
+import { PDFPreview, type PDFPreviewRef } from "@/components/source-detail/PDFPreview";
 import { ArtifactList } from "@/components/source-detail/ArtifactList";
 import { ArtifactDetail } from "@/components/source-detail/ArtifactDetail";
 
@@ -48,7 +48,9 @@ export default function SourceDetail() {
   // Local state for chat input/tag input
   const [currentMessage, setCurrentMessage] = useState("");
   const [newTag, setNewTag] = useState("");
-  const [previewSearchQuery, setPreviewSearchQuery] = useState("");
+  const [previewSearchQuery, setPreviewSearchQuery] = useState(""); // Still used for initial artifact search
+
+  const pdfPreviewRef = useRef<PDFPreviewRef>(null); // Ref for PDFPreview component
 
   useEffect(() => {
     async function loadData() {
@@ -81,7 +83,7 @@ export default function SourceDetail() {
         }
     }
     loadData();
-  }, [id]);
+  }, [id, aidParam]);
 
   useEffect(() => {
     if (searchParam) {
@@ -160,32 +162,32 @@ export default function SourceDetail() {
   };
 
   const handleSendChatMessage = async (artifactId: number) => {
-    if (!currentMessage.trim()) return;
+    if (!currentMessage.trim() || !source) return; // Guard clause
     
-    // Optimistic user message append
     const userMsg: KAChatMessage = {
         role: "user",
         content: currentMessage,
         timestamp: new Date().toISOString()
     };
 
-    setArtifacts(prev => prev.map(a => {
-        if (a.id === artifactId) {
-            return { ...a, chatHistory: [...a.chatHistory, userMsg] };
-        }
-        return a;
-    }));
+    // Optimistically update the UI for the specific artifact
+    setArtifacts(prev => prev.map(a => 
+        a.id === artifactId ? { ...a, chatHistory: [...a.chatHistory, userMsg] } : a
+    ));
     setCurrentMessage("");
 
     try {
-        const response = await sendArtifactChatMessage(artifactId, userMsg.content);
-        setArtifacts(prev => prev.map(a => {
-            if (a.id === artifactId) {
-                return { ...a, chatHistory: [...a.chatHistory, response.assistantMessage] };
-            }
-            return a;
-        }));
-    } catch (e) { console.error(e); }
+        // Correctly call the API with the SOURCE ID (doc_id) and the message
+        const response = await sendChatMessageToSource(source.id, userMsg.content);
+        
+        // Update the artifact's chat history with the assistant's response
+        setArtifacts(prev => prev.map(a => 
+            a.id === artifactId ? { ...a, chatHistory: [...a.chatHistory, response.assistantMessage] } : a
+        ));
+    } catch (e) { 
+        console.error("Failed to send chat message:", e);
+        // Optional: Revert optimistic update on error
+    }
   };
 
   // Accept a suggestion (mark as final)
@@ -231,6 +233,10 @@ export default function SourceDetail() {
   }
 
   const handleBack = () => {
+    if (pdfPreviewRef.current) {
+        pdfPreviewRef.current.clearSearch(); // Clear search using ref
+    }
+    setPreviewSearchQuery(""); // Clear the search query state (also used for initial externalSearchQuery)
     if (projectId) {
         navigate(`/projects/${projectId}`);
     } else {
@@ -243,7 +249,7 @@ export default function SourceDetail() {
       <ResizablePanelGroup direction="horizontal" className="flex-1">
         {/* PDF Viewer */}
         <ResizablePanel defaultSize={60} minSize={30}>
-          <PDFPreview pdfUrl={pdfUrl} onBack={handleBack} externalSearchQuery={previewSearchQuery} />
+          <PDFPreview ref={pdfPreviewRef} pdfUrl={pdfUrl} onBack={handleBack} externalSearchQuery={previewSearchQuery} />
         </ResizablePanel>
 
         <ResizableHandle withHandle />

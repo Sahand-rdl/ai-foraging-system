@@ -20,7 +20,7 @@ export interface SearchResponse {
 
 export const searchApi = {
   search: (data: SearchQuery) => 
-    apiRequest<SearchResponse>("/ai/search/", {
+    apiRequest<SearchResponse>("/ai/search", {
       method: "POST",
       body: JSON.stringify(data),
     }),

@@ -80,7 +80,7 @@ export async function downloadPaper(projectId: number, input: DownloadPaperInput
   return mapProject(updated);
 }
 
-export async function uploadPaper(projectId: number, file: File): Promise<Project> {
+export async function uploadPaper(projectId: number, file: File, onSuccess?: () => void): Promise<Project> {
   const formData = new FormData();
   formData.append("file", file);
 
@@ -92,5 +92,9 @@ export async function uploadPaper(projectId: number, file: File): Promise<Projec
 
   // Return updated project to refresh state
   const updated = await apiRequest<BackendProject>(`/projects/${projectId}`);
+  
+  // Call the success callback now that everything is finished
+  onSuccess?.();
+
   return mapProject(updated);
 }

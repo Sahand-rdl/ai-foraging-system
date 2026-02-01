@@ -24,7 +24,7 @@ interface SourcesTableProps {
   onOpenSource?: (id: number) => void;
   onDeleteSource?: (id: number) => void;
   getTitle?: (source: KnowledgeSource) => string;
-  compact?: boolean;
+  showRelevance?: boolean; // New prop for conditional rendering
 }
 
 function getTrustworthinessColor(level: Trustworthiness) {
@@ -53,10 +53,9 @@ export function SourcesTable({
   onOpenSource,
   onDeleteSource,
   getTitle,
-  compact = false,
+  showRelevance = true, // Default to true (for ProjectView)
 }: SourcesTableProps) {
   const defaultGetTitle = (source: KnowledgeSource) => {
-    // Extract title from metadata or use a default
     return (source.metadata as { title?: string }).title || `Source #${source.id}`;
   };
 
@@ -68,21 +67,18 @@ export function SourcesTable({
         <TableHeader>
           <TableRow className="hover:bg-transparent">
             <TableHead className="w-[50px]">Type</TableHead>
-            <TableHead className="w-auto">Title</TableHead>
-            {!compact && (
-              <>
-                <TableHead className="w-[120px]">Trustworthiness</TableHead>
-                <TableHead className="w-[240px]">Authors</TableHead>
-                <TableHead className="w-[60px]"></TableHead>
-              </>
-            )}
+            <TableHead>Title</TableHead> {/* This will now be flexible */}
+            <TableHead className="w-[120px]">Trustworthiness</TableHead>
+            <TableHead className={showRelevance ? "w-[200px]" : "w-[240px]"}>Authors</TableHead> {/* Dynamic width for Authors */}
+            {showRelevance && <TableHead className="w-[100px] text-right">Relevance</TableHead>}
+            <TableHead className="w-[60px]"></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {sources.map((source) => (
             <TableRow
               key={source.id}
-              className={`cursor-pointer ${
+              className={`cursor-pointer align-top h-16 border-b ${
                 selectedSourceId === source.id ? "bg-accent/50" : ""
               }`}
               onClick={() =>
@@ -97,32 +93,35 @@ export function SourcesTable({
                   <LinkIcon className="h-4 w-4 text-blue-400" />
                 )}
               </TableCell>
-              <TableCell className="font-medium">
-                <div className=" w-full max-w-[300px] md:max-w-md lg:max-w-lg xl:max-w-xl" title={titleFn(source)}>
+              <TableCell className="font-medium overflow-hidden text-ellipsis whitespace-nowrap">
+                <div className="truncate" title={titleFn(source)}>
                   {titleFn(source)}
                 </div>
               </TableCell>
-              {!compact && (
-                <>
-                  <TableCell className="w-[120px]">
-                    <span
-                      className={`text-sm font-semibold ${getTrustworthinessColor(
-                        source.trustworthiness
-                      )}`}
-                    >
-                      {source.trustworthiness}
-                    </span>
-                  </TableCell>
-                  <TableCell className="w-[240px]">
-                    <span className="text-sm text-muted-foreground truncate block max-w-[200px]">
-                      {Array.isArray(source.metadata.authors)
-                        ? source.metadata.authors.join(", ")
-                        : source.metadata.authors || "Unknown"}
-                    </span>
-                  </TableCell>
-                  <TableCell>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
+              <TableCell className="w-[120px]">
+                <span className={`text-sm font-semibold ${getTrustworthinessColor(source.trustworthiness)}`}>
+                  {source.trustworthiness}
+                </span>
+              </TableCell>
+              <TableCell className={showRelevance ? "w-[200px]" : "w-[240px]"}> {/* Dynamic width for Authors */}
+                <span className="text-sm text-muted-foreground truncate block">
+                  {Array.isArray(source.metadata.authors)
+                    ? source.metadata.authors.join(", ")
+                    : source.metadata.authors || "Unknown"}
+                </span>
+              </TableCell>
+              {showRelevance && (
+                <TableCell className="w-[100px] text-right">
+                  <span className="text-sm text-muted-foreground">
+                    {source.metadata.relevance !== undefined && source.metadata.relevance !== null
+                      ? Math.round(source.metadata.relevance) + '%'
+                      : "N/A"}
+                  </span>
+                </TableCell>
+              )}
+              <TableCell className="w-[60px]">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
                         <Button
                           variant="ghost"
                           className="h-8 w-8"
@@ -144,10 +143,8 @@ export function SourcesTable({
                           Delete
                         </DropdownMenuItem>
                       </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </>
-              )}
+                </DropdownMenu>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

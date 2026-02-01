@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useImperativeHandle, forwardRef } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,22 +15,26 @@ interface PDFPreviewProps {
   externalSearchQuery?: string;
 }
 
+export interface PDFPreviewRef {
+  clearSearch: () => void;
+}
+
 interface SearchMatch {
   element: HTMLElement;
   pageNumber: number;
 }
 
-export function PDFPreview({ pdfUrl, onBack, externalSearchQuery }: PDFPreviewProps) {
+export const PDFPreview = forwardRef<PDFPreviewRef, PDFPreviewProps>(({ pdfUrl, onBack, externalSearchQuery }, ref) => {
   const [numPages, setNumPages] = useState<number>(0);
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const [zoom, setZoom] = useState<number>(1.0);
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>(""); // Internal state for search
   const [matches, setMatches] = useState<SearchMatch[]>([]);
   const [currentMatchIndex, setCurrentMatchIndex] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Sync external search query with internal state
+  // Sync external search query with internal state for initial load
   useEffect(() => {
     if (externalSearchQuery) {
       setSearchQuery(externalSearchQuery);
@@ -46,35 +50,27 @@ export function PDFPreview({ pdfUrl, onBack, externalSearchQuery }: PDFPreviewPr
 
   // Search and highlight text in the PDF
   const performSearch = useCallback(() => {
-    if (!containerRef.current || !searchQuery.trim()) {
-      // Clear all highlights
-      containerRef.current?.querySelectorAll(".pdf-search-highlight").forEach((el) => {
-        const parent = el.parentNode;
-        if (parent) {
-          parent.replaceChild(document.createTextNode(el.textContent || ""), el);
-          parent.normalize();
-        }
-      });
-      setMatches([]);
-      setCurrentMatchIndex(0);
-      return;
-    }
-
     // First, clear previous highlights
-    containerRef.current.querySelectorAll(".pdf-search-highlight").forEach((el) => {
+    containerRef.current?.querySelectorAll(".pdf-search-highlight").forEach((el) => {
       const parent = el.parentNode;
       if (parent) {
         parent.replaceChild(document.createTextNode(el.textContent || ""), el);
         parent.normalize();
       }
     });
+    setMatches([]);
+    setCurrentMatchIndex(0);
+
+    if (!searchQuery.trim()) {
+      return;
+    }
 
     const query = searchQuery.toLowerCase();
     const newMatches: SearchMatch[] = [];
 
     // Find all text layer spans
-    const pages = containerRef.current.querySelectorAll(".react-pdf__Page");
-    pages.forEach((page, pageIndex) => {
+    const pages = containerRef.current?.querySelectorAll(".react-pdf__Page");
+    pages?.forEach((page, pageIndex) => {
       const textLayer = page.querySelector(".react-pdf__Page__textContent");
       if (!textLayer) return;
 
@@ -95,12 +91,10 @@ export function PDFPreview({ pdfUrl, onBack, externalSearchQuery }: PDFPreviewPr
         let lastEnd = 0;
 
         while ((index = text.indexOf(query, startIndex)) !== -1) {
-          // Add text before match
           if (index > lastEnd) {
             fragments.push(originalText.slice(lastEnd, index));
           }
 
-          // Create highlight span
           const highlight = document.createElement("mark");
           highlight.className = "pdf-search-highlight";
           highlight.style.backgroundColor = "#fbbf24";
@@ -112,11 +106,6 @@ export function PDFPreview({ pdfUrl, onBack, externalSearchQuery }: PDFPreviewPr
 
           lastEnd = index + query.length;
           startIndex = index + 1;
-        }
-
-        // Add remaining text
-        if (lastEnd < originalText.length) {
-          fragments.push(originalText.slice(lastEnd));
         }
 
         if (fragments.length > 1) {
@@ -138,24 +127,22 @@ export function PDFPreview({ pdfUrl, onBack, externalSearchQuery }: PDFPreviewPr
     setMatches(newMatches);
     setCurrentMatchIndex(newMatches.length > 0 ? 0 : -1);
 
-    // Scroll to first match
     if (newMatches.length > 0) {
       newMatches[0].element.scrollIntoView({ behavior: "smooth", block: "center" });
-      newMatches[0].element.style.backgroundColor = "#f97316"; // Orange for current
+      newMatches[0].element.style.backgroundColor = "#f97316";
     }
-  }, [searchQuery]);
+  }, [searchQuery]); // Dependency on internal searchQuery
 
-  // Debounced search effect
+  // Debounced search effect for user typing
   useEffect(() => {
     const timeoutId = setTimeout(performSearch, 300);
     return () => clearTimeout(timeoutId);
   }, [performSearch]);
 
   // Navigate between matches
-  const goToMatch = (index: number) => {
+  const goToMatch = useCallback((index: number) => {
     if (matches.length === 0) return;
 
-    // Reset previous current highlight
     if (matches[currentMatchIndex]) {
       matches[currentMatchIndex].element.style.backgroundColor = "#fbbf24";
     }
@@ -163,25 +150,34 @@ export function PDFPreview({ pdfUrl, onBack, externalSearchQuery }: PDFPreviewPr
     const newIndex = ((index % matches.length) + matches.length) % matches.length;
     setCurrentMatchIndex(newIndex);
 
-    // Highlight current match differently
     matches[newIndex].element.style.backgroundColor = "#f97316";
     matches[newIndex].element.scrollIntoView({ behavior: "smooth", block: "center" });
-  };
+  }, [matches, currentMatchIndex]);
 
   const goToPrevMatch = () => goToMatch(currentMatchIndex - 1);
   const goToNextMatch = () => goToMatch(currentMatchIndex + 1);
 
-  const clearSearch = () => {
-    setSearchQuery("");
+  // This is the function we want to expose to the parent
+  const clearSearch = useCallback(() => {
+    setSearchQuery(""); // Clear the internal state
+    performSearch(); // Immediately re-run search to clear highlights
     searchInputRef.current?.focus();
-  };
+  }, [performSearch]);
+
+  // Expose clearSearch via ref
+  useImperativeHandle(ref, () => ({
+    clearSearch,
+  }));
+
+  function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
+    setNumPages(numPages);
+  }
 
   // Track container width for responsive full-width rendering
   useEffect(() => {
     const updateWidth = () => {
       if (containerRef.current) {
-        // Subtract padding (32px = 16px * 2)
-        setContainerWidth(containerRef.current.clientWidth - 32);
+        setContainerWidth(containerRef.current.clientWidth - 32); // Subtract padding
       }
     };
 
@@ -202,7 +198,6 @@ export function PDFPreview({ pdfUrl, onBack, externalSearchQuery }: PDFPreviewPr
     );
   }
 
-  // Calculate effective width based on zoom
   const effectiveWidth = containerWidth * zoom;
 
   return (
@@ -234,7 +229,7 @@ export function PDFPreview({ pdfUrl, onBack, externalSearchQuery }: PDFPreviewPr
         {/* Right: Search bar */}
         <div className="flex items-center gap-1">
 
-              {/* Navigation buttons - always visible when searching */}
+          {/* Navigation buttons - always visible when searching */}
           {searchQuery && (
             <>
               <Button 
@@ -315,4 +310,4 @@ export function PDFPreview({ pdfUrl, onBack, externalSearchQuery }: PDFPreviewPr
       </div>
     </div>
   );
-}
+});

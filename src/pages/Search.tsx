@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { searchApi, SearchResultItem } from "@/services/api/search";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -12,19 +12,21 @@ import { toast } from "sonner";
 export default function Search() {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams(); // Import useSearchParams
   const [searchType, setSearchType] = useState<"keyword" | "semantic">("keyword");
   const [results, setResults] = useState<SearchResultItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
 
-  const handleSearch = async () => {
-    if (!query.trim()) return;
+  const handleSearch = async (initialQuery?: string) => { // Allow initialQuery to be passed
+    const searchTerm = initialQuery || query;
+    if (!searchTerm.trim()) return;
     
     setIsLoading(true);
     setHasSearched(true);
     setResults([]); // Clear previous results immediately
     try {
-      const response = await searchApi.search({ query, search_type: searchType });
+      const response = await searchApi.search({ query: searchTerm, search_type: searchType });
       setResults(response.results);
     } catch (error) {
       console.error(error);
@@ -33,6 +35,15 @@ export default function Search() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const urlQuery = searchParams.get("query");
+    if (urlQuery) {
+      setQuery(urlQuery);
+      handleSearch(urlQuery); // Trigger search with the URL query
+      setSearchParams({}, { replace: true }); // Clear the query param from URL
+    }
+  }, [searchParams]); // Depend on searchParams
 
   return (
     <div className="container max-w-4xl py-10 space-y-8 animate-in fade-in duration-500">
@@ -57,7 +68,7 @@ export default function Search() {
             <Button 
               size="lg" 
               className="h-14 w-14 rounded-lg bg-blue-500 hover:bg-blue-600 shadow-lg shadow-blue-500/20 shrink-0 p-0" 
-              onClick={handleSearch} 
+              onClick={() => handleSearch()} // Call with current query state
               disabled={isLoading}
             >
               {isLoading ? <Loader2 className="h-6 w-6 animate-spin text-white" /> : <SearchIcon className="h-6 w-6 text-white" />}

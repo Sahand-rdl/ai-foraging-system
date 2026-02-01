@@ -94,13 +94,11 @@ export default function ProjectInfo() {
           <h1 className="text-3xl font-bold text-foreground">Project Details</h1>
           <p className="text-muted-foreground mt-1">{project.name}</p>
         </div>
-        <Badge variant="outline" className="text-sm">
-          active
-        </Badge>
+
       </div>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card>
           <CardContent className="flex items-center gap-4 pt-6">
             <div className="p-3 rounded-full bg-primary/10">
@@ -123,6 +121,7 @@ export default function ProjectInfo() {
             </div>
           </CardContent>
         </Card>
+        {/* Removed Researchers Card
         <Card>
           <CardContent className="flex items-center gap-4 pt-6">
             <div className="p-3 rounded-full bg-primary/10">
@@ -134,6 +133,7 @@ export default function ProjectInfo() {
             </div>
           </CardContent>
         </Card>
+        */}
       </div>
 
       {/* ML Problem Definition */}
@@ -168,7 +168,9 @@ export default function ProjectInfo() {
         </CardContent>
       </Card>
 
-      {/* Research Team */}
+      {/* Research Team (Temporarily Hidden)
+      */}
+      {/* Moved this comment here for clarity, it previously surrounded the card
       <Card>
         <CardHeader>
           <CardTitle>Research Team</CardTitle>
@@ -204,6 +206,7 @@ export default function ProjectInfo() {
           </div>
         </CardContent>
       </Card>
+      */}
 
       {/* Quick Links */}
       <div className="flex gap-4">

@@ -6,31 +6,28 @@ import { type ChatMessage } from "@/types/source";
 import { apiRequest } from "./client";
 import { type BackendKnowledgeArtifact, type ChatResponse } from "./types";
 
-export async function sendArtifactChatMessage(
-  artifactId: number,
-  message: string
+export async function sendChatMessageToSource(
+  doc_id: number,
+  query: string
 ): Promise<ChatResponse> {
-  // First, find the artifact to get its source ID
-  const artifact = await apiRequest<BackendKnowledgeArtifact>(`/knowledge-artifacts/${artifactId}`);
-  const sourceId = artifact.knowledge_source_id;
 
   const result = await apiRequest<any>("/ai/chat", {
     method: "POST",
     body: JSON.stringify({
-      message,
-      knowledge_source_id: sourceId,
+      doc_id: doc_id,
+      query: query,
     }),
   });
   
   const userMessage: ChatMessage = {
     role: "user",
-    content: message,
+    content: query,
     timestamp: new Date().toISOString(),
   };
   
   const assistantMessage: ChatMessage = {
     role: "assistant",
-    content: result.response || result.message || JSON.stringify(result),
+    content: result.data?.reply || "Error: Could not retrieve reply.",
     timestamp: new Date().toISOString(),
   };
   

@@ -35,6 +35,8 @@ export function mapProject(p: BackendProject): Project {
     researcherIds: p.researchers?.map(r => r.id) || [],
     knowledgeSourceIds: p.knowledge_sources?.map(ks => ks.id) || [],
     tags: p.tags ? p.tags.split(",").map(t => t.trim()) : [],
+    source_count: p.source_count || 0,
+    artifact_count: p.artifact_count || 0,
   };
 }
 

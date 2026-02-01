@@ -17,6 +17,7 @@ interface KnowledgeSourcesViewProps {
   showHeader?: boolean;
   getSourceTitle?: (source: KnowledgeSource) => string;
   projectId?: number;
+  showRelevance?: boolean; // New prop for conditional rendering
 }
 
 export function KnowledgeSourcesView({
@@ -26,13 +27,14 @@ export function KnowledgeSourcesView({
   showHeader = true,
   getSourceTitle,
   projectId,
+  showRelevance = true, // Default to true
 }: KnowledgeSourcesViewProps) {
   const navigate = useNavigate();
   const [selectedSourceId, setSelectedSourceId] = useState<number | null>(null);
+  const [currentSearchQuery, setCurrentSearchQuery] = useState(""); // State for the search input
 
   const selectedSource = sources.find((s) => s.id === selectedSourceId);
 
-  // Default title getter - tries metadata.title, falls back to ID
   const defaultGetTitle = (source: KnowledgeSource) => {
     return (source.metadata as { title?: string }).title || `Source #${source.id}`;
   };
@@ -40,6 +42,8 @@ export function KnowledgeSourcesView({
   const titleFn = getSourceTitle || defaultGetTitle;
 
   const handleOpenSource = (id: number) => {
+    // Close the sidebar before navigating to the full source page
+    setSelectedSourceId(null); 
     if (projectId) {
       navigate(`/projects/${projectId}/sources/${id}`);
     } else {
@@ -51,7 +55,6 @@ export function KnowledgeSourcesView({
     try {
       await deleteKnowledgeSource(id);
       toast.success("Knowledge source deleted successfully");
-   
       window.location.reload(); 
     } catch (error) {
       console.error("Failed to delete source:", error);
@@ -59,8 +62,14 @@ export function KnowledgeSourcesView({
     }
   };
 
+  const handleGlobalSearch = () => {
+    if (currentSearchQuery.trim()) {
+      navigate(`/search?query=${encodeURIComponent(currentSearchQuery)}`);
+    }
+  };
+
   return (
-    <div className="flex h-full flex-col gap-4">
+    <div className="relative flex h-full flex-col gap-4"> {/* Added relative for positioning */}
       {showHeader && (
         <div className="flex items-center justify-between px-1">
           <div>
@@ -70,36 +79,46 @@ export function KnowledgeSourcesView({
           <div className="flex items-center gap-2">
             <div className="relative w-64">
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Search sources..." className="pl-8" />
+              <Input 
+                placeholder="Search all sources..." 
+                className="pl-8 h-[36px]" 
+                value={currentSearchQuery}
+                onChange={(e) => setCurrentSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleGlobalSearch();
+                  }
+                }}
+             />
             </div>
-            <Button variant="outline" size="icon">
-              <Filter className="h-4 w-4" />
+            <Button variant="outline" size="icon" className="h-[36px] w-[36px]" onClick={handleGlobalSearch}>
+              <Search className="h-4 w-4" />
             </Button>
           </div>
         </div>
       )}
 
-      <div className="flex flex-1 gap-6 overflow-hidden">
-        {/* Left Column: Table */}
-        <div
-          className={`flex flex-col transition-all duration-300 ${
-            selectedSource ? "w-2/3" : "w-full"
-          }`}
-        >
-          <ScrollArea className="flex-1 border rounded-md">
-            <SourcesTable
-              sources={sources}
-              selectedSourceId={selectedSourceId}
-              onSelectSource={setSelectedSourceId}
-              onOpenSource={handleOpenSource}
-              onDeleteSource={handleDeleteSource}
-              getTitle={titleFn}
-              compact={!!selectedSource}
-            />
-          </ScrollArea>
-        </div>
+      {/* Main content area: table always takes full width */}
+      <div className="flex-1 min-h-0">
+        <ScrollArea className="h-full border rounded-md">
+          <SourcesTable
+            sources={sources}
+            selectedSourceId={selectedSourceId}
+            onSelectSource={setSelectedSourceId}
+            onOpenSource={handleOpenSource}
+            onDeleteSource={handleDeleteSource}
+            getTitle={titleFn}
+            showRelevance={showRelevance} // Pass showRelevance prop down
+          />
+        </ScrollArea>
+      </div>
 
-        {/* Right Column: Preview Pane */}
+      {/* Custom Overlaying Sidebar */}
+      <div 
+        className={`fixed right-0 top-0 bottom-0 w-[500px] sm:max-w-lg bg-background shadow-lg z-50 transform 
+          ${selectedSource ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out
+          flex flex-col border-l`} // Added border-l for visual separation
+      >
         {selectedSource && (
           <SourcePreviewPane
             source={selectedSource}

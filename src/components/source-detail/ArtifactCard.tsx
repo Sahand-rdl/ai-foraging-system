@@ -43,7 +43,7 @@ export function ArtifactCard({ artifact, onClick, getTypeColor, onAccept, onDecl
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs text-muted-foreground">ID {artifact.id}</span>
+
               <Badge variant={getTypeColor(artifact.type) as any} className="text-xs">
                 {artifact.type}
               </Badge>

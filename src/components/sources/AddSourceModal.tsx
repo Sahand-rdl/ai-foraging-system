@@ -26,7 +26,7 @@ export function AddSourceModal({ projectId, trigger, onSuccess, open: controlled
   const open = isControlled ? controlledOpen : uncontrolledOpen;
   const setOpen = isControlled ? setControlledOpen : setUncontrolledOpen;
 
-  const [activeTab, setActiveTab] = useState<"url" | "upload">("url");
+  const [activeTab, setActiveTab] = useState<"url" | "upload">("upload");
   const [url, setUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -60,75 +60,59 @@ export function AddSourceModal({ projectId, trigger, onSuccess, open: controlled
     }
   };
 
-  const handleFileUpload = async () => {
-    if (!file) return;
-
-    setIsSubmitting(true);
-    setShowProgress(true);
-    setUploadStep(1);
-    
-    // Track if this upload interaction is still active to prevent race conditions from retries
-    const isCurrentUploadActive = { current: true };
-
-    // Simulate the steps
-    let currentStepIndex = 0;
-    
-    // We'll use a recursive timeout function to advance steps based on their duration
-    const advanceStep = () => {
-      if (!isCurrentUploadActive.current || currentStepIndex >= UPLOAD_STEPS.length) {
-         return;
-      }
-
-      const step = UPLOAD_STEPS[currentStepIndex];
+      const handleFileUpload = async () => {
+      if (!file) return;
+  
+      setIsSubmitting(true);
+      setShowProgress(true);
+      setUploadStep(1); // Start with the first step (e.g., "Uploading File")
       
-      setTimeout(() => {
-        if (!isCurrentUploadActive.current) return;
-        setUploadStep(step.id + 1); 
-        currentStepIndex++;
-        advanceStep();
-      }, step.duration || 3000);
-    };
-
-    advanceStep();
-
-    try {
-      const totalDuration = UPLOAD_STEPS.reduce((acc, step) => acc + (step.duration || 0), 0);
-      const minTimePromise = new Promise(resolve => setTimeout(resolve, totalDuration));
-
-      // Wait for both the actual upload and the simulation time to complete
-      await Promise.all([
-        uploadPaper(projectId, file),
-        minTimePromise
-      ]);
-      
-      // Success handling after both are done
-      setTimeout(() => {
+      // Animate the first couple of steps (uploading) quickly
+      let currentStepIndex = 0;
+      const animateInitialSteps = () => {
+        if (currentStepIndex < 2) { // Animate first two steps quickly
+          currentStepIndex++;
+          setUploadStep(UPLOAD_STEPS[currentStepIndex].id);
+          setTimeout(animateInitialSteps, 500); // Fast animation for initial steps
+        }
+      };
+      animateInitialSteps();
+  
+      try {
+        // The `await` here will pause until the backend (including LLM) is done.
+        // This naturally accounts for the actual processing time.
+        await uploadPaper(projectId, file, onSuccess);
+        
+        // ---- Upload and Processing Succeeded ----
+        setUploadStep(UPLOAD_STEPS.length + 1); // Visually mark all steps as complete
+  
+        // Show success and close modal
         toast({
             title: "Success",
-            description: "Paper uploaded successfully.",
+            description: "Paper uploaded and processed successfully.",
           });
-          setFile(null);
-          setShowProgress(false); // Reset UI
-          setUploadStep(0);
-          if (setOpen) setOpen(false);
-          onSuccess?.();
-          setIsSubmitting(false);
-      }, 1000); // Small buffer for the final step to settle visually
-
-    } catch (error) {
-      console.error(error);
-      isCurrentUploadActive.current = false; // Stop the simulation
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Failed to upload paper.",
-      });
-      setIsSubmitting(false);
-      setShowProgress(false); 
-      return;
-    }
-  };
-
+        
+        setTimeout(() => {
+            setFile(null);
+            setShowProgress(false);
+            setUploadStep(0);
+            if (setOpen) setOpen(false);
+            setIsSubmitting(false);
+        }, 800); // A small delay to let the user see the final checkmark
+  
+      } catch (error) {
+        console.error(error);
+        toast({
+          variant: "destructive",
+          title: "Upload Error",
+          description: error instanceof Error ? error.message : "An unknown error occurred.",
+        });
+        setIsSubmitting(false);
+        setShowProgress(false); 
+        setUploadStep(0); // Reset progress on error
+        return;
+      }
+    };
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);

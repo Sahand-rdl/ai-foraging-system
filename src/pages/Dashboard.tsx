@@ -10,10 +10,6 @@ import {
   fetchResearchers, 
   fetchDashboardStats,
   type DashboardStats,
-  fetchKnowledgeSourcesByProjectId,
-  fetchKnowledgeArtifactsBySourceId,
-  fetchKnowledgeSources,
-  fetchKnowledgeArtifacts
 } from "@/services/api";
 import {
   type Project,
@@ -42,8 +38,6 @@ export default function Dashboard() {
   });
   const [projects, setProjects] = useState<Project[]>([]);
   const [researchers, setResearchers] = useState<Researcher[]>([]);
-  // We need counts per project, which might differ from global stats
-  const [projectCounts, setProjectCounts] = useState<Record<number, { sources: number; artifacts: number }>>({});
 
   useEffect(() => {
     async function loadData() {
@@ -57,30 +51,6 @@ export default function Dashboard() {
         setStats(statsData);
         setProjects(projectsData);
         setResearchers(researchersData);
-
-        // Load project specific counts (this could be optimized if backend returns it)
-        // Ideally backend Project schema includes counts.
-        // For now, we fetch sources/artifacts for each project or use the global lists if cached.
-        // Since we don't have global cache yet, we'll implement a lighter check.
-        // Actually, Project schema likely has source IDs or we can infer from global lists if we fetch all.
-        // Let's fetch all sources and artifacts to compute counts locally for the dashboard view
-        // to avoid N+1 requests if the dashboard is high traffic.
-        // Or just rely on what we have.
-        
-        const allSources = await fetchKnowledgeSources();
-        const allArtifacts = await fetchKnowledgeArtifacts();
-        
-        const counts: Record<number, { sources: number; artifacts: number }> = {};
-        projectsData.forEach(p => {
-            const pSources = allSources.filter(s => s.projectId === p.id);
-            const pSourceIds = pSources.map(s => s.id);
-            const pArtifacts = allArtifacts.filter(a => pSourceIds.includes(a.knowledgeSourceId));
-            counts[p.id] = {
-                sources: pSources.length,
-                artifacts: pArtifacts.length
-            };
-        });
-        setProjectCounts(counts);
 
       } catch (error) {
         console.error("Failed to load dashboard data", error);
@@ -105,7 +75,7 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card
           className="cursor-pointer hover:shadow-md transition-shadow"
           onClick={() => navigate("/projects")}
@@ -133,7 +103,7 @@ export default function Dashboard() {
           <CardContent>
             <div className="text-2xl font-bold">{stats.sources}</div>
             <p className="text-xs text-muted-foreground mt-1">
-              {stats.favouriteSources} marked as favourite
+              Total knowledge sources
             </p>
           </CardContent>
         </Card>
@@ -154,6 +124,8 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
+        {/* Removed Researchers Card
+        {/*
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Researchers</CardTitle>
@@ -166,10 +138,11 @@ export default function Dashboard() {
             </p>
           </CardContent>
         </Card>
+        */}
       </div>
 
       {/* Projects and Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
         <Card>
           <CardHeader>
             <CardTitle>Projects</CardTitle>
@@ -178,7 +151,6 @@ export default function Dashboard() {
           <CardContent className="space-y-4">
             {projects.map((project) => {
               const projectResearchers = researchers.filter(r => project.researcherIds.includes(r.id));
-              const counts = projectCounts[project.id] || { sources: 0, artifacts: 0 };
 
               return (
                 <div
@@ -189,7 +161,7 @@ export default function Dashboard() {
                   <div className="flex-1">
                     <div className="font-medium text-foreground">{project.name}</div>
                     <div className="text-sm text-muted-foreground mt-1">
-                      {counts.sources} sources • {counts.artifacts} artifacts
+                      {project.source_count} sources • {project.artifact_count} artifacts
                     </div>
                     <div className="flex flex-wrap gap-1 mt-2">
                       {project.tags.slice(0, 3).map((tag) => (
@@ -219,6 +191,7 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
+        {/* Removed Team Members Card
         <Card>
           <CardHeader>
             <CardTitle>Team Members</CardTitle>
@@ -250,6 +223,7 @@ export default function Dashboard() {
             })}
           </CardContent>
         </Card>
+        */}
       </div>
     </div>
   );

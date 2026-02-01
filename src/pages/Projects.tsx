@@ -7,8 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { 
   fetchResearchers, 
-  fetchKnowledgeSources,
-  fetchKnowledgeArtifacts,
   deleteProject
 } from "@/services/api";
 import {
@@ -39,46 +37,26 @@ export default function Projects() {
   const navigate = useNavigate();
   const { projects, refreshProjects } = useProjects();
   const [researchers, setResearchers] = useState<Researcher[]>([]);
-  const [projectCounts, setProjectCounts] = useState<Record<number, { sources: number; artifacts: number }>>({});
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
   useEffect(() => {
     async function loadData() {
       try {
-        const [researchersData, allSources, allArtifacts] = await Promise.all([
-          fetchResearchers(),
-          fetchKnowledgeSources(),
-          fetchKnowledgeArtifacts(),
-        ]);
-        
+        const researchersData = await fetchResearchers();
         setResearchers(researchersData);
-
-        const counts: Record<number, { sources: number; artifacts: number }> = {};
-        projects.forEach(p => {
-            const pSources = allSources.filter(s => s.projectId === p.id);
-            const pSourceIds = pSources.map(s => s.id);
-            const pArtifacts = allArtifacts.filter(a => pSourceIds.includes(a.knowledgeSourceId));
-            counts[p.id] = {
-                sources: pSources.length,
-                artifacts: pArtifacts.length
-            };
-        });
-        setProjectCounts(counts);
-
       } catch (error) {
-        console.error("Failed to load projects data", error);
+        console.error("Failed to load researchers", error);
       }
     }
     loadData();
-  }, [projects]); // Re-run when projects change
+  }, []);
 
   const handleProjectCreated = () => {
-    // Context handles refresh, but we might want to re-fetch other data if needed
-    // For now, the useEffect [projects] dependency will handle recomputing counts
+    // Context handles refresh
   };
 
   const handleDeleteProject = async (e: React.MouseEvent, projectId: number) => {
-    e.stopPropagation(); // Prevent card navigation
+    e.stopPropagation(); 
     if (!confirm("Are you sure you want to delete this project?")) return;
     
     try {
@@ -106,9 +84,8 @@ export default function Projects() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {projects.map((project) => {
-          const projectResearchers = researchers.filter(r => project.researcherIds.includes(r.id));
-          const counts = projectCounts[project.id] || { sources: 0, artifacts: 0 };
-
+          const projectResearchers = researchers.filter(r => (project.researcherIds || []).includes(r.id));
+          
           return (
             <Card
               key={project.id}
@@ -154,11 +131,11 @@ export default function Projects() {
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <FileText className="h-4 w-4" />
-                    <span>{counts.sources} sources</span>
+                    <span>{project.source_count} sources</span>
                   </div>
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Database className="h-4 w-4" />
-                    <span>{counts.artifacts} artifacts</span>
+                    <span>{project.artifact_count} artifacts</span>
                   </div>
                 </div>
 
@@ -171,7 +148,7 @@ export default function Projects() {
                   ))}
                   {project.tags.length > 3 && (
                     <Badge variant="outline" className="text-xs">
-                      +{project.tags.length - 3}
+                      +{(project.tags.length - 3)}
                     </Badge>
                   )}
                 </div>
@@ -193,7 +170,7 @@ export default function Projects() {
                     ))}
                     {projectResearchers.length > 4 && (
                       <div className="h-7 w-7 rounded-full bg-muted flex items-center justify-center text-[10px] border-2 border-background">
-                        +{projectResearchers.length - 4}
+                        +{(projectResearchers.length - 4)}
                       </div>
                     )}
                   </div>

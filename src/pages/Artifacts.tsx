@@ -133,60 +133,49 @@ export default function Artifacts() {
       </div>
 
       <Card>
-        <CardHeader className="pb-4">
-          <div className="flex gap-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Search artifacts..." className="pl-10" />
+        <CardHeader className="pb-0 pt-4 px-4"> {/* Adjusted padding */}
+          <div className="flex items-center justify-between">
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-foreground">Filter by Type</p>
+              <div className="flex flex-wrap gap-2">
+                {availableTypes.map((type) => (
+                  <Button
+                    key={type}
+                    variant={selectedTypes.has(type) ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => toggleType(type)}
+                    className="text-xs gap-1"
+                  >
+                    {getTypeIcon(type)}
+                    {type}
+                  </Button>
+                ))}
+                {selectedTypes.size > 0 && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setSelectedTypes(new Set())}
+                    className="text-xs text-muted-foreground"
+                  >
+                    Clear all
+                  </Button>
+                )}
+              </div>
             </div>
-            <Button variant="outline" className="gap-2">
-              <Filter className="h-4 w-4" />
-              Filter
+            
+            <Button
+              variant={showBookmarkedOnly ? "default" : "outline"}
+              size="sm"
+              onClick={() => setShowBookmarkedOnly(!showBookmarkedOnly)}
+              className="gap-2 shrink-0" // Add shrink-0 to prevent button from shrinking
+            >
+              <Bookmark className="h-4 w-4" />
+              Bookmarked Only
             </Button>
           </div>
         </CardHeader>
-        <CardContent className="pt-0">
-          <div className="space-y-4">
-            <div className="flex items-center gap-4 border-b border-border pb-4">
-              <Button
-                variant={showBookmarkedOnly ? "default" : "outline"}
-                size="sm"
-                onClick={() => setShowBookmarkedOnly(!showBookmarkedOnly)}
-                className="gap-2"
-              >
-                <Bookmark className="h-4 w-4" />
-                Bookmarked Only
-              </Button>
-            </div>
-            
-            <div className="space-y-2">
-            <p className="text-sm font-medium text-foreground">Filter by Type</p>
-            <div className="flex flex-wrap gap-2">
-              {availableTypes.map((type) => (
-                <Button
-                  key={type}
-                  variant={selectedTypes.has(type) ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => toggleType(type)}
-                  className="text-xs gap-1"
-                >
-                  {getTypeIcon(type)}
-                  {type}
-                </Button>
-              ))}
-              {selectedTypes.size > 0 && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setSelectedTypes(new Set())}
-                  className="text-xs text-muted-foreground"
-                >
-                  Clear all
-                </Button>
-              )}
-            </div>
-          </div>
-          </div>
+        <CardContent className="pt-4 pb-4 px-4"> {/* Adjusted padding */}
+          {/* No other content needed here after moving filters to header */}
         </CardContent>
       </Card>
 
@@ -270,9 +259,7 @@ export default function Artifacts() {
                   <span>
                     Source: <span className="text-foreground">{getSourceTitle(artifact.knowledgeSourceId)}</span>
                   </span>
-                  <span>
-                    Project: <span className="text-foreground">{getProjectName(artifact.knowledgeSourceId)}</span>
-                  </span>
+
                 </div>
               </div>
             </CardContent>
