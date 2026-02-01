@@ -88,3 +88,73 @@ def extract_entities(document_text, prompt_versions=None, feedback=""):
             }
 
     return response
+
+def reduce_extractions(list_of_json_strings: list[str]):
+    """
+    Combines and de-duplicates multiple JSON extractions from document chunks.
+    """
+    if not list_of_json_strings:
+        return {
+            "terminologies": [],
+            "figures": [],
+            "tables": [],
+            "algorithms": [],
+        }
+
+    # Prepare the input for the reducer LLM
+    combined_input = "\n\n".join([f"CHUNK_EXTRACTION_{i+1}:\n{s}" for i, s in enumerate(list_of_json_strings)])
+
+    system_prompt = """
+    You are an information aggregation and de-duplication FUNCTION.
+
+    Your job is to combine multiple partial JSON extractions from a scientific document.
+
+    CRITICAL RULES:
+    - ALWAYS output valid JSON
+    - ALWAYS follow the EXACT schema provided
+    - NEVER change keys, nesting, or value types
+    - NEVER include explanations outside JSON
+    - De-duplicate items based on their primary identifiers (e.g., 'term' for terminologies, 'figure' for figures).
+    - If multiple entries for the same item exist, prefer the entry with more complete or accurate information.
+    - If a category has no items after combination, return an empty list.
+    """
+
+    user_prompt = f"""
+    Below are several JSON extractions from different parts of a document.
+    Combine them into a single, de-duplicated JSON object.
+
+    {combined_input}
+
+    OUTPUT SCHEMA (MANDATORY, MUST CONTAIN ALL CATEGORIES):
+    {{
+    "terminologies": [{{"term": string, "meaning": string}}],
+    "figures": [{{"figure": string, "description": string}}],
+    "tables": [{{"table": string, "title": string}}],
+    "algorithms": [{{"algorithm": string, "goal": string | null, "process": string}}]
+    }}
+
+    COMBINATION RULES:
+    - For 'terminologies', de-duplicate by 'term'.
+    - For 'figures', de-duplicate by 'figure'.
+    - For 'tables', de-duplicate by 'table'.
+    - For 'algorithms', de-duplicate by 'algorithm'.
+    - Ensure all original fields ('meaning', 'description', 'title', 'goal', 'process') are preserved or intelligently merged.
+    """
+
+    response = call_llm(system_prompt, user_prompt)
+
+    if isinstance(response, str):
+        try:
+            return json.loads(response)
+        except json.JSONDecodeError:
+            return {
+                "terminologies": [],
+                "figures": [],
+                "tables": [],
+                "algorithms": [],
+                "_error": "LLM returned invalid JSON during reduction",
+                "_raw": response
+            }
+
+    return response
+

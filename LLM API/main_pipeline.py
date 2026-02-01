@@ -52,20 +52,23 @@ def run_automatic_pipeline(
 
     # 4. Run Entity Extractor
     print("4. Running Entity Extractor...")
+    # Load the full text for the robust pipeline
     full_text = load_docling_json_text(processed_doc_path)
-    pipeline_history = run_pipeline(full_text, iterations=1)
-    entities = pipeline_history[-1]["extraction"] if pipeline_history else {}
+    # The `run_pipeline` function can now handle long text via chunking
+    pipeline_result = run_pipeline(full_text, iterations=1) 
+    # Handle both single-pass and map-reduce outputs
+    entities = pipeline_result.get('extraction', pipeline_result)
 
     # 5. TF-IDF for tags
     print("5. Generating tags (TF-IDF)...")
-    # The corpus is the entire flat directory of processed documents
     tags_with_scores = analyze_document_tfidf(f"{base_name}.json", PROCESSED_DOCS_DIR)
     tags = [tag for tag, score in tags_with_scores]
     print("   ... Tag generation complete.")
 
     # 6. Run Relevancy Checker
     print("6. Running Relevancy Checker...")
-    relevance_result = evaluate_importance(full_text, project_definition)
+    # Use key_sections here to prevent max_token errors
+    relevance_result = evaluate_importance(key_sections, project_definition)
     if isinstance(relevance_result, str):
         try:
             relevance_result = json.loads(relevance_result)

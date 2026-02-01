@@ -1,72 +1,62 @@
-from .extractor import extract_entities
-from .self_evaluator import check_completeness, self_assess
+from .extractor import extract_entities, reduce_extractions
 import json
+import re
 
-def run_pipeline(document_text, iterations=3, prompt_versions=None):
+def chunk_text(text: str, chunk_size: int = 32000, overlap: int = 1000) -> list[str]:
     """
-    Run iterative extraction with self-assessment feedback.
+    Splits text into chunks with overlap.
+    """
+    if len(text) <= chunk_size:
+        return [text]
+    
+    # Simple sliding window chunking
+    return [text[i:i + chunk_size] for i in range(0, len(text), chunk_size - overlap)]
+
+
+def run_pipeline(document_text: str, iterations=1) -> dict:
+    """
+    Run a conditional extraction pipeline. Uses single-pass for short docs
+    and Map-Reduce for long docs.
 
     Args:
         document_text (str): Input scientific document text.
-        iterations (int): Number of extraction iterations.
-        prompt_versions (list[str]): List of prompt versions to consider per iteration.
-                                     If None, defaults to ["v1"].
     """
-    if prompt_versions is None:
-        prompt_versions = ["v1"]
+    # Conditional Strategy: Use single-pass for documents under 300k chars (~120 pages)
+    if len(document_text) < 300000:
+        print(f"   ... Document is short enough ({len(document_text)} chars). Using single-pass extraction.")
+        extraction = extract_entities(document_text, prompt_versions=["v1"])
+        # The history format is no longer used, so we return the core extraction directly.
+        return extraction
+    
+    # --- Proceed with Map-Reduce for very long documents ---
+    print(f"   ... Document is very long ({len(document_text)} chars). Using Map-Reduce strategy.")
+    
+    # 1. Chunk the document
+    text_chunks = chunk_text(document_text)
+    print(f"   ... Document split into {len(text_chunks)} chunks.")
+    
+    partial_extractions = []
 
-    history = []
+    # 2. Map Step: Extract entities from each chunk
+    for i, chunk in enumerate(text_chunks):
+        print(f"   ... Extracting from chunk {i+1}/{len(text_chunks)} (Map)...")
+        extraction = extract_entities(chunk, prompt_versions=["v1"])
+        if isinstance(extraction, dict):
+            # We only care about the content, not metadata like _error
+            if any(extraction.get(key) for key in ["terminologies", "figures", "tables", "algorithms"]):
+                partial_extractions.append(json.dumps(extraction))
 
-    # Initial empty feedback
-    llm_feedback = ""
-
-    for i in range(iterations):
-        print(f"\n=== Iteration {i+1} ===")
-
-        # Pass multiple versions and previous feedback to extractor
-        extraction = extract_entities(
-            document_text,
-            prompt_versions=prompt_versions,
-            feedback=llm_feedback
-        )
-
-        # Ensure JSON dict
-        if isinstance(extraction, str):
-            try:
-                extraction_json = json.loads(extraction)
-            except json.JSONDecodeError:
-                extraction_json = {"error": "invalid JSON", "raw": extraction}
-        else:
-            extraction_json = extraction
-
-        # Check completeness
-        complete = check_completeness(extraction_json)
-
-        # Self-assessment
-        review_text = self_assess(document_text, extraction_json)
-        llm_feedback = json.dumps(review_text)
-
-        # Record
-        record = {
-            "iteration": i + 1,
-            "prompt_versions": prompt_versions,
-            "extraction": extraction_json,
-            "complete": complete,
-            "self_assessment": review_text
+    # 3. Reduce Step: Combine and de-duplicate
+    print(f"   ... Reducing {len(partial_extractions)} partial extractions (Reduce)...")
+    if not partial_extractions:
+        return {
+            "terminologies": [], "figures": [], "tables": [], "algorithms": [],
+            "_warning": "No entities found in any chunk."
         }
-        history.append(record)
+    
+    final_extraction = reduce_extractions(partial_extractions)
 
-        # Adaptive logic to update prompt_versions for next iteration
+    # The history format is no longer used, return the final result.
+    # The dictionary now has a single key 'extraction' with the combined results.
+    return { 'extraction': final_extraction }
 
-        new_prompt_versions = []
-        if review_text["ambiguous"] != "*None*":
-            new_prompt_versions.append("v_refined_disambiguation")
-        if review_text["missing"] != "*None*":
-            new_prompt_versions.append("v_refined_coverage")
-        if not new_prompt_versions:
-            new_prompt_versions.append("v1")
-        prompt_versions = list(dict.fromkeys(new_prompt_versions))
-        if prompt_versions == ["v1"]:
-            print("No issues detected, stopping iterations early.")
-            break
-    return history

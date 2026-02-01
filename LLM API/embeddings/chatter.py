@@ -12,11 +12,13 @@ if current_dir not in sys.path:
     sys.path.append(current_dir)
 
 from prompt.llm_core import call_llm
+from config import PROCESSED_DOCS_DIR
 
 
 class ScientificAssistant:
     def __init__(self):
-        self.json_folder = os.path.join(parent_dir, "docling_docs")
+        # Use the centralized path for processed documents
+        self.json_folder = PROCESSED_DOCS_DIR
         self.active_doc = None
 
     def set_active_document(self, filename: str):
