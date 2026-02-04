@@ -15,7 +15,7 @@ export const UPLOAD_STEPS: UploadStep[] = [
     id: 1,
     label: "Parsing document",
     subtext: "Parsing complete.",
-    duration: 20000,
+    duration: 4000,
   },
   {
     id: 2,
@@ -27,31 +27,31 @@ export const UPLOAD_STEPS: UploadStep[] = [
     id: 3,
     label: "Running Trust Checker",
     subtext: "Trust Checker complete.",
-    duration: 1000,
+    duration: 2000,
   },
   {
     id: 4,
     label: "Running Entity Extractor",
     subtext: "Entities extracted.",
-    duration: 25000,
+    duration: 5000,
   },
   {
     id: 5,
     label: "Generating tags (TF-IDF)",
     subtext: "Tag generation complete.",
-    duration: 1000,
+    duration: 4000,
   },
   {
     id: 6,
     label: "Running Relevancy Checker",
     subtext: "Relevancy Checker complete.",
-    duration: 1000,
+    duration: 3000,
   },
   {
     id: 7,
     label: "Ingesting document for semantic search",
     subtext: "Ingestion complete.",
-    duration: 10000,
+    duration: 8000,
   },
 ];
 

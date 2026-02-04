@@ -180,9 +180,9 @@ export function AddSourceModal({ projectId, trigger, onSuccess, open: controlled
                         onChange={handleFileChange}
                     />
                     {file ? (
-                        <div className="flex flex-col items-center gap-2">
+                        <div className="flex flex-col items-center gap-2 max-w-full"> {/* Added max-w-full here */}
                         <FileText className="h-10 w-10 text-primary" />
-                        <p className="font-medium text-sm">{file.name}</p>
+                        <p className="font-medium text-sm w-full overflow-hidden whitespace-nowrap text-ellipsis" title={file.name}>{file.name}</p> {/* Added truncation classes and title */}
                         <p className="text-xs text-muted-foreground">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
                         <Button 
                             variant="ghost" 
