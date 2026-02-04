@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -33,6 +33,8 @@ export function AddSourceModal({ projectId, trigger, onSuccess, open: controlled
   const [showProgress, setShowProgress] = useState(false);
   const [uploadStep, setUploadStep] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const uploadCompletedRef = useRef(false); // Ref to track API completion
+  const animationTimeoutRef = useRef<NodeJS.Timeout[]>([]); // Ref to store animation timeouts
 
   const handleUrlSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,67 +62,128 @@ export function AddSourceModal({ projectId, trigger, onSuccess, open: controlled
     }
   };
 
-      const handleFileUpload = async () => {
-      if (!file) return;
-  
-      setIsSubmitting(true);
-      setShowProgress(true);
-      setUploadStep(1); // Start with the first step (e.g., "Uploading File")
-      
-      // Animate the first couple of steps (uploading) quickly
-      let currentStepIndex = 0;
-      const animateInitialSteps = () => {
-        if (currentStepIndex < 2) { // Animate first two steps quickly
-          currentStepIndex++;
-          setUploadStep(UPLOAD_STEPS[currentStepIndex].id);
-          setTimeout(animateInitialSteps, 500); // Fast animation for initial steps
-        }
-      };
-      animateInitialSteps();
-  
-      try {
-        // The `await` here will pause until the backend (including LLM) is done.
-        // This naturally accounts for the actual processing time.
-        await uploadPaper(projectId, file, onSuccess);
-        
-        // ---- Upload and Processing Succeeded ----
-        setUploadStep(UPLOAD_STEPS.length + 1); // Visually mark all steps as complete
-  
-        // Show success and close modal
-        toast({
+  const resetUploadState = () => {
+    setFile(null);
+    setShowProgress(false);
+    setUploadStep(0);
+    setIsSubmitting(false);
+    uploadCompletedRef.current = false;
+    animationTimeoutRef.current.forEach(clearTimeout);
+    animationTimeoutRef.current = [];
+  };
+
+  useEffect(() => {
+    // This useEffect is solely responsible for driving the animation sequence
+    // It should only run when showProgress is explicitly true and an upload is initiating
+    if (!showProgress) {
+        // If showProgress is false, it means either animation hasn't started
+        // or has finished/been reset. Nothing to do here.
+        return;
+    }
+
+    uploadCompletedRef.current = false;
+    let currentAnimationStep = 0;
+    let totalDelay = 0;
+    
+    // Clear any previous timeouts/intervals when starting a new animation
+    animationTimeoutRef.current.forEach(clearTimeout);
+    animationTimeoutRef.current.forEach(clearInterval);
+    animationTimeoutRef.current = [];
+
+    const runStep = (stepIndex: number) => {
+      if (stepIndex >= UPLOAD_STEPS.length) {
+        // All animation steps played, now wait for actual upload to complete
+        const finalCheckInterval = setInterval(() => {
+          if (uploadCompletedRef.current) {
+            clearInterval(finalCheckInterval);
+            setUploadStep(UPLOAD_STEPS.length + 1); // Mark all done
+            // Show success and close modal
+            toast({
+              title: "Success",
+              description: "Paper uploaded and processed successfully.",
+            });
+            setTimeout(() => {
+              if (setOpen) setOpen(false);
+              resetUploadState(); // Reset state after dialog closes
+            }, 800); // A small delay to let the user see the final checkmark
+          }
+        }, 500);
+        animationTimeoutRef.current.push(finalCheckInterval); // Store interval ID for cleanup
+        return;
+      }
+
+      const step = UPLOAD_STEPS[stepIndex];
+      const timeoutId = setTimeout(() => {
+        if (uploadCompletedRef.current) {
+          // If API already finished, jump to final step
+          setUploadStep(UPLOAD_STEPS.length + 1);
+          // Show success and close modal immediately
+          toast({
             title: "Success",
             description: "Paper uploaded and processed successfully.",
           });
-        
-        setTimeout(() => {
-            setFile(null);
-            setShowProgress(false);
-            setUploadStep(0);
+          setTimeout(() => {
             if (setOpen) setOpen(false);
-            setIsSubmitting(false);
-        }, 800); // A small delay to let the user see the final checkmark
-  
-      } catch (error) {
+            resetUploadState(); // Reset state after dialog closes
+          }, 800);
+        } else {
+          setUploadStep(step.id);
+          runStep(stepIndex + 1);
+        }
+      }, step.duration);
+      animationTimeoutRef.current.push(timeoutId); // Store timeout ID for cleanup
+    };
+
+    // Start the animation sequence
+    setUploadStep(UPLOAD_STEPS[0].id); // Start with the first step
+    runStep(0); // Start the step sequence
+
+    return () => {
+      // Cleanup on unmount or if showProgress changes
+      animationTimeoutRef.current.forEach(clearTimeout);
+      animationTimeoutRef.current.forEach(clearInterval); // Clear any intervals too
+      animationTimeoutRef.current = [];
+    };
+  }, [showProgress, projectId, onSuccess, setOpen, toast]); // Removed 'file' from dependencies
+
+
+  const handleFileUpload = async () => {
+    if (!file) return;
+
+    setIsSubmitting(true);
+    setShowProgress(true); // This will trigger the useEffect for animation
+    
+    // Asynchronously call the API, don't await here to let animation run
+    uploadPaper(projectId, file, onSuccess)
+      .then(() => {
+        uploadCompletedRef.current = true; // Mark API call as complete
+      })
+      .catch((error) => {
         console.error(error);
         toast({
           variant: "destructive",
           title: "Upload Error",
           description: error instanceof Error ? error.message : "An unknown error occurred.",
         });
-        setIsSubmitting(false);
-        setShowProgress(false); 
-        setUploadStep(0); // Reset progress on error
-        return;
-      }
-    };
+        // On error, immediately reset state
+        if (setOpen) setOpen(false);
+        resetUploadState();
+      });
+  };
+  
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
+      // No need to call resetUploadState here directly.
+      // The logic within useEffect handles animation state based on showProgress.
     }
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={(val) => {
+      setOpen(val);
+      if (!val) resetUploadState(); // Reset state when dialog closes
+    }}>
       {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
@@ -161,7 +224,7 @@ export function AddSourceModal({ projectId, trigger, onSuccess, open: controlled
             </form>
           </TabsContent>
 
-          <TabsContent value="upload" className="space-y-4 py-4">
+          <TabsContent value="upload" className="space-y-4 py-4 w-[calc(500px-3rem)] overflow-hidden"> {/* Precise width for TabsContent */}
             {showProgress ? (
                 <div className="py-4">
                     <UploadProgress currentStep={uploadStep} fileName={file?.name || "Document"} />
@@ -169,7 +232,7 @@ export function AddSourceModal({ projectId, trigger, onSuccess, open: controlled
             ) : (
                 <>
                     <div 
-                    className="border-2 border-dashed rounded-lg p-8 flex flex-col items-center justify-center text-center hover:bg-accent/50 transition-colors cursor-pointer"
+                    className="border-2 border-dashed rounded-lg p-8 flex flex-col items-center justify-center text-center hover:bg-accent/50 transition-colors cursor-pointer w-full overflow-x-hidden min-w-0" // w-full and explicit overflow-x-hidden
                     onClick={() => fileInputRef.current?.click()}
                     >
                     <input 
@@ -180,9 +243,9 @@ export function AddSourceModal({ projectId, trigger, onSuccess, open: controlled
                         onChange={handleFileChange}
                     />
                     {file ? (
-                        <div className="flex flex-col items-center gap-2 max-w-full"> {/* Added max-w-full here */}
+                        <div className="flex flex-col items-center gap-2 min-w-0 max-w-full overflow-hidden">
                         <FileText className="h-10 w-10 text-primary" />
-                        <p className="font-medium text-sm w-full overflow-hidden whitespace-nowrap text-ellipsis" title={file.name}>{file.name}</p> {/* Added truncation classes and title */}
+                        <p className="font-medium text-sm w-full overflow-hidden whitespace-nowrap text-ellipsis" title={file.name}>{file.name}</p>
                         <p className="text-xs text-muted-foreground">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
                         <Button 
                             variant="ghost" 

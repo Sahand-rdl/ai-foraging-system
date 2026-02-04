@@ -4,7 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ChevronLeft, Sparkles, Heart, X, Check, Tag, MessageSquare, Send, ExternalLink } from "lucide-react";
+import { ChevronLeft, Sparkles, Heart, X, Check, Tag, ExternalLink, Bookmark, Link } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 import { KnowledgeArtifact } from "@/types/source";
 
 interface ArtifactDetailProps {
@@ -16,9 +17,6 @@ interface ArtifactDetailProps {
   onRemoveTag: (id: number, tag: string) => void;
   onAddTag: (id: number, tag: string) => void;
   onUpdateNotes: (id: number, notes: string) => void;
-  onSendChatMessage: (id: number) => void;
-  currentMessage: string;
-  onMessageChange: (message: string) => void;
   newTag: string;
   onNewTagChange: (tag: string) => void;
   onUpdateContent?: (id: number, content: string) => void;
@@ -36,9 +34,6 @@ export function ArtifactDetail({
   onRemoveTag,
   onAddTag,
   onUpdateNotes,
-  onSendChatMessage,
-  currentMessage,
-  onMessageChange,
   newTag,
   onNewTagChange,
   onUpdateContent,
@@ -47,6 +42,18 @@ export function ArtifactDetail({
   onUpdateExternalLink
 }: ArtifactDetailProps) {
   const isSuggestion = artifact.status === "suggestion";
+
+  const { toast } = useToast();
+
+  const handleCopyLink = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("aid", artifact.id.toString());
+    navigator.clipboard.writeText(url.toString());
+    toast({
+      title: "Link copied",
+      description: "Artifact link copied to clipboard",
+    });
+  };
 
   return (
     <div className="h-full flex flex-col">
@@ -95,14 +102,24 @@ export function ArtifactDetail({
 
             <h2 className="text-lg font-semibold">KA: {artifact.title}</h2>
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => onToggleFavorite(artifact.id)}
-            className={artifact.isBookmarked ? "text-red-500" : ""}
-          >
-            <Heart className={`h-5 w-5 ${artifact.isBookmarked ? "fill-current" : ""}`} />
-          </Button>
+          <div className="flex gap-1">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleCopyLink}
+              className="text-muted-foreground hover:text-foreground"
+            >
+              <Link className="h-5 w-5" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => onToggleFavorite(artifact.id)}
+              className={artifact.isBookmarked ? "text-yellow-500" : ""}
+            >
+              <Bookmark className={`h-5 w-5 ${artifact.isBookmarked ? "fill-current" : ""}`} />
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -140,7 +157,7 @@ export function ArtifactDetail({
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
+             <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
               <ExternalLink className="h-4 w-4" />
               External Link
             </h3>
@@ -203,59 +220,9 @@ export function ArtifactDetail({
             />
           </div>
         </div>
+
       </ScrollArea>
 
-      {/* Chat Section */}
-      <div className="border-t border-border flex flex-col" style={{ height: '250px' }}>
-        <div className="p-3 border-b border-border">
-          <h3 className="text-sm font-semibold flex items-center gap-2">
-            <MessageSquare className="h-4 w-4" />
-            Ask about this artifact
-          </h3>
-        </div>
-        <ScrollArea className="flex-1 p-3">
-          <div className="space-y-3">
-            {(artifact.chatHistory || []).map((msg, idx) => (
-              <div
-                key={idx}
-                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-              >
-                <div
-                  className={`max-w-[80%] rounded-lg p-2 text-sm ${
-                    msg.role === "user"
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted"
-                  }`}
-                >
-                  {msg.content}
-                </div>
-              </div>
-            ))}
-          </div>
-        </ScrollArea>
-        <div className="p-3 border-t border-border">
-          <div className="flex gap-2">
-            <Input
-              placeholder="Ask a question..."
-              value={currentMessage}
-              onChange={(e) => onMessageChange(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  onSendChatMessage(artifact.id);
-                }
-              }}
-            />
-            <Button
-              size="icon"
-              onClick={() => onSendChatMessage(artifact.id)}
-            >
-              <Send className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
-

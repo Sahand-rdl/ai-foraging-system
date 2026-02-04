@@ -65,14 +65,7 @@ export function SourcesTable({
     <div className="bg-card">
       <Table className="table-fixed w-full">
         <TableHeader>
-          <TableRow className="hover:bg-transparent">
-            <TableHead className="w-[50px]">Type</TableHead>
-            <TableHead>Title</TableHead> {/* This will now be flexible */}
-            <TableHead className="w-[120px]">Trustworthiness</TableHead>
-            <TableHead className={showRelevance ? "w-[200px]" : "w-[240px]"}>Authors</TableHead> {/* Dynamic width for Authors */}
-            {showRelevance && <TableHead className="w-[100px] text-right">Relevance</TableHead>}
-            <TableHead className="w-[60px]"></TableHead>
-          </TableRow>
+          <TableRow className="hover:bg-transparent"><TableHead className="w-[50px]">Type</TableHead><TableHead>Title</TableHead><TableHead className="w-[120px]">Trustworthiness</TableHead><TableHead className={showRelevance ? "w-[200px]" : "w-[240px]"}>Authors</TableHead>{showRelevance && <TableHead className="w-[100px] text-right">Relevance</TableHead>}<TableHead className="w-[60px]"></TableHead></TableRow>
         </TableHeader>
         <TableBody>
           {sources.map((source) => (
@@ -103,7 +96,7 @@ export function SourcesTable({
                   {source.trustworthiness}
                 </span>
               </TableCell>
-              <TableCell className={showRelevance ? "w-[200px]" : "w-[240px]"}> {/* Dynamic width for Authors */}
+              <TableCell className={showRelevance ? "w-[200px]" : "w-[240px]"}>
                 <span className="text-sm text-muted-foreground truncate block">
                   {Array.isArray(source.metadata.authors)
                     ? source.metadata.authors.join(", ")

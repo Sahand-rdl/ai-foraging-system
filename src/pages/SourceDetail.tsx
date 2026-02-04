@@ -1,10 +1,10 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 
 import { 
   fetchKnowledgeSourceById, 
-  fetchKnowledgeArtifactsBySourceId,
+    fetchKnowledgeArtifactsBySourceId,
   updateArtifactStatus,
   updateArtifactBookmark,
   addArtifactTag,
@@ -12,7 +12,8 @@ import {
   updateArtifactNotes,
   updateArtifactContent,
   updateArtifactExternalLink,
-  sendChatMessageToSource,
+  sendArtifactChatMessage,
+  sendSourceChatMessage,
   deleteArtifact,
   API_BASE_URL,
   type ChatResponse
@@ -22,13 +23,17 @@ import {
   type KnowledgeSource, 
   type KnowledgeArtifact, 
   type KAType,
-  type ChatMessage as KAChatMessage
+  type ChatMessage as KAChatMessage,
+  type ChatMessage
 } from "@/types/source";
 
 // Components
-import { PDFPreview, type PDFPreviewRef } from "@/components/source-detail/PDFPreview";
+import { PDFPreview } from "@/components/source-detail/PDFPreview";
 import { ArtifactList } from "@/components/source-detail/ArtifactList";
 import { ArtifactDetail } from "@/components/source-detail/ArtifactDetail";
+import { AddArtifactForm } from "@/components/sources/AddArtifactForm";
+import { SourceChat } from "@/components/source-detail/SourceChat";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function SourceDetail() {
   const { id, projectId } = useParams();
@@ -44,13 +49,26 @@ export default function SourceDetail() {
   // UI States
   const [selectedFilter, setSelectedFilter] = useState<KAType | "all">("all");
   const [selectedArtifactId, setSelectedArtifactId] = useState<number | null>(null);
+  const [isCreatingArtifact, setIsCreatingArtifact] = useState(false);
   
   // Local state for chat input/tag input
   const [currentMessage, setCurrentMessage] = useState("");
-  const [newTag, setNewTag] = useState("");
-  const [previewSearchQuery, setPreviewSearchQuery] = useState(""); // Still used for initial artifact search
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+  const [isChatLoading, setIsChatLoading] = useState(false);
 
-  const pdfPreviewRef = useRef<PDFPreviewRef>(null); // Ref for PDFPreview component
+  const [newTag, setNewTag] = useState("");
+  const [previewSearchQuery, setPreviewSearchQuery] = useState("");
+
+  const refreshArtifacts = async () => {
+      if (!id) return;
+      const sourceId = parseInt(id, 10);
+      try {
+          const artifactsData = await fetchKnowledgeArtifactsBySourceId(sourceId);
+          setArtifacts(artifactsData);
+      } catch (error) {
+          console.error("Failed to refresh artifacts", error);
+      }
+  };
 
   useEffect(() => {
     async function loadData() {
@@ -99,6 +117,7 @@ export default function SourceDetail() {
 
   const handleArtifactSelect = (id: number) => {
     setSelectedArtifactId(id);
+    setIsCreatingArtifact(false);
     setSearchParams({ aid: id.toString() });
     const artifact = artifacts.find(a => a.id === id);
     if (artifact) {
@@ -162,31 +181,36 @@ export default function SourceDetail() {
   };
 
   const handleSendChatMessage = async (artifactId: number) => {
-    if (!currentMessage.trim() || !source) return; // Guard clause
+    // Legacy artifact chat - might be removed or kept for specific artifact questions if needed
+    // For now we implement the new Source Chat
+  };
+
+  const handleSendSourceChatMessage = async () => {
+    if (!currentMessage.trim() || !source) return;
     
-    const userMsg: KAChatMessage = {
+    const userMsg: ChatMessage = {
         role: "user",
         content: currentMessage,
         timestamp: new Date().toISOString()
     };
 
-    // Optimistically update the UI for the specific artifact
-    setArtifacts(prev => prev.map(a => 
-        a.id === artifactId ? { ...a, chatHistory: [...a.chatHistory, userMsg] } : a
-    ));
+    setChatHistory(prev => [...prev, userMsg]);
     setCurrentMessage("");
+    setIsChatLoading(true);
 
     try {
-        // Correctly call the API with the SOURCE ID (doc_id) and the message
-        const response = await sendChatMessageToSource(source.id, userMsg.content);
-        
-        // Update the artifact's chat history with the assistant's response
-        setArtifacts(prev => prev.map(a => 
-            a.id === artifactId ? { ...a, chatHistory: [...a.chatHistory, response.assistantMessage] } : a
-        ));
+        const response = await sendSourceChatMessage(source.id, userMsg.content);
+        setChatHistory(prev => [...prev, response.assistantMessage]);
     } catch (e) { 
-        console.error("Failed to send chat message:", e);
-        // Optional: Revert optimistic update on error
+        console.error("Error sending source chat message:", e); // More verbose logging
+        const errorMsg: ChatMessage = {
+            role: "assistant",
+            content: "Sorry, I encountered an error answering your question.",
+            timestamp: new Date().toISOString()
+        };
+        setChatHistory(prev => [...prev, errorMsg]);
+    } finally {
+        setIsChatLoading(false);
     }
   };
 
@@ -233,67 +257,109 @@ export default function SourceDetail() {
   }
 
   const handleBack = () => {
-    if (pdfPreviewRef.current) {
-        pdfPreviewRef.current.clearSearch(); // Clear search using ref
-    }
-    setPreviewSearchQuery(""); // Clear the search query state (also used for initial externalSearchQuery)
     if (projectId) {
         navigate(`/projects/${projectId}`);
     } else {
         navigate("/sources");
     }
   };
+  
+  // Decide what to render in the sidebar
+  let sidebarContent;
+  if (isCreatingArtifact) {
+    sidebarContent = (
+      <AddArtifactForm 
+        knowledgeSourceId={source.id} 
+        onCancel={() => setIsCreatingArtifact(false)}
+        onSuccess={() => {
+          setIsCreatingArtifact(false);
+          refreshArtifacts();
+        }}
+      />
+    );
+  } else if (selectedArtifactId && selectedArtifact) {
+    sidebarContent = (
+      <ArtifactDetail 
+        artifact={selectedArtifact}
+        getTypeColor={getTypeColor}
+        onBack={() => {
+            setSelectedArtifactId(null);
+            setSearchParams({});
+        }}
+        onToggleFavorite={toggleFavorite}
+        onStatusChange={handleStatusChange}
+        onRemoveTag={handleRemoveTag}
+        onAddTag={handleAddTag}
+        onUpdateNotes={handleUpdateNotes}
+        newTag={newTag}
+        onNewTagChange={setNewTag}
+        onUpdateContent={handleUpdateContent}
+        onUpdateExternalLink={handleUpdateExternalLink}
+        onAccept={handleAccept}
+        onDecline={handleDecline}
+      />
+    );
+  } else {
+    sidebarContent = (
+      <ArtifactList 
+        artifacts={filteredArtifacts}
+        selectedFilter={selectedFilter}
+        onFilterChange={setSelectedFilter}
+        onArtifactSelect={handleArtifactSelect}
+        getTypeColor={getTypeColor}
+        onAccept={handleAccept}
+        onDecline={handleDecline}
+        onAdd={() => setIsCreatingArtifact(true)}
+      />
+    );
+  }
 
   return (
     <div className="h-screen flex flex-col bg-background">
       <ResizablePanelGroup direction="horizontal" className="flex-1">
         {/* PDF Viewer */}
         <ResizablePanel defaultSize={60} minSize={30}>
-          <PDFPreview ref={pdfPreviewRef} pdfUrl={pdfUrl} onBack={handleBack} externalSearchQuery={previewSearchQuery} />
+          <PDFPreview pdfUrl={pdfUrl} onBack={handleBack} externalSearchQuery={previewSearchQuery} />
         </ResizablePanel>
 
         <ResizableHandle withHandle />
 
         {/* AI Extraction Sidebar */}
         <ResizablePanel defaultSize={40} minSize={30}>
-          <div className="h-full border-l border-border bg-card flex flex-col">
-            
-            {/* Show detailed view if an artifact is selected, otherwise show list */}
-            {selectedArtifactId && selectedArtifact ? (
-              <ArtifactDetail 
-                artifact={selectedArtifact}
-                getTypeColor={getTypeColor}
-                onBack={() => {
-                    setSelectedArtifactId(null);
-                    setSearchParams({});
-                }}
-                onToggleFavorite={toggleFavorite}
-                onStatusChange={handleStatusChange}
-                onRemoveTag={handleRemoveTag}
-                onAddTag={handleAddTag}
-                onUpdateNotes={handleUpdateNotes}
-                onSendChatMessage={handleSendChatMessage}
-                currentMessage={currentMessage}
-                onMessageChange={setCurrentMessage}
-                newTag={newTag}
-                onNewTagChange={setNewTag}
-                onUpdateContent={handleUpdateContent}
-                onUpdateExternalLink={handleUpdateExternalLink}
-                onAccept={handleAccept}
-                onDecline={handleDecline}
-              />
-            ) : (
-              <ArtifactList 
-                artifacts={filteredArtifacts}
-                selectedFilter={selectedFilter}
-                onFilterChange={setSelectedFilter}
-                onArtifactSelect={handleArtifactSelect}
-                getTypeColor={getTypeColor}
-                onAccept={handleAccept}
-                onDecline={handleDecline}
-              />
-            )}
-          </div>
+            <Tabs defaultValue="artifacts" className="h-full flex flex-col">
+              <div className="border-b px-4">
+                <TabsList className="w-full justify-start h-12 bg-transparent p-0">
+                  <TabsTrigger 
+                    value="artifacts" 
+                    className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none h-full px-4"
+                  >
+                    Artifacts
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="chat" 
+                    className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none h-full px-4"
+                  >
+                    Chat
+                  </TabsTrigger>
+                </TabsList>
+              </div>
+              
+              <TabsContent value="artifacts" className="flex-1 mt-0 h-full overflow-hidden flex flex-col data-[state=inactive]:hidden">
+                {sidebarContent}
+              </TabsContent>
+
+              <TabsContent value="chat" className="flex-1 mt-0 h-full overflow-hidden flex flex-col data-[state=inactive]:hidden">
+                <SourceChat 
+                    sourceId={source.id} // Keep sourceId for the actual API call
+                    sourceTitle={source.metadata.title || `Source #${source.id}`} // Pass title for display
+                    chatHistory={chatHistory}
+                    onSendChatMessage={handleSendSourceChatMessage}
+                    currentMessage={currentMessage}
+                    onMessageChange={setCurrentMessage}
+                    isLoading={isChatLoading}
+                />
+              </TabsContent>
+            </Tabs>
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
