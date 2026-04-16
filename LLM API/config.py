@@ -19,7 +19,7 @@ PROCESSED_DOCS_DIR = os.path.join(PAPERS_STORAGE_PATH, "extracted")
 LLM_SERVICE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 # Define the single, unified path for the ChromaDB database within the llm-service.
-CHROMA_DB_PATH = os.path.join(LLM_SERVICE_ROOT, "chroma_db")
+CHROMA_DB_PATH = os.path.join(os.path.dirname(__file__), "..", "chroma_db")
 
 # Ensure the target directory for processed files exists on startup.
 os.makedirs(PROCESSED_DOCS_DIR, exist_ok=True)
