@@ -6,7 +6,7 @@
 [![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
 [![ChromaDB](https://img.shields.io/badge/ChromaDB-000000?style=for-the-badge&logo=chroma&logoColor=white)](https://www.trychroma.com/)
 
-**Artifaix** is a professional-grade research platform designed to optimize the process of gathering and reusing knowledge from scientific literature. Developed at RWTH Aachen (AIX), it helps ML researchers and engineers filter out noise and extract high-value **Knowledge Artifacts** (Algorithms, Code, Terminology) into a curated, searchable repository.
+**Artifaix** is a professional-grade research platform designed to optimize the process of gathering and reusing knowledge from scientific literature. Developed at **RWTH Aachen**, the name is a tribute to our core focus and our city: a fusion of **Artifacts** (the heart of our system), **AI** (our engine), and **AIX** (the historical name for Aachen). It helps ML researchers and engineers filter out noise and extract high-value **Knowledge Artifacts** (Algorithms, Code, Terminology) into a curated, searchable repository.
 
 ---
 
@@ -87,8 +87,8 @@ You'll need **Python 3.11+** and **Node.js**.
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/ai-lab.git
-cd ai-lab
+git clone https://github.com/Sahand-rdl/Artifaix.git
+cd Artifaix
 ```
 
 ### 2. Configure Secrets
