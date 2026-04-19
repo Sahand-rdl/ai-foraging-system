@@ -1,4 +1,4 @@
-# 🧠 AI Supported Semantic Knowledge Platform for Information Foraging
+# 🧠 Artifaix: AI-Powered Research Artifact Extraction
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
@@ -6,12 +6,12 @@
 [![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
 [![ChromaDB](https://img.shields.io/badge/ChromaDB-000000?style=for-the-badge&logo=chroma&logoColor=white)](https://www.trychroma.com/)
 
-**AI Foraging** is a professional-grade research platform designed to optimize the process of gathering and reusing knowledge from scientific literature. Based on **Optimal Foraging Theory**, it helps ML researchers and engineers filter out noise and extract high-value **Knowledge Artifacts** (Algorithms, Code, Terminology) into a curated, searchable repository.
+**Artifaix** is a professional-grade research platform designed to optimize the process of gathering and reusing knowledge from scientific literature. Developed at RWTH Aachen (AIX), it helps ML researchers and engineers filter out noise and extract high-value **Knowledge Artifacts** (Algorithms, Code, Terminology) into a curated, searchable repository.
 
 ---
 
 ## 🚀 The Core Vision: Scaling Research
-In the status quo, researchers face information overload. **AI Foraging** addresses this by automating the "Search, Evaluate, and Retain" loop:
+In the status quo, researchers face information overload. **Artifaix** addresses this by automating the "Search, Evaluate, and Retain" loop:
 
 - **AI-Driven Evaluation**: Automatically filters out low-quality sources based on project-specific ML problem definitions.
 - **Precision Extraction**: Uses specialized agents to find "Declarative" (Algos), "Procedural" (Patterns), and "Executable" (Code) artifacts.
