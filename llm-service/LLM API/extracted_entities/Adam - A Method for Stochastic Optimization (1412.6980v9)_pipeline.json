@@ -1,0 +1,314 @@
+[
+  {
+    "iteration": 1,
+    "prompt_versions": [
+      "v1"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Adam",
+          "meaning": "algorithm for first-order gradient-based optimization of stochastic objective functions"
+        },
+        {
+          "term": "signal-to-noise ratio (SNR)",
+          "meaning": "ratio \\( \\hat{m}_t / \\sqrt{\\hat{v}_t} \\)"
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Logistic regression training negative log likelihood on MNIST images and IMDB movie reviews with 10,000 bag-of-words (BoW) feature vectors."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Training of multilayer neural networks on MNIST images. (a) Neural networks using dropout stochastic regularization. (b) Neural networks with deterministic cost function. We compare with the sum-of-functions (SFO) optimizer (Sohl-Dickstein et al., 2014)."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Convolutional neural networks training cost. (left) Training cost for the first three epochs. (right) Training cost over 45 epochs. CIFAR-10 with c64-c64-c128-1000 architecture."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Effect of bias-correction terms (red line) versus no bias correction terms (green line) after 10 epochs (left) and 100 epochs (right) on the loss (y-axes) when learning a Variational AutoEncoder (VAE) (Kingma & Welling, 2013), for different settings of stepsize α (x-axes) and hyperparameters β₁ and β₂."
+        }
+      ],
+      "tables": [],
+      "algorithms": [
+        {
+          "algorithm": "Algorithm 1: Adam",
+          "goal": "stochastic optimization",
+          "process": "See section 2 for details; pseudo‑code includes initialization of moment vectors, bias‑corrected estimates, and parameter update \\( \\theta_t \\leftarrow \\theta_{t-1} - \\alpha \\frac{\\hat{m}_t}{\\sqrt{\\hat{v}_t}+\\epsilon} \\)."
+        },
+        {
+          "algorithm": "Algorithm 2: AdaMax",
+          "goal": "variant of Adam based on the infinity norm",
+          "process": "See section 7.1 for details; uses exponentially weighted infinity norm \\(u_t = \\max(\\beta_2 \\cdot u_{t-1}, |g_t|)\\) and updates parameters with \\( \\theta_t \\leftarrow \\theta_{t-1} - \\frac{\\alpha}{1-\\beta_1^t}\\frac{m_t}{u_t} \\)."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": [
+        {
+          "item": "signal-to-noise ratio (SNR)",
+          "reason": "The extraction provides a ratio definition (\\hat{m}_t / \\sqrt{\\hat{v}_t}) but the paper uses the term informally and does not give a formal definition, making the support weak."
+        },
+        {
+          "item": "Algorithm 1: Adam (process description)",
+          "reason": "The extracted description is a high‑level summary and omits several important details (e.g., bias‑correction formulas, default hyper‑parameters, handling of \\epsilon), so the support is limited."
+        }
+      ],
+      "ambiguous": [
+        {
+          "item": "signal-to-noise ratio (SNR)",
+          "reason": "It is unclear whether the authors intend SNR as a strict statistical term or simply as a descriptive name for the ratio \\hat{m}_t / \\sqrt{\\hat{v}_t}."
+        },
+        {
+          "item": "Algorithm 1: Adam (goal and process)",
+          "reason": "The goal \"stochastic optimization\" is generic, and the process description could be interpreted in multiple ways without the exact pseudo‑code."
+        }
+      ],
+      "missing": [
+        "Terminology: bias‑correction term, exponential moving average, first moment (m_t), second moment (v_t), hyper‑parameters β₁, β₂, ε, learning rate α, decay schedule α_t = α·√t, RMSProp, AdaGrad, AdaDelta, vSGD, natural gradient, SFO, temporal averaging, Polyak‑Ruppert averaging.",
+        "Key theoretical results: Theorem 4.1 (regret bound), Corollary 4.2 (average regret), Lemma 10.1‑10.5, definitions of convexity, regret formulation, proof sketch, assumptions on bounded gradients and parameter distances.",
+        "Algorithmic details: exact bias‑corrected estimates \\hat{m}_t = m_t/(1-β₁^t), \\hat{v}_t = v_t/(1-β₂^t), default hyper‑parameter values (α=0.001, β₁=0.9, β₂=0.999, ε=10⁻⁸), step‑size annealing discussion.",
+        "Experimental summaries: quantitative performance results for logistic regression, multilayer neural networks, CNNs, VAE bias‑correction study, comparison tables/plots (e.g., training loss curves, speed comparisons with SFO, SGD, RMSProp, AdaGrad).",
+        "Extension sections: detailed derivation of AdaMax (including equations (6)‑(12)), discussion of infinity norm, bound |Δ_t| ≤ α, temporal averaging formula and bias correction.",
+        "Conclusion and future work statements not captured.",
+        "Acknowledgments and funding information beyond the brief mention.",
+        "Reference list entries (full citations) not enumerated in extraction.",
+        "Any tables present in the original paper (if any) – none were extracted."
+      ]
+    }
+  },
+  {
+    "iteration": 2,
+    "prompt_versions": [
+      "v_refined_disambiguation",
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "exponential moving average",
+          "meaning": "estimates of the 1st moment (the mean) and the 2nd raw moment (the uncentered variance) of the gradient"
+        },
+        {
+          "term": "first moment (m_t)",
+          "meaning": "biased first moment estimate of the gradient"
+        },
+        {
+          "term": "second moment (v_t)",
+          "meaning": "biased second raw moment estimate (elementwise square) of the gradient"
+        },
+        {
+          "term": "bias-corrected first moment estimate (\\hat{m}_t)",
+          "meaning": "m_t divided by (1-\\beta_1^t)"
+        },
+        {
+          "term": "bias-corrected second raw moment estimate (\\hat{v}_t)",
+          "meaning": "v_t divided by (1-\\beta_2^t)"
+        },
+        {
+          "term": "signal-to-noise ratio (SNR)",
+          "meaning": "the ratio \\hat{m}_t / \\sqrt{\\hat{v}_t}"
+        },
+        {
+          "term": "AdaMax",
+          "meaning": "a variant of Adam based on the infinity norm"
+        },
+        {
+          "term": "temporal averaging",
+          "meaning": "exponential moving average over the parameters, \\bar{\\theta}_t = \\beta_2 \\cdot \\bar{\\theta}_{t-1} + (1-\\beta_2) \\theta_t"
+        },
+        {
+          "term": "hyper-parameters \\beta_1, \\beta_2",
+          "meaning": "exponential decay rates for the moment estimates"
+        },
+        {
+          "term": "learning rate \\alpha",
+          "meaning": "stepsize"
+        },
+        {
+          "term": "epsilon (\\epsilon)",
+          "meaning": "small constant added for numerical stability"
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Logistic regression training negative log likelihood on MNIST images and IMDB movie reviews with 10,000 bag-of-words (BoW) feature vectors."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Training of multilayer neural networks on MNIST images, comparing Adam with SFO, dropout, and deterministic cost."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Convolutional neural networks training cost on CIFAR-10 with c64‑c64‑c128‑1000 architecture, showing cost over epochs."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Effect of bias‑correction terms versus no bias correction on the loss when learning a Variational AutoEncoder (VAE) for different stepsize \\alpha and hyperparameters \\beta_1, \\beta_2."
+        }
+      ],
+      "tables": [],
+      "algorithms": [
+        {
+          "algorithm": "Algorithm 1: Adam",
+          "goal": "stochastic optimization",
+          "process": "initializes m_0 and v_0 to zero, iteratively computes gradients g_t, updates biased first moment m_t = \\beta_1 \\cdot m_{t-1} + (1-\\beta_1) \\cdot g_t, updates biased second moment v_t = \\beta_2 \\cdot v_{t-1} + (1-\\beta_2) \\cdot g_t^2, computes bias‑corrected estimates \\hat{m}_t = m_t/(1-\\beta_1^t) and \\hat{v}_t = v_t/(1-\\beta_2^t), and updates parameters \\theta_t = \\theta_{t-1} - \\alpha \\cdot \\hat{m}_t/(\\sqrt{\\hat{v}_t} + \\epsilon) until convergence."
+        },
+        {
+          "algorithm": "Algorithm 2: AdaMax",
+          "goal": "stochastic optimization",
+          "process": "initializes m_0 to zero and u_0 to zero, iteratively computes gradients g_t, updates exponentially weighted infinity norm u_t = max(\\beta_2 \\cdot u_{t-1}, |g_t|), updates biased first moment m_t = \\beta_1 \\cdot m_{t-1} + (1-\\beta_1) \\cdot g_t, and updates parameters \\theta_t = \\theta_{t-1} - (\\alpha/(1-\\beta_1^t)) \\cdot m_t / u_t until convergence."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": [
+        "regret",
+        "online convex optimization",
+        "theorem 4.1",
+        "corollary 4.2",
+        "convergence guarantee",
+        "bias correction term"
+      ]
+    }
+  },
+  {
+    "iteration": 3,
+    "prompt_versions": [
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Adam",
+          "meaning": "proposed algorithm for stochastic optimization"
+        },
+        {
+          "term": "AdaMax",
+          "meaning": "variant of Adam based on the infinity norm"
+        },
+        {
+          "term": "regret",
+          "meaning": "sum of differences between online predictions f_t(θ_t) and the best fixed point parameter f_t(θ*) over all steps"
+        },
+        {
+          "term": "first moment",
+          "meaning": "the mean of the gradient"
+        },
+        {
+          "term": "second moment",
+          "meaning": "the uncentered variance (raw second moment) of the gradient"
+        },
+        {
+          "term": "signal-to-noise ratio (SNR)",
+          "meaning": "ratio of the bias‑corrected first moment estimate \\(\\hat m_t\\) to the square root of the bias‑corrected second moment estimate \\(\\sqrt{\\hat v_t}\\)"
+        },
+        {
+          "term": "bias‑correction term",
+          "meaning": null
+        },
+        {
+          "term": "online convex optimization",
+          "meaning": null
+        },
+        {
+          "term": "convergence guarantee",
+          "meaning": null
+        },
+        {
+          "term": "initialization bias correction",
+          "meaning": null
+        },
+        {
+          "term": "exponential moving average",
+          "meaning": null
+        },
+        {
+          "term": "temporal averaging",
+          "meaning": null
+        },
+        {
+          "term": "Polyak‑Ruppert averaging",
+          "meaning": null
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Logistic regression training negative log likelihood on MNIST images and IMDB movie reviews with 10,000 bag‑of‑words (BoW) feature vectors."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Training of multilayer neural networks on MNIST images. (a) Neural networks using dropout stochastic regularization. (b) Neural networks with deterministic cost function. Comparison with the Sum‑of‑Functions (SFO) optimizer."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Convolutional neural networks training cost. (left) Training cost for the first three epochs. (right) Training cost over 45 epochs. CIFAR‑10 with c64‑c64‑c128‑1000 architecture."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Effect of bias‑correction terms (red line) versus no bias correction terms (green line) after 10 epochs (left) and 100 epochs (right) on the loss when learning a Variational AutoEncoder (VAE), for different settings of stepsize α and hyperparameters β₁ and β₂."
+        }
+      ],
+      "tables": [],
+      "algorithms": [
+        {
+          "algorithm": "Algorithm 1: Adam",
+          "goal": "stochastic optimization",
+          "process": "Pseudo‑code described in Section 2 (see code block for initialization of m₀, v₀, timestep loop, bias‑corrected moment updates, and parameter update)."
+        },
+        {
+          "algorithm": "Algorithm 2: AdaMax",
+          "goal": "variant of Adam based on the infinity norm",
+          "process": "Pseudo‑code described in Section 7.1 (initialization of u₀, m₀, timestep loop, update of exponentially weighted infinity norm u_t, bias‑corrected first moment m_t, and parameter update using u_t)."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": [
+        "bias‑correction term (meaning not provided)",
+        "online convex optimization (meaning not provided)",
+        "convergence guarantee (meaning not provided)",
+        "initialization bias correction (meaning not provided)",
+        "exponential moving average (meaning not provided)",
+        "temporal averaging (meaning not provided)",
+        "Polyak‑Ruppert averaging (meaning not provided)"
+      ],
+      "ambiguous": [
+        "signal-to-noise ratio (SNR) definition may be ambiguous",
+        "regret definition could be ambiguous without formal context"
+      ],
+      "missing": [
+        "AdaGrad",
+        "RMSProp",
+        "AdaDelta",
+        "vSGD",
+        "natural gradient",
+        "Sum‑of‑Functions (SFO) optimizer",
+        "dropout regularization",
+        "Variational AutoEncoder (VAE)",
+        "Convolutional Neural Networks (CNN)",
+        "Multi‑layer Neural Networks",
+        "logistic regression experiment details",
+        "Theorem 4.1 statement",
+        "Corollary 4.2 statement",
+        "Lemma 10.1‑10.4 statements",
+        "Convergence proof details",
+        "hyper‑parameter default settings (e.g., α, β₁, β₂ values)",
+        "learning rate schedule α_t = α/√t",
+        "AdaMax derivation details",
+        "temporal averaging description"
+      ]
+    }
+  }
+]

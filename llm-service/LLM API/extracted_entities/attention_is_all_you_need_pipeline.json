@@ -1,0 +1,411 @@
+[
+  {
+    "iteration": 1,
+    "prompt_versions": [
+      "v1"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Transformer",
+          "meaning": "the first sequence transduction model based entirely on attention, replacing the recurrent layers most commonly used in encoder‑decoder architectures with multi‑headed self‑attention."
+        },
+        {
+          "term": "self‑attention",
+          "meaning": "an attention mechanism relating different positions of a single sequence in order to compute a representation of the sequence."
+        },
+        {
+          "term": "Scaled Dot‑Product Attention",
+          "meaning": "the input consists of queries and keys of dimension d_k, and values of dimension d_v; the dot products of the query with all keys are computed, each divided by √d_k, and a softmax function is applied to obtain the weights on the values."
+        },
+        {
+          "term": "Multi‑Head Attention",
+          "meaning": "instead of performing a single attention function with d_model‑dimensional keys, values and queries, the queries, keys and values are linearly projected h times with different learned projections to d_k, d_k and d_v dimensions, respectively; the attention function is performed in parallel, the results are concatenated and projected again to produce the final values."
+        },
+        {
+          "term": "Positional Encoding",
+          "meaning": "positional encodings are added to the input embeddings at the bottoms of the encoder and decoder stacks; they have the same dimension d_model as the embeddings so that the two can be summed."
+        },
+        {
+          "term": "Feed‑Forward Network (FFN)",
+          "meaning": "a sub‑layer consisting of two linear transformations with a ReLU activation in between; the input and output dimensionality is d_model = 512 and the inner‑layer dimensionality is d_ff = 2048."
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "The Transformer – model architecture."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "(left) Scaled Dot‑Product Attention. (right) Multi‑Head Attention consists of several attention layers running in parallel."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "An example of the attention mechanism following long‑distance dependencies in the encoder self‑attention in layer 5 of 6. Many of the attention heads attend to a distant dependency of the verb ‘making’, completing the phrase ‘making…more difficult’. Attentions shown only for the word ‘making’."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution. Top: full attentions for head 5. Bottom: isolated attentions from just the word ‘its’ for attention heads 5 and 6. The attentions are very sharp for this word."
+        },
+        {
+          "figure": "Figure 5",
+          "description": "Many of the attention heads exhibit behaviour that seems related to the structure of the sentence. Two examples from different heads from the encoder self‑attention at layer 5 of 6, showing that the heads have learned to perform different tasks."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Maximum path lengths, per‑layer complexity and minimum number of sequential operations for different layer types."
+        },
+        {
+          "table": "Table 2",
+          "title": "The Transformer achieves better BLEU scores than previous state‑of‑the‑art models on the English‑to‑German and English‑to‑French newstest2014 tests at a fraction of the training cost."
+        },
+        {
+          "table": "Table 3",
+          "title": "Variations on the Transformer architecture. Unlisted values are identical to those of the base model. All metrics are on the English‑to‑German translation development set, newstest2013."
+        },
+        {
+          "table": "Table 4",
+          "title": "The Transformer generalizes well to English constituency parsing (Results are on Section 23 of WSJ)."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Scaled Dot‑Product Attention",
+          "goal": null,
+          "process": "Compute the dot products of the query with all keys, divide each by √d_k, apply a softmax function to obtain the weights on the values, and multiply the weights by the values."
+        },
+        {
+          "algorithm": "Multi‑Head Attention",
+          "goal": null,
+          "process": "Linearly project the queries, keys and values h times with different learned linear projections to d_k, d_k and d_v dimensions; perform the attention function in parallel on each projected set; concatenate the resulting values and apply a final linear projection to obtain the output."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": [
+        "Residual connection and Layer Normalization (used around each sub‑layer)",
+        "Dropout (Residual Dropout) and its rate specifications",
+        "Label smoothing regularization",
+        "Adam optimizer details (β1, β2, ε)",
+        "Learning‑rate schedule with warm‑up steps and inverse‑square‑root decay",
+        "Encoder‑decoder (cross) attention mechanism description",
+        "Full description of the encoder‑decoder architecture (stack depth, N=6, etc.)",
+        "Positional encoding algorithm (sinusoidal formula and its motivation)",
+        "BLEU score results and comparison with prior work (Tables 2 and 3)",
+        "Parsing evaluation results (Table 4) and discussion",
+        "Model hyper‑parameter table details (e.g., d_model, d_ff, h, d_k, d_v, dropout rates, training steps)",
+        "Complexity analysis per layer type (Table 1) and its implications"
+      ]
+    }
+  },
+  {
+    "iteration": 2,
+    "prompt_versions": [
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Scaled Dot-Product Attention",
+          "meaning": "An attention function where queries and keys are dot‑multiplied, the result is scaled by 1/√d_k, a softmax is applied to obtain weights, and these weights are used to compute a weighted sum of the values."
+        },
+        {
+          "term": "Multi-Head Attention",
+          "meaning": "An attention mechanism that linearly projects queries, keys and values h times with different learned projections, performs scaled dot‑product attention in parallel on each set, concatenates the results and applies a final linear projection."
+        },
+        {
+          "term": "Residual Dropout",
+          "meaning": "Dropout applied to the output of each sub‑layer before it is added to the sub‑layer input and normalized."
+        },
+        {
+          "term": "Label Smoothing",
+          "meaning": "A regularization technique where the target distribution is smoothed with a value ε_ls = 0.1, which hurts perplexity but improves accuracy and BLEU score."
+        },
+        {
+          "term": "Adam optimizer",
+          "meaning": "An optimizer used with β₁ = 0.9, β₂ = 0.98 and ε = 10⁻⁹."
+        },
+        {
+          "term": "Learning‑rate schedule",
+          "meaning": "The learning rate increases linearly for the first warm‑up steps (4000) and then decreases proportionally to the inverse square root of the step number."
+        },
+        {
+          "term": "Positional Encoding",
+          "meaning": "Sinusoidal functions of different frequencies added to the input embeddings to provide positional information."
+        },
+        {
+          "term": "Encoder‑decoder attention",
+          "meaning": "Attention where the queries come from the decoder and the keys and values come from the encoder output, allowing each decoder position to attend to all encoder positions."
+        },
+        {
+          "term": "Self‑Attention",
+          "meaning": "An attention mechanism relating different positions of a single sequence to compute a representation of that sequence."
+        },
+        {
+          "term": "Feed‑Forward Network",
+          "meaning": "A position‑wise fully connected network consisting of two linear transformations with a ReLU activation in between."
+        },
+        {
+          "term": "Residual connection",
+          "meaning": "A skip connection that adds the input of a sub‑layer to its output before layer normalization."
+        },
+        {
+          "term": "Layer Normalization",
+          "meaning": null
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "The Transformer – model architecture."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "(left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of several attention layers running in parallel."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "An example of the attention mechanism following long‑distance dependencies in the encoder self‑attention in layer 5 of 6."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution."
+        },
+        {
+          "figure": "Figure 5",
+          "description": "Many of the attention heads exhibit behaviour that seems related to the structure of the sentence."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Maximum path lengths, per‑layer complexity and minimum number of sequential operations for different layer types."
+        },
+        {
+          "table": "Table 2",
+          "title": "The Transformer achieves better BLEU scores than previous state‑of‑the‑art models on the English‑to‑German and English‑to‑French newstest2014 tests at a fraction of the training cost."
+        },
+        {
+          "table": "Table 3",
+          "title": "Variations on the Transformer architecture. Unlisted values are identical to those of the base model."
+        },
+        {
+          "table": "Table 4",
+          "title": "The Transformer generalizes well to English constituency parsing (Results are on Section 23 of WSJ)."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Scaled Dot-Product Attention",
+          "goal": "Compute an attention output as a weighted sum of values.",
+          "process": "Compute Attention(Q, K, V) = softmax(Q Kᵀ / √d_k) V."
+        },
+        {
+          "algorithm": "Multi-Head Attention",
+          "goal": "Allow the model to jointly attend to information from different representation subspaces.",
+          "process": "Project Q, K, V h times with learned matrices W_Qᵢ, W_Kᵢ, W_Vᵢ, apply Scaled Dot‑Product Attention to each head, concatenate the heads, and multiply by output matrix W_O."
+        },
+        {
+          "algorithm": "Positional Encoding",
+          "goal": "Inject positional information into the model without using recurrence or convolution.",
+          "process": "Add sinusoidal encodings PE(pos, 2i) = sin(pos / 10000^{2i/d_model}) and PE(pos, 2i+1) = cos(pos / 10000^{2i/d_model}) to the input embeddings."
+        },
+        {
+          "algorithm": "Adam optimizer",
+          "goal": "Stochastic optimization of model parameters.",
+          "process": "Maintain moving averages of gradients and squared gradients with decay rates β₁ and β₂, and update parameters using ε for numerical stability."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": [
+        "Layer Normalization (meaning not provided in the extraction)"
+      ],
+      "ambiguous": [
+        "Positional Encoding (the extraction does not clearly distinguish between sinusoidal and learned variants)"
+      ],
+      "missing": [
+        "Learning‑rate schedule (algorithm description)",
+        "Label Smoothing (algorithm/regularization description)",
+        "Residual Dropout (algorithmic role beyond definition)",
+        "Encoder‑decoder attention (algorithmic description)",
+        "Self‑Attention (algorithmic description)",
+        "Feed‑Forward Network (algorithmic description)",
+        "Layer Normalization (meaning/definition)"
+      ]
+    }
+  },
+  {
+    "iteration": 3,
+    "prompt_versions": [
+      "v_refined_disambiguation",
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Layer Normalization",
+          "meaning": null
+        },
+        {
+          "term": "Positional Encoding",
+          "meaning": "Positional encodings are added to the input embeddings to inject information about the relative or absolute position of tokens; in this work they use sine and cosine functions of different frequencies."
+        },
+        {
+          "term": "Self-Attention",
+          "meaning": "Self-attention, sometimes called intra-attention, is an attention mechanism relating different positions of a single sequence in order to compute a representation of the sequence."
+        },
+        {
+          "term": "Encoder-Decoder attention",
+          "meaning": "In encoder-decoder attention layers, the queries come from the previous decoder layer, and the memory keys and values come from the output of the encoder, allowing every position in the decoder to attend over all positions in the input sequence."
+        },
+        {
+          "term": "Multi-Head Attention",
+          "meaning": "Multi-head attention linearly projects the queries, keys and values multiple times with different learned projections, performs attention in parallel, concatenates the results and projects again, allowing the model to jointly attend to information from different representation subspaces at different positions."
+        },
+        {
+          "term": "Scaled Dot-Product Attention",
+          "meaning": "Scaled Dot-Product Attention computes the dot products of the query with all keys, divides each by √d_k, applies a softmax to obtain weights, and multiplies by the values."
+        },
+        {
+          "term": "Feed-Forward Network",
+          "meaning": "Each layer contains a fully connected feed-forward network applied position‑wise, consisting of two linear transformations with a ReLU activation in between."
+        },
+        {
+          "term": "Residual Dropout",
+          "meaning": "Dropout is applied to the output of each sub‑layer before it is added to the sub‑layer input and normalized, and also to the sums of the embeddings and positional encodings."
+        },
+        {
+          "term": "Label Smoothing",
+          "meaning": null
+        },
+        {
+          "term": "Learning‑rate schedule",
+          "meaning": "The learning rate is increased linearly for the first warmup steps and then decreased proportionally to the inverse square root of the step number."
+        },
+        {
+          "term": "Adam optimizer",
+          "meaning": null
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "The Transformer - model architecture."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "(left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of several attention layers running in parallel."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "An example of the attention mechanism following long‑distance dependencies in the encoder self‑attention in layer 5 of 6."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution."
+        },
+        {
+          "figure": "Figure 5",
+          "description": "Many of the attention heads exhibit behaviour that seems related to the structure of the sentence."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Maximum path lengths, per‑layer complexity and minimum number of sequential operations for different layer types."
+        },
+        {
+          "table": "Table 2",
+          "title": "The Transformer achieves better BLEU scores than previous state‑of‑the‑art models on the English‑to‑German and English‑to‑French newstest2014 tests at a fraction of the training cost."
+        },
+        {
+          "table": "Table 3",
+          "title": "Variations on the Transformer architecture. Unlisted values are identical to those of the base model. All metrics are on the English‑to‑German translation development set, newstest2013."
+        },
+        {
+          "table": "Table 4",
+          "title": "The Transformer generalizes well to English constituency parsing (Results are on Section 23 of WSJ)."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Scaled Dot-Product Attention",
+          "goal": "Compute attention output for a set of queries, keys and values.",
+          "process": "Compute the dot products of the query with all keys, divide each by √d_k, apply a softmax to obtain the weights on the values, and multiply by the values (Attention(Q,K,V) = softmax(QK^T / √d_k) V)."
+        },
+        {
+          "algorithm": "Multi-Head Attention",
+          "goal": "Allow the model to jointly attend to information from different representation subspaces at different positions.",
+          "process": "Linearly project the queries, keys and values h times with different learned linear projections to d_k, d_k and d_v dimensions, perform the scaled dot‑product attention in parallel for each head, concatenate the h outputs and apply a final linear projection."
+        },
+        {
+          "algorithm": "Self-Attention",
+          "goal": "Relate different positions of a single sequence to compute a representation of that sequence.",
+          "process": "Use the same sequence output as queries, keys and values, compute attention (e.g., scaled dot‑product) so that each position can attend to all other positions."
+        },
+        {
+          "algorithm": "Encoder‑Decoder attention",
+          "goal": "Allow each position in the decoder to attend over all positions in the encoder output.",
+          "process": "Queries are taken from the previous decoder layer, while keys and values are taken from the encoder output; attention is then applied as in scaled dot‑product."
+        },
+        {
+          "algorithm": "Feed‑Forward Network",
+          "goal": "Apply a position‑wise non‑linear transformation within each encoder and decoder layer.",
+          "process": "Two linear transformations with a ReLU activation in between (FFN(x) = max(0, xW_1 + b_1)W_2 + b_2)."
+        },
+        {
+          "algorithm": "Learning‑rate schedule",
+          "goal": "Adjust the learning rate during training to improve convergence.",
+          "process": "Increase the learning rate linearly for the first warmup_steps training steps, then decrease it proportionally to the inverse square root of the step number (lrate = d_model^{-0.5} * min(step_num^{-0.5}, step_num * warmup_steps^{-1.5}))."
+        },
+        {
+          "algorithm": "Adam optimizer",
+          "goal": "Optimize model parameters using adaptive moment estimates.",
+          "process": "Uses first‑moment decay β1 = 0.9, second‑moment decay β2 = 0.98, and ε = 10^{-9} to compute parameter updates."
+        },
+        {
+          "algorithm": "Residual Dropout",
+          "goal": "Regularize sub‑layer outputs and embeddings.",
+          "process": "Apply dropout to the output of each sub‑layer before adding it to the sub‑layer input and normalizing; also apply dropout to the sum of embeddings and positional encodings."
+        },
+        {
+          "algorithm": "Label Smoothing",
+          "goal": "Improve accuracy and BLEU score by making the model less certain about its predictions.",
+          "process": "During training, replace the one‑hot target distribution with a smoothed version using ε_ls = 0.1."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": [
+        "Layer Normalization",
+        "Label Smoothing",
+        "Adam optimizer"
+      ],
+      "ambiguous": "*None*",
+      "missing": [
+        "Byte‑Pair Encoding (BPE) tokenization",
+        "Beam Search",
+        "BLEU score metric",
+        "Dropout (generic, not just residual dropout)",
+        "Masking (future‑position masking in decoder)",
+        "Residual Connection (the skip‑connection around sub‑layers)",
+        "Add&Norm (the combination of residual addition and layer normalization)",
+        "Positional Embedding (learned positional embeddings mentioned as an alternative)",
+        "Sinusoidal Positional Encoding (the specific functional form)",
+        "Training Cost (FLOPs) reporting",
+        "Parsing task (English constituency parsing) as an application",
+        "Attention Visualization (figures 3‑5 illustrating attention heads)",
+        "Transformer model name as a terminology"
+      ]
+    }
+  }
+]

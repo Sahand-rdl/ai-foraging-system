@@ -1,0 +1,15 @@
+THINGS TO DO:
+
+-examine different model options and choose 2-3 options whith different computational cost
+
+-examine the concrete prompts -> look at the master thesis
+
+-define a clear task for the evaluator (not the trust checker)
+
+-examine a useful output format (certain JSON structure)
+
+-fix the use of API_KEY
+
+-sorry i kinda lost the docling changes, will implement docling again -Dario
+
+-what happened to the extraction of meta data?

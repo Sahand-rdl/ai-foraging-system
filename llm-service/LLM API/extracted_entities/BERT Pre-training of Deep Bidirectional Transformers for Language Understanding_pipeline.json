@@ -1,0 +1,276 @@
+[
+  {
+    "iteration": 1,
+    "prompt_versions": [
+      "v1"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "BERT",
+          "meaning": "Bidirectional Encoder Representations from Transformers"
+        },
+        {
+          "term": "MLM",
+          "meaning": "masked language model"
+        },
+        {
+          "term": "NSP",
+          "meaning": "next sentence prediction"
+        },
+        {
+          "term": "Cloze task",
+          "meaning": "a task where words are masked and the model predicts them (Taylor, 1953)"
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Overall pre-training and fine-tuning procedures for BERT. Apart from output layers, the same architectures are used in both pre-training and fine-tuning. The same pre-trained model parameters are used to initialize models for different down‑stream tasks. During fine-tuning, all parameters are fine-tuned. [CLS] is a special symbol added in front of every input example, and [SEP] is a special separator token (e.g. separating questions/answers)."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "BERT input representation. The input embeddings are the sum of the token embeddings, the segmentation embeddings and the position embeddings."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Differences in pre-training model architectures. BERT uses a bidirectional Transformer. OpenAI GPT uses a left‑to‑right Transformer. ELMo uses the concatenation of independently trained left‑to‑right and right‑to‑left LSTMs to generate features for downstream tasks. Among the three, only BERT representations are jointly conditioned on both left and right context in all layers. In addition to the architecture differences, BERT and OpenAI GPT are fine‑tuning approaches, while ELMo is a feature‑based approach."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Illustrations of Fine‑tuning BERT on Different Tasks."
+        },
+        {
+          "figure": "Figure 5",
+          "description": "Ablation over number of training steps. This shows the MNLI accuracy after fine‑tuning, starting from model parameters that have been pre‑trained for k steps. The x‑axis is the value of k."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "GLUE Test results, scored by the evaluation server (https://gluebenchmark.com/leaderboard). The number below each task denotes the number of training examples. The 'Average' column is slightly different than the official GLUE score, since we exclude the problematic WNLI set. BERT and OpenAI GPT are single‑model, single‑task. F1 scores are reported for QQP and MRPC, Spearman correlations for STS‑B, and accuracy scores for the other tasks. Entries that use BERT as a component are excluded."
+        },
+        {
+          "table": "Table 2",
+          "title": "SQuAD 1.1 results. The BERT ensemble is 7× systems which use different pre‑training checkpoints and fine‑tuning seeds."
+        },
+        {
+          "table": "Table 3",
+          "title": "SQuAD 2.0 results. Entries that use BERT as a component are excluded."
+        },
+        {
+          "table": "Table 4",
+          "title": "Ablation over the pre‑training tasks using the BERTBASE architecture. 'No NSP' is trained without the next sentence prediction task. 'LTR & No NSP' is trained as a left‑to‑right LM without the next sentence prediction, like OpenAI GPT. '+ BiLSTM' adds a randomly initialized BiLSTM on top of the 'LTR + No NSP' model during fine‑tuning."
+        },
+        {
+          "table": "Table 5",
+          "title": "Ablation over BERT model size. #L = the number of layers; #H = hidden size; #A = number of attention heads. 'LM (ppl)' is the masked LM perplexity of held‑out training data."
+        },
+        {
+          "table": "Table 6",
+          "title": "CoNLL‑2003 Named Entity Recognition results. Hyperparameters were selected using the Dev set. The reported Dev and Test scores are averaged over 5 random restarts using those hyperparameters."
+        },
+        {
+          "table": "Table 7",
+          "title": "Ablation over different masking strategies."
+        },
+        {
+          "table": "Table 8",
+          "title": "Ablation over different masking strategies."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Masked LM",
+          "goal": "Predict the original vocabulary id of the masked tokens.",
+          "process": "Randomly mask 15% of WordPiece tokens in each sequence. For each selected token, replace it with [MASK] 80% of the time, a random token 10% of the time, or keep it unchanged 10% of the time. The hidden vectors corresponding to the masked positions are fed into an output softmax over the vocabulary."
+        },
+        {
+          "algorithm": "Next Sentence Prediction (NSP)",
+          "goal": "Predict whether sentence B is the actual next sentence following sentence A.",
+          "process": "For each pre‑training example, sample two spans of text. With 50% probability B is the true next sentence (label IsNext); otherwise B is a random sentence from the corpus (label NotNext). Use the vector C (the hidden state of [CLS]) to make the binary prediction."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": [
+        "Transformer architecture",
+        "WordPiece tokenization",
+        "GLUE benchmark",
+        "SQuAD dataset",
+        "SWAG dataset",
+        "CoNLL‑2003 Named Entity Recognition dataset",
+        "BERTBASE and BERTLARGE model variants",
+        "Fine‑tuning procedure description"
+      ]
+    }
+  },
+  {
+    "iteration": 2,
+    "prompt_versions": [
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "BERT",
+          "meaning": "Bidirectional Encoder Representations from Transformers"
+        },
+        {
+          "term": "MLM",
+          "meaning": "masked language model"
+        },
+        {
+          "term": "NSP",
+          "meaning": "next sentence prediction"
+        },
+        {
+          "term": "WordPiece embeddings",
+          "meaning": "subword token embeddings with a 30,000 token vocabulary"
+        },
+        {
+          "term": "[CLS]",
+          "meaning": "special classification token added at the beginning of every input sequence"
+        },
+        {
+          "term": "[SEP]",
+          "meaning": "special separator token used to separate sentences or segments"
+        },
+        {
+          "term": "Transformer encoder",
+          "meaning": "bidirectional Transformer architecture used in BERT"
+        },
+        {
+          "term": "Transformer decoder",
+          "meaning": "left‑context‑only Transformer architecture used in left‑to‑right models"
+        },
+        {
+          "term": "Fine‑tuning",
+          "meaning": "approach where a pre‑trained model is further trained on a downstream task with an additional output layer"
+        },
+        {
+          "term": "Feature‑based approach",
+          "meaning": "approach where fixed representations are extracted from a pre‑trained model and used by a separate downstream model"
+        },
+        {
+          "term": "BERTBASE",
+          "meaning": "model variant with 12 layers, hidden size 768, 12 attention heads (≈110 M parameters)"
+        },
+        {
+          "term": "BERTLARGE",
+          "meaning": "model variant with 24 layers, hidden size 1024, 16 attention heads (≈340 M parameters)"
+        },
+        {
+          "term": "GLUE benchmark",
+          "meaning": "General Language Understanding Evaluation, a collection of diverse NLU tasks"
+        },
+        {
+          "term": "SQuAD",
+          "meaning": "Stanford Question Answering Dataset"
+        },
+        {
+          "term": "SWAG",
+          "meaning": "Situations With Adversarial Generations dataset"
+        },
+        {
+          "term": "CoNLL‑2003 NER",
+          "meaning": "CoNLL‑2003 Named Entity Recognition dataset"
+        },
+        {
+          "term": "GELU",
+          "meaning": "Gaussian Error Linear Unit activation function"
+        },
+        {
+          "term": "Adam",
+          "meaning": "optimizer with learning rate 1e‑4, β1=0.9, β2=0.999, L2 weight decay 0.01"
+        },
+        {
+          "term": "Cloze task",
+          "meaning": "task of predicting a missing word from its surrounding context"
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Overall pre‑training and fine‑tuning procedures for BERT. Apart from output layers, the same architectures are used in both pre‑training and fine‑tuning. The same pre‑trained model parameters are used to initialize models for different downstream tasks. During fine‑tuning, all parameters are fine‑tuned. [CLS] is a special symbol added in front of every input example, and [SEP] is a special separator token (e.g., separating questions/answers)."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "BERT input representation. The input embeddings are the sum of the token embeddings, the segmentation embeddings and the position embeddings."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Differences in pre‑training model architectures. BERT uses a bidirectional Transformer. OpenAI GPT uses a left‑to‑right Transformer. ELMo uses the concatenation of independently trained left‑to‑right and right‑to‑left LSTMs to generate features for downstream tasks. Among the three, only BERT representations are jointly conditioned on both left and right context in all layers. In addition to the architecture differences, BERT and OpenAI GPT are fine‑tuning approaches, while ELMo is a feature‑based approach."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Illustrations of Fine‑tuning BERT on Different Tasks."
+        },
+        {
+          "figure": "Figure 5",
+          "description": "Ablation over number of training steps. This shows the MNLI accuracy after fine‑tuning, starting from model parameters that have been pre‑trained for k steps. The x‑axis is the value of k."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "GLUE Test results, scored by the evaluation server (https://gluebenchmark.com/leaderboard). The number below each task denotes the number of training examples. The 'Average' column is slightly different than the official GLUE score, since we exclude the problematic WNLI set. BERT and OpenAI GPT are single‑model, single‑task. F1 scores are reported for QQP and MRPC, Spearman correlations are reported for STS‑B, and accuracy scores are reported for the other tasks. We exclude entries that use BERT as one of their components."
+        },
+        {
+          "table": "Table 2",
+          "title": "SQuAD 1.1 results. The BERT ensemble is 7× systems which use different pre‑training checkpoints and fine‑tuning seeds."
+        },
+        {
+          "table": "Table 3",
+          "title": "SQuAD 2.0 results. We exclude entries that use BERT as one of their components."
+        },
+        {
+          "table": "Table 4",
+          "title": "SWAG Dev and Test accuracies. † Human performance is measured with 100 samples, as reported in the SWAG paper."
+        },
+        {
+          "table": "Table 5",
+          "title": "Ablation over the pre‑training tasks using the BERTBASE architecture. 'No NSP' is trained without the next sentence prediction task. 'LTR & No NSP' is trained as a left‑to‑right LM without the next sentence prediction, like OpenAI GPT. '+ BiLSTM' adds a randomly initialized BiLSTM on top of the 'LTR + No NSP' model during fine‑tuning."
+        },
+        {
+          "table": "Table 6",
+          "title": "Ablation over BERT model size. #L = the number of layers; #H = hidden size; #A = number of attention heads. 'LM (ppl)' is the masked LM perplexity of held‑out training data."
+        },
+        {
+          "table": "Table 7",
+          "title": "CoNLL‑2003 Named Entity Recognition results. Hyperparameters were selected using the Dev set. The reported Dev and Test scores are averaged over 5 random restarts using those hyperparameters."
+        },
+        {
+          "table": "Table 8",
+          "title": "Ablation over different masking strategies."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Masked LM (MLM)",
+          "goal": "Predict the original vocabulary id of randomly masked tokens in the input sequence.",
+          "process": "Randomly mask 15 % of WordPiece tokens; for each selected token replace it 80 % of the time with [MASK], 10 % with a random token, and 10 % keep it unchanged; predict the original token using a softmax over the vocabulary."
+        },
+        {
+          "algorithm": "Next Sentence Prediction (NSP)",
+          "goal": "Determine whether sentence B is the actual next sentence that follows sentence A.",
+          "process": "For each training example, sample two spans A and B; with 50 % probability B is the true next sentence (label IsNext) and with 50 % it is a random sentence (label NotNext); train a binary classifier using the pooled [CLS] representation."
+        },
+        {
+          "algorithm": "Pre‑training Procedure",
+          "goal": "Train BERT on large unlabeled corpora using the Masked LM and Next Sentence Prediction objectives.",
+          "process": "Sample two text spans from the corpus (treated as sentences) and assign A and B segment embeddings; ensure combined length ≤ 512 tokens; apply MLM masking at a uniform 15 % rate after WordPiece tokenization; train for 1,000,000 steps with batch size 256 sequences, Adam optimizer (lr = 1e‑4, warm‑up 10k steps, linear decay), dropout 0.1, and GELU activation."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": "*None*"
+    }
+  }
+]

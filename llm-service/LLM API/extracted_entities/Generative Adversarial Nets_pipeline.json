@@ -1,0 +1,314 @@
+[
+  {
+    "iteration": 1,
+    "prompt_versions": [
+      "v1"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "adversarial nets",
+          "meaning": null
+        },
+        {
+          "term": "Jensen-Shannon divergence",
+          "meaning": null
+        },
+        {
+          "term": "Parzen window",
+          "meaning": null
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Generative adversarial nets are trained by simultaneously updating the discriminative distribution ( D , blue, dashed line) so that it discriminates between samples from the data generating distribution (black, dotted line) p_x from those of the generative distribution p_g (G) (green, solid line). The lower horizontal line is the domain from which z is sampled, in this case uniformly. The horizontal line above is part of the domain of x. The upward arrows show how the mapping x = G ( z ) imposes the non‑uniform distribution p_g on transformed samples. G contracts in regions of high density and expands in regions of low density of p_g. (a) Consider an adversarial pair near convergence: p_g is similar to p_data and D is a partially accurate classifier. (b) In the inner loop of the algorithm D is trained to discriminate samples from data, converging to D* ( x ) = p_data ( x ) / ( p_data ( x )+ p_g ( x ) ). (c) After an update to G , gradient of D has guided G ( z ) to flow to regions that are more likely to be classified as data. (d) After several steps of training, if G and D have enough capacity, they will reach a point at which both cannot improve because p_g = p_data . The discriminator is unable to differentiate between the two distributions, i.e. D ( x ) = 1/2."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Visualization of samples from the model. Rightmost column shows the nearest training example of the neighboring sample, in order to demonstrate that the model has not memorized the training set. Samples are fair random draws, not cherry‑picked. Unlike most other visualizations of deep generative models, these images show actual samples from the model distributions, not conditional means given samples of hidden units. Moreover, these samples are uncorrelated because the sampling process does not depend on Markov chain mixing. a) MNIST b) TFD c) CIFAR‑10 (fully connected model) d) CIFAR‑10 (convolutional discriminator and 'deconvolutional' generator)."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Digits obtained by linearly interpolating between coordinates in z space of the full model."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Parzen window‑based log‑likelihood estimates."
+        },
+        {
+          "table": "Table 2",
+          "title": "Challenges in generative modeling: a summary of the difficulties encountered by different approaches to deep generative modeling for each of the major operations involving a model."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Algorithm 1",
+          "goal": "Minibatch stochastic gradient descent training of generative adversarial nets.",
+          "process": "For each training iteration: (1) Sample a minibatch of m noise samples {z^{(1)},...,z^{(m)}} from the noise prior p_z(z). (2) Sample a minibatch of m real examples {x^{(1)},...,x^{(m)}} from the data distribution p_{data}(x). (3) Update the discriminator by ascending its stochastic gradient: ∇_{θ_d} (1/m) Σ_i [log D(x^{(i)}) + log(1 - D(G(z^{(i)})))]. (4) Sample a minibatch of m noise samples {z^{(1)},...,z^{(m)}} from p_z(z). (5) Update the generator by descending its stochastic gradient: ∇_{θ_g} (1/m) Σ_i log(1 - D(G(z^{(i)}))). The number of discriminator updates per generator update (k) is a hyperparameter (k=1 used in experiments)."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": [
+        "adversarial nets (meaning not provided)",
+        "Jensen-Shannon divergence (meaning not provided)",
+        "Parzen window (meaning not provided)"
+      ],
+      "missing": [
+        "minimax game",
+        "generator (G)",
+        "discriminator (D)",
+        "KL divergence",
+        "maxout activation",
+        "dropout",
+        "rectifier linear activation (ReLU)",
+        "deep belief networks (DBN)",
+        "restricted Boltzmann machines (RBM)",
+        "deep Boltzmann machines (DBM)",
+        "auto-encoding variational Bayes (VAE)",
+        "noise-contrastive estimation (NCE)",
+        "score matching",
+        "stochastic backpropagation",
+        "conditional generative model",
+        "semi‑supervised learning",
+        "Helvetica scenario (mode collapse description)",
+        "Jensen‑Shannon divergence (explicit definition)",
+        "Parzen window estimation (details)",
+        "Algorithm 1 (full pseudocode steps)",
+        "Figure 4 (if present in original paper)",
+        "Table 3 (if present in original paper)"
+      ]
+    }
+  },
+  {
+    "iteration": 2,
+    "prompt_versions": [
+      "v_refined_disambiguation",
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "generative model G",
+          "meaning": "captures the data distribution"
+        },
+        {
+          "term": "discriminative model D",
+          "meaning": "estimates the probability that a sample came from the training data rather than G"
+        },
+        {
+          "term": "minimax two-player game",
+          "meaning": "the training framework corresponds to a minimax two-player game"
+        },
+        {
+          "term": "Jensen-Shannon divergence",
+          "meaning": "a divergence between the model's distribution and the data generating process"
+        },
+        {
+          "term": "KL divergence",
+          "meaning": "Kullback-Leibler divergence"
+        },
+        {
+          "term": "Deep belief networks (DBNs)",
+          "meaning": "hybrid models containing a single undirected layer and several directed layers"
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Generative adversarial nets are trained by simultaneously updating the discriminative distribution (D, blue, dashed line) so that it discriminates between samples from the data generating distribution (black, dotted line) p_x from those of the generative distribution p_g (G) (green, solid line). The lower horizontal line is the domain from which z is sampled, in this case uniformly. The horizontal line above is part of the domain of x. The upward arrows show how the mapping x = G(z) imposes the non‑uniform distribution p_g on transformed samples. G contracts in regions of high density and expands in regions of low density of p_g. (a) Consider an adversarial pair near convergence: p_g is similar to p_data and D is a partially accurate classifier. (b) In the inner loop of the algorithm D is trained to discriminate samples from data, converging to D^*(x) = p_data(x) / (p_data(x) + p_g(x)). (c) After an update to G, gradient of D has guided G(z) to flow to regions that are more likely to be classified as data. (d) After several steps of training, if G and D have enough capacity, they will reach a point at which both cannot improve because p_g = p_data. The discriminator is unable to differentiate between the two distributions, i.e., D(x) = 1/2."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Visualization of samples from the model. Rightmost column shows the nearest training example of the neighboring sample, in order to demonstrate that the model has not memorized the training set. Samples are fair random draws, not cherry‑picked. Unlike most other visualizations of deep generative models, these images show actual samples from the model distributions, not conditional means given samples of hidden units. Moreover, these samples are uncorrelated because the sampling process does not depend on Markov chain mixing. a) MNIST b) TFD c) CIFAR‑10 (fully connected model) d) CIFAR‑10 (convolutional discriminator and 'deconvolutional' generator)."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Digits obtained by linearly interpolating between coordinates in z space of the full model."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Parzen window-based log-likelihood estimates."
+        },
+        {
+          "table": "Table 2",
+          "title": "Challenges in generative modeling: a summary of the difficulties encountered by different approaches to deep generative modeling for each of the major operations involving a model."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Algorithm 1",
+          "goal": "Minibatch stochastic gradient descent training of generative adversarial nets",
+          "process": "For each training iteration: (1) Perform k steps of discriminator updates: sample a minibatch of m noise samples {z^{(1)},...,z^{(m)}} from the noise prior p_z(z); sample a minibatch of m real data examples {x^{(1)},...,x^{(m)}} from the data distribution p_{data}(x); update the discriminator by ascending its stochastic gradient ∇_{θ_d} (1/m) Σ_i [log D(x^{(i)}) + log(1 - D(G(z^{(i)})))]. (2) Sample a minibatch of m noise samples from p_z(z) and update the generator by descending its stochastic gradient ∇_{θ_g} (1/m) Σ_i log(1 - D(G(z^{(i)}))). Momentum is used for the gradient updates."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": [
+        "restricted Boltzmann machines (RBMs)",
+        "deep Boltzmann machines (DBMs)",
+        "score matching",
+        "noise-contrastive estimation (NCE)",
+        "generative stochastic network (GSN)",
+        "auto-encoding variational Bayes",
+        "stochastic backpropagation",
+        "conditional generative model p(x|c)",
+        "\"Helvetica scenario\" (mode collapse description)",
+        "semi‑supervised learning (as an extension)",
+        "efficiency improvements (as an extension)",
+        "learned approximate inference (as an extension)",
+        "stochastic extension of MP‑DBM",
+        "advantages and disadvantages summary (Table 2 content)",
+        "additional figures referenced only as pictures (e.g., picture 0 panels a‑d)",
+        "any other listed terms in the related work section such as \"deep directed graphical models\", \"deep undirected graphical models\", \"generative autoencoders\""
+      ]
+    }
+  },
+  {
+    "iteration": 3,
+    "prompt_versions": [
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "restricted Boltzmann machines (RBMs)",
+          "meaning": null
+        },
+        {
+          "term": "deep Boltzmann machines (DBMs)",
+          "meaning": null
+        },
+        {
+          "term": "score matching",
+          "meaning": null
+        },
+        {
+          "term": "noise-contrastive estimation (NCE)",
+          "meaning": null
+        },
+        {
+          "term": "generative stochastic network (GSN)",
+          "meaning": null
+        },
+        {
+          "term": "auto-encoding variational Bayes",
+          "meaning": null
+        },
+        {
+          "term": "stochastic backpropagation",
+          "meaning": null
+        },
+        {
+          "term": "conditional generative model p(x|c)",
+          "meaning": null
+        },
+        {
+          "term": "\"Helvetica scenario\"",
+          "meaning": null
+        },
+        {
+          "term": "semi-supervised learning",
+          "meaning": null
+        },
+        {
+          "term": "efficiency improvements",
+          "meaning": null
+        },
+        {
+          "term": "learned approximate inference",
+          "meaning": null
+        },
+        {
+          "term": "stochastic extension of MP-DBM",
+          "meaning": null
+        },
+        {
+          "term": "deep directed graphical models",
+          "meaning": null
+        },
+        {
+          "term": "deep undirected graphical models",
+          "meaning": null
+        },
+        {
+          "term": "generative autoencoders",
+          "meaning": null
+        },
+        {
+          "term": "adversarial nets",
+          "meaning": null
+        },
+        {
+          "term": "generator G",
+          "meaning": null
+        },
+        {
+          "term": "discriminator D",
+          "meaning": null
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Generative adversarial nets are trained by simultaneously updating the discriminative distribution (D, blue, dashed line) so that it discriminates between samples from the data generating distribution (black, dotted line) p_x from those of the generative distribution p_g (G) (green, solid line). The lower horizontal line is the domain from which z is sampled, in this case uniformly. The horizontal line above is part of the domain of x. The upward arrows show how the mapping x = G(z) imposes the non‑uniform distribution p_g on transformed samples. G contracts in regions of high density and expands in regions of low density of p_g. (a) Consider an adversarial pair near convergence: p_g is similar to p_data and D is a partially accurate classifier. (b) In the inner loop of the algorithm D is trained to discriminate samples from data, converging to D^*(x) = p_data(x) / (p_data(x)+p_g(x)). (c) After an update to G, gradient of D has guided G(z) to flow to regions that are more likely to be classified as data. (d) After several steps of training, if G and D have enough capacity, they will reach a point at which both cannot improve because p_g = p_data. The discriminator is unable to differentiate between the two distributions, i.e., D(x)=1/2."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Visualization of samples from the model. Rightmost column shows the nearest training example of the neighboring sample, in order to demonstrate that the model has not memorized the training set. Samples are fair random draws, not cherry‑picked. Unlike most other visualizations of deep generative models, these images show actual samples from the model distributions, not conditional means given samples of hidden units. Moreover, these samples are uncorrelated because the sampling process does not depend on Markov chain mixing. a) MNIST b) TFD c) CIFAR‑10 (fully connected model) d) CIFAR‑10 (convolutional discriminator and 'deconvolutional' generator)."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Digits obtained by linearly interpolating between coordinates in z space of the full model."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Parzen window-based log-likelihood estimates."
+        },
+        {
+          "table": "Table 2",
+          "title": "Challenges in generative modeling: a summary of the difficulties encountered by different approaches to deep generative modeling for each of the major operations involving a model."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Algorithm 1",
+          "goal": "Minibatch stochastic gradient descent training of generative adversarial nets.",
+          "process": "For each training iteration: (1) repeat k times – sample a minibatch of m noise samples {z^{(1)},…,z^{(m)}} from the noise prior p_z(z); sample a minibatch of m real data examples {x^{(1)},…,x^{(m)}} from the data distribution p_data(x); update the discriminator by ascending its stochastic gradient ∇_{θ_d} (1/m) Σ_i [log D(x^{(i)}) + log(1‑D(G(z^{(i)})))]; (2) sample a minibatch of m noise samples {z^{(1)},…,z^{(m)}}; update the generator by descending its stochastic gradient ∇_{θ_g} (1/m) Σ_i log(1‑D(G(z^{(i)})))."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": [
+        "maxout",
+        "dropout",
+        "rectifier linear activations",
+        "Parzen window",
+        "Gaussian Parzen window",
+        "Jensen-Shannon divergence",
+        "KL divergence",
+        "JSD",
+        "backpropagation",
+        "gradient descent",
+        "stochastic gradient descent",
+        "momentum",
+        "Markov chain"
+      ]
+    }
+  }
+]

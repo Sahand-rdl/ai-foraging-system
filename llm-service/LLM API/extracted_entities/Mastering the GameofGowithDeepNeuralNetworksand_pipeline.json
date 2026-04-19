@@ -1,0 +1,535 @@
+[
+  {
+    "iteration": 1,
+    "prompt_versions": [
+      "v1"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Monte‑Carlo tree search (MCTS)",
+          "meaning": "uses Monte‑Carlo rollouts to estimate the value of each state in a search tree"
+        },
+        {
+          "term": "policy network",
+          "meaning": "a neural network trained to predict human expert moves (classification) from board positions"
+        },
+        {
+          "term": "value network",
+          "meaning": "a neural network trained to predict the winner of games played by the RL policy network (regression)"
+        },
+        {
+          "term": "rollout policy",
+          "meaning": "a linear softmax policy based on fast, incrementally computed, local pattern‑based features"
+        },
+        {
+          "term": "APV‑MCTS (asynchronous policy and value MCTS)",
+          "meaning": "an asynchronous policy and value Monte‑Carlo tree search algorithm designed to integrate large neural networks efficiently"
+        },
+        {
+          "term": "PUCT algorithm",
+          "meaning": "a selection algorithm that chooses actions by maximizing Q(s,a) plus a bonus u(s,a) derived from prior probability and visit count"
+        },
+        {
+          "term": "virtual loss",
+          "meaning": "a temporary loss applied during a simulation (‑n_vl) to discourage other threads from exploring the same variation"
+        },
+        {
+          "term": "softmax temperature (β)",
+          "meaning": "a parameter that controls the softness of the softmax distribution when converting network logits to probabilities"
+        },
+        {
+          "term": "mixing parameter (λ)",
+          "meaning": "a parameter that mixes the value‑network evaluation and rollout evaluation when computing the leaf value V(s_L)"
+        },
+        {
+          "term": "symmetry ensemble",
+          "meaning": "a technique that transforms a board position by the eight dihedral symmetries, evaluates each transformed position, and averages the results"
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Neural network training pipeline and architecture. (a) A fast rollout policy pπ and supervised learning (SL) policy network pσ are trained to predict human expert moves. A reinforcement learning (RL) policy network pρ is initialised to the SL policy network and improved by policy‑gradient learning. Self‑play generates a new data‑set. Finally, a value network vθ is trained by regression to predict the expected outcome. (b) Schematic of the neural network architecture used in AlphaGo."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Strength and accuracy of policy and value networks. (a) Plot of playing strength of policy networks versus their training accuracy. (b) Comparison of evaluation accuracy between the value network and rollouts with different policies."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Monte‑Carlo tree search in AlphaGo. (a) Selection: each simulation traverses the tree by selecting the edge with maximum action‑value Q plus a bonus u(P). (b) Expansion: the leaf node may be expanded and processed once by the policy network pσ to obtain prior probabilities. (c) Evaluation: the leaf node is evaluated by the value network vθ and by a rollout using the fast rollout policy pπ. (d) Backup: action‑values Q are updated with the mean of Monte‑Carlo and value‑network evaluations."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Tournament evaluation of AlphaGo. (a) Results of a tournament between different Go programs, with 5 s per move and handicap settings. (b) Performance of AlphaGo on a single machine for different component combinations. (c) Scalability study of Monte‑Carlo tree search with varying search threads and GPUs."
+        },
+        {
+          "figure": "Figure 5",
+          "description": "How AlphaGo (black) selected its move in an informal game against Fan Hui. (a) Evaluation of all successors using the value network vθ. (b) Action‑values Q from the tree averaged over value‑network evaluations (λ = 0). (c) Action‑values Q averaged over rollout evaluations (λ = 1). (d) Move probabilities from the SL policy network pσ. (e) Frequency with which actions were selected during simulations. (f) Principal variation (path with maximum visit count)."
+        },
+        {
+          "figure": "Figure 6",
+          "description": "Games from the match between AlphaGo and the human European champion Fan Hui. Moves are shown in numbered sequence; repeated moves on the same intersection are shown in pairs."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Extended Data Table 1: Details of match between AlphaGo and Fan Hui"
+        },
+        {
+          "table": "Table 2",
+          "title": "Extended Data Table 2: Input features for neural networks"
+        },
+        {
+          "table": "Table 3",
+          "title": "Extended Data Table 3: Supervised learning results for the policy network"
+        },
+        {
+          "table": "Table 4",
+          "title": "Extended Data Table 4: Input features for rollout and tree policy"
+        },
+        {
+          "table": "Table 5",
+          "title": "Extended Data Table 5: Parameters used by AlphaGo"
+        },
+        {
+          "table": "Table 6",
+          "title": "Extended Data Table 6: Results of a tournament between different Go programs"
+        },
+        {
+          "table": "Table 7",
+          "title": "Extended Data Table 7: Results of a tournament between different variants of AlphaGo"
+        },
+        {
+          "table": "Table 8",
+          "title": "Extended Data Table 8: Results of a tournament between AlphaGo and distributed AlphaGo (hardware scalability)"
+        },
+        {
+          "table": "Table 9",
+          "title": "Extended Data Table 9: Cross‑table of percentage win rates between programs (overall study)"
+        },
+        {
+          "table": "Table 10",
+          "title": "Extended Data Table 10: Cross‑table of percentage win rates between programs in the single‑machine scalability study"
+        },
+        {
+          "table": "Table 11",
+          "title": "Extended Data Table 11: Cross‑table of percentage win rates between programs in the distributed scalability study"
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Monte‑Carlo tree search (MCTS)",
+          "goal": "estimate the optimal value of interior nodes in a game tree",
+          "process": "repeatedly performs simulations consisting of selection (using a policy such as PUCT), expansion, evaluation (by rollouts or neural networks), and backup of value estimates"
+        },
+        {
+          "algorithm": "APV‑MCTS (asynchronous policy and value MCTS)",
+          "goal": "efficiently integrate large neural networks (policy and value) into AlphaGo’s search",
+          "process": "each node stores prior probability, visit counts, and value statistics; multiple simulations run in parallel; the algorithm proceeds through four stages – selection, evaluation (value‑network and rollout), backup, and expansion – as illustrated in Figure 3"
+        },
+        {
+          "algorithm": "PUCT selection algorithm",
+          "goal": "choose actions during the in‑tree phase of a simulation using both prior probabilities and visit counts",
+          "process": "selects action a_t = argmax_a ( Q(s_t,a) + u(s_t,a) ) where u(s,a) = c_{puct}·P(s,a)·√(∑_b N_r(s,b)) / (1+N_r(s,a))"
+        },
+        {
+          "algorithm": "Policy‑gradient reinforcement learning",
+          "goal": "improve the policy network by maximizing expected game outcome",
+          "process": "updates the policy‑network weights ρ according to Δρ ∝ ∂log p_ρ(a|s)/∂ρ · z_t (formula (2) in the text)"
+        },
+        {
+          "algorithm": "Value‑network regression training",
+          "goal": "train the value network to predict the expected outcome of positions",
+          "process": "minimizes mean‑squared error between predicted value v_θ(s) and observed reward z using stochastic gradient descent (Δθ = α m ∑_k (z_k − v_θ(s_k)) ∂v_θ(s_k)/∂θ)"
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": [
+        "symmetry ensemble – the extraction merges explicit and implicit ensembles into a single description, which may obscure the distinction made in the paper",
+        "virtual loss – the definition is brief and does not convey its role in discouraging thread contention during simulations"
+      ],
+      "ambiguous": [
+        "PUCT algorithm – the term could refer specifically to the selection formula or more generally to the whole selection strategy used in MCTS"
+      ],
+      "missing": [
+        "c_puct (exploration constant) – a key parameter of the PUCT formula not listed among the extracted items",
+        "n_thr (expansion threshold) – the threshold for expanding nodes in the search tree",
+        "Elo rating calculation – the logistic function and Bayesian logistic regression used to compute program strengths",
+        "distributed APV‑MCTS – description of the distributed version of the asynchronous policy‑value MCTS algorithm",
+        "asynchronous multi‑threaded search architecture – details of how simulations are parallelised across CPUs and GPUs"
+      ]
+    }
+  },
+  {
+    "iteration": 2,
+    "prompt_versions": [
+      "v_refined_disambiguation",
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "virtual loss",
+          "meaning": "discourages other threads from simultaneously exploring the identical variation"
+        },
+        {
+          "term": "c_puct",
+          "meaning": "exploration constant (constant determining the level of exploration)"
+        },
+        {
+          "term": "n_thr",
+          "meaning": "expansion threshold"
+        },
+        {
+          "term": "λ",
+          "meaning": "mixing parameter used to combine value network and rollout evaluations"
+        },
+        {
+          "term": "β",
+          "meaning": "softmax temperature"
+        },
+        {
+          "term": "n_vl",
+          "meaning": "virtual loss"
+        },
+        {
+          "term": "rollout policy",
+          "meaning": "a linear softmax based on fast, incrementally computed, local pattern‑based features"
+        },
+        {
+          "term": "PUCT algorithm",
+          "meaning": null
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Neural network training pipeline and architecture. Shows the SL and RL policy networks, the fast rollout policy, and the value network, and how they are combined in AlphaGo."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Strength and accuracy of policy and value networks. (a) Plot of playing strength versus training accuracy for policy networks; (b) Comparison of evaluation accuracy between the value network and rollouts with different policies."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Monte‑Carlo tree search in AlphaGo. Illustrates the four stages: selection, expansion, evaluation, and backup, and shows how prior probabilities and value estimates are used."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Tournament evaluation of AlphaGo. (a) Results of a tournament against other Go programs; (b) Performance of AlphaGo with different component combinations; (c) Scalability study of MCTS with search threads and GPUs."
+        },
+        {
+          "figure": "Figure 5",
+          "description": "How AlphaGo (black) selected its move in an informal game against Fan Hui. Shows evaluation of successors, action‑values, move probabilities, simulation frequencies, and the principal variation."
+        },
+        {
+          "figure": "Figure 6",
+          "description": "Games from the match between AlphaGo and the human European champion Fan Hui. Shows the sequence of moves for each of the ten games."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Extended Data Table 1",
+          "title": "Details of match between AlphaGo and Fan Hui"
+        },
+        {
+          "table": "Extended Data Table 2",
+          "title": "Input features for neural networks"
+        },
+        {
+          "table": "Extended Data Table 3",
+          "title": "Supervised learning results for the policy network"
+        },
+        {
+          "table": "Extended Data Table 4",
+          "title": "Input features for rollout and tree policy"
+        },
+        {
+          "table": "Extended Data Table 5",
+          "title": "Parameters used by AlphaGo"
+        },
+        {
+          "table": "Extended Data Table 6",
+          "title": "Results of a tournament between different Go programs"
+        },
+        {
+          "table": "Extended Data Table 7",
+          "title": "Results of a tournament between different variants of AlphaGo"
+        },
+        {
+          "table": "Extended Data Table 8",
+          "title": "Results of a tournament between AlphaGo and distributed AlphaGo, testing scalability with hardware"
+        },
+        {
+          "table": "Extended Data Table 9",
+          "title": "Cross‑table of percentage win rates between programs"
+        },
+        {
+          "table": "Extended Data Table 10",
+          "title": "Cross‑table of percentage win rates between programs in the single‑machine scalability study"
+        },
+        {
+          "table": "Extended Data Table 11",
+          "title": "Cross‑table of percentage win rates between programs in the distributed scalability study"
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Monte‑Carlo tree search (MCTS)",
+          "goal": "select actions by lookahead search",
+          "process": "uses Monte‑Carlo rollouts to estimate node values, selects actions with higher values, expands leaf nodes, and backs up statistics; converges to the optimal value function as simulations increase"
+        },
+        {
+          "algorithm": "Asynchronous policy and value MCTS algorithm (APV‑MCTS)",
+          "goal": "efficiently integrate large neural networks into AlphaGo",
+          "process": "each node stores prior probability, visit counts, and value statistics; simulations run in parallel with selection (PUCT), expansion when visit count exceeds n_thr, evaluation by the policy and value networks (asynchronously on GPUs) and rollouts, and lock‑free backup using virtual loss"
+        },
+        {
+          "algorithm": "PUCT algorithm",
+          "goal": null,
+          "process": null
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": [
+        "n_vl (virtual loss) – duplicate entry",
+        "c_puct – only described as an exploration constant without full context",
+        "PUCT algorithm – meaning not provided"
+      ],
+      "ambiguous": [
+        "virtual loss vs n_vl – same concept listed twice",
+        "λ – mixing parameter used in multiple contexts (value vs rollout mixing)",
+        "β – softmax temperature, also appears in policy network temperature setting"
+      ],
+      "missing": [
+        "Policy gradient reinforcement learning algorithm for training the RL policy network",
+        "Supervised learning pipeline for the SL policy network",
+        "Value network regression training (MSE loss) procedure",
+        "Self‑play data generation method for the value network",
+        "Symmetry ensemble technique for policy and value networks",
+        "Distributed APV‑MCTS architecture details",
+        "Temporal‑difference learning references and usage",
+        "Monte‑Carlo rollouts as a distinct algorithmic component",
+        "Elo rating evaluation methodology and its application",
+        "Detailed description of input feature planes beyond table titles"
+      ]
+    }
+  },
+  {
+    "iteration": 3,
+    "prompt_versions": [
+      "v_refined_disambiguation",
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "virtual loss (n_vl)",
+          "meaning": "A temporary loss applied during MCTS simulations (N_r(s,a) ← N_r(s,a) + n_vl; W_r(s,a) ← W_r(s,a) - n_vl) to discourage other threads from simultaneously exploring the identical variation."
+        },
+        {
+          "term": "exploration constant (c_puct)",
+          "meaning": "A constant that determines the level of exploration in the PUCT algorithm."
+        },
+        {
+          "term": "mixing parameter (λ)",
+          "meaning": "A parameter used to combine the value‑network evaluation and the rollout evaluation when computing the leaf evaluation V(s_L) = (1‑λ) v_θ(s_L) + λ z_L."
+        },
+        {
+          "term": "softmax temperature (β)",
+          "meaning": "The temperature parameter used in the softmax of the policy network (p_βσ)."
+        },
+        {
+          "term": "prior probability (P(s,a))",
+          "meaning": "The probability supplied by the policy network for a legal move a in state s; stored as the prior probability on each edge of the search tree."
+        },
+        {
+          "term": "action value (Q(s,a))",
+          "meaning": "The combined mean action‑value for an edge (s,a) in the search tree, obtained from the weighted average of value‑network and rollout statistics."
+        },
+        {
+          "term": "visit count (N(s,a))",
+          "meaning": "The number of times an edge (s,a) has been traversed during simulations."
+        },
+        {
+          "term": "value network (v_θ(s))",
+          "meaning": "A deep neural network that predicts the expected outcome (win probability) of a position s."
+        },
+        {
+          "term": "policy network (p_σ)",
+          "meaning": "A supervised‑learning network that outputs a probability distribution over legal moves, trained on human expert games."
+        },
+        {
+          "term": "RL policy network (p_ρ)",
+          "meaning": "A policy network initialized from the SL policy network and further improved by policy‑gradient reinforcement learning."
+        },
+        {
+          "term": "fast rollout policy (p_π)",
+          "meaning": "A linear‑softmax policy based on fast, locally computed pattern features, used for Monte‑Carlo rollouts."
+        },
+        {
+          "term": "APV‑MCTS",
+          "meaning": "Asynchronous Policy and Value Monte‑Carlo Tree Search algorithm that integrates large neural networks into AlphaGo with parallel simulations."
+        },
+        {
+          "term": "distributed APV‑MCTS",
+          "meaning": "A distributed version of APV‑MCTS that uses a master machine, remote CPU workers for rollouts, and remote GPU workers for network evaluation."
+        },
+        {
+          "term": "explicit symmetry ensemble",
+          "meaning": "A technique that evaluates all eight dihedral symmetries of a board position in parallel and averages the network outputs."
+        },
+        {
+          "term": "implicit symmetry ensemble",
+          "meaning": "A technique used in APV‑MCTS that randomly selects a single rotation/reflection for each network evaluation, allowing the search to average over symmetries over many simulations."
+        },
+        {
+          "term": "Elo rating",
+          "meaning": "A rating system used to quantify the playing strength of Go programs and players."
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Neural network training pipeline and architecture. Shows the fast rollout policy pπ and supervised‑learning (SL) policy network pσ, the RL policy network pρ initialized from pσ and improved by policy‑gradient learning, the self‑play data‑set generation, and the value network vθ trained by regression. Also includes a schematic of the network architecture."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Strength and accuracy of policy and value networks. (a) Plot of playing strength versus training accuracy for policy networks with different numbers of filters. (b) Comparison of evaluation accuracy (mean‑squared error) between the value network and rollouts using various policies."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Monte‑Carlo tree search in AlphaGo. (a) Selection step using Q + bonus u(P). (b) Expansion step with prior probabilities from the policy network. (c) Leaf evaluation using the value network and a rollout with the fast rollout policy. (d) Backup step updating action‑values Q."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Tournament evaluation of AlphaGo. (a) Results of a tournament between different Go programs with Elo ratings and handicap conditions. (b) Performance of AlphaGo on a single machine for different component combinations. (c) Scalability study of MCTS with varying numbers of search threads and GPUs."
+        },
+        {
+          "figure": "Figure 5",
+          "description": "How AlphaGo selected its move in an informal game against Fan Hui. Shows (a) value‑network evaluations of successor positions, (b) Q values using only the value network (λ=0), (c) Q values using only rollouts (λ=1), (d) move probabilities from the SL policy network, (e) frequency of action selection during simulations, and (f) the principal variation (most visited path)."
+        },
+        {
+          "figure": "Figure 6",
+          "description": "Games from the match between AlphaGo and the human European champion Fan Hui. Displays the sequence of moves for each game, with repeated moves indicated."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Extended Data Table 1",
+          "title": "Details of match between AlphaGo and Fan Hui"
+        },
+        {
+          "table": "Extended Data Table 2",
+          "title": "Input features for neural networks"
+        },
+        {
+          "table": "Extended Data Table 3",
+          "title": "Supervised learning results for the policy network"
+        },
+        {
+          "table": "Extended Data Table 4",
+          "title": "Input features for rollout and tree policy"
+        },
+        {
+          "table": "Extended Data Table 5",
+          "title": "Parameters used by AlphaGo"
+        },
+        {
+          "table": "Extended Data Table 6",
+          "title": "Results of a tournament between different Go programs"
+        },
+        {
+          "table": "Extended Data Table 7",
+          "title": "Results of a tournament between different variants of AlphaGo"
+        },
+        {
+          "table": "Extended Data Table 8",
+          "title": "Results of a tournament between AlphaGo and distributed AlphaGo, testing scalability with hardware"
+        },
+        {
+          "table": "Extended Data Table 9",
+          "title": "Cross‑table of percentage win rates between programs"
+        },
+        {
+          "table": "Extended Data Table 10",
+          "title": "Cross‑table of percentage win rates between programs in the single‑machine scalability study"
+        },
+        {
+          "table": "Extended Data Table 11",
+          "title": "Cross‑table of percentage win rates between programs in the distributed scalability study"
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Monte‑Carlo Tree Search (MCTS)",
+          "goal": "Estimate the value of each state in a search tree using Monte‑Carlo rollouts.",
+          "process": "Uses Monte‑Carlo rollouts to evaluate leaf nodes, selects actions with a tree policy (e.g., UCT), expands the tree, and backs up values to update action‑value estimates."
+        },
+        {
+          "algorithm": "PUCT algorithm (variant)",
+          "goal": "Select actions during tree traversal by balancing exploitation and exploration.",
+          "process": "Selects action a_t = argmax_a ( Q(s_t,a) + u(s_t,a) ), where u(s,a) = c_puct * P(s,a) * sqrt(∑_b N_r(s,b)) / (1 + N_r(s,a))."
+        },
+        {
+          "algorithm": "Policy Gradient Reinforcement Learning",
+          "goal": "Improve the policy network by maximizing the expected outcome of self‑play games.",
+          "process": "Updates network weights via stochastic gradient ascent on the log‑probability of actions weighted by the game outcome (Δρ ∝ ∂log p_ρ(a_t|s_t)/∂ρ * z_t)."
+        },
+        {
+          "algorithm": "REINFORCE algorithm",
+          "goal": "Compute policy‑gradient updates for the RL policy network.",
+          "process": "Uses the update Δρ = α Σ_i Σ_t ∂log p_ρ(a_i_t|s_i_t)/∂ρ (z_i_t – v(s_i_t)), with a baseline v(s) for variance reduction."
+        },
+        {
+          "algorithm": "Temporal‑Difference Learning",
+          "goal": "Learn a value function from self‑play positions.",
+          "process": "Trains the value network by minimizing mean‑squared error between predicted values v_θ(s) and observed game outcomes z."
+        },
+        {
+          "algorithm": "APV‑MCTS (Asynchronous Policy and Value MCTS)",
+          "goal": "Efficiently integrate large policy and value neural networks into AlphaGo with parallel simulations.",
+          "process": "Each node stores {P, N_v, N_r, W_v, W_r, Q}. Simulations run in parallel across threads, proceeding through Selection (PUCT), Expansion, Evaluation (network inference and rollouts), and Backup (updating statistics)."
+        },
+        {
+          "algorithm": "Distributed APV‑MCTS",
+          "goal": "Scale AlphaGo’s search across multiple machines.",
+          "process": "A master machine runs the in‑tree phase; remote CPU workers perform rollouts; remote GPU workers evaluate policy and value networks; results are communicated back to the master for backup."
+        },
+        {
+          "algorithm": "Monte‑Carlo Rollouts",
+          "goal": "Simulate complete games from a leaf position using a fast rollout policy.",
+          "process": "Sample actions a_t ∼ p_π(·|s_t) until a terminal state is reached, then compute the outcome z_t."
+        },
+        {
+          "algorithm": "Explicit Symmetry Ensemble",
+          "goal": "Improve network evaluation accuracy by exploiting board symmetries.",
+          "process": "Transforms a position into all eight dihedral symmetries, evaluates each with the network in parallel, and averages the outputs."
+        },
+        {
+          "algorithm": "Implicit Symmetry Ensemble",
+          "goal": "Incorporate symmetry information without the cost of evaluating all symmetries each time.",
+          "process": "Randomly selects a single rotation/reflection for each network evaluation; over many simulations the search effectively averages across symmetries."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": [
+        "tree policy (p_τ)",
+        "UCT algorithm",
+        "self‑play data set",
+        "expansion threshold (n_thr)"
+      ]
+    }
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "iteration": 1,
+    "prompt_versions": [
+      "v1"
+    ],
+    "extraction": {
+      "terminologies": [],
+      "figures": [],
+      "tables": [],
+      "algorithms": []
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": "*None*"
+    }
+  }
+]

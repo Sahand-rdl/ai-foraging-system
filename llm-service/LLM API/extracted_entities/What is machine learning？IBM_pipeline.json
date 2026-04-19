@@ -1,0 +1,728 @@
+[
+  {
+    "iteration": 1,
+    "prompt_versions": [
+      "v1"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Machine learning",
+          "meaning": "The subset of artificial intelligence (AI) focused on algorithms that can learn the patterns of training data and make accurate inferences about new data."
+        },
+        {
+          "term": "Artificial intelligence (AI)",
+          "meaning": "A catch‑all term for any program that can use information to make decisions or predictions without active human involvement."
+        },
+        {
+          "term": "Deep learning",
+          "meaning": "The subset of machine learning driven by large artificial neural networks."
+        },
+        {
+          "term": "Supervised learning",
+          "meaning": "Trains a model to predict the 'correct' output for a given input using labeled data and a loss function."
+        },
+        {
+          "term": "Unsupervised learning",
+          "meaning": "Discerns intrinsic patterns, dependencies and correlations in unlabeled data without an external ground truth."
+        },
+        {
+          "term": "Reinforcement learning (RL)",
+          "meaning": "Trains a model to evaluate its environment and take actions that will maximize reward."
+        },
+        {
+          "term": "Self‑supervised learning",
+          "meaning": "Training on tasks where a supervisory signal is obtained directly from unlabeled data."
+        },
+        {
+          "term": "Semi‑supervised learning",
+          "meaning": "Methods that use both labeled data and unlabeled data."
+        },
+        {
+          "term": "Feature selection",
+          "meaning": "The process of choosing which aspects of data to use in machine learning algorithms."
+        },
+        {
+          "term": "Feature extraction",
+          "meaning": "Techniques that refine data down to its most relevant dimensions."
+        },
+        {
+          "term": "State space",
+          "meaning": "Contains all available information relevant to decisions that the model might make."
+        },
+        {
+          "term": "Action space",
+          "meaning": "Contains all the decisions that the model is permitted to make at a moment."
+        },
+        {
+          "term": "Reward signal",
+          "meaning": "Feedback—positive or negative, typically a scalar value—provided to the agent as a result of each action."
+        },
+        {
+          "term": "Policy",
+          "meaning": "The 'thought process' that drives an RL agent's behavior; a function that maps states to actions."
+        },
+        {
+          "term": "Loss function",
+          "meaning": "Measures the divergence between the model's output and the ground truth across a batch of training inputs."
+        },
+        {
+          "term": "Ground truth",
+          "meaning": "The ideal or 'correct' output for any given input."
+        },
+        {
+          "term": "Neural network",
+          "meaning": "Artificial neural networks comprising interconnected layers of neurons that perform mathematical operations."
+        },
+        {
+          "term": "Convolutional neural networks (CNNs)",
+          "meaning": "Neural networks that add convolutional layers to extract important features from data, especially images."
+        },
+        {
+          "term": "Recurrent neural networks (RNNs)",
+          "meaning": "Neural networks designed to work on sequential data, using a hidden state that is passed from step to step."
+        },
+        {
+          "term": "Transformer models",
+          "meaning": "Models that use an attention mechanism to selectively focus on the most relevant parts of the input data."
+        },
+        {
+          "term": "Mamba models",
+          "meaning": "A relatively new neural‑network architecture based on state‑space models, providing an innovative way to prioritize information."
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "algorithms": [
+        {
+          "algorithm": "Linear regression algorithm",
+          "goal": "Predict home sale prices.",
+          "process": "Uses a weighted combination of three variables (square footage, bedrooms, age) with model parameters A, B, C to compute price."
+        },
+        {
+          "algorithm": "k‑means clustering algorithm",
+          "goal": "Partition unlabeled data points into clusters.",
+          "process": "Iteratively optimizes the centroid of each cluster."
+        },
+        {
+          "algorithm": "Gaussian mixture models (GMMs)",
+          "goal": "Cluster data points.",
+          "process": null
+        },
+        {
+          "algorithm": "DBSCAN",
+          "goal": "Cluster data points.",
+          "process": null
+        },
+        {
+          "algorithm": "Autoencoders",
+          "goal": "Compress and reconstruct input data (minimize reconstruction error).",
+          "process": "Encode input into a compressed representation, then decode to reconstruct the original input, minimizing reconstruction error."
+        },
+        {
+          "algorithm": "Principal component analysis (PCA)",
+          "goal": "Dimensionality reduction.",
+          "process": null
+        },
+        {
+          "algorithm": "Linear discriminant analysis (LDA)",
+          "goal": "Dimensionality reduction.",
+          "process": null
+        },
+        {
+          "algorithm": "t‑SNE (Distributed Stochastic Neighbor Embedding)",
+          "goal": "Dimensionality reduction / data visualization.",
+          "process": null
+        },
+        {
+          "algorithm": "Q‑learning",
+          "goal": "Learn a value function that scores how good each state is and choose actions that lead to higher‑value states.",
+          "process": "Learns a value function from state‑action‑reward tuples."
+        },
+        {
+          "algorithm": "Proximal policy optimization (PPO)",
+          "goal": "Learn a policy directly.",
+          "process": "Policy‑based reinforcement‑learning method that updates the policy."
+        },
+        {
+          "algorithm": "Convolutional neural networks (CNNs)",
+          "goal": "Extract important features from data (especially images).",
+          "process": "Apply weighted convolutional filters (convolutional layers) to the input."
+        },
+        {
+          "algorithm": "Recurrent neural networks (RNNs)",
+          "goal": "Process sequential data.",
+          "process": "Operate in a recurrent loop where the hidden state from one step is used as input for the next step."
+        },
+        {
+          "algorithm": "Transformer models",
+          "goal": "Process various data modalities and achieve state‑of‑the‑art results.",
+          "process": "Use an attention mechanism to selectively focus on relevant parts of the input sequence."
+        },
+        {
+          "algorithm": "Mamba models",
+          "goal": "Prioritize the most relevant information; serve as a rival architecture for large language models.",
+          "process": "Based on a variation of state‑space models."
+        },
+        {
+          "algorithm": "Backpropagation algorithm",
+          "goal": "Compute each node’s contribution to the loss function for weight optimization.",
+          "process": "Calculate gradients of the loss with respect to each weight and update weights via gradient descent."
+        },
+        {
+          "algorithm": "Gradient descent",
+          "goal": "Optimize model parameters to minimize loss.",
+          "process": "Iteratively adjust parameters in the direction of the negative gradient of the loss function."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": [
+        "Mamba models",
+        "Policy",
+        "Deep learning"
+      ],
+      "ambiguous": [
+        "Policy",
+        "Reward signal",
+        "State space",
+        "Action space"
+      ],
+      "missing": [
+        "Generalization",
+        "Inference",
+        "Model training",
+        "Model drift",
+        "MLOps",
+        "Model governance",
+        "Feature engineering",
+        "Ensemble learning",
+        "Hybrid learning",
+        "RLHF (reinforcement learning from human feedback)",
+        "Attention mechanism",
+        "State‑space models (SSMs)",
+        "Actor‑critic methods",
+        "Policy‑based methods",
+        "Value‑based methods",
+        "Support vector machines (SVMs)",
+        "Naïve Bayes",
+        "Logistic regression",
+        "Decision trees"
+      ]
+    }
+  },
+  {
+    "iteration": 2,
+    "prompt_versions": [
+      "v_refined_disambiguation",
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Machine learning",
+          "meaning": "subset of artificial intelligence (AI) focused on algorithms that can learn the patterns of training data and make accurate inferences about new data"
+        },
+        {
+          "term": "Deep learning",
+          "meaning": "subset of machine learning driven by large artificial neural networks, the state‑of‑the‑art AI model architecture across nearly every domain"
+        },
+        {
+          "term": "Supervised learning",
+          "meaning": "training paradigm where a model is trained to predict the correct output for a given input using labeled data and a loss function that measures divergence from ground truth"
+        },
+        {
+          "term": "Unsupervised learning",
+          "meaning": "learning paradigm where algorithms discern intrinsic patterns, dependencies and correlations in unlabeled data without external ground truth"
+        },
+        {
+          "term": "Reinforcement learning (RL)",
+          "meaning": "training paradigm where models are trained holistically through trial and error to optimize parameters to maximize reward"
+        },
+        {
+          "term": "Self‑supervised learning",
+          "meaning": "training on tasks where a supervisory signal is obtained directly from unlabeled data; primary training method for large language models"
+        },
+        {
+          "term": "Semi‑supervised learning",
+          "meaning": "methods that use both labeled data and unlabeled data to improve learning"
+        },
+        {
+          "term": "Mamba models",
+          "meaning": "relatively new neural network architecture introduced in 2023, based on a unique variation of state space models (SSMs), providing innovative means of selectively prioritizing the most relevant information"
+        },
+        {
+          "term": "Attention mechanism",
+          "meaning": "mechanism that enables models to selectively focus on the parts of the input data most relevant at a specific moment in a sequence"
+        },
+        {
+          "term": "Policy",
+          "meaning": "function that takes a state as input and returns an action; the 'thought process' that drives an RL agent's behavior"
+        },
+        {
+          "term": "Reward signal",
+          "meaning": "feedback, typically a scalar value, provided to the agent as a result of each action"
+        },
+        {
+          "term": "Action space",
+          "meaning": "contains all the decisions that the model is permitted to make at a moment"
+        },
+        {
+          "term": "Feature engineering",
+          "meaning": "process of choosing which aspects of data to use in machine learning algorithms, including feature selection and feature extraction"
+        },
+        {
+          "term": "Feature selection",
+          "meaning": "process of choosing which aspects of data to use in machine learning algorithms"
+        },
+        {
+          "term": "Feature extraction",
+          "meaning": "techniques that refine data down to only its most relevant meaningful dimensions"
+        },
+        {
+          "term": "Model training",
+          "meaning": "process called model training where a model learns from data to make accurate predictions on new data"
+        },
+        {
+          "term": "AI inference",
+          "meaning": "deployment of an AI model to make predictions on new data"
+        },
+        {
+          "term": "MLOps",
+          "meaning": "set of practices for implementing an assembly line approach to building, deploying and maintaining machine learning models"
+        },
+        {
+          "term": "Model governance",
+          "meaning": "practice essential to continued efficacy of models, especially in regulated or fast‑changing industries"
+        },
+        {
+          "term": "Model drift",
+          "meaning": "degradation of model performance over time that must be monitored after deployment"
+        },
+        {
+          "term": "Generalization",
+          "meaning": "translation of strong performance on training data to useful results in real‑world scenarios"
+        },
+        {
+          "term": "Loss function",
+          "meaning": "function that measures the divergence between the model's output and the ground truth across a batch of training inputs"
+        },
+        {
+          "term": "Ground truth",
+          "meaning": "the ideal or 'correct' output for any given input, provided by labeled data"
+        },
+        {
+          "term": "Supervision (supervisory signals)",
+          "meaning": "any source of ground truth used to train a model"
+        },
+        {
+          "term": "Classification",
+          "meaning": "predicting discrete values such as categories or classes"
+        },
+        {
+          "term": "Regression",
+          "meaning": "predicting continuous values such as price, duration, temperature or size"
+        },
+        {
+          "term": "Clustering",
+          "meaning": "partitioning unlabeled data points into groups based on proximity or similarity"
+        },
+        {
+          "term": "Association",
+          "meaning": "discern correlations between actions and conditions, used for recommendation engines"
+        },
+        {
+          "term": "Dimensionality reduction",
+          "meaning": "reducing the complexity of data points by representing them with a smaller number of features while preserving meaningful characteristics"
+        },
+        {
+          "term": "Convolutional neural networks (CNNs)",
+          "meaning": "neural networks that add convolutional layers to extract important features from data by applying weighted filters"
+        },
+        {
+          "term": "Recurrent neural networks (RNNs)",
+          "meaning": "neural networks designed to work on sequential data using a recurrent loop and hidden state to maintain memory"
+        },
+        {
+          "term": "Transformers",
+          "meaning": "models that use an attention mechanism to selectively focus on relevant parts of input data, enabling processing of various data modalities"
+        },
+        {
+          "term": "Large language models (LLMs)",
+          "meaning": "models that undergo pre‑training and fine‑tuning, often using self‑supervised learning and reinforcement learning from human feedback"
+        },
+        {
+          "term": "Generative AI",
+          "meaning": "AI tools that generate new content such as images, text, etc."
+        },
+        {
+          "term": "Backpropagation",
+          "meaning": "algorithm that enables computation of how each node contributes to the overall loss, allowing optimization of model weights via gradient descent"
+        },
+        {
+          "term": "Gradient descent",
+          "meaning": "optimization algorithm used to adjust model parameters to reduce loss"
+        },
+        {
+          "term": "Policy‑based methods",
+          "meaning": "RL methods where the model learns a policy directly, e.g., proximal policy optimization (PPO)"
+        },
+        {
+          "term": "Value‑based methods",
+          "meaning": "RL methods where the agent learns a value function that scores states and selects actions leading to higher‑value states, e.g., Q‑learning"
+        },
+        {
+          "term": "Actor‑critic methods",
+          "meaning": "hybrid RL approaches that learn a value function which is then used to optimize a policy"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "algorithms": [
+        {
+          "algorithm": "Linear regression",
+          "goal": "predict home sale prices based on variables such as square footage, age of house and number of bedrooms",
+          "process": "computes a weighted combination of the variables using parameters A, B, C; parameters are adjusted to minimize prediction error"
+        },
+        {
+          "algorithm": "Q‑learning",
+          "goal": "learn a value function that evaluates how good each state is and select actions that lead to higher‑value states",
+          "process": "updates the value function based on reward signals to maximize expected reward"
+        },
+        {
+          "algorithm": "k‑means clustering",
+          "goal": "partition data into clusters based on proximity or similarity",
+          "process": "iteratively optimizes the centroid of each cluster until convergence"
+        },
+        {
+          "algorithm": "Support vector machines (SVMs)",
+          "goal": null,
+          "process": null
+        },
+        {
+          "algorithm": "Naïve Bayes",
+          "goal": null,
+          "process": null
+        },
+        {
+          "algorithm": "Logistic regression",
+          "goal": null,
+          "process": null
+        },
+        {
+          "algorithm": "Convolutional neural networks (CNNs)",
+          "goal": "extract important features from data",
+          "process": "adds convolutional layers that apply weighted filters to the input"
+        },
+        {
+          "algorithm": "Recurrent neural networks (RNNs)",
+          "goal": "process sequential data while maintaining internal memory",
+          "process": "operates in a recurrent loop where the output at each step becomes input for the next step, using a hidden state"
+        },
+        {
+          "algorithm": "Transformers",
+          "goal": "process sequences and various data modalities by focusing on relevant parts of the input",
+          "process": "uses an attention mechanism to compute weighted relevance of input tokens"
+        },
+        {
+          "algorithm": "Proximal policy optimization (PPO)",
+          "goal": "learn a policy directly in reinforcement learning",
+          "process": "policy‑based RL method that updates the policy using clipped surrogate objectives"
+        },
+        {
+          "algorithm": "Autoencoders",
+          "goal": "compress input data and reconstruct it, minimizing reconstruction error",
+          "process": "encode input to a lower‑dimensional representation then decode it back to the original space"
+        },
+        {
+          "algorithm": "Mamba models",
+          "goal": "selectively prioritize the most relevant information at a given moment",
+          "process": "uses a unique variation of state space models to process inputs"
+        },
+        {
+          "algorithm": "Gradient descent",
+          "goal": "optimize model parameters to reduce loss",
+          "process": "iteratively adjusts parameters in the direction of the negative gradient of the loss function"
+        },
+        {
+          "algorithm": "Backpropagation",
+          "goal": "compute contributions of each node to the overall loss for weight updates",
+          "process": "propagates error backwards through the network to calculate gradients for each weight"
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": [
+        "Support vector machines (SVMs)",
+        "Naïve Bayes",
+        "Logistic regression"
+      ],
+      "ambiguous": "*None*",
+      "missing": [
+        "Artificial intelligence (AI)",
+        "State space",
+        "Reward function",
+        "Agent",
+        "Environment",
+        "State",
+        "Transfer learning",
+        "Fine‑tuning",
+        "Pre‑training",
+        "RLHF (reinforcement learning from human feedback)",
+        "Foundation models",
+        "State space models (SSMs)"
+      ]
+    }
+  },
+  {
+    "iteration": 3,
+    "prompt_versions": [
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Artificial intelligence (AI)",
+          "meaning": "the broader field encompassing systems that can use information to make decisions or predictions without active human involvement; machine learning is a subset of AI"
+        },
+        {
+          "term": "Machine learning",
+          "meaning": "a subset of artificial intelligence focused on algorithms that learn patterns from training data to make accurate inferences on new data"
+        },
+        {
+          "term": "Deep learning",
+          "meaning": "a subset of machine learning driven by artificial neural networks with many layers"
+        },
+        {
+          "term": "Supervised learning",
+          "meaning": "a learning paradigm where models are trained on labeled data to predict the correct output, using a loss function to measure divergence from ground truth"
+        },
+        {
+          "term": "Unsupervised learning",
+          "meaning": "a learning paradigm where models discover intrinsic patterns in unlabeled data without explicit ground truth"
+        },
+        {
+          "term": "Self-supervised learning",
+          "meaning": "a learning paradigm that creates supervisory signals from unlabeled data, e.g., by masking parts of the input and predicting them"
+        },
+        {
+          "term": "Semi-supervised learning",
+          "meaning": "a learning paradigm that uses both labeled and unlabeled data to improve model performance"
+        },
+        {
+          "term": "Reinforcement learning (RL)",
+          "meaning": "a learning paradigm where an agent interacts with an environment, taking actions to maximize cumulative reward"
+        },
+        {
+          "term": "State space",
+          "meaning": "contains all available information relevant to decisions that the model might make"
+        },
+        {
+          "term": "Action space",
+          "meaning": "contains all the decisions that the model is permitted to make at a moment"
+        },
+        {
+          "term": "Reward signal",
+          "meaning": "feedback, positive or negative, typically expressed as a scalar value, provided to the agent after each action"
+        },
+        {
+          "term": "Policy",
+          "meaning": "a function that maps states to actions, representing the agent's behavior"
+        },
+        {
+          "term": "Agent",
+          "meaning": "the AI system that takes actions within an environment in reinforcement learning"
+        },
+        {
+          "term": "Environment",
+          "meaning": "the context or setting in which the reinforcement learning agent operates and receives rewards"
+        },
+        {
+          "term": "State",
+          "meaning": "a representation of the current situation within the state space"
+        },
+        {
+          "term": "Reward function",
+          "meaning": null
+        },
+        {
+          "term": "Transfer learning",
+          "meaning": null
+        },
+        {
+          "term": "Fine‑tuning",
+          "meaning": null
+        },
+        {
+          "term": "Pre‑training",
+          "meaning": null
+        },
+        {
+          "term": "RLHF (reinforcement learning from human feedback)",
+          "meaning": null
+        },
+        {
+          "term": "Foundation models",
+          "meaning": null
+        },
+        {
+          "term": "State space models (SSMs)",
+          "meaning": null
+        },
+        {
+          "term": "Feature selection",
+          "meaning": "the (often manual) process of choosing which aspects of data to use in machine learning algorithms"
+        },
+        {
+          "term": "Feature extraction",
+          "meaning": "techniques that refine data down to its most relevant meaningful dimensions"
+        },
+        {
+          "term": "Feature engineering",
+          "meaning": "the broader discipline of preprocessing raw data for use in machine learning"
+        },
+        {
+          "term": "Loss function",
+          "meaning": "a function that measures the divergence between the model's output and the ground truth"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "algorithms": [
+        {
+          "algorithm": "Support vector machines (SVMs)",
+          "goal": "classification",
+          "process": null
+        },
+        {
+          "algorithm": "Naïve Bayes",
+          "goal": "classification",
+          "process": null
+        },
+        {
+          "algorithm": "Logistic regression",
+          "goal": "classification",
+          "process": null
+        },
+        {
+          "algorithm": "Linear regression",
+          "goal": "predicting continuous values such as home sale prices",
+          "process": "weighted combination of variables (e.g., square footage, number of rooms, age) to compute price"
+        },
+        {
+          "algorithm": "Polynomial regression",
+          "goal": "regression",
+          "process": null
+        },
+        {
+          "algorithm": "State space models",
+          "goal": "regression",
+          "process": null
+        },
+        {
+          "algorithm": "k-means clustering",
+          "goal": "clustering (grouping similar data points)",
+          "process": "iteratively optimizes the centroid of each cluster on its own"
+        },
+        {
+          "algorithm": "Gaussian mixture models (GMMs)",
+          "goal": "clustering",
+          "process": null
+        },
+        {
+          "algorithm": "DBSCAN",
+          "goal": "clustering",
+          "process": null
+        },
+        {
+          "algorithm": "Autoencoders",
+          "goal": "dimensionality reduction / representation learning",
+          "process": "compress (encode) input data then reconstruct (decode) it, minimizing reconstruction error"
+        },
+        {
+          "algorithm": "Principal component analysis (PCA)",
+          "goal": "dimensionality reduction",
+          "process": null
+        },
+        {
+          "algorithm": "Linear discriminant analysis (LDA)",
+          "goal": "dimensionality reduction",
+          "process": null
+        },
+        {
+          "algorithm": "t-Distributed Stochastic Neighbor Embedding (t-SNE)",
+          "goal": "dimensionality reduction / data visualization",
+          "process": null
+        },
+        {
+          "algorithm": "Q-learning",
+          "goal": "learn a value function for reinforcement learning",
+          "process": "computes a score for how good each state is"
+        },
+        {
+          "algorithm": "Proximal policy optimization (PPO)",
+          "goal": "learn a policy directly in reinforcement learning",
+          "process": null
+        },
+        {
+          "algorithm": "Actor-critic methods",
+          "goal": "learn a policy using a value function",
+          "process": "learn a value function then use it to optimize a policy"
+        },
+        {
+          "algorithm": "Convolutional neural networks (CNNs)",
+          "goal": "extract important features from image data (computer vision)",
+          "process": "apply weighted filters (convolutional layers) to input data"
+        },
+        {
+          "algorithm": "Recurrent neural networks (RNNs)",
+          "goal": "process sequential data",
+          "process": "operate in a recurrent loop with hidden state memory"
+        },
+        {
+          "algorithm": "Transformers",
+          "goal": "process sequences and enable generative AI",
+          "process": "attention mechanism that selectively focuses on relevant parts of the input"
+        },
+        {
+          "algorithm": "Mamba models",
+          "goal": "prioritize the most relevant information (rival to transformer architecture)",
+          "process": "unique variation of state space models"
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": [
+        "Reward function",
+        "Transfer learning",
+        "Fine‑tuning",
+        "Pre‑training",
+        "RLHF (reinforcement learning from human feedback)",
+        "Foundation models",
+        "State space models (SSMs)"
+      ],
+      "ambiguous": "*None*",
+      "missing": [
+        "Gradient descent",
+        "Backpropagation",
+        "Neural network / Artificial neural network",
+        "Generative AI",
+        "Large language models (LLMs)",
+        "MLOps (Machine Learning Operations)",
+        "Model drift",
+        "Model governance",
+        "Inference (AI inference)",
+        "Generalization",
+        "Model parameters",
+        "Hyperparameters",
+        "Attention mechanism",
+        "Convolution (operation in CNNs)",
+        "Policy‑based methods (in reinforcement learning)",
+        "Value‑based methods (in reinforcement learning)"
+      ]
+    }
+  }
+]

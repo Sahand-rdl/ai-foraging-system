@@ -1,0 +1,569 @@
+[
+  {
+    "iteration": 1,
+    "prompt_versions": [
+      "v1"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Residual Learning",
+          "meaning": "A framework that reformulates layers to learn residual functions F(x) = H(x) - x instead of directly learning the underlying mapping H(x), making it easier to optimize very deep networks."
+        },
+        {
+          "term": "Shortcut Connections",
+          "meaning": "Connections that skip one or more layers; in this work they perform identity mapping and add neither extra parameters nor computational complexity."
+        },
+        {
+          "term": "Identity Mapping",
+          "meaning": "A shortcut that directly copies its input to its output (x → x), introducing no additional parameters or computation."
+        },
+        {
+          "term": "Bottleneck",
+          "meaning": "A residual building block composed of three layers (1×1, 3×3, 1×1 convolutions) where the 1×1 layers reduce and then restore dimensions, leaving the 3×3 layer as a low‑dimensional bottleneck."
+        },
+        {
+          "term": "Degradation problem",
+          "meaning": "The phenomenon where deeper plain networks exhibit higher training error and lower accuracy, not caused by overfitting but by optimization difficulty."
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Training error (left) and test error (right) on CIFAR‑10 with 20‑layer and 56‑layer 'plain' networks; deeper network has higher training error, similar phenomena on ImageNet."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Residual learning: a building block."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Example network architectures for ImageNet. Left: VGG‑19 model; Middle: a plain network with 34 parameter layers; Right: a residual network with 34 parameter layers."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Training on ImageNet. Thin curves denote training error, bold curves denote validation error of the center crops. Left: plain networks of 18 and 34 layers. Right: ResNets of 18 and 34 layers."
+        },
+        {
+          "figure": "Figure 5",
+          "description": "A deeper residual function F for ImageNet. Left: a building block (on 56×56 feature maps) as in Fig. 3 for ResNet‑34. Right: a 'bottleneck' building block for ResNet‑50/101/152."
+        },
+        {
+          "figure": "Figure 6",
+          "description": "Training on CIFAR‑10. Dashed lines denote training error, bold lines denote testing error. Left: plain networks. Middle: ResNets. Right: ResNets with 110 and 1202 layers."
+        },
+        {
+          "figure": "Figure 7",
+          "description": "Standard deviations (std) of layer responses on CIFAR‑10. Shows that ResNets have generally smaller responses than plain counterparts."
+        },
+        {
+          "figure": "Figure 8",
+          "description": "Object detection improvements on MS COCO using Faster R-CNN and ResNet‑101."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Architectures for ImageNet. Building blocks are shown in brackets, with the numbers of blocks stacked. Downsampling is performed by conv3_1, conv4_1, and conv5_1 with a stride of 2."
+        },
+        {
+          "table": "Table 2",
+          "title": "Top‑1 error (%, 10‑crop testing) on ImageNet validation. Here the ResNets have no extra parameter compared to their plain counterparts."
+        },
+        {
+          "table": "Table 3",
+          "title": "Error rates (%, 10‑crop testing) on ImageNet validation. VGG‑16 is based on our test. ResNet‑50/101/152 are of option B that only uses projections for increasing dimensions."
+        },
+        {
+          "table": "Table 4",
+          "title": "Error rates (%) of single‑model results on the ImageNet validation set (except † reported on the test set)."
+        },
+        {
+          "table": "Table 5",
+          "title": "Error rates (%) of ensembles. The top‑5 error is on the test set of ImageNet and reported by the test server."
+        },
+        {
+          "table": "Table 6",
+          "title": "Classification error on the CIFAR‑10 test set. All methods are with data augmentation."
+        },
+        {
+          "table": "Table 7",
+          "title": "Object detection mAP (%) on the PASCAL VOC 2007/2012 test sets using baseline Faster R-CNN."
+        },
+        {
+          "table": "Table 8",
+          "title": "Object detection mAP (%) on the COCO validation set using baseline Faster R-CNN."
+        },
+        {
+          "table": "Table 9",
+          "title": "Object detection improvements on MS COCO using Faster R-CNN and ResNet‑101."
+        },
+        {
+          "table": "Table 10",
+          "title": "Detection results on the PASCAL VOC 2007 test set. The baseline is the Faster R-CNN system; 'baseline+++' includes box refinement, context, and multi‑scale testing."
+        },
+        {
+          "table": "Table 11",
+          "title": "Detection results on the PASCAL VOC 2012 test set. The baseline is the Faster R-CNN system; 'baseline+++' includes box refinement, context, and multi‑scale testing."
+        },
+        {
+          "table": "Table 12",
+          "title": "Our results (mAP, %) on the ImageNet detection dataset. Our detection system is Faster R-CNN with the improvements in Table 9, using ResNet‑101."
+        },
+        {
+          "table": "Table 13",
+          "title": "Localization error (%) on the ImageNet validation. Shows results for oracle testing (ground‑truth class) and for predicted classes."
+        },
+        {
+          "table": "Table 14",
+          "title": "Comparisons of localization error (%) on the ImageNet dataset with state‑of‑the‑art methods."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Residual Learning",
+          "goal": "Ease the training of substantially deeper neural networks.",
+          "process": "Reformulate each set of stacked layers to learn a residual function F(x) = H(x) – x, then add the input x back (y = F(x) + x)."
+        },
+        {
+          "algorithm": "Bottleneck Architecture",
+          "goal": "Reduce computational cost while enabling very deep networks.",
+          "process": "Replace a 2‑layer residual block with a 3‑layer block consisting of 1×1, 3×3, and 1×1 convolutions; the 1×1 layers reduce and then restore channel dimensions, leaving the 3×3 layer as a low‑dimensional bottleneck."
+        },
+        {
+          "algorithm": "Box Refinement",
+          "goal": "Improve object‑detection mean average precision (mAP).",
+          "process": "After the initial regression, pool a new feature from the regressed box, obtain a new classification score and box, combine these 300 new predictions with the original 300, apply non‑maximum suppression (IoU 0.3) and box voting."
+        },
+        {
+          "algorithm": "Global Context",
+          "goal": "Boost detection performance by providing image‑level context.",
+          "process": "Pool a global feature from the full‑image convolutional map using spatial‑pyramid pooling, concatenate it with each region’s feature before the final classification and box‑regression layers, and train the whole network end‑to‑end."
+        },
+        {
+          "algorithm": "Multi‑scale Testing",
+          "goal": "Increase detection accuracy by leveraging multiple image resolutions.",
+          "process": "Compute convolutional feature maps on an image pyramid (shorter sides 200, 400, 600, 800, 1000 pixels), perform RoI pooling on two adjacent scales, merge the resulting features with a maxout operation, and use the combined representation for classification and regression."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": [
+        "Figure 8 (Object detection improvements on MS COCO using Faster R-CNN and ResNet‑101) – this figure label does not appear explicitly in the provided document text."
+      ],
+      "ambiguous": [
+        "Algorithm: Residual Learning – the extraction treats it as an algorithm, but in the paper it is presented more as a conceptual framework rather than a step‑by‑step algorithm.",
+        "Algorithm: Bottleneck Architecture – this is primarily an architectural design choice rather than a distinct algorithmic procedure."
+      ],
+      "missing": [
+        "Batch Normalization (BN) – extensively discussed as a key component of the training pipeline.",
+        "Projection Shortcut – a shortcut option using a linear projection W_s for dimension matching.",
+        "Zero‑padding Shortcut – the shortcut variant that pads extra dimensions with zeros when dimensions increase.",
+        "Identity Shortcut – the identity‑mapping shortcut (x → x) is a core terminology not listed.",
+        "Residual Block – the building block consisting of stacked layers plus a shortcut connection.",
+        "Residual Function F (or Residual Mapping) – the function F(x) = H(x) – x that the stacked layers learn.",
+        "Plain Network (or Plain Net) – the baseline architecture without residual connections.",
+        "Residual Network (ResNet) – the name of the networks that incorporate residual learning.",
+        "Deep Residual Learning (title of the paper) – the overarching concept introduced.",
+        "Degradation problem – while mentioned, it could be highlighted as a distinct term describing the training difficulty of deeper plain nets."
+      ]
+    }
+  },
+  {
+    "iteration": 2,
+    "prompt_versions": [
+      "v_refined_disambiguation",
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "shortcut connections",
+          "meaning": "those skipping one or more layers"
+        },
+        {
+          "term": "identity shortcut connections",
+          "meaning": "add neither extra parameter nor computational complexity"
+        },
+        {
+          "term": "projection shortcut",
+          "meaning": "used to match dimensions (done by 1 × 1 convolutions)"
+        },
+        {
+          "term": "zero‑padding shortcut",
+          "meaning": "identity mapping with extra zero entries padded for increasing dimensions"
+        },
+        {
+          "term": "residual function F",
+          "meaning": "F(x) := H(x) – x"
+        },
+        {
+          "term": "degradation problem",
+          "meaning": "when network depth increases, accuracy gets saturated and then degrades rapidly"
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Training error (left) and test error (right) on CIFAR-10 with 20-layer and 56-layer 'plain' networks. The deeper network has higher training error, and thus test error. Similar phenomena on ImageNet is presented in Fig. 4."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Residual learning: a building block."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Example network architectures for ImageNet. Left : the VGG-19 model [41] (19.6 billion FLOPs) as a reference. Middle : a plain network with 34 parameter layers (3.6 billion FLOPs). Right : a residual network with 34 parameter layers (3.6 billion FLOPs). The dotted shortcuts increase dimensions. Table 1 shows more details and other variants."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Training on ImageNet . Thin curves denote training error, and bold curves denote validation error of the center crops. Left: plain networks of 18 and 34 layers. Right: ResNets of 18 and 34 layers. In this plot, the residual networks have no extra parameter compared to their plain counterparts."
+        },
+        {
+          "figure": "Figure 5",
+          "description": "A deeper residual function F for ImageNet. Left: a building block (on 56 × 56 feature maps) as in Fig. 3 for ResNet34. Right: a 'bottleneck' building block for ResNet-50/101/152."
+        },
+        {
+          "figure": "Figure 6",
+          "description": "Training on CIFAR-10 . Dashed lines denote training error, and bold lines denote testing error. Left : plain networks. The error of plain-110 is higher than 60% and not displayed. Middle : ResNets. Right : ResNets with 110 and 1202 layers."
+        },
+        {
+          "figure": "Figure 7",
+          "description": "Standard deviations (std) of layer responses on CIFAR10. The responses are the outputs of each 3 × 3 layer, after BN and before nonlinearity. Top : the layers are shown in their original order. Bottom : the responses are ranked in descending order."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Architectures for ImageNet. Building blocks are shown in brackets (see also Fig. 5), with the numbers of blocks stacked. Downsampling is performed by conv3 1, conv4 1, and conv5 1 with a stride of 2."
+        },
+        {
+          "table": "Table 2",
+          "title": "Top-1 error (%, 10-crop testing) on ImageNet validation. Here the ResNets have no extra parameter compared to their plain counterparts. Fig. 4 shows the training procedures."
+        },
+        {
+          "table": "Table 3",
+          "title": "Error rates (%, 10-crop testing) on ImageNet validation. VGG-16 is based on our test. ResNet-50/101/152 are of option B that only uses projections for increasing dimensions."
+        },
+        {
+          "table": "Table 4",
+          "title": "Error rates (%) of single-model results on the ImageNet validation set (except † reported on the test set)."
+        },
+        {
+          "table": "Table 5",
+          "title": "Error rates (%) of ensembles . The top-5 error is on the test set of ImageNet and reported by the test server."
+        },
+        {
+          "table": "Table 6",
+          "title": "Classification error on the CIFAR-10 test set. All methods are with data augmentation. For ResNet-110, we run it 5 times and show 'best (mean ± std)' as in [43]."
+        },
+        {
+          "table": "Table 7",
+          "title": "Object detection mAP (%) on the PASCAL VOC 2007/2012 test sets using baseline Faster R-CNN. See also Table 10 and 11 for better results."
+        },
+        {
+          "table": "Table 8",
+          "title": "Object detection mAP (%) on the COCO validation set using baseline Faster R-CNN. See also Table 9 for better results."
+        },
+        {
+          "table": "Table 9",
+          "title": "Object detection improvements on MS COCO using Faster R-CNN and ResNet-101."
+        },
+        {
+          "table": "Table 10",
+          "title": "Detection results on the PASCAL VOC 2007 test set. The baseline is the Faster R-CNN system. The system 'baseline+++' include box refinement, context, and multi-scale testing in Table 9."
+        },
+        {
+          "table": "Table 11",
+          "title": "Detection results on the PASCAL VOC 2012 test set ( http://host.robots.ox.ac.uk:8080/leaderboard/ displaylb.php?challengeid=11&compid=4 ). The baseline is the Faster R-CNN system. The system 'baseline+++' include box refinement, context, and multi-scale testing in Table 9."
+        },
+        {
+          "table": "Table 12",
+          "title": "Our results (mAP, %) on the ImageNet detection dataset. Our detection system is Faster R-CNN [32] with the improvements in Table 9, using ResNet-101."
+        },
+        {
+          "table": "Table 13",
+          "title": "Localization error (%) on the ImageNet validation. In the column of 'LOC error on GT class' ([41]), the ground truth class is used. In the 'testing' column, '1-crop' denotes testing on a center crop of 224 × 224 pixels, 'dense' denotes dense (fully convolutional) and multi-scale testing."
+        },
+        {
+          "table": "Table 14",
+          "title": "Comparisons of localization error (%) on the ImageNet dataset with state-of-the-art methods."
+        }
+      ],
+      "algorithms": []
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": [
+        "Batch Normalization (BN)",
+        "Bottleneck architecture / bottleneck building block",
+        "Global average pooling",
+        "10‑crop testing",
+        "Stochastic Gradient Descent (SGD) optimizer",
+        "Learning rate schedule (initial LR, decay steps)",
+        "Weight decay",
+        "Momentum",
+        "Identity mapping (as a concept separate from shortcut connections)",
+        "Deep residual learning framework (overall formulation)",
+        "Residual block (building block definition)",
+        "Projection shortcut (option B) as a distinct term",
+        "Zero‑padding shortcut (option A) as a distinct term",
+        "Data augmentation procedures",
+        "Multi‑scale testing",
+        "Object detection pipeline (Faster R‑CNN) details",
+        "Region Proposal Network (RPN)",
+        "RCNN / Fast R‑CNN details",
+        "Per‑class regression for localization",
+        "Box refinement technique",
+        "Global context integration",
+        "Training schedule specifics (iterations, batch size)",
+        "Algorithms: residual learning formulation (y = F(x) + x), training procedure, detection pipeline"
+      ]
+    }
+  },
+  {
+    "iteration": 3,
+    "prompt_versions": [
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Batch Normalization (BN)",
+          "meaning": "Normalization applied after each convolution and before activation to accelerate training."
+        },
+        {
+          "term": "Bottleneck building block",
+          "meaning": "A residual block that uses a stack of 1×1, 3×3, and 1×1 convolutions to reduce then restore dimensions."
+        },
+        {
+          "term": "global average pooling",
+          "meaning": "A layer that averages spatial dimensions of feature maps to produce a single vector before the final fully‑connected layer."
+        },
+        {
+          "term": "10‑crop testing",
+          "meaning": "Standard testing procedure that evaluates a model on ten crops of the input image."
+        },
+        {
+          "term": "Stochastic Gradient Descent (SGD)",
+          "meaning": "Optimizer used for training with a mini‑batch size of 256."
+        },
+        {
+          "term": "learning rate schedule",
+          "meaning": "Initial learning rate of 0.1, divided by 10 when error plateaus (or at specific iteration milestones such as 32k and 48k for CIFAR‑10)."
+        },
+        {
+          "term": "weight decay",
+          "meaning": "L2 regularization coefficient set to 0.0001."
+        },
+        {
+          "term": "momentum",
+          "meaning": "Momentum coefficient set to 0.9 in the SGD optimizer."
+        },
+        {
+          "term": "identity mapping",
+          "meaning": "Shortcut connection that adds the input directly to the output without any parameters."
+        },
+        {
+          "term": "deep residual learning framework",
+          "meaning": "Framework that reformulates layers to learn residual functions F(x) such that the overall mapping is y = F(x) + x."
+        },
+        {
+          "term": "residual block",
+          "meaning": "Building block defined by y = F(x, {W_i}) + x, where F is a stack of layers."
+        },
+        {
+          "term": "projection shortcut",
+          "meaning": "Shortcut that uses a linear projection (1×1 convolution) W_s to match dimensions when input and output sizes differ."
+        },
+        {
+          "term": "zero‑padding shortcut",
+          "meaning": "Shortcut that pads extra zero entries to increase dimensions without adding parameters."
+        },
+        {
+          "term": "data augmentation",
+          "meaning": "Scale augmentation by random resizing of the shorter side, random 224×224 crops (or 32×32 for CIFAR‑10), horizontal flips, per‑pixel mean subtraction, and standard color augmentation."
+        },
+        {
+          "term": "multi‑scale testing",
+          "meaning": "Averaging model scores over multiple image scales (shorter side in {224, 256, 384, 480, 640})."
+        },
+        {
+          "term": "Faster R‑CNN",
+          "meaning": "Object detection pipeline consisting of shared convolutional feature maps, a Region Proposal Network, and a Fast R‑CNN detection network."
+        },
+        {
+          "term": "Region Proposal Network (RPN)",
+          "meaning": "Network that generates object proposals; in the localization setting it outputs per‑class scores and box regressors."
+        },
+        {
+          "term": "Fast R‑CNN",
+          "meaning": "Detection network that classifies and refines proposals using RoI pooling."
+        },
+        {
+          "term": "per‑class regression",
+          "meaning": "Bounding‑box regression learned separately for each object class (PCR)."
+        },
+        {
+          "term": "box refinement",
+          "meaning": "Iterative refinement of predicted boxes by re‑pooling features from the regressed box, recomputing scores and boxes, then applying NMS and box voting."
+        },
+        {
+          "term": "global context integration",
+          "meaning": "Incorporating a global feature obtained via Spatial Pyramid Pooling over the whole image and concatenating it with region features."
+        },
+        {
+          "term": "training schedule specifics",
+          "meaning": "Training for up to 60 × 10⁴ iterations on ImageNet with batch size 256; on CIFAR‑10 for 64 k iterations with batch size 128; learning‑rate decay points as described."
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "Training error (left) and test error (right) on CIFAR‑10 with 20‑layer and 56‑layer ‘plain’ networks."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Residual learning: a building block."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "Example network architectures for ImageNet: VGG‑19, a 34‑layer plain network, and a 34‑layer residual network."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "Training on ImageNet. Thin curves denote training error, bold curves denote validation error of the center crops. Left: plain networks of 18 and 34 layers. Right: ResNets of 18 and 34 layers."
+        },
+        {
+          "figure": "Figure 5",
+          "description": "A deeper residual function F for ImageNet. Left: a building block for ResNet‑34. Right: a ‘bottleneck’ building block for ResNet‑50/101/152."
+        },
+        {
+          "figure": "Figure 6",
+          "description": "Training on CIFAR‑10. Dashed lines denote training error, bold lines denote testing error. Left: plain networks. Middle: ResNets. Right: ResNets with 110 and 1202 layers."
+        },
+        {
+          "figure": "Figure 7",
+          "description": "Standard deviations of layer responses on CIFAR‑10. Shows that ResNets have generally smaller responses than plain networks."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Architectures for ImageNet. Building blocks are shown in brackets (see also Fig. 5), with the numbers of blocks stacked. Downsampling is performed by conv3_1, conv4_1, and conv5_1 with a stride of 2."
+        },
+        {
+          "table": "Table 2",
+          "title": "Top‑1 error (%, 10‑crop testing) on ImageNet validation. Here the ResNets have no extra parameter compared to their plain counterparts."
+        },
+        {
+          "table": "Table 3",
+          "title": "Error rates (%, 10‑crop testing) on ImageNet validation. VGG‑16 is based on our test. ResNet‑50/101/152 are of option B that only uses projections for increasing dimensions."
+        },
+        {
+          "table": "Table 4",
+          "title": "Error rates (%) of single‑model results on the ImageNet validation set (except † reported on the test set)."
+        },
+        {
+          "table": "Table 5",
+          "title": "Error rates (%) of ensembles. The top‑5 error is on the test set of ImageNet and reported by the test server."
+        },
+        {
+          "table": "Table 6",
+          "title": "Classification error on the CIFAR‑10 test set. All methods are with data augmentation. For ResNet‑110, we run it 5 times and show ‘best (mean ± std)’ as in [43]."
+        },
+        {
+          "table": "Table 7",
+          "title": "Object detection mAP (%) on the PASCAL VOC 2007/2012 test sets using baseline Faster R‑CNN."
+        },
+        {
+          "table": "Table 8",
+          "title": "Object detection mAP (%) on the COCO validation set using baseline Faster R‑CNN."
+        },
+        {
+          "table": "Table 9",
+          "title": "Object detection improvements on MS COCO using Faster R‑CNN and ResNet‑101."
+        },
+        {
+          "table": "Table 10",
+          "title": "Detection results on the PASCAL VOC 2007 test set. The baseline is the Faster R‑CNN system. The system ‘baseline+++’ includes box refinement, context, and multi‑scale testing."
+        },
+        {
+          "table": "Table 11",
+          "title": "Detection results on the PASCAL VOC 2012 test set. The baseline is the Faster R‑CNN system. The system ‘baseline+++’ includes box refinement, context, and multi‑scale testing."
+        },
+        {
+          "table": "Table 12",
+          "title": "Our results (mAP, %) on the ImageNet detection dataset. Our detection system is Faster R‑CNN with the improvements in Table 9, using ResNet‑101."
+        },
+        {
+          "table": "Table 13",
+          "title": "Localization error (%) on the ImageNet validation. Shows results for different testing modes and per‑class regression."
+        },
+        {
+          "table": "Table 14",
+          "title": "Comparisons of localization error (%) on the ImageNet dataset with state‑of‑the‑art methods."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Residual learning (y = F(x) + x)",
+          "goal": "Ease the training of very deep networks by learning residual functions instead of direct mappings.",
+          "process": "Stacked layers learn a residual mapping F(x, {W_i}); a shortcut connection adds the input x to F(x) to produce the output y."
+        },
+        {
+          "algorithm": "SGD training with learning‑rate schedule",
+          "goal": "Optimize network parameters efficiently.",
+          "process": "Initialize weights as in [13]; train with mini‑batch size 256 (ImageNet) or 128 (CIFAR‑10); use learning rate 0.1, decay by factor 10 at plateau or at predefined iterations; apply weight decay 0.0001 and momentum 0.9."
+        },
+        {
+          "algorithm": "Faster R‑CNN detection pipeline with ResNet backbone",
+          "goal": "Detect objects in images with high accuracy.",
+          "process": "Compute shared convolutional feature maps (strides ≤ 16); Region Proposal Network generates 300 proposals; RoI pooling extracts region features; Fast R‑CNN classifies and regresses boxes; optional box refinement, global context, and multi‑scale testing improve results."
+        },
+        {
+          "algorithm": "Per‑class regression (PCR) for localization",
+          "goal": "Predict class‑specific bounding boxes for ImageNet localization.",
+          "process": "RPN outputs a 1000‑dimensional classification score (binary per class) and a 1000 × 4‑dimensional box regression; boxes are refined using the per‑class regressors."
+        },
+        {
+          "algorithm": "Box refinement",
+          "goal": "Improve detection accuracy by iteratively updating box predictions.",
+          "process": "After initial regression, pool features from the regressed box, recompute classification scores and a second regression, combine original and refined predictions, apply NMS (IoU 0.3) and box voting."
+        },
+        {
+          "algorithm": "Global context integration",
+          "goal": "Enhance detection by providing image‑level contextual information.",
+          "process": "Apply global Spatial Pyramid Pooling (single‑level) on the full‑image feature map to obtain a global feature; concatenate this with each region’s feature before the final classification and regression layers."
+        },
+        {
+          "algorithm": "Multi‑scale testing",
+          "goal": "Boost classification and detection performance by evaluating multiple image resolutions.",
+          "process": "Resize the image to several shorter‑side lengths (e.g., {224, 256, 384, 480, 640}); compute scores for each scale; average the scores (or merge features via maxout for detection)."
+        },
+        {
+          "algorithm": "Data augmentation for training",
+          "goal": "Increase the diversity of training data to improve generalization.",
+          "process": "Randomly sample the shorter side length within a range (e.g., [256, 480] for ImageNet); randomly crop a 224×224 (or 32×32 for CIFAR‑10) region; apply horizontal flip; subtract per‑pixel mean; use standard color augmentation."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": [
+        "ResNet",
+        "plain network",
+        "degradation problem",
+        "vanishing/exploding gradients",
+        "shortcut connections",
+        "weight initialization",
+        "identity shortcut"
+      ]
+    }
+  }
+]

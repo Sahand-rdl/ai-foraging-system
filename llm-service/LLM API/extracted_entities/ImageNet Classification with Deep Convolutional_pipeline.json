@@ -1,0 +1,309 @@
+[
+  {
+    "iteration": 1,
+    "prompt_versions": [
+      "v1"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Rectified Linear Units (ReLUs)",
+          "meaning": "non‑saturating nonlinearity f(x)=max(0,x)"
+        },
+        {
+          "term": "Local Response Normalization",
+          "meaning": "response‑normalized activity b_i = a_i / (k + α Σ_{j} a_j^2 )^β, where k, n, α, β are hyper‑parameters"
+        },
+        {
+          "term": "Overlapping Pooling",
+          "meaning": "pooling with stride s smaller than the pooling window size z (e.g., s=2, z=3) so that neighboring pooling regions overlap"
+        },
+        {
+          "term": "Dropout",
+          "meaning": "setting to zero the output of each hidden neuron with probability 0.5 during training"
+        },
+        {
+          "term": "Stochastic Gradient Descent",
+          "meaning": "optimization method using a batch size of 128, momentum of 0.9 and weight decay of 0.0005"
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "A four‑layer convolutional neural network with ReLUs (solid line) reaches a 25% training error rate on CIFAR‑10 six times faster than an equivalent network with tanh neurons (dashed line). The learning rates for each network were chosen independently to make training as fast as possible. No regularization of any kind was employed. The magnitude of the effect varies with network architecture, but networks with ReLUs consistently learn several times faster than equivalents with saturating neurons."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "An illustration of the architecture of our CNN, explicitly showing the delineation of responsibilities between the two GPUs. One GPU runs the layer‑parts at the top of the figure while the other runs the layer‑parts at the bottom. The GPUs communicate only at certain layers. The network's input is 150,528‑dimensional, and the number of neurons in the remaining layers is given by 253,440‑186,624‑64,896‑64,896‑43,264‑4096‑4096‑1000."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "96 convolutional kernels of size 11 × 11 × 3 learned by the first convolutional layer on the 224 × 224 × 3 input images. The top 48 kernels were learned on GPU 1 while the bottom 48 kernels were learned on GPU 2. See Section 6.1 for details."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "(Left) Eight ILSVRC‑2010 test images and the five labels considered most probable by our model. The correct label is written under each image, and the probability assigned to the correct label is shown with a red bar (if it is in the top‑5). (Right) Five ILSVRC‑2010 test images in the first column; the remaining columns show the six training images whose feature vectors in the last hidden layer have the smallest Euclidean distance to the test‑image feature vector."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Comparison of results on ILSVRC2010 test set. In italics are best results achieved by others."
+        },
+        {
+          "table": "Table 2",
+          "title": "Comparison of error rates on ILSVRC-2012 validation and test sets. In italics are best results achieved by others. Models with an asterisk* were 'pre‑trained' to classify the entire ImageNet 2011 Fall release."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Stochastic Gradient Descent",
+          "goal": "train the neural network",
+          "process": "update rule: v_{i+1} := 0.9·v_i - 0.0005·ε₁·w_i - ε₁·⟨∂L/∂w⟩_{D_i}; w_{i+1} := w_i + v_{i+1}"
+        },
+        {
+          "algorithm": "Dropout",
+          "goal": "prevent co‑adaptation of feature detectors and reduce overfitting",
+          "process": "during training set the output of each hidden neuron to zero with probability 0.5; at test time use all neurons but multiply their outputs by 0.5"
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": [
+        "Data augmentation (image translations, horizontal reflections)",
+        "PCA-based color augmentation (RGB jitter using principal components)",
+        "Weight decay (regularization term in SGD)",
+        "Momentum (parameter in SGD update)",
+        "Learning rate schedule (initial rate, reductions by factor of 10)",
+        "Two‑GPU parallel training scheme (splitting kernels across GPUs)",
+        "GPU‑optimized 2D convolution implementation",
+        "Local response normalization hyper‑parameter values (k, n, α, β)",
+        "Dropout probability specification (0.5) and scaling at test time"
+      ]
+    }
+  },
+  {
+    "iteration": 2,
+    "prompt_versions": [
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Rectified Linear Units (ReLUs)",
+          "meaning": "non‑saturating nonlinearity f(x)=max(0,x) used instead of tanh or sigmoid"
+        },
+        {
+          "term": "Local Response Normalization",
+          "meaning": "response‑normalized activity b_i = a_i / (k + α Σ_j a_j^2 )^β, a form of lateral inhibition"
+        },
+        {
+          "term": "Overlapping Pooling",
+          "meaning": "pooling with stride s < kernel size z (s=2, z=3) so neighboring pooling regions overlap"
+        },
+        {
+          "term": "Dropout",
+          "meaning": "setting the output of each hidden neuron to zero with probability 0.5 during training and scaling outputs by 0.5 at test time"
+        },
+        {
+          "term": "Data augmentation (image translations and horizontal reflections)",
+          "meaning": "generating random 224×224 patches and their horizontal flips from 256×256 images, increasing training set size"
+        },
+        {
+          "term": "PCA‑based color augmentation (RGB jitter using principal components)",
+          "meaning": "adding multiples of the RGB principal components (scaled by eigenvalues and a Gaussian random variable) to each training image"
+        },
+        {
+          "term": "Weight decay",
+          "meaning": "L2 regularization term of 0.0005 applied during stochastic gradient descent"
+        },
+        {
+          "term": "Momentum",
+          "meaning": "SGD momentum coefficient of 0.9 used in the weight update rule"
+        },
+        {
+          "term": "Learning rate schedule",
+          "meaning": "initial learning rate 0.01, divided by 10 when validation error stops improving, reduced three times"
+        },
+        {
+          "term": "Two‑GPU parallel training scheme",
+          "meaning": "splitting kernels (or neurons) across two GPUs, each GPU holds half the kernels and communication occurs only at selected layers"
+        },
+        {
+          "term": "GPU‑optimized 2D convolution implementation",
+          "meaning": "highly‑optimized GPU code for 2‑dimensional convolution used to accelerate training"
+        },
+        {
+          "term": "Local response normalization hyper‑parameters (k, n, α, β)",
+          "meaning": "k=2, n=5, α=10⁻⁴, β=0.75 as determined on a validation set"
+        },
+        {
+          "term": "Dropout probability (0.5) and scaling at test time",
+          "meaning": "each hidden unit is dropped with probability 0.5 during training; at test time all units are used and their outputs are multiplied by 0.5"
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "A four‑layer convolutional neural network with ReLUs (solid line) reaches a 25 % training error rate on CIFAR‑10 six times faster than an equivalent network with tanh neurons (dashed line). No regularization was employed."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "Illustration of the CNN architecture showing the division of work between two GPUs; input dimension 150,528 and layer sizes 253,440‑186,624‑64,896‑64,896‑43,264‑4096‑4096‑1000."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "96 convolutional kernels of size 11×11×3 learned by the first convolutional layer; top 48 kernels on GPU 1, bottom 48 on GPU 2."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "(Left) Eight ILSVRC‑2010 test images with the five most probable labels; (Right) Five test images with the six nearest training images in the 4096‑dimensional feature space."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Comparison of results on ILSVRC2010 test set. In italics are best results achieved by others."
+        },
+        {
+          "table": "Table 2",
+          "title": "Comparison of error rates on ILSVRC‑2012 validation and test sets. In italics are best results achieved by others. Models with an asterisk* were ‘pre‑trained’ to classify the entire ImageNet 2011 Fall release."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "Stochastic Gradient Descent (SGD)",
+          "goal": "minimize the training loss and learn network parameters",
+          "process": "updates weights using batch size 128, learning rate (starting at 0.01 and reduced by factor 10 when needed), momentum 0.9, and weight decay 0.0005"
+        },
+        {
+          "algorithm": "Dropout",
+          "goal": "prevent overfitting by reducing co‑adaptation of hidden units",
+          "process": "during training each hidden neuron output is set to zero with probability 0.5; at test time all neurons are used and their outputs are multiplied by 0.5"
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": [
+        "GPU‑optimized 2D convolution implementation (code availability and specific optimizations not detailed)",
+        "Two‑GPU parallel training scheme (exact pattern of connectivity and communication layers not fully described)"
+      ],
+      "ambiguous": "*None*",
+      "missing": [
+        "Max‑pooling layers and their role in the architecture",
+        "Softmax layer and the multinomial logistic regression objective",
+        "Weight initialization details (Gaussian std 0.01) and bias initialization values (0 or 1)",
+        "Image preprocessing steps (mean subtraction, resizing to 256×256, center cropping to 224×224)",
+        "Training schedule details (90 passes through the data, 5–6 days on two GPUs)",
+        "GPU memory constraints that limit network size",
+        "Discussion of model depth importance (removing a convolutional layer degrades performance)",
+        "Test‑time data augmentation (averaging predictions over ten 224×224 patches)",
+        "Qualitative evaluation using feature similarity and nearest‑neighbor retrieval in the 4096‑dimensional space"
+      ]
+    }
+  },
+  {
+    "iteration": 3,
+    "prompt_versions": [
+      "v_refined_coverage"
+    ],
+    "extraction": {
+      "terminologies": [
+        {
+          "term": "Rectified Linear Units (ReLUs)",
+          "meaning": "Non‑saturating nonlinearity defined as f(x) = max(0, x)."
+        },
+        {
+          "term": "Local Response Normalization",
+          "meaning": "Response‑normalized activity b_i^{x,y} = a_i^{x,y} / (k + α Σ_j (a_j^{x,y})^2)^{β}, with hyper‑parameters k = 2, n = 5, α = 10^{-4}, β = 0.75."
+        },
+        {
+          "term": "Dropout",
+          "meaning": "A regularization technique that sets the output of each hidden neuron to zero with probability 0.5 during training."
+        },
+        {
+          "term": "softmax",
+          "meaning": "A 1000‑way softmax layer that produces a probability distribution over the 1000 class labels."
+        },
+        {
+          "term": "multinomial logistic regression objective",
+          "meaning": "Maximizing the average across training cases of the log‑probability of the correct label under the prediction distribution."
+        },
+        {
+          "term": "overlapping pooling",
+          "meaning": "Pooling with stride s = 2 and window size z = 3, i.e., the pooling neighborhoods overlap."
+        },
+        {
+          "term": "max‑pooling layers",
+          "meaning": "Pooling layers that summarize the outputs of neighboring groups of neurons in the same kernel map."
+        }
+      ],
+      "figures": [
+        {
+          "figure": "Figure 1",
+          "description": "A four‑layer convolutional neural network with ReLUs (solid line) reaches a 25% training error rate on CIFAR‑10 six times faster than an equivalent network with tanh neurons (dashed line). The learning rates for each network were chosen independently to make training as fast as possible. No regularization of any kind was employed. The magnitude of the effect varies with network architecture, but networks with ReLUs consistently learn several times faster than equivalents with saturating neurons."
+        },
+        {
+          "figure": "Figure 2",
+          "description": "An illustration of the architecture of the CNN, explicitly showing the delineation of responsibilities between the two GPUs. One GPU runs the layer‑parts at the top of the figure while the other runs the layer‑parts at the bottom. The GPUs communicate only at certain layers. The network's input is 150,528‑dimensional, and the number of neurons in the remaining layers is given by 253,440‑186,624‑64,896‑64,896‑43,264‑4096‑4096‑1000."
+        },
+        {
+          "figure": "Figure 3",
+          "description": "96 convolutional kernels of size 11 × 11 × 3 learned by the first convolutional layer on the 224 × 224 × 3 input images. The top 48 kernels were learned on GPU 1 while the bottom 48 kernels were learned on GPU 2."
+        },
+        {
+          "figure": "Figure 4",
+          "description": "(Left) Eight ILSVRC‑2010 test images and the five labels considered most probable by the model; the correct label and its probability are shown. (Right) Five ILSVRC‑2010 test images in the first column, with the six training images that produce the smallest Euclidean distance in the 4096‑dimensional hidden‑layer feature space shown in the remaining columns."
+        }
+      ],
+      "tables": [
+        {
+          "table": "Table 1",
+          "title": "Comparison of results on ILSVRC2010 test set. In italics are best results achieved by others."
+        },
+        {
+          "table": "Table 2",
+          "title": "Comparison of error rates on ILSVRC‑2012 validation and test sets. In italics are best results achieved by others. Models with an asterisk* were 'pre‑trained' to classify the entire ImageNet 2011 Fall release."
+        }
+      ],
+      "algorithms": [
+        {
+          "algorithm": "stochastic gradient descent",
+          "goal": "Train the neural network by minimizing the loss function.",
+          "process": "Uses a batch size of 128, momentum of 0.9, weight decay of 0.0005, and updates weights with v_{i+1} := 0.9·v_i - 0.0005·ε·w_i - ε·⟨∂L/∂w⟩_{D_i}; w_{i+1} := w_i + v_{i+1}."
+        },
+        {
+          "algorithm": "dropout",
+          "goal": "Reduce overfitting by preventing co‑adaptation of hidden neurons.",
+          "process": "During training, each hidden neuron is set to zero with probability 0.5; at test time, all neurons are used but their outputs are multiplied by 0.5."
+        },
+        {
+          "algorithm": "local response normalization",
+          "goal": "Improve generalization by normalizing neuron responses across adjacent kernel maps.",
+          "process": "Computes b_i^{x,y} = a_i^{x,y} / (k + α Σ_{j} (a_j^{x,y})^2)^{β} with k = 2, n = 5, α = 10^{-4}, β = 0.75, applied after ReLU in selected layers."
+        },
+        {
+          "algorithm": "overlapping pooling",
+          "goal": "Reduce top‑1 and top‑5 error rates compared with non‑overlapping pooling.",
+          "process": "Applies pooling with stride s = 2 and window size z = 3, so pooling regions overlap."
+        }
+      ]
+    },
+    "complete": true,
+    "self_assessment": {
+      "weakly_supported": "*None*",
+      "ambiguous": "*None*",
+      "missing": [
+        "Data augmentation methods (random crops, horizontal flips, PCA-based color jitter)",
+        "GPU parallelization scheme across two GPUs (splitting kernels, limited inter‑GPU communication)",
+        "Weight initialization strategy (Gaussian std 0.01, bias initialization of 1 for certain layers)",
+        "Learning‑rate schedule and momentum details (initial LR 0.01, division by 10 on plateau, momentum 0.9)",
+        "Weight decay regularization (λ = 0.0005) and its role in training"
+      ]
+    }
+  }
+]
