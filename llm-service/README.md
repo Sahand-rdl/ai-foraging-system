@@ -46,19 +46,21 @@ According to the paper
 
 
 JSON FORMAT:
-
+```
 INPUT:
 {
     "project_definition": string,
     "path": string  
 }
+```
+``` 
 Example:
 { 
     "project_definition": "Project definition",
     "path": "/Users/alex/Documents/AIForaging/papers/raw/1/1706.03762.pdf"
 }
-
-    
+``` 
+```  
 OUTPUT:
 
 {
@@ -93,7 +95,8 @@ OUTPUT:
         }
     ]
 }
-
+```
+``` 
 Example:
 {
     "extracted_path": "/Users/alex/Documents/AIForaging/papers/extracted/1/1706.03762.json",
@@ -127,3 +130,4 @@ Example:
         }
     ]
 }
+``` 
