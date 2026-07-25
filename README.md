@@ -110,7 +110,7 @@ chmod +x start_services.sh
 ## 📜 Academic References & Acknowledgments
 This project was developed at the **RWTH Aachen University** (Software Construction Lab) under the supervision of **Selin Coban**.
 
-- **Academic Certificate**: Grade 1.0/1.0. View the official [SPP_Master_Leistungsnachweis.pdf](https://github.com/Sahand-rdl/Artifaix/blob/main/SPP_Master_Leistungsnachweis.pdf).
+- **Academic Certificate**: Grade 1.0/1.0. View the official [Certificate](https://github.com/Sahand-rdl/Artifaix/blob/main/SPP_Master_Leistungsnachweis.pdf).
 - **MapReduce Implementation**: Inspired by Dean & Ghemawat (2008).
 - **LLM Infrastructure**: Supported by the HPC Aachen `gpt-oss` cluster.
 - **Semantic Engine**: Powered by BAAI's `bge-small` and ChromaDB.
